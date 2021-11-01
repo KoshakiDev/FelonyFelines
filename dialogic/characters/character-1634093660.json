@@ -1,0 +1,24 @@
+{
+	"color": "#ff9badb7",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1634093660.json",
+	"mirror_portraits": false,
+	"name": "Dominic",
+	"nickname": "Dom",
+	"nickname_bool": true,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://assets/entities/players/caretaker/dialogue portraits/dominic_portrait_resized.png"
+		},
+		{
+			"name": "",
+			"path": ""
+		}
+	],
+	"scale": 10
+}
