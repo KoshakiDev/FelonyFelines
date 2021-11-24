@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/environment/test_room.gd" type="Script" id=1]
 [ext_resource path="res://assets/environment/test_deltarune.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/entities/enemies/enemy.tscn" type="PackedScene" id=4]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,3 +29,6 @@ polygon = PoolVector2Array( 231.548, 183.583, 244.934, 180.748, 235.957, 175.394
 
 [node name="Charlie" parent="." instance=ExtResource( 3 )]
 position = Vector2( 467.08, 329.327 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 310, 352 )

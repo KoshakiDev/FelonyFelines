@@ -574,7 +574,7 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
-[node name="Charlie" type="KinematicBody2D"]
+[node name="Charlie" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 2 )
 __meta__ = {
