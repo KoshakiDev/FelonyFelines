@@ -3,12 +3,16 @@ extends KinematicBody2D
 
 var velocity: Vector2
 
+export var max_health: int = 100
+
 export var max_speed: int = 50
 export var max_steering: float = 2.5
 
 onready var state_machine := $StatesMachine
 
 onready var vision_area := $Area2D
+
+onready var health_bar := $HealthBar
 
 func _ready():
 	#ready_card()

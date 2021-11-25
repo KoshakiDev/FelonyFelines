@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UI/healthBar.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/lifebar_fill.png" type="Texture" id=2]
+[ext_resource path="res://assets/UI/lifebar_bg.png" type="Texture" id=3]
+
+[node name="HealthBar" type="TextureRect"]
+margin_left = -17.0
+margin_top = -18.0
+margin_right = 15.0
+margin_bottom = 14.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 40.0
+value = 100.0
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
