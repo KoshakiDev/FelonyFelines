@@ -672,7 +672,7 @@ vframes = 8
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.25, 0.25 )
+zoom = Vector2( 0.5, 0.5 )
 limit_left = 0
 
 [node name="HandPositionPlayer" type="AnimationPlayer" parent="."]
