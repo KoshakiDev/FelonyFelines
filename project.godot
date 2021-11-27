@@ -88,6 +88,10 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
 
+[global]
+
+background=false
+
 [importer_defaults]
 
 texture={

@@ -28,7 +28,7 @@ polygon = PoolVector2Array( 411.559, 176.969, 440.852, 185.001, 454.396, 176.024
 polygon = PoolVector2Array( 231.548, 183.583, 244.934, 180.748, 235.957, 175.394, 227.138, 177.913 )
 
 [node name="Charlie" parent="." instance=ExtResource( 3 )]
-position = Vector2( 467.08, 329.327 )
+position = Vector2( 374, 386 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 304, 325 )
+position = Vector2( 705, 348 )
