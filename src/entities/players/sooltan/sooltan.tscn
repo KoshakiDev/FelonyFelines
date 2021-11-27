@@ -14,7 +14,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 29.0
-height = 60.0
+height = 12.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 3 )
@@ -667,6 +667,7 @@ position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 8
+frame = 32
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true

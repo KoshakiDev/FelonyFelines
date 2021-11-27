@@ -22,6 +22,10 @@ onready var sprite := $Sprite
 
 onready var health_bar := $HealthBar
 
+onready var anim_player = $AnimationPlayer
+
+onready var animation_tree = $AnimationTree
+
 func take_damage(damage_value):
 	health = health - damage_value
 	if health < 0:
@@ -44,13 +48,12 @@ func _ready():
 	pass
 
 func play_animation(animation):
-	pass
-	#animation_tree.get("parameters/playback").travel(animation)
+	animation_tree.get("parameters/playback").travel(animation)
 
 func adjust_blend_position(input_direction):
-	pass
-	#animation_tree.set("parameters/Idle/blend_position", input_direction)
-	#animation_tree.set("parameters/Run/blend_position", input_direction)
+	animation_tree.set("parameters/Idle/blend_position", input_direction)
+	animation_tree.set("parameters/Run/blend_position", input_direction)
 
 func _process(_delta: float) -> void:
+	print(state_machine.state)
 	pass
