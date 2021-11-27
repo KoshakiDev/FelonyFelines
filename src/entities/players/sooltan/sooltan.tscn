@@ -1,19 +1,20 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://assets/entities/players/sooltan/sooltan packed-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
-[ext_resource path="res://src/states/charlie/overworldmode/MoveChip.gd" type="Script" id=5]
-[ext_resource path="res://src/states/charlie/overworldmode/Idle.gd" type="Script" id=6]
+[ext_resource path="res://src/states/sooltan/Move.gd" type="Script" id=6]
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=7]
-[ext_resource path="res://src/states/charlie/overworldmode/Run.gd" type="Script" id=8]
+[ext_resource path="res://src/states/sooltan/Idle.gd" type="Script" id=8]
 [ext_resource path="res://assets/entities/players/sooltan/control sd.png" type="Texture" id=9]
 [ext_resource path="res://src/entities/players/sooltan/WeaponManager.gd" type="Script" id=10]
+[ext_resource path="res://src/entities/players/sooltan/Axe.gd" type="Script" id=11]
+[ext_resource path="res://src/entities/players/sooltan/ControlSD.gd" type="Script" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 29.0
-height = 12.0
+height = 60.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 3 )
@@ -574,7 +575,7 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
-[node name="Charlie" type="KinematicBody2D" groups=["player"]]
+[node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 2 )
 __meta__ = {
@@ -588,7 +589,7 @@ collision_layer = 0
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2( -1.00013, 37 )
+position = Vector2( 2.00001, -1.99999 )
 rotation = -3.14159
 shape = SubResource( 1 )
 
@@ -607,11 +608,13 @@ rotation = 0.785398
 position = Vector2( -0.707107, 0.707107 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -15 )
+script = ExtResource( 11 )
 
 [node name="ControlSD" type="Sprite" parent="WeaponManager/HandPosition2D"]
 visible = false
 texture = ExtResource( 9 )
 offset = Vector2( -5, -5 )
+script = ExtResource( 12 )
 
 [node name="GoodHand" type="Sprite" parent="WeaponManager/HandPosition2D"]
 visible = false
@@ -621,15 +624,10 @@ script = ExtResource( 7 )
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StatesMachine"]
-script = ExtResource( 6 )
-player_id = "_2"
+script = ExtResource( 8 )
 
 [node name="Move" type="Node" parent="StatesMachine"]
-script = ExtResource( 8 )
-player_id = "_2"
-
-[node name="Action" type="Node" parent="StatesMachine"]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="."]
 visible = false

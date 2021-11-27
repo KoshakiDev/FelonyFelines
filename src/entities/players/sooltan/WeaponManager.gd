@@ -14,9 +14,9 @@ var cur_slot = 0
 var cur_weapon = null
 
 func _ready():
-	print(weapons)
+	switch_to_weapon_slot(cur_slot)
 	pass
-	
+
 func switch_to_next_weapon():
 	cur_slot = (cur_slot + 1) % slots_unlocked.size()
 	if !slots_unlocked[cur_slot]:
