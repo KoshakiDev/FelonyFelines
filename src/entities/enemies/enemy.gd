@@ -82,11 +82,3 @@ func return_travel_direction():
 	var x_direction = stepify(velocity.x / max_speed, 1)
 	var y_direction = stepify(velocity.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
-
-func find_target(target_group) -> PhysicsBody2D:
-	var bodies = vision_area.get_overlapping_bodies()
-	var target # If no target found
-	for body in bodies:
-		if body.is_in_group(target_group):
-			target = body
-	return target

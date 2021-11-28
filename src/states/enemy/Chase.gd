@@ -3,15 +3,6 @@ extends State
 func enter(msg := {}) -> void:
 	owner.play_animation("Run")
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-func seek_steering(target) -> Vector2:
-	var desired_velocity = (target.position - owner.position).normalized() * owner.max_speed
-=======
-
-
->>>>>>> 158f03be52ecc6509865592eaa344a32cc31decc
 func seek_steering(vector_to_target: Vector2) -> Vector2:
 	var desired_velocity: Vector2 = vector_to_target.normalized() * owner.max_speed
 	return desired_velocity - owner.velocity
@@ -20,8 +11,6 @@ func seek_steering(vector_to_target: Vector2) -> Vector2:
 func arrival_steering(vector_to_target: Vector2) -> Vector2:
 	var speed: float = (vector_to_target.length() / owner.arrival_zone_radius) * owner.max_speed
 	var desired_velocity: Vector2 = vector_to_target.normalized() * speed
-	
->>>>>>> 6c7e8077d780ab87477e5031bb165f02f4f5d30a
 	return desired_velocity - owner.velocity
 	
 	
@@ -37,14 +26,11 @@ func avoid_obstacles_steering() -> Vector2:
 	return Vector2.ZERO
 
 func physics_update(delta: float) -> void:
-<<<<<<< HEAD
 	var target = owner.find_target("player")
 	
 	var steering: Vector2 = seek_steering(target)
 	steering.clamped(owner.max_steering)
-=======
-	var steering: Vector2 = Vector2.ZERO
-	var target = owner.find_target("player")
+	
 	if target == null:
 		state_machine.transition_to("Idle")
 		return
@@ -54,7 +40,6 @@ func physics_update(delta: float) -> void:
 		steering += seek_steering(vector_to_target)
 	else:
 		steering += arrival_steering(vector_to_target)
->>>>>>> 6c7e8077d780ab87477e5031bb165f02f4f5d30a
 	
 	var direction = owner.return_travel_direction()
 	if direction != Vector2.ZERO:
@@ -67,13 +52,9 @@ func physics_update(delta: float) -> void:
 	owner.velocity = owner.velocity.clamped(owner.max_speed)
 	
 	owner.velocity = owner.move_and_slide(owner.velocity)
-<<<<<<< HEAD
 
 	if owner.find_target_check("player") == false or owner.controlled:
 		state_machine.transition_to("Idle")
 		return
-=======
 	#if is_equal_approx(direction.x, 0.0) and is_equal_approx(direction.y, 0.0):
 		#state_machine.transition_to("Idle")
-
->>>>>>> 6c7e8077d780ab87477e5031bb165f02f4f5d30a
