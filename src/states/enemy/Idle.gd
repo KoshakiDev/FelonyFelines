@@ -14,7 +14,7 @@ func physics_update(_delta: float) -> void:
 		else:
 			state_machine.transition_to("Idle")
 	else:
-		if owner.find_target_check("player") == false:
+		if owner.find_target("player") == null:
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Chase")

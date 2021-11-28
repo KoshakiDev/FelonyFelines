@@ -37,20 +37,11 @@ onready var debug_label = $Label
 
 func find_target(target_group):
 	var bodies = vision_area.get_overlapping_bodies()
-	var target = owner
+	var target = null
 	for body in bodies:
 		if body.is_in_group(target_group):
 			target = body
 	return target
-	
-
-func find_target_check(target_group):
-	var bodies = vision_area.get_overlapping_bodies()
-	for body in bodies:
-		if body.is_in_group(target_group):
-			return true
-	return false
-
 
 func take_damage(damage_value):
 	health = health - damage_value

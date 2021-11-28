@@ -28,18 +28,20 @@ func avoid_obstacles_steering() -> Vector2:
 func physics_update(delta: float) -> void:
 	var target = owner.find_target("player")
 	
-	var steering: Vector2 = seek_steering(target)
-	steering.clamped(owner.max_steering)
-	
-	if target == null:
+	if target == null or owner.controlled:
 		state_machine.transition_to("Idle")
 		return
+		
 	var vector_to_target = target.position - owner.position
 	
+	var steering: Vector2
+		
 	if vector_to_target.length() > owner.arrival_zone_radius:
 		steering += seek_steering(vector_to_target)
 	else:
 		steering += arrival_steering(vector_to_target)
+	steering.clamped(owner.max_steering)
+	
 	
 	var direction = owner.return_travel_direction()
 	if direction != Vector2.ZERO:
@@ -52,9 +54,3 @@ func physics_update(delta: float) -> void:
 	owner.velocity = owner.velocity.clamped(owner.max_speed)
 	
 	owner.velocity = owner.move_and_slide(owner.velocity)
-
-	if owner.find_target_check("player") == false or owner.controlled:
-		state_machine.transition_to("Idle")
-		return
-	#if is_equal_approx(direction.x, 0.0) and is_equal_approx(direction.y, 0.0):
-		#state_machine.transition_to("Idle")

@@ -668,14 +668,9 @@ position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 8
-<<<<<<< HEAD
-frame = 32
-=======
->>>>>>> 158f03be52ecc6509865592eaa344a32cc31decc
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.5, 0.5 )
 limit_left = 0
 
 [node name="HandPositionPlayer" type="AnimationPlayer" parent="."]

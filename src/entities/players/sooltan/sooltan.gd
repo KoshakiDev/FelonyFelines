@@ -39,8 +39,7 @@ func _input(event):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action_2"):
 		weapon_manager.cur_weapon.action()
-		pass
-
+		
 func play_animation(animation):
 	animation_tree.get("parameters/playback").travel(animation)
 
