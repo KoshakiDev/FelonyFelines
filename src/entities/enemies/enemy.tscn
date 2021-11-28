@@ -286,7 +286,6 @@ parameters/Idle/blend_position = Vector2( -0.48336, 0.12931 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="Label" type="Label" parent="."]
 margin_left = -19.0
@@ -296,3 +295,20 @@ margin_bottom = -33.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Raycasts" type="Node2D" parent="."]
+position = Vector2( 0, 20 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 250, 0 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
+enabled = true
+cast_to = Vector2( 250, 0 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, 6 )
+enabled = true
+cast_to = Vector2( 50, 0 )
