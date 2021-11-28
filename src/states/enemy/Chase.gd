@@ -3,8 +3,6 @@ extends State
 func enter(msg := {}) -> void:
 	owner.play_animation("Run")
 
-
-
 func seek_steering(vector_to_target: Vector2) -> Vector2:
 	var desired_velocity: Vector2 = vector_to_target.normalized() * owner.max_speed
 	return desired_velocity - owner.velocity

@@ -15,10 +15,9 @@ texture = ExtResource( 2 )
 [node name="Charlie" parent="." instance=ExtResource( 3 )]
 position = Vector2( 374, 386 )
 
-[node name="Enemy2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 188, 434 )
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 71, 309, 72, 186, 108, 149, 340, 150, 362, 170, 398, 170, 420, 149, 566, 149, 625, 209, 626, 308, 560, 243, 421, 238, 421, 249, 399, 268, 364, 268, 339, 241, 218, 242, 185, 270, 110, 269 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]

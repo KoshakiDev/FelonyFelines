@@ -50,7 +50,6 @@ func adjust_blend_position(input_direction):
 	animation_tree.set("parameters/Run/blend_position", input_direction)
 
 func _process(_delta: float) -> void:
-	
 	pass
 #	var enemy = enemies_detection_system()
 #	if enemy != false:

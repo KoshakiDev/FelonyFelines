@@ -584,7 +584,6 @@ __meta__ = {
 run_speed = 250
 
 [node name="EnemyDetector" type="Area2D" parent="."]
-visible = false
 rotation = -1.5708
 collision_layer = 0
 collision_mask = 12
@@ -669,7 +668,7 @@ position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 8
-frame = 33
+frame = 32
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
