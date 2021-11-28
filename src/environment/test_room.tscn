@@ -1,23 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/environment/test_room.gd" type="Script" id=1]
-[ext_resource path="res://assets/environment/test_deltarune.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/entities/enemies/enemy.tscn" type="PackedScene" id=4]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 349, 229 )
-texture = ExtResource( 2 )
-
 [node name="Charlie" parent="." instance=ExtResource( 3 )]
 position = Vector2( 374, 386 )
 
+<<<<<<< HEAD
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 71, 309, 72, 186, 108, 149, 340, 150, 362, 170, 398, 170, 420, 149, 566, 149, 625, 209, 626, 308, 560, 243, 421, 238, 421, 249, 399, 268, 364, 268, 339, 241, 218, 242, 185, 270, 110, 269 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
+=======
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 188, 434 )
+controlled = null
+max_health = null
+health = null
+max_speed = null
+max_steering = null
+>>>>>>> 158f03be52ecc6509865592eaa344a32cc31decc

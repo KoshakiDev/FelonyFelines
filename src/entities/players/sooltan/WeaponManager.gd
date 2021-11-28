@@ -19,6 +19,7 @@ func _ready():
 
 func switch_to_next_weapon():
 	cur_slot = (cur_slot + 1) % slots_unlocked.size()
+	print(cur_slot, slots_unlocked.size())
 	if !slots_unlocked[cur_slot]:
 		switch_to_next_weapon()
 	else:
