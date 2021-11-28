@@ -240,10 +240,6 @@ script = ExtResource( 4 )
 [node name="Move" type="Node" parent="StatesMachine"]
 script = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.10745, 0.0647697 )
-scale = Vector2( 0.089844, 0.0941403 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
@@ -256,17 +252,18 @@ shape = SubResource( 2 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
 margin_left = -16.0
-margin_top = -30.0
+margin_top = -48.0
 margin_right = 16.0
-margin_bottom = 2.0
+margin_bottom = -16.0
 
-[node name="Sprite2" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 1 )
 texture = ExtResource( 7 )
 hframes = 10
 vframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2")
+root_node = NodePath("../Sprite")
 anims/RESET = SubResource( 3 )
 anims/idle_back = SubResource( 6 )
 anims/idle_front = SubResource( 4 )
@@ -286,7 +283,6 @@ parameters/Idle/blend_position = Vector2( -0.48336, 0.12931 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="Label" type="Label" parent="."]
 margin_left = -19.0

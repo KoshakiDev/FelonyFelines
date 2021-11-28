@@ -5,6 +5,7 @@ export var player_id = "_1"
 
 func enter(msg := {}) -> void:
 	owner.play_animation("Idle")
+	owner.velocity = Vector2.ZERO
 
 func physics_update(_delta: float) -> void:
 	if owner.controlled:
@@ -12,3 +13,8 @@ func physics_update(_delta: float) -> void:
 			state_machine.transition_to("Move")
 		else:
 			state_machine.transition_to("Idle")
+	else:
+		if owner.find_target_check("player") == false:
+			state_machine.transition_to("Idle")
+		else:
+			state_machine.transition_to("Chase")

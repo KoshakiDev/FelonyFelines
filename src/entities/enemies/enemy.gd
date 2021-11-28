@@ -29,6 +29,23 @@ onready var animation_tree = $AnimationTree
 
 onready var debug_label = $Label
 
+func find_target(target_group):
+	var bodies = vision_area.get_overlapping_bodies()
+	var target = owner
+	for body in bodies:
+		if body.is_in_group(target_group):
+			target = body
+	return target
+	
+
+func find_target_check(target_group):
+	var bodies = vision_area.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group(target_group):
+			return true
+	return false
+
+
 func take_damage(damage_value):
 	health = health - damage_value
 	if health < 0:
@@ -42,11 +59,6 @@ func _ready():
 	#ready_card()
 	randomize()
 	type = types[randi() % types.size()]
-
-	var path = "res://assets/entities/enemies/{type}.png".format({"type": type})
-	print(path)
-	sprite.texture = load(path)
-	sprite.scale = Vector2(0.25, 0.25)
 	
 	pass
 

@@ -26,7 +26,6 @@ func _ready():
 
 func enemies_detection_system():
 	var bodies = enemyDetector.get_overlapping_bodies()
-	print(bodies, "this")
 	var result = []
 	for body in bodies:
 		if body.is_in_group("enemy"):
