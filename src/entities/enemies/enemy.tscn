@@ -8,12 +8,11 @@
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/entities/enemies/dominic packed-Sheet.png" type="Texture" id=7]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 7.0
-height = 0.0
-
 [sub_resource type="CircleShape2D" id=2]
 radius = 192.003
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 8, 7.5 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -240,13 +239,6 @@ script = ExtResource( 4 )
 [node name="Move" type="Node" parent="StatesMachine"]
 script = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.10745, 0.0647697 )
-scale = Vector2( 0.089844, 0.0941403 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -2, -1 )
 
@@ -260,13 +252,17 @@ margin_top = -30.0
 margin_right = 16.0
 margin_bottom = 2.0
 
-[node name="Sprite2" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 7 )
 hframes = 10
 vframes = 8
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 37.5 )
+shape = SubResource( 26 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2")
+root_node = NodePath("../Sprite")
 anims/RESET = SubResource( 3 )
 anims/idle_back = SubResource( 6 )
 anims/idle_front = SubResource( 4 )
@@ -297,10 +293,9 @@ __meta__ = {
 }
 
 [node name="Raycasts" type="Node2D" parent="."]
-position = Vector2( 0, 20 )
 
 [node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, -6 )
+position = Vector2( 0, -12 )
 enabled = true
 cast_to = Vector2( 250, 0 )
 
@@ -309,6 +304,6 @@ enabled = true
 cast_to = Vector2( 250, 0 )
 
 [node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, 6 )
+position = Vector2( 0, 12 )
 enabled = true
-cast_to = Vector2( 50, 0 )
+cast_to = Vector2( 250, 0 )

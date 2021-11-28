@@ -48,11 +48,6 @@ func _ready():
 	#ready_card()
 	randomize()
 	type = types[randi() % types.size()]
-
-	var path = "res://assets/entities/enemies/{type}.png".format({"type": type})
-	print(path)
-	sprite.texture = load(path)
-	sprite.scale = Vector2(0.25, 0.25)
 	
 	pass
 
