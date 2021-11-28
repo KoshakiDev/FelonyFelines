@@ -1,36 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/environment/test_room.gd" type="Script" id=1]
-[ext_resource path="res://assets/environment/test_deltarune.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/entities/enemies/enemy.tscn" type="PackedScene" id=4]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 522.136, 274.108 )
-texture = ExtResource( 2 )
-
-[node name="RoomCollision" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2( 282.136, 130.108 )
-
-[node name="Junk4" type="CollisionPolygon2D" parent="RoomCollision"]
-polygon = PoolVector2Array( 232.883, 156.143, 253.649, 183.082, 289.006, 183.924, 310.614, 163.439, 310.894, 152.776, 452.044, 153.617, 515.744, 222.649, 516.586, 122.469, 456.815, 63.8205, 311.736, 64.1011, 289.568, 84.3054, 252.526, 84.586, 230.077, 64.3817, 75.1775, 64.6623, -0.869324, 64.9429, -38.1912, 101.142, -37.3493, 222.929, 1.09499, 184.766, 75.7387, 184.205, 79.948, 180.276, 96.7849, 179.715, 111.377, 166.245, 111.377, 158.388 )
-
-[node name="Junk5" type="CollisionPolygon2D" parent="RoomCollision"]
-polygon = PoolVector2Array( 357.54, 145.943, 357.382, 175.866, 403.684, 176.339, 403.527, 145.313 )
-
-[node name="Junk6" type="CollisionPolygon2D" parent="RoomCollision"]
-polygon = PoolVector2Array( 411.559, 176.969, 440.852, 185.001, 454.396, 176.024, 453.924, 160.117, 453.451, 135.706, 435.812, 132.871, 421.953, 154.29, 408.724, 160.59, 411.086, 175.551 )
-
-[node name="Junk7" type="CollisionPolygon2D" parent="RoomCollision"]
-polygon = PoolVector2Array( 231.548, 183.583, 244.934, 180.748, 235.957, 175.394, 227.138, 177.913 )
-
 [node name="Charlie" parent="." instance=ExtResource( 3 )]
 position = Vector2( 374, 386 )
 
-[node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 705, 348 )
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 188, 434 )

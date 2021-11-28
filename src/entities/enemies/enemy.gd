@@ -6,7 +6,7 @@ const types = ["rock", "scissors", "paper"]
 var velocity: Vector2
 var type: String
 
-var controlled: bool = false
+export var controlled: bool = false
 
 export var max_health: float = 100
 export var health: float = max_health
@@ -25,6 +25,9 @@ onready var health_bar := $HealthBar
 onready var anim_player = $AnimationPlayer
 
 onready var animation_tree = $AnimationTree
+
+
+onready var debug_label = $Label
 
 func take_damage(damage_value):
 	health = health - damage_value
@@ -55,5 +58,9 @@ func adjust_blend_position(input_direction):
 	animation_tree.set("parameters/Run/blend_position", input_direction)
 
 func _process(_delta: float) -> void:
-	print(state_machine.state)
 	pass
+
+func return_travel_direction():
+	var x_direction = stepify(velocity.x / max_speed, 1)
+	var y_direction = stepify(velocity.y / max_speed, 1)
+	return Vector2(x_direction, y_direction)

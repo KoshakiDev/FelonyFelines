@@ -644,6 +644,7 @@ __meta__ = {
 }
 
 [node name="ChipText" type="RichTextLabel" parent="."]
+visible = false
 margin_left = -43.6529
 margin_top = -53.1403
 margin_right = 43.3471
@@ -667,7 +668,7 @@ position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 8
-frame = 32
+frame = 31
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
@@ -705,3 +706,13 @@ parameters/playback = SubResource( 6 )
 parameters/Idle/blend_position = Vector2( -0.53945, 0.318965 )
 parameters/Idle/4/playback = SubResource( 20 )
 parameters/Run/blend_position = Vector2( 1, -1 )
+
+[node name="debug" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -54.0
+margin_right = 20.0
+margin_bottom = -40.0
+text = "dafs"
+__meta__ = {
+"_edit_use_anchors_": false
+}

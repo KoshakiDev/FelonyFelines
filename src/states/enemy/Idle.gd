@@ -4,7 +4,7 @@ extends State
 export var player_id = "_1"
 
 func enter(msg := {}) -> void:
-	pass
+	owner.play_animation("Idle")
 
 func physics_update(_delta: float) -> void:
 	if owner.controlled:

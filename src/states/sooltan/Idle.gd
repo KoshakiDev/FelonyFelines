@@ -11,3 +11,5 @@ func physics_update(_delta: float) -> void:
 		state_machine.transition_to("Move")
 	else:
 		state_machine.transition_to("Idle")
+	owner.debug_label.set_text("No move")
+	

@@ -14,6 +14,8 @@ func physics_update(delta: float) -> void:
 	input_direction.y = Input.get_action_strength("down" + player_id) - Input.get_action_strength("up" + player_id)
 	owner.velocity = owner.velocity.linear_interpolate(input_direction * owner.run_speed, .1 if input_direction.length() > 0 else .2)
 	
+	owner.debug_label.set_text(str(input_direction))
+	
 	if input_direction != Vector2.ZERO:
 		owner.adjust_blend_position(input_direction)
 	owner.velocity = owner.move_and_slide(owner.velocity)
