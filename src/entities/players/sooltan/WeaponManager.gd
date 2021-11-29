@@ -1,11 +1,11 @@
 extends Node2D
 
-enum WEAPON_SLOT {GOOD_HAND, AXE, CONTROL_SD}
+enum WEAPON_SLOT {GOOD_HAND, CONTROL_SD, AXE}
 
 var slots_unlocked = {
 	WEAPON_SLOT.GOOD_HAND: true,
-	WEAPON_SLOT.AXE: true,
 	WEAPON_SLOT.CONTROL_SD: true,
+	WEAPON_SLOT.AXE: true,
 }
 
 onready var weapons = $HandPosition2D.get_children()
@@ -19,7 +19,7 @@ func _ready():
 
 func switch_to_next_weapon():
 	cur_slot = (cur_slot + 1) % slots_unlocked.size()
-	print(cur_slot, slots_unlocked.size())
+	print(cur_slot, "===> ", slots_unlocked)
 	if !slots_unlocked[cur_slot]:
 		switch_to_next_weapon()
 	else:

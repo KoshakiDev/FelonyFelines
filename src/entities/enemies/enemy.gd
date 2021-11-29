@@ -9,10 +9,12 @@ var type: String
 export var controlled: bool = false
 
 export var max_health: float = 100
-export var health: float = max_health
+var health: float = max_health
 
 export var max_speed: int = 50
 export var max_steering: float = 2.5
+export var damage_value: float = 10
+
 
 export var avoid_force: int = 1000
 
@@ -32,11 +34,22 @@ onready var animation_tree = $AnimationTree
 
 onready var raycasts = $Raycasts
 
+onready var hit_range = $HitRange
 
 onready var debug_label = $Label
 
 func find_target(target_group):
 	var bodies = vision_area.get_overlapping_bodies()
+	print(bodies)
+	var target = null
+	for body in bodies:
+		if body.is_in_group(target_group):
+			target = body
+			break
+	return target
+
+func in_range_hit(target_group):
+	var bodies = hit_range.get_overlapping_bodies()
 	var target = null
 	for body in bodies:
 		if body.is_in_group(target_group):

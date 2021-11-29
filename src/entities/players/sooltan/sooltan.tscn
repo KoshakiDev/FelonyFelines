@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/entities/players/sooltan/sooltan packed-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/entities/players/sooltan/WeaponManager.gd" type="Script" id=10]
 [ext_resource path="res://src/entities/players/sooltan/Axe.gd" type="Script" id=11]
 [ext_resource path="res://src/entities/players/sooltan/ControlSD.gd" type="Script" id=12]
+[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 29.0
@@ -717,3 +718,7 @@ text = "dafs"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HealthBar" parent="." instance=ExtResource( 13 )]
+margin_top = -49.0
+margin_bottom = -17.0

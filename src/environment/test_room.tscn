@@ -1,8 +1,186 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/environment/test_room.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/entities/enemies/enemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+const types = [\"rock\", \"scissors\", \"paper\"]
+
+
+var velocity: Vector2
+var type: String
+
+export var controlled: bool = false
+
+export var max_health: float = 100
+var health: float = max_health
+
+export var max_speed: int = 50
+export var max_steering: float = 2.5
+export var damage_value: float = 10
+
+
+export var avoid_force: int = 1000
+
+export var arrival_zone_radius: int = 50
+
+onready var state_machine := $StatesMachine
+
+onready var vision_area := $Area2D
+
+onready var sprite := $Sprite
+
+onready var health_bar := $HealthBar
+
+onready var anim_player = $AnimationPlayer
+
+onready var animation_tree = $AnimationTree
+
+onready var raycasts = $Raycasts
+
+onready var hit_range = $HitRange
+
+onready var debug_label = $Label
+
+func find_target(target_group):
+	var bodies = vision_area.get_overlapping_bodies()
+	var target = null
+	for body in bodies:
+		if body.is_in_group(target_group):
+			target = body
+	return target
+
+func in_range_hit(target_group):
+	var bodies = hit_range.get_overlapping_bodies()
+	var target = null
+	for body in bodies:
+		if body.is_in_group(target_group):
+			target = body
+	return target
+
+func take_damage(damage_value):
+	health = health - damage_value
+	if health < 0:
+		print(\"dead\")
+		return
+	print(health)
+	health_bar.set_percent_value(health / max_health * 100)
+	return
+	
+func _ready():
+	#ready_card()
+	randomize()
+	type = types[randi() % types.size()]
+	
+	pass
+
+func play_animation(animation):
+	animation_tree.get(\"parameters/playback\").travel(animation)
+
+func adjust_blend_position(input_direction):
+	animation_tree.set(\"parameters/Idle/blend_position\", input_direction)
+	animation_tree.set(\"parameters/Run/blend_position\", input_direction)
+
+func _process(_delta: float) -> void:
+	pass
+
+func return_travel_direction():
+	var x_direction = stepify(velocity.x / max_speed, 1)
+	var y_direction = stepify(velocity.y / max_speed, 1)
+	return Vector2(x_direction, y_direction)
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends KinematicBody2D
+
+const types = [\"rock\", \"scissors\", \"paper\"]
+
+
+var velocity: Vector2
+var type: String
+
+export var controlled: bool = false
+
+export var max_health: float = 100
+var health: float = max_health
+
+export var max_speed: int = 50
+export var max_steering: float = 2.5
+export var damage_value: float = 10
+
+
+export var avoid_force: int = 1000
+
+export var arrival_zone_radius: int = 50
+
+onready var state_machine := $StatesMachine
+
+onready var vision_area := $Area2D
+
+onready var sprite := $Sprite
+
+onready var health_bar := $HealthBar
+
+onready var anim_player = $AnimationPlayer
+
+onready var animation_tree = $AnimationTree
+
+onready var raycasts = $Raycasts
+
+onready var hit_range = $HitRange
+
+onready var debug_label = $Label
+
+func find_target(target_group):
+	var bodies = vision_area.get_overlapping_bodies()
+	var target = null
+	for body in bodies:
+		if body.is_in_group(target_group):
+			target = body
+	return target
+
+func in_range_hit(target_group):
+	var bodies = hit_range.get_overlapping_bodies()
+	var target = null
+	for body in bodies:
+		if body.is_in_group(target_group):
+			target = body
+	return target
+
+func take_damage(damage_value):
+	health = health - damage_value
+	if health < 0:
+		print(\"dead\")
+		return
+	print(health)
+	health_bar.set_percent_value(health / max_health * 100)
+	return
+	
+func _ready():
+	#ready_card()
+	randomize()
+	type = types[randi() % types.size()]
+	
+	pass
+
+func play_animation(animation):
+	animation_tree.get(\"parameters/playback\").travel(animation)
+
+func adjust_blend_position(input_direction):
+	animation_tree.set(\"parameters/Idle/blend_position\", input_direction)
+	animation_tree.set(\"parameters/Run/blend_position\", input_direction)
+
+func _process(_delta: float) -> void:
+	pass
+
+func return_travel_direction():
+	var x_direction = stepify(velocity.x / max_speed, 1)
+	var y_direction = stepify(velocity.y / max_speed, 1)
+	return Vector2(x_direction, y_direction)
+"
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
@@ -17,6 +195,10 @@ polygon = PoolVector2Array( 71, 309, 72, 186, 108, 149, 340, 150, 362, 170, 398,
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 273, 438 )
+script = SubResource( 1 )
+avoid_force = 50
 
 [node name="Enemy2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 118, 408 )
+script = SubResource( 2 )
+avoid_force = 50

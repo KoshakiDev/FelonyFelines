@@ -10,10 +10,13 @@ func action():
 	if enemies.size() == 0:
 		return
 	var enemy = enemies[0]
+	
 	enemy.controlled = true
+	enemy.add_to_group("player")
 
-	# TODO: Find a way to find chip slot id, better
-	var chip_slot = owner.weapon_manager.cur_slot
+	print("players: ", get_tree().get_nodes_in_group("player"))
+
+	var chip_slot = owner.weapon_manager.WEAPON_SLOT.CONTROL_SD
 	owner.weapon_manager.slots_unlocked[chip_slot] = false
 	owner.weapon_manager.switch_to_next_weapon()
 	return

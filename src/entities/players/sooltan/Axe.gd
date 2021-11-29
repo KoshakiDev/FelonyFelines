@@ -2,6 +2,9 @@ extends Sprite
 
 var damage_value: float =  20
 
+var item_name: String = "AXE"
+
+
 func _ready():
 	pass
 	

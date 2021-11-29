@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 var velocity: Vector2
 
+export var max_health:float = 100
+var health:float = max_health
+
 export var player_id = ""
 export var run_speed = 1000
 
@@ -21,8 +24,18 @@ onready var weapon_manager = $WeaponManager
 
 onready var debug_label = $debug
 
+onready var health_bar = $HealthBar
+
 func _ready():
 	pass
+
+func take_damage(damage_value):
+	health = health - damage_value
+	if health < 0:
+		print("dead")
+		return
+	health_bar.set_percent_value(health / max_health * 100)
+	return
 
 func enemies_detection_system():
 	var bodies = enemyDetector.get_overlapping_bodies()
