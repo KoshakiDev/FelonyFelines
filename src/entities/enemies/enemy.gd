@@ -44,7 +44,6 @@ var is_moving = false
 func _ready():
 	randomize()
 	type = types[randi() % types.size()]
-	#type = "scissors"
 	if type == "rock" or type == "paper":
 		$SpriteScissors.visible = false
 		$SpriteRock.visible = true
@@ -59,8 +58,12 @@ func _ready():
 		anim_player = $AnimPlayerScissors
 		animation_tree = $AnimTreeScissors
 		sprite = $SpriteScissors
-		max_speed = 100
+		max_speed = 125
+		
 		max_health = 100
+	animation_tree.active = true
+	sprite.material.set_shader_param("is_control", false)
+
 
 func find_target(target_group):
 	var bodies = vision_area.get_overlapping_bodies()
@@ -89,7 +92,6 @@ func in_range_hit(target_group):
 
 
 func play_animation(animation):
-	print(animation)
 	animation_tree.get("parameters/playback").travel(animation)
 
 func adjust_blend_position(input_direction):
@@ -104,4 +106,11 @@ func return_travel_direction():
 	var y_direction = stepify(velocity.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
 	
+func insert_control_sd():
+	controlled = true
+	sprite.material.set_shader_param("is_control", controlled)
+
+func extract_control_sd():
+	controlled = false
+	sprite.material.set_shader_param("is_control", controlled)
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dominic packed-Sheet.png-062056c472a7198d784bdfb43912da42.stex"
+path="res://.import/scissors_control_mask_sheet.png-2696a347f7f902dd53f67e598990b4c6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/dominic packed-Sheet.png"
-dest_files=[ "res://.import/dominic packed-Sheet.png-062056c472a7198d784bdfb43912da42.stex" ]
+source_file="res://assets/entities/enemies/scissors/scissors_control_mask_sheet.png"
+dest_files=[ "res://.import/scissors_control_mask_sheet.png-2696a347f7f902dd53f67e598990b4c6.stex" ]
 
 [params]
 

@@ -9,15 +9,21 @@ script = ExtResource( 1 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Enemy" parent="YSort" instance=ExtResource( 4 )]
+[node name="Enemy2" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 349, 427 )
+
+[node name="Enemy3" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 259, 510 )
+
+[node name="Enemy4" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 579, 411 )
+
+[node name="Enemy5" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 168, 355 )
+
+[node name="Enemy" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 724, 421 )
 
 [node name="Sooltan" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 508, 398 )
 collision_layer = 10
-
-[node name="Enemy3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 389, 274 )
-
-[node name="Enemy2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 592, 303 )

@@ -1,11 +1,13 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://src/entities/enemies/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/enemies/enemy.gd" type="Script" id=3]
-[ext_resource path="res://assets/entities/enemies/scissorman-packed-Sheet.png" type="Texture" id=4]
+[ext_resource path="res://assets/entities/enemies/scissors/scissors_sheet.png" type="Texture" id=4]
+[ext_resource path="res://assets/entities/enemies/rock/rock_control_mask_sheet.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/entities/enemies/dominic packed-Sheet.png" type="Texture" id=7]
+[ext_resource path="res://assets/entities/enemies/rock/rock_sheet.png" type="Texture" id=7]
+[ext_resource path="res://assets/entities/enemies/scissors/scissors_control_mask_sheet.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=27]
 script/source = "extends State
@@ -145,6 +147,50 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
+[sub_resource type="Shader" id=62]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture;
+uniform bool is_control = false;
+
+void fragment()
+{
+	vec4 colour = texture(TEXTURE, UV);
+	if(is_control == false){
+		colour.a *= texture(mask_texture, UV).a;
+	}
+	COLOR = colour;
+}
+	"
+
+[sub_resource type="ShaderMaterial" id=64]
+resource_local_to_scene = true
+shader = SubResource( 62 )
+shader_param/is_control = false
+shader_param/mask_texture = ExtResource( 5 )
+
+[sub_resource type="Shader" id=63]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture;
+uniform bool is_control = false;
+
+void fragment()
+{
+	vec4 colour = texture(TEXTURE, UV);
+	if(is_control == false){
+		colour.a *= texture(mask_texture, UV).a;
+	}
+	COLOR = colour;
+}
+	"
+
+[sub_resource type="ShaderMaterial" id=65]
+resource_local_to_scene = true
+shader = SubResource( 63 )
+shader_param/is_control = true
+shader_param/mask_texture = ExtResource( 9 )
+
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
@@ -254,20 +300,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("../../Enemy3")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "stop_movement"
-} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -662,13 +694,15 @@ margin_bottom = -68.0
 script = SubResource( 31 )
 
 [node name="SpriteRock" type="Sprite" parent="."]
-visible = false
+material = SubResource( 64 )
 position = Vector2( 0, -48 )
 texture = ExtResource( 7 )
 hframes = 10
 vframes = 8
 
 [node name="SpriteScissors" type="Sprite" parent="."]
+visible = false
+material = SubResource( 65 )
 position = Vector2( 0, -48 )
 texture = ExtResource( 4 )
 hframes = 4
@@ -700,10 +734,9 @@ anims/run_right = SubResource( 39 )
 [node name="AnimTreeScissors" type="AnimationTree" parent="."]
 tree_root = SubResource( 47 )
 anim_player = NodePath("../AnimPlayerScissors")
-active = true
 parameters/playback = SubResource( 48 )
-parameters/Idle/blend_position = Vector2( -0.185374, -0.534483 )
-parameters/Run/blend_position = Vector2( -0.00340134, 0.991379 )
+parameters/Idle/blend_position = Vector2( -0.0578231, 0.517241 )
+parameters/Run/blend_position = Vector2( -0.30102, 0.284483 )
 
 [node name="AnimTreeRock" type="AnimationTree" parent="."]
 tree_root = SubResource( 17 )

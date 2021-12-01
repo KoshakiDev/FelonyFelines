@@ -11,7 +11,7 @@ func action():
 		return
 	var enemy = enemies[0]
 	
-	enemy.controlled = true
+	enemy.insert_control_sd()
 	enemy.add_to_group("player")
 
 	var chip_slot = owner.weapon_manager.WEAPON_SLOT.CONTROL_SD

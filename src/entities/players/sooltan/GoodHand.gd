@@ -13,7 +13,7 @@ func action():
 			owner.weapon_manager.slots_unlocked[chip_slot] = true
 			owner.weapon_manager.switch_to_weapon_slot(chip_slot)
 			
-			enemy.controlled = false
+			enemy.extract_control_sd()
 			enemy.remove_from_group("player")
 			enemy.state_machine.transition_to("Chase")
 			

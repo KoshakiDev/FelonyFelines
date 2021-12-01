@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scissorman-packed-Sheet.png-502d91bb389d7e18bf84bb1b6a37b34f.stex"
+path="res://.import/rock_control_mask_sheet.png-8b2b3779c5f3a1e400623431107db65a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/scissorman-packed-Sheet.png"
-dest_files=[ "res://.import/scissorman-packed-Sheet.png-502d91bb389d7e18bf84bb1b6a37b34f.stex" ]
+source_file="res://assets/entities/enemies/rock/rock_control_mask_sheet.png"
+dest_files=[ "res://.import/rock_control_mask_sheet.png-8b2b3779c5f3a1e400623431107db65a.stex" ]
 
 [params]
 
