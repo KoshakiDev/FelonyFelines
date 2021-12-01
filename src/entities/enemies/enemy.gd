@@ -38,6 +38,8 @@ onready var hit_range = $HitRange
 
 onready var debug_label = $Label
 
+var is_moving = false
+
 func find_target(target_group):
 	var bodies = vision_area.get_overlapping_bodies()
 	print(bodies)
@@ -47,6 +49,12 @@ func find_target(target_group):
 			target = body
 			break
 	return target
+
+func stop_movement():
+	is_moving = true
+
+func continue_movement():
+	is_moving = false
 
 func in_range_hit(target_group):
 	var bodies = hit_range.get_overlapping_bodies()
@@ -86,3 +94,5 @@ func return_travel_direction():
 	var x_direction = stepify(velocity.x / max_speed, 1)
 	var y_direction = stepify(velocity.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
+	
+

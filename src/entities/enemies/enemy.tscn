@@ -218,6 +218,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_movement"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "move_front"
@@ -389,7 +403,6 @@ anims/move_right = SubResource( 9 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 17 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 18 )
 parameters/Idle/blend_position = Vector2( -0.48336, 0.12931 )
 parameters/Run/blend_position = Vector2( 0, 0 )
