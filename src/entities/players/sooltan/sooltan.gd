@@ -29,14 +29,6 @@ onready var health_bar = $HealthBar
 func _ready():
 	pass
 
-func take_damage(damage_value):
-	health = health - damage_value
-	if health < 0:
-		print("dead")
-		return
-	health_bar.set_percent_value(health / max_health * 100)
-	return
-
 func enemies_detection_system():
 	var bodies = enemyDetector.get_overlapping_bodies()
 	var result = []

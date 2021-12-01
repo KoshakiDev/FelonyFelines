@@ -185,20 +185,83 @@ func return_travel_direction():
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Charlie" parent="." instance=ExtResource( 3 )]
-position = Vector2( 573, 410 )
+[node name="YSort" type="YSort" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 71, 309, 72, 186, 108, 149, 340, 150, 362, 170, 398, 170, 420, 149, 566, 149, 625, 209, 626, 308, 560, 243, 421, 238, 421, 249, 399, 268, 364, 268, 339, 241, 218, 242, 185, 270, 110, 269 )
-
-[node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 273, 438 )
+[node name="Enemy7" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 240, 37 )
 script = SubResource( 1 )
 avoid_force = 50
 
-[node name="Enemy2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 118, 408 )
+[node name="Enemy8" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 693, 180 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy9" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 780, 641 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy10" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 813, 437 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy11" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 742, 462 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy12" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 632, 449 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy13" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 515, 490 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy14" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 427, 456 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy15" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 383, 390 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Sooltan" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 573, 410 )
+collision_layer = 10
+
+[node name="Enemy" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 251, 406 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -100, 326 )
 script = SubResource( 2 )
+avoid_force = 50
+
+[node name="Enemy3" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 764, 383 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy4" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 93, 617 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy5" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -119, 556 )
+script = SubResource( 1 )
+avoid_force = 50
+
+[node name="Enemy6" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 459, 665 )
+script = SubResource( 1 )
 avoid_force = 50

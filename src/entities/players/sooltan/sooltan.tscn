@@ -1,7 +1,6 @@
 [gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/entities/players/sooltan/sooltan packed-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://src/entities/players/sooltan/sooltan.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/players/sooltan/GoodHand.gd" type="Script" id=5]
@@ -14,12 +13,72 @@
 [ext_resource path="res://src/entities/players/sooltan/ControlSD.gd" type="Script" id=12]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=13]
 
+[sub_resource type="GDScript" id=51]
+script/source = "extends KinematicBody2D
+
+var velocity: Vector2
+
+export var max_health:float = 100
+var health:float = max_health
+
+export var player_id = \"\"
+export var run_speed = 100
+
+onready var state_machine := $StatesMachine
+onready var label := $Label
+
+onready var animationPlayer = $AnimationPlayer
+onready var sprite = $Sprite
+
+onready var animation_tree = $AnimationTree
+
+onready var chipText = $ChipText
+
+onready var enemyDetector = $EnemyDetector
+
+onready var weapon_manager = $WeaponManager
+
+onready var debug_label = $debug
+
+onready var health_bar = $HealthBar
+
+func _ready():
+	pass
+
+func enemies_detection_system():
+	var bodies = enemyDetector.get_overlapping_bodies()
+	var result = []
+	for body in bodies:
+		if body.is_in_group(\"enemy\"):
+			result.append(body)
+	return result
+
+func _input(event):
+	if event.is_action_pressed(\"next_weapon_2\"):
+		weapon_manager.switch_to_next_weapon()
+	if event.is_action_pressed(\"prev_weapon_2\"):
+		weapon_manager.switch_to_prev_weapon()
+	if event.is_action_pressed(\"action_2\"):
+		weapon_manager.cur_weapon.action()
+		
+func play_animation(animation):
+	animation_tree.get(\"parameters/playback\").travel(animation)
+
+func adjust_blend_position(input_direction):
+	animation_tree.set(\"parameters/Idle/blend_position\", input_direction)
+	animation_tree.set(\"parameters/Run/blend_position\", input_direction)
+
+func _process(_delta: float) -> void:
+	pass
+"
+
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 29.0
 height = 12.0
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4, 3 )
+[sub_resource type="CapsuleShape2D" id=52]
+radius = 4.0
+height = 3.0
 
 [sub_resource type="Animation" id=29]
 length = 0.001
@@ -579,13 +638,20 @@ start_node = "Idle"
 
 [node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 16.0 ]
-}
-run_speed = 250
+script = SubResource( 51 )
+
+[node name="StatesMachine" type="Node" parent="."]
+script = ExtResource( 7 )
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StatesMachine"]
+script = ExtResource( 8 )
+
+[node name="Move" type="Node" parent="StatesMachine"]
+script = ExtResource( 6 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
+position = Vector2( 0, -16 )
 rotation = -1.5708
 collision_layer = 0
 collision_mask = 12
@@ -596,10 +662,11 @@ rotation = -3.14159
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2 )
-shape = SubResource( 2 )
+position = Vector2( 0, -6 )
+shape = SubResource( 52 )
 
 [node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2( 0, -16 )
 script = ExtResource( 10 )
 
 [node name="HandPosition2D" type="Position2D" parent="WeaponManager"]
@@ -622,15 +689,15 @@ script = ExtResource( 12 )
 visible = false
 script = ExtResource( 5 )
 
-[node name="StatesMachine" type="Node" parent="."]
-script = ExtResource( 7 )
-initial_state = NodePath("Idle")
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -24 )
+texture = ExtResource( 1 )
+hframes = 5
+vframes = 8
 
-[node name="Idle" type="Node" parent="StatesMachine"]
-script = ExtResource( 8 )
-
-[node name="Move" type="Node" parent="StatesMachine"]
-script = ExtResource( 6 )
+[node name="HealthBar" parent="." instance=ExtResource( 13 )]
+margin_top = -65.0
+margin_bottom = -33.0
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -642,6 +709,17 @@ custom_fonts/font = ExtResource( 3 )
 text = "State"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = -54.0
+margin_right = 20.0
+margin_bottom = -40.0
+text = "dafs"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -665,12 +743,6 @@ scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -8 )
-texture = ExtResource( 1 )
-hframes = 5
-vframes = 8
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
@@ -707,18 +779,3 @@ parameters/playback = SubResource( 6 )
 parameters/Idle/blend_position = Vector2( -0.53945, 0.318965 )
 parameters/Idle/4/playback = SubResource( 20 )
 parameters/Run/blend_position = Vector2( 1, -1 )
-
-[node name="debug" type="Label" parent="."]
-visible = false
-margin_left = -20.0
-margin_top = -54.0
-margin_right = 20.0
-margin_bottom = -40.0
-text = "dafs"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthBar" parent="." instance=ExtResource( 13 )]
-margin_top = -49.0
-margin_bottom = -17.0

@@ -8,6 +8,7 @@ func _ready():
 #	add_child(new_dialog)
 
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("action_1"):
-		print("!")
-		SceneChanger.change_scene("res://DeltaruneRippedSpriteTestBattleModeRoom.tscn", "fade")
+	pass
+
+func _physics_process(delta):
+	print(Engine.get_frames_per_second()) 
