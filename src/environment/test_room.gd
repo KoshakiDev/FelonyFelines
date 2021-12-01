@@ -9,6 +9,3 @@ func _ready():
 
 func _unhandled_input(event):
 	pass
-
-func _physics_process(delta):
-	print(Engine.get_frames_per_second()) 

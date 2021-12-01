@@ -16,7 +16,7 @@ export var max_steering: float = 2.5
 export var damage_value: float = 10
 
 
-export var avoid_force: int = 1000
+export var avoid_force: int = 50
 
 export var arrival_zone_radius: int = 50
 
@@ -24,13 +24,13 @@ onready var state_machine := $StatesMachine
 
 onready var vision_area = $Area2D
 
-onready var sprite = $Sprite
+onready var sprite = $SpriteScissors
 
 onready var health_bar = $HealthBar
 
-onready var anim_player = $AnimationPlayer
+onready var anim_player = $AnimPlayerScissors
 
-onready var animation_tree = $AnimationTree
+onready var animation_tree = $AnimTreeScissors
 
 onready var raycasts = $Raycasts
 
@@ -40,9 +40,31 @@ onready var debug_label = $Label
 
 var is_moving = false
 
+
+func _ready():
+	randomize()
+	type = types[randi() % types.size()]
+	#type = "scissors"
+	if type == "rock" or type == "paper":
+		$SpriteScissors.visible = false
+		$SpriteRock.visible = true
+		anim_player = $AnimPlayerRock
+		animation_tree = $AnimTreeRock
+		sprite = $SpriteRock
+		max_speed = 50
+		max_health = 100
+	if type == "scissors":
+		$SpriteRock.visible = false
+		$SpriteScissors.visible = true
+		anim_player = $AnimPlayerScissors
+		animation_tree = $AnimTreeScissors
+		sprite = $SpriteScissors
+		max_speed = 100
+		max_health = 100
+
 func find_target(target_group):
 	var bodies = vision_area.get_overlapping_bodies()
-	var target = bodies
+	var target = null
 	for body in bodies:
 		if body.is_in_group(target_group):
 			target = body
@@ -64,13 +86,10 @@ func in_range_hit(target_group):
 			break
 	return target
 
-func _ready():
-	randomize()
-	type = types[randi() % types.size()]
-	
-	pass
+
 
 func play_animation(animation):
+	print(animation)
 	animation_tree.get("parameters/playback").travel(animation)
 
 func adjust_blend_position(input_direction):
