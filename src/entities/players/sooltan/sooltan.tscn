@@ -1,7 +1,6 @@
 [gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/entities/players/sooltan/sooltan packed-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://src/entities/players/sooltan/sooltan.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/players/sooltan/GoodHand.gd" type="Script" id=5]
@@ -13,6 +12,65 @@
 [ext_resource path="res://src/entities/players/sooltan/Axe.gd" type="Script" id=11]
 [ext_resource path="res://src/entities/players/sooltan/ControlSD.gd" type="Script" id=12]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=13]
+
+[sub_resource type="GDScript" id=51]
+script/source = "extends KinematicBody2D
+
+var velocity: Vector2
+
+export var max_health:float = 100
+var health:float = max_health
+
+export var player_id = \"\"
+export var run_speed = 100
+
+onready var state_machine := $StatesMachine
+onready var label := $Label
+
+onready var animationPlayer = $AnimationPlayer
+onready var sprite = $Sprite
+
+onready var animation_tree = $AnimationTree
+
+onready var chipText = $ChipText
+
+onready var enemyDetector = $EnemyDetector
+
+onready var weapon_manager = $WeaponManager
+
+onready var debug_label = $debug
+
+onready var health_bar = $HealthBar
+
+func _ready():
+	pass
+
+func enemies_detection_system():
+	var bodies = enemyDetector.get_overlapping_bodies()
+	var result = []
+	for body in bodies:
+		if body.is_in_group(\"enemy\"):
+			result.append(body)
+	return result
+
+func _input(event):
+	if event.is_action_pressed(\"next_weapon_2\"):
+		weapon_manager.switch_to_next_weapon()
+	if event.is_action_pressed(\"prev_weapon_2\"):
+		weapon_manager.switch_to_prev_weapon()
+	if event.is_action_pressed(\"action_2\"):
+		weapon_manager.cur_weapon.action()
+		
+func play_animation(animation):
+	animation_tree.get(\"parameters/playback\").travel(animation)
+
+func adjust_blend_position(input_direction):
+	animation_tree.set(\"parameters/Idle/blend_position\", input_direction)
+	animation_tree.set(\"parameters/Run/blend_position\", input_direction)
+
+func _process(_delta: float) -> void:
+	pass
+"
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 29.0
@@ -579,11 +637,10 @@ start_node = "Idle"
 
 [node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
-script = ExtResource( 2 )
+script = SubResource( 51 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 16.0 ]
 }
-run_speed = 250
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 rotation = -1.5708

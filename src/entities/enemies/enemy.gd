@@ -22,11 +22,11 @@ export var arrival_zone_radius: int = 50
 
 onready var state_machine := $StatesMachine
 
-onready var vision_area := $Area2D
+onready var vision_area = $Area2D
 
-onready var sprite := $Sprite
+onready var sprite = $Sprite
 
-onready var health_bar := $HealthBar
+onready var health_bar = $HealthBar
 
 onready var anim_player = $AnimationPlayer
 
@@ -36,12 +36,9 @@ onready var raycasts = $Raycasts
 
 onready var hit_range = $HitRange
 
-onready var debug_label = $Label
-
 func find_target(target_group):
 	var bodies = vision_area.get_overlapping_bodies()
-	print(bodies)
-	var target = null
+	var target = bodies
 	for body in bodies:
 		if body.is_in_group(target_group):
 			target = body
@@ -54,19 +51,10 @@ func in_range_hit(target_group):
 	for body in bodies:
 		if body.is_in_group(target_group):
 			target = body
+			break
 	return target
 
-func take_damage(damage_value):
-	health = health - damage_value
-	if health < 0:
-		print("dead")
-		return
-	print(health)
-	health_bar.set_percent_value(health / max_health * 100)
-	return
-	
 func _ready():
-	#ready_card()
 	randomize()
 	type = types[randi() % types.size()]
 	
