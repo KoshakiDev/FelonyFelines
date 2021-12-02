@@ -14,7 +14,7 @@ func physics_update(_delta: float) -> void:
 		else:
 			state_machine.transition_to("Idle")
 	else:
-		if owner.find_target("player") == null:
-			state_machine.transition_to("Idle")
-		else:
+		if owner.find_targets_in_area(["player1", "player2"], owner.vision_area).size() != 0:
 			state_machine.transition_to("Chase")
+		else:
+			state_machine.transition_to("Idle")

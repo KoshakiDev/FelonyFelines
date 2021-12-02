@@ -6,16 +6,19 @@ func _ready():
 func action():
 	print("Take chip or do nothing")
 
-	var enemies = owner.enemies_detection_system()
-	for enemy in enemies:
-		if enemy.controlled:
-			var chip_slot = owner.weapon_manager.WEAPON_SLOT.CONTROL_SD
-			owner.weapon_manager.slots_unlocked[chip_slot] = true
-			owner.weapon_manager.switch_to_weapon_slot(chip_slot)
-			
-			enemy.extract_control_sd()
-			enemy.remove_from_group("player")
-			enemy.state_machine.transition_to("Chase")
-			
-			return
+	var targets = owner.find_targets_in_area(["player2"], owner.hit_range)
+	if targets.size() == 0:
+		return
+	
+	var player = targets[0]
+	
+	var chip_slot = owner.weapon_manager.WEAPON_SLOT.CONTROL_SD
+	owner.weapon_manager.slots_unlocked[chip_slot] = true
+	owner.weapon_manager.switch_to_weapon_slot(chip_slot)
+	
+	player.extract_control_sd()
+	player.remove_from_group("player2")
+	player.add_to_group("enemy")
+	player.state_machine.transition_to("Chase")
+	
 	return

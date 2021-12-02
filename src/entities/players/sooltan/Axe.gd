@@ -8,7 +8,7 @@ func _ready():
 func action():
 	print("Axe attack!")
 	
-	var enemies = owner.enemies_detection_system()
+	var enemies = owner.find_targets_in_area(["enemy"], owner.hit_range)
 	for enemy in enemies:
 		enemy.health = enemy.health_bar.take_damage(enemy.health, enemy.max_health, damage_value)
 	return

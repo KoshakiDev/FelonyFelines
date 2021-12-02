@@ -1,0 +1,369 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/entities/enemies/scissors/scissors_control_mask_sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/entities/enemies/scissors/scissors_sheet.png" type="Texture" id=3]
+[ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=4]
+[ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=6]
+[ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=7]
+[ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=8]
+[ext_resource path="res://src/states/enemy/Move.gd" type="Script" id=9]
+
+[sub_resource type="Shader" id=90]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture;
+uniform bool is_control = false;
+
+void fragment()
+{
+	vec4 colour = texture(TEXTURE, UV);
+	if(is_control == false){
+		colour.a *= texture(mask_texture, UV).a;
+	}
+	COLOR = colour;
+}
+	"
+
+[sub_resource type="ShaderMaterial" id=119]
+resource_local_to_scene = true
+shader = SubResource( 90 )
+shader_param/is_control = false
+shader_param/mask_texture = ExtResource( 2 )
+
+[sub_resource type="Animation" id=120]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=121]
+resource_name = "idle_back"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=122]
+resource_name = "idle_front"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=123]
+resource_name = "idle_left"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=124]
+resource_name = "idle_right"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19 ]
+}
+
+[sub_resource type="Animation" id=125]
+resource_name = "run_back"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=126]
+resource_name = "run_front"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=127]
+resource_name = "run_left"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
+
+[sub_resource type="Animation" id=128]
+resource_name = "run_right"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=129]
+animation = "idle_front"
+
+[sub_resource type="AnimationNodeAnimation" id=130]
+animation = "idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id=131]
+animation = "idle_back"
+
+[sub_resource type="AnimationNodeAnimation" id=132]
+animation = "idle_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=46]
+blend_point_0/node = SubResource( 129 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 130 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 131 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 132 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=133]
+animation = "run_front"
+
+[sub_resource type="AnimationNodeAnimation" id=134]
+animation = "run_right"
+
+[sub_resource type="AnimationNodeAnimation" id=135]
+animation = "run_back"
+
+[sub_resource type="AnimationNodeAnimation" id=136]
+animation = "run_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=49]
+blend_point_0/node = SubResource( 133 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 134 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 135 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 136 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachine" id=137]
+states/Idle/node = SubResource( 46 )
+states/Idle/position = Vector2( 240.667, 91.0741 )
+states/Run/node = SubResource( 49 )
+states/Run/position = Vector2( 456, 91 )
+transitions = [ "Idle", "Run", SubResource( 50 ), "Run", "Idle", SubResource( 51 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=138]
+
+[sub_resource type="CapsuleShape2D" id=115]
+radius = 8.0
+height = 4.0
+
+[sub_resource type="CapsuleShape2D" id=116]
+radius = 20.0
+height = 24.0
+
+[sub_resource type="CircleShape2D" id=117]
+radius = 192.003
+
+[sub_resource type="GDScript" id=118]
+script/source = "extends TextureRect
+
+func _ready():
+	$TextureProgress.value = 100
+
+
+func take_damage(health, max_health, damage_value):
+	health = health - damage_value
+	if health < 0: return 0
+	set_percent_value(health / max_health * 100)
+	return health 
+
+func set_percent_value(value):
+	$TextureProgress.value = value
+"
+
+[node name="EnemyScissors" type="KinematicBody2D" groups=["enemy"]]
+collision_layer = 11
+collision_mask = 11
+script = ExtResource( 6 )
+
+[node name="StatesMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+initial_state = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="StatesMachine"]
+script = ExtResource( 8 )
+
+[node name="Idle" type="Node" parent="StatesMachine"]
+script = ExtResource( 7 )
+
+[node name="Move" type="Node" parent="StatesMachine"]
+script = ExtResource( 9 )
+
+[node name="Attack" type="Node" parent="StatesMachine"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 119 )
+position = Vector2( 0, -48 )
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 8
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 120 )
+anims/idle_back = SubResource( 121 )
+anims/idle_front = SubResource( 122 )
+anims/idle_left = SubResource( 123 )
+anims/idle_right = SubResource( 124 )
+anims/run_back = SubResource( 125 )
+anims/run_front = SubResource( 126 )
+anims/run_left = SubResource( 127 )
+anims/run_right = SubResource( 128 )
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 137 )
+anim_player = NodePath("../AnimPlayer")
+active = true
+parameters/playback = SubResource( 138 )
+parameters/Idle/blend_position = Vector2( -0.0578231, 0.517241 )
+parameters/Run/blend_position = Vector2( -0.30102, 0.284483 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10 )
+shape = SubResource( 115 )
+
+[node name="HitRange" type="Area2D" parent="."]
+position = Vector2( 0, -48 )
+rotation = -1.5708
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
+position = Vector2( -19, -6.86646e-05 )
+rotation = -3.14159
+shape = SubResource( 116 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -2, -49 )
+collision_layer = 11
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 2, 12 )
+shape = SubResource( 117 )
+
+[node name="Raycasts" type="Node2D" parent="."]
+position = Vector2( 0, -37 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, -22 )
+enabled = true
+cast_to = Vector2( 250, 0 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
+enabled = true
+cast_to = Vector2( 250, 0 )
+collision_mask = 9
+
+[node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, 33 )
+enabled = true
+cast_to = Vector2( 250, 0 )
+collision_mask = 9
+
+[node name="HealthBar" parent="." instance=ExtResource( 1 )]
+margin_left = -16.0
+margin_top = -99.0
+margin_right = 16.0
+margin_bottom = -67.0
+script = SubResource( 118 )

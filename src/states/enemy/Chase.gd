@@ -26,12 +26,14 @@ func avoid_obstacles_steering() -> Vector2:
 	return Vector2.ZERO
 
 func physics_update(delta: float) -> void:
-	var target = owner.find_target("player")
+	var targets = owner.find_targets_in_area(["player1", "player2"], owner.vision_area)
 	
-	if target == null or owner.controlled:
+	if targets.size() == 0 or owner.controlled:
 		state_machine.transition_to("Idle")
 		return
 		
+	var target = targets[0]
+	
 	var vector_to_target = target.position - owner.position
 	
 	var steering: Vector2
@@ -54,3 +56,6 @@ func physics_update(delta: float) -> void:
 	owner.velocity = owner.velocity.clamped(owner.max_speed)
 	
 	owner.velocity = owner.move_and_slide(owner.velocity)
+	
+	if owner.find_targets_in_area(["player1", "player2"], owner.hit_range).size() != 0:
+		state_machine.transition_to("Attack")
