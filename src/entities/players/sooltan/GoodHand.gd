@@ -17,8 +17,9 @@ func action():
 	owner.weapon_manager.switch_to_weapon_slot(chip_slot)
 	
 	player.extract_control_sd()
-	player.remove_from_group("player2")
 	player.add_to_group("enemy")
+	player.remove_from_group("player2")
+	
 	player.state_machine.transition_to("Chase")
 	
 	return
