@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/entities/enemies/scissors/scissors_control_mask_sheet.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=7]
 [ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=8]
 [ext_resource path="res://src/states/enemy/Move.gd" type="Script" id=9]
+[ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=10]
 
 [sub_resource type="Shader" id=90]
 code = "shader_type canvas_item;
@@ -291,6 +292,9 @@ script = ExtResource( 9 )
 
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 4 )
+
+[node name="Death" type="Node" parent="StatesMachine"]
+script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 119 )
