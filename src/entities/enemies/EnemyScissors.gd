@@ -17,4 +17,8 @@ onready var raycasts = $Raycasts
 onready var hit_range = $HitRange
 
 func _ready():
-	$Sprite.material.set_shader_param("is_control", false)
+	pass
+
+func _process(delta):
+	if health <= 0:
+		state_machine.transition_to("Death")

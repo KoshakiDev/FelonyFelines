@@ -24,6 +24,7 @@ func _input(event):
 		$StatesMachine.transition_to("Attack")
 
 func _ready():
+	print("Enemy:", position)
 	$Sprite.material.set_shader_param("is_control", false)
 
 func find_targets_in_area(target_groups, area):

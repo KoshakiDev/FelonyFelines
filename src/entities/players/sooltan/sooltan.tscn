@@ -43,6 +43,7 @@ onready var debug_label = $debug
 onready var health_bar = $HealthBar
 
 func _ready():
+	print(\"Sultan: \", position)
 	pass
 
 func find_targets_in_area(target_groups, area):

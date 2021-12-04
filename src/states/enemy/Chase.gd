@@ -28,11 +28,14 @@ func avoid_obstacles_steering() -> Vector2:
 func physics_update(delta: float) -> void:
 	var targets = owner.find_targets_in_area(["player1", "player2"], owner.vision_area)
 	
+	
 	if targets.size() == 0 or owner.controlled:
 		state_machine.transition_to("Idle")
 		return
 		
 	var target = targets[0]
+	
+	print(owner.position, target.position)
 	
 	var vector_to_target = target.position - owner.position
 	

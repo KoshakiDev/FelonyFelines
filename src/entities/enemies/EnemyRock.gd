@@ -20,3 +20,8 @@ onready var hit_range = $HitRange
 
 func _ready():
 	sprite.material.set_shader_param("is_control", false)
+
+func _process(delta):
+	if health <= 0:
+		print(health)
+		state_machine.transition_to("Death")
