@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paper.png-92b8a133ea98a168a2a5106bac7785f1.stex"
+path="res://.import/snow-expansion.png-4e33fbba01d84ae914bcd97fa34c32b1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/paper.png"
-dest_files=[ "res://.import/paper.png-92b8a133ea98a168a2a5106bac7785f1.stex" ]
+source_file="res://snow-expansion.png"
+dest_files=[ "res://.import/snow-expansion.png-4e33fbba01d84ae914bcd97fa34c32b1.stex" ]
 
 [params]
 
