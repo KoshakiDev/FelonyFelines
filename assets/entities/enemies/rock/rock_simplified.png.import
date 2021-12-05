@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scissors_sheet.png-3d5201c6c53fc01467a739115b2269a7.stex"
+path="res://.import/rock_simplified.png-246536523466bae8adbc42e17171943f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/scissors/scissors_sheet.png"
-dest_files=[ "res://.import/scissors_sheet.png-3d5201c6c53fc01467a739115b2269a7.stex" ]
+source_file="res://assets/entities/enemies/rock/rock_simplified.png"
+dest_files=[ "res://.import/rock_simplified.png-246536523466bae8adbc42e17171943f.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rock_simplified-Sheet.png-21658c3fd09d910ee9b34082150a1a3c.stex"
+path="res://.import/paper_simplified.png-b5fbe732bac188f23e556cccbd2a0458.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/rock_simplified-Sheet.png"
-dest_files=[ "res://.import/rock_simplified-Sheet.png-21658c3fd09d910ee9b34082150a1a3c.stex" ]
+source_file="res://assets/entities/enemies/paper/paper_simplified.png"
+dest_files=[ "res://.import/paper_simplified.png-b5fbe732bac188f23e556cccbd2a0458.stex" ]
 
 [params]
 

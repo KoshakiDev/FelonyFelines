@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
@@ -7,9 +7,41 @@
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=5]
 [ext_resource path="res://src/states/sooltan/Move.gd" type="Script" id=6]
 [ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
-[ext_resource path="res://assets/entities/enemies/rock_simplified-Sheet.png" type="Texture" id=8]
+[ext_resource path="res://assets/entities/enemies/rock/rock_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/shaders/motionBlur.tres" type="Material" id=10]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Animation" id=90]
+resource_name = "Attack"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=91]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 21, 22, 23, 24, 25, 26, 27 ]
+}
 
 [sub_resource type="Animation" id=88]
 resource_name = "Idle"
@@ -57,7 +89,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 6, 7, 8, 9, 10, 11 ]
+"values": [ 7, 8, 9, 10, 11, 12 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=83]
@@ -116,10 +148,12 @@ script = ExtResource( 7 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -32 )
 texture = ExtResource( 8 )
-hframes = 6
-vframes = 2
+hframes = 7
+vframes = 4
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 90 )
+anims/Death = SubResource( 91 )
 anims/Idle = SubResource( 88 )
 anims/RESET = SubResource( 87 )
 anims/Run = SubResource( 89 )
