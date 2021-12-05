@@ -1,7 +1,8 @@
 extends Position2D
 
 var enemyLoad = [preload("res://src/entities/enemies/EnemyRock.tscn"),
-			 preload("res://src/entities/enemies/EnemyScissors.tscn")]
+			 preload("res://src/entities/enemies/EnemyScissors.tscn"),
+			 preload("res://src/entities/enemies/EnemyPaper.tscn")]
 
 var new_wave: bool = false
 export var enemy_count: int = 5

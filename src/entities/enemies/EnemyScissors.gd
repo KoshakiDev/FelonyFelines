@@ -1,4 +1,4 @@
-extends "res://src/scripts/enemy.gd"
+extends "res://src/scripts/enemySimplified.gd"
 
 var type: String = "scissors"
 

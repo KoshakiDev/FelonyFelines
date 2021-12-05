@@ -1,12 +1,10 @@
 extends "res://src/scripts/enemySimplified.gd"
 
-var type: String = "rock"
+var type: String = "paper"
 
 onready var state_machine := $StatesMachine
 
 onready var vision_area = $Area2D
-
-onready var sprite = $Sprite
 
 onready var health_bar = $HealthBar
 
@@ -23,5 +21,4 @@ func _ready():
 
 func _process(delta):
 	if health <= 0:
-		print(health)
 		state_machine.transition_to("Death")

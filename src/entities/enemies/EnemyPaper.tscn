@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
-[ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
 [ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=3]
 [ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=4]
 [ext_resource path="res://src/states/enemy/Move.gd" type="Script" id=5]
@@ -9,6 +9,23 @@
 [ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/paper_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Animation" id=120]
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
 
 [sub_resource type="Animation" id=119]
 length = 0.001
@@ -25,25 +42,8 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=120]
-resource_name = "idle"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-
 [sub_resource type="Animation" id=121]
-resource_name = "move"
+resource_name = "Run"
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -87,7 +87,7 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
-[node name="EnemyScissors" type="KinematicBody2D" groups=["enemy"]]
+[node name="EnemyPaper" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 11
 collision_mask = 11
 script = ExtResource( 2 )
@@ -119,9 +119,9 @@ vframes = 2
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
+anims/Idle = SubResource( 120 )
 anims/RESET = SubResource( 119 )
-anims/idle = SubResource( 120 )
-anims/move = SubResource( 121 )
+anims/Run = SubResource( 121 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -10 )
@@ -170,8 +170,6 @@ cast_to = Vector2( 250, 0 )
 collision_mask = 9
 
 [node name="HealthBar" parent="." instance=ExtResource( 9 )]
-margin_left = -16.0
-margin_top = -99.0
-margin_right = 16.0
-margin_bottom = -67.0
+margin_top = -75.0
+margin_bottom = -43.0
 script = SubResource( 118 )
