@@ -1,7 +1,7 @@
 extends State
 
 func enter(msg := {}) -> void:
-	owner.play_animation("Attack")
+	owner.play_animation("SpecialAttack")
 	yield(owner.anim_player, "finished")
 	
 	var targetGroups

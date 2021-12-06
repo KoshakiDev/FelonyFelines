@@ -35,8 +35,6 @@ func physics_update(delta: float) -> void:
 		
 	var target = targets[0]
 	
-	print(owner.position, target.position)
-	
 	var vector_to_target = target.position - owner.position
 	
 	var steering: Vector2
@@ -48,7 +46,7 @@ func physics_update(delta: float) -> void:
 	steering.clamped(owner.max_steering)
 	
 	
-	var direction = owner.return_travel_direction()
+	var direction = owner.return_travel_direction(owner.velocity.length())
 	if direction != Vector2.ZERO:
 		owner.adjust_blend_position(direction)
 
@@ -60,5 +58,5 @@ func physics_update(delta: float) -> void:
 	
 	owner.velocity = owner.move_and_slide(owner.velocity)
 	
-	if owner.find_targets_in_area(["player1", "player2"], owner.hit_range).size() != 0:
-		state_machine.transition_to("Attack")
+	if owner.find_targets_in_area(["player1", "player2"], owner.vision_area).size() != 0:
+		state_machine.transition_to("SpecialAttack")

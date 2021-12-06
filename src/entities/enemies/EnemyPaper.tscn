@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
@@ -9,22 +9,7 @@
 [ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/paper/paper_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=9]
-
-[sub_resource type="Animation" id=122]
-resource_name = "Attack"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 16, 17, 18, 19, 20, 21 ]
-}
+[ext_resource path="res://src/states/enemy/SpecialAttackPaper.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=123]
 resource_name = "Death"
@@ -90,13 +75,43 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 
+[sub_resource type="Animation" id=122]
+resource_name = "SpecialAttack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20, 21 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../StatesMachine/SpecialAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "initiate_special_attack"
+} ]
+}
+
 [sub_resource type="CapsuleShape2D" id=115]
 radius = 8.0
 height = 4.0
 
 [sub_resource type="CapsuleShape2D" id=116]
-radius = 20.0
-height = 24.0
+radius = 22.0
+height = 0.0
 
 [sub_resource type="CircleShape2D" id=117]
 radius = 192.003
@@ -139,6 +154,9 @@ script = ExtResource( 5 )
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 1 )
 
+[node name="SpecialAttack" type="Node" parent="StatesMachine"]
+script = ExtResource( 10 )
+
 [node name="Death" type="Node" parent="StatesMachine"]
 script = ExtResource( 7 )
 
@@ -150,14 +168,14 @@ vframes = 4
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
-anims/Attack = SubResource( 122 )
 anims/Death = SubResource( 123 )
 anims/Idle = SubResource( 120 )
 anims/RESET = SubResource( 119 )
 anims/Run = SubResource( 121 )
+anims/SpecialAttack = SubResource( 122 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -10 )
+position = Vector2( 0, -16 )
 shape = SubResource( 115 )
 
 [node name="HitRange" type="Area2D" parent="."]
@@ -168,18 +186,18 @@ collision_layer = 0
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
-position = Vector2( -19, -6.86646e-05 )
+position = Vector2( -42, -0.000148773 )
 rotation = -3.14159
 shape = SubResource( 116 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 position = Vector2( -2, -49 )
 collision_layer = 11
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 2, 12 )
+visible = false
+position = Vector2( 2, 36 )
 shape = SubResource( 117 )
 
 [node name="Raycasts" type="Node2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/states/sooltan/Move.gd" type="Script" id=6]
 [ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/rock/rock_simplified-Sheet.png" type="Texture" id=8]
+[ext_resource path="res://src/states/enemy/SpecialAttackRock.gd" type="Script" id=9]
 [ext_resource path="res://src/shaders/motionBlur.tres" type="Material" id=10]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=11]
 
@@ -97,8 +98,8 @@ radius = 8.0
 height = 4.0
 
 [sub_resource type="CapsuleShape2D" id=84]
-radius = 14.0
-height = 44.0
+radius = 322.0
+height = 0.0
 
 [sub_resource type="CircleShape2D" id=85]
 radius = 192.003
@@ -142,6 +143,9 @@ script = ExtResource( 6 )
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 1 )
 
+[node name="SpecialAttack" type="Node" parent="StatesMachine"]
+script = ExtResource( 9 )
+
 [node name="Death" type="Node" parent="StatesMachine"]
 script = ExtResource( 7 )
 
@@ -163,19 +167,17 @@ position = Vector2( 0, -10 )
 shape = SubResource( 83 )
 
 [node name="HitRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 11
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
-position = Vector2( -21, -1.00008 )
+position = Vector2( -29, -1.00011 )
 rotation = -3.14159
 shape = SubResource( 84 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 position = Vector2( -2, -49 )
 collision_layer = 11
 collision_mask = 11
@@ -185,7 +187,6 @@ position = Vector2( 2, 21 )
 shape = SubResource( 85 )
 
 [node name="Raycasts" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, -37 )
 
 [node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]

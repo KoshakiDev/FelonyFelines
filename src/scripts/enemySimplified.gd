@@ -26,7 +26,7 @@ func _input(event):
 		$StatesMachine.transition_to("Attack")
 
 func _ready():
-	print("Enemy:", position)
+	pass
 	#$Sprite.material.set_shader_param("is_control", false)
 
 func find_targets_in_area(target_groups, area):
@@ -45,9 +45,12 @@ func stop_movement():
 func continue_movement():
 	is_moving = false
 
-func return_travel_direction():
-	var x_direction = stepify(velocity.x / max_speed, 1)
-	var y_direction = stepify(velocity.y / max_speed, 1)
+func return_travel_direction(max_speed):
+	var x_direction = 1
+	var y_direction = 1
+	if max_speed != 0:
+		x_direction = stepify(velocity.x / max_speed, 1)
+		y_direction = stepify(velocity.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
 	
 func insert_control_sd():
@@ -60,6 +63,12 @@ func extract_control_sd():
 
 func play_animation(animation):
 	$AnimPlayer.play(animation)
+
+func loop_animation(animation):
+	$AnimPlayer.queue(animation)
+
+func get_animation(animation):
+	return $AnimPlayer.get_animation(animation)
 
 func adjust_blend_position(input_direction):
 	if input_direction.x != 0:
