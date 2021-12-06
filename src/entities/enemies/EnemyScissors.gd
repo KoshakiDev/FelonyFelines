@@ -14,6 +14,8 @@ onready var raycasts = $Raycasts
 
 onready var hit_range = $HitRange
 
+onready var death_sound = $Death
+
 func _ready():
 	pass
 

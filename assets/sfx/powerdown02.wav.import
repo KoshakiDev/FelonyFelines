@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/powerdown02.wav-392b7c60deb0cd50fd5a1870b948e5ff.sample"
+
+[deps]
+
+source_file="res://assets/sfx/powerdown02.wav"
+dest_files=[ "res://.import/powerdown02.wav-392b7c60deb0cd50fd5a1870b948e5ff.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

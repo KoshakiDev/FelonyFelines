@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
@@ -11,6 +11,13 @@
 [ext_resource path="res://src/states/enemy/SpecialAttackRock.gd" type="Script" id=9]
 [ext_resource path="res://src/shaders/motionBlur.tres" type="Material" id=10]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Shader.tres" type="Shader" id=12]
+[ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sfx/Explosion_03.wav" type="AudioStream" id=14]
+
+[sub_resource type="ShaderMaterial" id=92]
+shader = ExtResource( 12 )
+shader_param/active = false
 
 [sub_resource type="Animation" id=90]
 resource_name = "Attack"
@@ -43,6 +50,28 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 21, 22, 23, 24, 25, 26, 27 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Death:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=88]
 resource_name = "Idle"
@@ -74,6 +103,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Death:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=89]
@@ -121,6 +174,59 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
+[sub_resource type="Animation" id=93]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Hit")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hit:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=94]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hit:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [node name="EnemyRock" type="KinematicBody2D" groups=["enemy"]]
 material = ExtResource( 10 )
 collision_layer = 11
@@ -150,6 +256,7 @@ script = ExtResource( 9 )
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 92 )
 position = Vector2( 0, -32 )
 texture = ExtResource( 8 )
 hframes = 7
@@ -211,3 +318,13 @@ margin_top = -85.0
 margin_right = 14.0
 margin_bottom = -53.0
 script = SubResource( 86 )
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 93 )
+anims/RESET = SubResource( 94 )
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )

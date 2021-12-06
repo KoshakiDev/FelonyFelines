@@ -1,6 +1,7 @@
 extends KinematicBody2D 
 
 var velocity: Vector2
+var knockback: Vector2
 
 var is_moving = false
 
@@ -12,6 +13,8 @@ export var player_id: String = "_1"
 export var max_speed: int = 50
 export var max_steering: float = 2.5
 export var damage_value: float = 10
+
+export var max_knockback: int = 50
 
 export var avoid_force: int = 50
 
@@ -73,3 +76,8 @@ func get_animation(animation):
 func adjust_blend_position(input_direction):
 	if input_direction.x != 0:
 		$Sprite.scale.x = input_direction.x
+
+func take_damage(health, max_health, damage_value):
+	$HitAnimationPlayer.play("Hit")
+	return $HealthBar.take_damage(health, max_health, damage_value)
+	

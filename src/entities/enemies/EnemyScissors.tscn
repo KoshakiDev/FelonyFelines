@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=2]
@@ -10,6 +10,13 @@
 [ext_resource path="res://assets/entities/enemies/scissors/scissors_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/states/enemy/SpecialAttackScissors.gd" type="Script" id=9]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Shader.tres" type="Shader" id=11]
+[ext_resource path="res://assets/sfx/Explosion_02.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=13]
+
+[sub_resource type="ShaderMaterial" id=128]
+shader = ExtResource( 11 )
+shader_param/active = false
 
 [sub_resource type="Animation" id=122]
 resource_name = "Attack"
@@ -79,6 +86,28 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 25, 26, 26, 27, 28, 29 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("../Death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Death:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=120]
 resource_name = "Idle"
@@ -110,6 +139,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Death:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=121]
@@ -157,6 +198,119 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
+[sub_resource type="Animation" id=129]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.25 ), Vector2( 1, 1.25 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -32 ), Vector2( 0, -40 ), Vector2( 0, -40 ), Vector2( 0, -32 ) ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Hit")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hit:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=130]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hit:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [node name="EnemyScissors" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 11
 collision_mask = 11
@@ -185,7 +339,8 @@ script = ExtResource( 9 )
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -31 )
+material = SubResource( 128 )
+position = Vector2( 0, -32 )
 texture = ExtResource( 8 )
 hframes = 5
 vframes = 6
@@ -202,10 +357,12 @@ anims/RESET = SubResource( 119 )
 anims/Run = SubResource( 121 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -10 )
 shape = SubResource( 115 )
 
 [node name="HitRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -217,12 +374,11 @@ rotation = -3.14159
 shape = SubResource( 116 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( -2, -49 )
+visible = false
 collision_layer = 11
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 5, 19 )
 shape = SubResource( 117 )
 
 [node name="Raycasts" type="Node2D" parent="."]
@@ -251,3 +407,13 @@ margin_top = -82.0
 margin_right = 16.0
 margin_bottom = -50.0
 script = SubResource( 118 )
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 129 )
+anims/RESET = SubResource( 130 )
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )

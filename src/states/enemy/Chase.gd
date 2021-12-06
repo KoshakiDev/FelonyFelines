@@ -56,7 +56,11 @@ func physics_update(delta: float) -> void:
 	owner.velocity += steering
 	owner.velocity = owner.velocity.clamped(owner.max_speed)
 	
+	update_position()
+	if owner.find_targets_in_area(["player1", "player2"], owner.hit_range).size() != 0:
+		state_machine.transition_to("SpecialAttack")
+
+func update_position():
+	owner.knockback = owner.move_and_slide(owner.knockback)
 	owner.velocity = owner.move_and_slide(owner.velocity)
 	
-	if owner.find_targets_in_area(["player1", "player2"], owner.vision_area).size() != 0:
-		state_machine.transition_to("SpecialAttack")

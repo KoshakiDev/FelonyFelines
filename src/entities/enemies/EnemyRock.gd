@@ -20,6 +20,8 @@ func _ready():
 	pass
 
 func _process(delta):
+	knockback = knockback.linear_interpolate(Vector2.ZERO, 0.1)
+	
 	if health <= 0:
 		print(health)
 		state_machine.transition_to("Death")

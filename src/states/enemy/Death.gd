@@ -9,3 +9,4 @@ func enter(msg := {}) -> void:
 	
 func delete_enemy():
 	owner.queue_free()
+	

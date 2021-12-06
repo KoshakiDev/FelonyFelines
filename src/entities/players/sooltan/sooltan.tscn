@@ -1,6 +1,7 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://assets/entities/players/sooltan/sooltan packed-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Shader.tres" type="Shader" id=2]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/players/sooltan/GoodHand.gd" type="Script" id=5]
@@ -81,6 +82,10 @@ height = 12.0
 [sub_resource type="CapsuleShape2D" id=52]
 radius = 4.0
 height = 3.0
+
+[sub_resource type="ShaderMaterial" id=53]
+shader = ExtResource( 2 )
+shader_param/active = null
 
 [sub_resource type="Animation" id=29]
 length = 0.001
@@ -638,6 +643,9 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
+[sub_resource type="Animation" id=54]
+resource_name = "Hit"
+
 [node name="Sooltan" type="KinematicBody2D" groups=["player1"]]
 collision_layer = 11
 collision_mask = 11
@@ -693,6 +701,7 @@ visible = false
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 53 )
 position = Vector2( 0, -24 )
 texture = ExtResource( 1 )
 hframes = 5
@@ -757,3 +766,13 @@ parameters/playback = SubResource( 6 )
 parameters/Idle/blend_position = Vector2( -0.53945, 0.318965 )
 parameters/Idle/4/playback = SubResource( 20 )
 parameters/Run/blend_position = Vector2( 1, -1 )
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Hit")
+anims/Hit = SubResource( 54 )
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0, -24 )
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0, -24 )
