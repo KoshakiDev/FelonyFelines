@@ -731,10 +731,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera" type="Camera2D" parent="."]
-current = true
-limit_left = 0
-
 [node name="HandPositionPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationPlayer")
 anims/RESET = SubResource( 29 )

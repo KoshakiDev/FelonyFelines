@@ -16,6 +16,9 @@ func action():
 	owner.weapon_manager.slots_unlocked[chip_slot] = true
 	owner.weapon_manager.switch_to_weapon_slot(chip_slot)
 	
+	emit_signal("change_screen_face", "none")
+	
+	
 	player.extract_control_sd()
 	player.add_to_group("enemy")
 	player.remove_from_group("player2")

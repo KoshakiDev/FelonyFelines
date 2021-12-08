@@ -11,6 +11,8 @@ func action():
 		return
 	var enemy = enemies[0]
 	
+	emit_signal("change_screen_face", enemy.type)
+		
 	enemy.insert_control_sd()
 	enemy.add_to_group("player2")
 	enemy.remove_from_group("enemy")
