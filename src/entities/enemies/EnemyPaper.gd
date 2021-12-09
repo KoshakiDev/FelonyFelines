@@ -4,7 +4,7 @@ var type: String = "paper"
 
 onready var state_machine := $StatesMachine
 
-onready var vision_area = $Area2D
+onready var vision_area = $VisionArea
 
 onready var health_bar = $HealthBar
 

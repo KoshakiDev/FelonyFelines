@@ -4,7 +4,7 @@ var type: String = "scissors"
 
 onready var state_machine := $StatesMachine
 
-onready var vision_area = $Area2D
+onready var vision_area = $VisionArea
 
 onready var health_bar = $HealthBar
 
@@ -15,6 +15,10 @@ onready var raycasts = $Raycasts
 onready var hit_range = $HitRange
 
 onready var death_sound = $Death
+
+onready var collision = $CollisionShape2D
+
+onready var hit_range2 = $HitRange2
 
 func _ready():
 	pass

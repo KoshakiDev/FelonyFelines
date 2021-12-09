@@ -4,7 +4,7 @@ var type: String = "rock"
 
 onready var state_machine := $StatesMachine
 
-onready var vision_area = $Area2D
+onready var vision_area = $VisionArea
 
 onready var sprite = $Sprite
 
@@ -15,6 +15,8 @@ onready var anim_player = $AnimPlayer
 onready var raycasts = $Raycasts
 
 onready var hit_range = $HitRange
+
+onready var pellets = $Pellets
 
 func _ready():
 	pass

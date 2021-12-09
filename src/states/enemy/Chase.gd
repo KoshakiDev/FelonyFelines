@@ -58,7 +58,7 @@ func physics_update(delta: float) -> void:
 	
 	update_position()
 	if owner.find_targets_in_area(["player1", "player2"], owner.hit_range).size() != 0:
-		state_machine.transition_to("SpecialAttack")
+		state_machine.transition_to("Attack")
 
 func update_position():
 	owner.knockback = owner.move_and_slide(owner.knockback)

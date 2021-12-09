@@ -1,6 +1,5 @@
 [gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://src/states/enemy/Attack.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=2]
 [ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=3]
 [ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=4]
@@ -8,7 +7,7 @@
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=6]
 [ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/scissors/scissors_simplified-Sheet.png" type="Texture" id=8]
-[ext_resource path="res://src/states/enemy/SpecialAttackScissors.gd" type="Script" id=9]
+[ext_resource path="res://src/states/enemy/AttackScissors.gd" type="Script" id=9]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Shader.tres" type="Shader" id=11]
 [ext_resource path="res://assets/sfx/Explosion_02.wav" type="AudioStream" id=12]
@@ -174,12 +173,16 @@ tracks/0/keys = {
 radius = 8.0
 height = 4.0
 
+[sub_resource type="CapsuleShape2D" id=131]
+radius = 13.0
+height = 0.0
+
 [sub_resource type="CapsuleShape2D" id=116]
-radius = 12.0
+radius = 205.0
 height = 0.0
 
 [sub_resource type="CircleShape2D" id=117]
-radius = 192.003
+radius = 207.002
 
 [sub_resource type="GDScript" id=118]
 script/source = "extends TextureRect
@@ -330,9 +333,6 @@ script = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Attack" type="Node" parent="StatesMachine"]
-script = ExtResource( 1 )
-
-[node name="SpecialAttack" type="Node" parent="StatesMachine"]
 script = ExtResource( 9 )
 
 [node name="Death" type="Node" parent="StatesMachine"]
@@ -361,24 +361,29 @@ visible = false
 position = Vector2( 0, -10 )
 shape = SubResource( 115 )
 
+[node name="HitRange2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange2"]
+position = Vector2( 0, -18 )
+shape = SubResource( 131 )
+
 [node name="HitRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
-position = Vector2( -23, -8.39233e-05 )
+position = Vector2( -24, -8.58307e-05 )
 rotation = -3.14159
 shape = SubResource( 116 )
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="VisionArea" type="Area2D" parent="."]
 collision_layer = 11
 collision_mask = 11
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
+position = Vector2( -1, -25 )
 shape = SubResource( 117 )
 
 [node name="Raycasts" type="Node2D" parent="."]
