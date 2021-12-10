@@ -13,5 +13,5 @@ func action():
 	for enemy in enemies:
 		enemy.health = enemy.take_damage(enemy.health, enemy.max_health, damage_value)
 		
-		enemy.knockback = (enemy.position - owner.position).normalized() * knockback_value
+		enemy.knockback = (enemy.global_position - owner.global_position).normalized() * knockback_value
 	return

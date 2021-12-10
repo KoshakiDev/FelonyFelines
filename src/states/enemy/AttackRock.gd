@@ -22,7 +22,7 @@ func shootPellet():
 		return
 	var target = targets[0]
 	
-	var direction = target.position - owner.position
+	var direction = target.global_position - owner.global_position
 	
 	var pellet = pelletPreload.instance()
 	owner.pellets.add_child(pellet)
@@ -30,7 +30,4 @@ func shootPellet():
 	pellet.set_as_toplevel(true)
 	pellet.position = owner.pellets.global_position
 	pellet.direction = direction.normalized()
-	
-func physics_update(delta):
-#	print(cooldown_timer.time_left)
-	pass
+

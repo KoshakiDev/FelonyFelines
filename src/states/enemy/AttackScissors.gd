@@ -32,7 +32,7 @@ func enter(msg := {}) -> void:
 		state_machine.transition_to("Chase")
 		return
 		
-	direction = (targets[0].position - owner.position).normalized() * dash_speed
+	direction = (targets[0].global_position - owner.global_position).normalized() * dash_speed
 	
 	owner.play_animation("Attack")
 	

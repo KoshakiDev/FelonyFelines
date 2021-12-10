@@ -21,7 +21,7 @@ func avoid_obstacles_steering() -> Vector2:
 		raycast.cast_to.x = owner.velocity.length()
 		if raycast.is_colliding():
 			var obstacle: PhysicsBody2D = raycast.get_collider()
-			return (owner.position + owner.velocity - obstacle.position).normalized() * owner.avoid_force
+			return (owner.global_position + owner.velocity - obstacle.position).normalized() * owner.avoid_force
 			
 	return Vector2.ZERO
 
@@ -34,7 +34,7 @@ func physics_update(delta: float) -> void:
 		
 	var target = targets[0]
 	
-	var vector_to_target = target.position - owner.position
+	var vector_to_target = target.global_position - owner.global_position
 	
 	var steering: Vector2
 		

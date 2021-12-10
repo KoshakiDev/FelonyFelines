@@ -33,7 +33,7 @@ func damage_area(targetGroups, hit_range, damage_value, knockback_value):
 	var targets = find_targets_in_area(targetGroups, hit_range)
 	for target in targets:
 		target.health = target.take_damage(target.health, target.max_health, damage_value)
-		target.knockback = (target.position - position).normalized() * knockback_value
+		target.knockback = (target.global_position - global_position).normalized() * knockback_value
 
 func find_targets_in_area(target_groups, area):
 	var bodies = area.get_overlapping_bodies()

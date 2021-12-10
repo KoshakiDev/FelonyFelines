@@ -28,6 +28,6 @@ func add_enemies(count):
 	
 func _process(delta):
 	if new_wave:
-		Global.main.update_wave()
+#		Global.main.update_wave()
 		add_enemies(enemy_count)
 	new_wave = (enemies.get_child_count() == 0)
