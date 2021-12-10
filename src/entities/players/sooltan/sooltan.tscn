@@ -18,12 +18,13 @@
 script/source = "extends KinematicBody2D
 
 var velocity: Vector2
+var knockback: Vector2
 
 export var max_health:float = 100
 var health:float = max_health
 
 export var player_id = \"_2\"
-export var max_speed = 100
+export var max_speed = 200
 
 onready var state_machine := $StatesMachine
 onready var label := $Label
@@ -44,6 +45,7 @@ onready var debug_label = $debug
 onready var health_bar = $HealthBar
 
 func _ready():
+	Global.set(\"sooltan\", self)
 	pass
 
 func find_targets_in_area(target_groups, area):
@@ -71,8 +73,16 @@ func adjust_blend_position(input_direction):
 	animation_tree.set(\"parameters/Idle/blend_position\", input_direction)
 	animation_tree.set(\"parameters/Run/blend_position\", input_direction)
 
-func _process(_delta: float) -> void:
-	pass
+func take_damage(health, max_health, damage_value):
+	$HitAnimationPlayer.play(\"Hit\")
+	return $HealthBar.take_damage(health, max_health, damage_value)
+
+func _physics_process(delta):
+	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
+	velocity = velocity - velocity.linear_interpolate(Vector2.ZERO, 1 - Global.FRICTION)
+	
+	velocity = velocity + knockback
+	velocity = move_and_slide(velocity)
 "
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -706,6 +716,7 @@ position = Vector2( 0, -24 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 8
+frame = 30
 
 [node name="HealthBar" parent="." instance=ExtResource( 13 )]
 margin_top = -65.0

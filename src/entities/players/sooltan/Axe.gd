@@ -1,6 +1,7 @@
 extends Sprite
 
 var damage_value: float =  20
+var knockback_value: float = 50
 
 func _ready():
 	pass
@@ -11,4 +12,6 @@ func action():
 	var enemies = owner.find_targets_in_area(["enemy"], owner.hit_range)
 	for enemy in enemies:
 		enemy.health = enemy.take_damage(enemy.health, enemy.max_health, damage_value)
+		
+		enemy.knockback = (enemy.position - owner.position).normalized() * knockback_value
 	return

@@ -22,6 +22,8 @@ onready var collision = $CollisionShape2D
 
 onready var hit_range2 = $HitRange2
 
+onready var cooldown_timer = $Timer
+
 func _ready():
 	pass
 

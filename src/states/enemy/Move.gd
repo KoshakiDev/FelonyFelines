@@ -17,6 +17,6 @@ func physics_update(delta: float) -> void:
 	if input_direction != Vector2.ZERO:
 		owner.adjust_blend_position(input_direction)
 	owner.velocity = owner.move_and_slide(owner.velocity)
-		
+	
 	if is_equal_approx(input_direction.x, 0.0) and is_equal_approx(input_direction.y, 0.0):
 		state_machine.transition_to("Idle")

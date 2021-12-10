@@ -34,6 +34,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 15, 16, 17, 18, 19, 20, 21 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("StatesMachine/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shootPellet"
+} ]
+}
 
 [sub_resource type="Animation" id=91]
 resource_name = "Death"
@@ -154,7 +168,7 @@ radius = 195.0
 height = 0.0
 
 [sub_resource type="CircleShape2D" id=85]
-radius = 194.023
+radius = 317.077
 
 [sub_resource type="GDScript" id=86]
 script/source = "extends TextureRect
@@ -231,9 +245,10 @@ material = ExtResource( 10 )
 collision_layer = 11
 collision_mask = 11
 script = ExtResource( 2 )
+max_speed = 100
 
 [node name="Pellets" type="Node2D" parent="."]
-position = Vector2( 0, -26 )
+position = Vector2( 3, -32 )
 
 [node name="StatesMachine" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -273,6 +288,7 @@ position = Vector2( 0, -10 )
 shape = SubResource( 83 )
 
 [node name="HitRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 11
@@ -284,6 +300,7 @@ rotation = -3.14159
 shape = SubResource( 84 )
 
 [node name="VisionArea" type="Area2D" parent="."]
+visible = false
 position = Vector2( -2, -49 )
 collision_layer = 11
 collision_mask = 11
@@ -313,7 +330,6 @@ cast_to = Vector2( 250, 0 )
 collision_mask = 9
 
 [node name="HealthBar" parent="." instance=ExtResource( 11 )]
-visible = false
 margin_left = -18.0
 margin_top = -85.0
 margin_right = 14.0

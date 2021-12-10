@@ -1,5 +1,8 @@
 extends State
 
+export var damage_value: float = 10
+export var knockback_value: float = 50
+
 func enter(msg := {}) -> void:
 	owner.play_animation("Attack")
 	
@@ -14,6 +17,4 @@ func initiate_special_attack():
 	else:
 		targetGroups = ["player1", "player2"]
 		
-	var targets = owner.find_targets_in_area(targetGroups, owner.hit_range)
-	for target in targets:
-		target.health = target.health_bar.take_damage(target.health, target.max_health, owner.damage_value)
+	owner.damage_area(targetGroups, owner.hit_range, damage_value, knockback_value)

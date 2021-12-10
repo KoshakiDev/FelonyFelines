@@ -12,9 +12,6 @@ export var player_id: String = "_1"
 
 export var max_speed: int = 50
 export var max_steering: float = 2.5
-export var damage_value: float = 10
-
-export var max_knockback: int = 50
 
 export var avoid_force: int = 50
 
@@ -32,6 +29,12 @@ func _ready():
 	pass
 	#$Sprite.material.set_shader_param("is_control", false)
 
+func damage_area(targetGroups, hit_range, damage_value, knockback_value):
+	var targets = find_targets_in_area(targetGroups, hit_range)
+	for target in targets:
+		target.health = target.take_damage(target.health, target.max_health, damage_value)
+		target.knockback = (target.position - position).normalized() * knockback_value
+
 func find_targets_in_area(target_groups, area):
 	var bodies = area.get_overlapping_bodies()
 	var targets = []
@@ -48,12 +51,13 @@ func stop_movement():
 func continue_movement():
 	is_moving = false
 
-func return_travel_direction(max_speed):
+func return_travel_direction(vector):
 	var x_direction = 1
 	var y_direction = 1
+	var max_speed = vector.length()
 	if max_speed != 0:
-		x_direction = stepify(velocity.x / max_speed, 1)
-		y_direction = stepify(velocity.y / max_speed, 1)
+		x_direction = stepify(vector.x / max_speed, 1)
+		y_direction = stepify(vector.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
 	
 func insert_control_sd():
@@ -67,8 +71,8 @@ func extract_control_sd():
 func play_animation(animation):
 	$AnimPlayer.play(animation)
 
-func loop_animation(animation):
-	$AnimPlayer.queue(animation)
+func set_animation(duration):
+	$AnimPlayer.seek(duration, false)
 
 func get_animation(animation):
 	return $AnimPlayer.get_animation(animation)
@@ -80,4 +84,10 @@ func adjust_blend_position(input_direction):
 func take_damage(health, max_health, damage_value):
 	$HitAnimationPlayer.play("Hit")
 	return $HealthBar.take_damage(health, max_health, damage_value)
+
+func _physics_process(delta):
+	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
+	velocity = velocity - velocity.linear_interpolate(Vector2.ZERO, 1 - Global.FRICTION)
 	
+	velocity = velocity + knockback
+	velocity = move_and_slide(velocity)

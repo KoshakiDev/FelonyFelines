@@ -1,64 +1,49 @@
 extends State
 
-export var dash_time_ms: int = 50
-export var max_dash_speed: int = 200
-var dashing: bool = false
+onready var duration_timer = $DashDurationTimer
+
+export var dash_duration: int = 1
+export var dash_speed: int = 200
+
+export var damage_value: float = 10
+export var knockback_value: float = 20
+
 var targetGroups
 var direction
-var timer = 0
 
-func enter(msg := {}) -> void:
-	start_dash()
-
-func start_dash():
-	owner.play_animation("DashStart")
-	yield(owner.anim_player, "animation_finished")
-	
-	# start dash loop
-	owner.loop_animation("DashLoop")
-	timer = 0
-	dashing = true
-	
+func enter(msg := {}) -> void:	
 	if owner.controlled:
 		targetGroups = ["enemy"]
 	else:
 		targetGroups = ["player1", "player2"]
 
 	var targets = owner.find_targets_in_area(targetGroups, owner.hit_range)
-	
 	if targets.size() == 0:
-		end_dash()
+		state_machine.transition_to("Chase")
 		return
 		
-	var target = targets[0]
+	direction = (targets[0].position - owner.position).normalized() * dash_speed
 	
-	direction = (target.position - owner.position).normalized() * max_dash_speed
+	owner.play_animation("Attack")
 	
-func continue_dash():
-	owner.velocity = owner.move_and_slide(direction)
-	deal_damage(targetGroups)
-	
-func deal_damage(targetGroups):
-	var targets = owner.find_targets_in_area(targetGroups, owner.hit_range2)
-	for target in targets:
-		target.health = target.health_bar.take_damage(target.health, target.max_health, owner.damage_value)
+func start_dash():
+	duration_timer.wait_time = dash_duration
+	duration_timer.start()
+
+func is_dashing():
+	return !duration_timer.is_stopped()
 
 func end_dash():
-	dashing = false
-	
-	owner.play_animation("DashEnd")
-	yield(owner.anim_player, "animation_finished")
+	if is_dashing():
+		owner.set_animation(0.4)
+		print(duration_timer.time_left)
+	else:
+		yield(owner.anim_player, "animation_finished")
+		state_machine.transition_to("Chase")
+		pass
+#		
 
-	state_machine.transition_to("Chase")
-
-
-func physics_update(delta: float) -> void:
-	if timer == dash_time_ms: 
-		end_dash()
-		return
-		
-	if dashing:
-		continue_dash()
-		timer = timer + 1
-
-	pass
+func physics_update(delta):
+	if is_dashing():
+		owner.velocity = direction
+		owner.damage_area(targetGroups, owner.hit_range2, damage_value, knockback_value)

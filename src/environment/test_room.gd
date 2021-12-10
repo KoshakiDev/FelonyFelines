@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 func _ready():
 	pass
 #	var new_dialog = Dialogic.start('test')
