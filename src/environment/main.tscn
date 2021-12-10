@@ -221,9 +221,8 @@ texture = ExtResource( 2 )
 [node name="YSort" type="YSort" parent="Arena"]
 
 [node name="EnemySpawner" parent="Arena/YSort" instance=ExtResource( 10 )]
-position = Vector2( 1, -69 )
+position = Vector2( -2, -123 )
 z_as_relative = false
-spawn_radius = 50
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
 position = Vector2( -283, -63 )
