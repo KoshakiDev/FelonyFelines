@@ -83,8 +83,10 @@ func adjust_blend_position(input_direction):
 
 func take_damage(health, max_health, damage_value):
 	$HitAnimationPlayer.play("Hit")
-	return $HealthBar.take_damage(health, max_health, damage_value)
-
+	var new_health = $HealthBar.take_damage(health, max_health, damage_value)
+	if new_health <= 0:
+		$StatesMachine.transition_to("Death")
+	return new_health
 func _physics_process(delta):
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
 	velocity = velocity - velocity.linear_interpolate(Vector2.ZERO, 1 - Global.FRICTION)

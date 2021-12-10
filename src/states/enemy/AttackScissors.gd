@@ -36,7 +36,6 @@ func is_dashing():
 func end_dash():
 	if is_dashing():
 		owner.set_animation(0.4)
-		print(duration_timer.time_left)
 	else:
 		yield(owner.anim_player, "animation_finished")
 		state_machine.transition_to("Chase")

@@ -716,7 +716,6 @@ position = Vector2( 0, -24 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 8
-frame = 30
 
 [node name="HealthBar" parent="." instance=ExtResource( 13 )]
 margin_top = -65.0

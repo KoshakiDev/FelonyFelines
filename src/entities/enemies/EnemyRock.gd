@@ -22,6 +22,4 @@ func _ready():
 	pass
 
 func _process(delta):
-	if health <= 0:
-		print(health)
-		state_machine.transition_to("Death")
+	pass

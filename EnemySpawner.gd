@@ -10,8 +10,6 @@ export var spawn_radius: int = 250
 
 onready var enemies = $Enemies
 
-var wave: int = 0
-
 func random_pos(radius):
 	randomize()
 	var offset = Vector2(rand_range(-radius, radius), rand_range(-radius, radius))
@@ -28,16 +26,8 @@ func add_enemies(count):
 		enemy.global_position = random_pos(spawn_radius)
 	pass
 	
-
-func _ready():
-	print(position)
-	pass # Replace with function body.
-
 func _process(delta):
 	if new_wave:
-		wave = wave + 1
+		Global.main.update_wave()
 		add_enemies(enemy_count)
-		
 	new_wave = (enemies.get_child_count() == 0)
-	$Label.text = "Enemy Spawner: {count}".format({"count": enemies.get_child_count()})
-	pass
