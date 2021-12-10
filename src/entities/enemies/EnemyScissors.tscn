@@ -333,6 +333,9 @@ script = ExtResource( 9 )
 wait_time = 0.215
 one_shot = true
 
+[node name="Cooldown" type="Timer" parent="StatesMachine/Attack"]
+one_shot = true
+
 [node name="Death" type="Node" parent="StatesMachine"]
 script = ExtResource( 7 )
 

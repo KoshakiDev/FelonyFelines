@@ -309,6 +309,9 @@ script = ExtResource( 5 )
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 10 )
 
+[node name="Cooldown" type="Timer" parent="StatesMachine/Attack"]
+one_shot = true
+
 [node name="Death" type="Node" parent="StatesMachine"]
 script = ExtResource( 7 )
 

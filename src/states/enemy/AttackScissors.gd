@@ -1,6 +1,9 @@
 extends State
 
 onready var duration_timer = $DashDurationTimer
+onready var cooldown_timer = $Cooldown
+
+export var cooldown_duration: int = 5
 
 export var dash_duration: int = 1
 export var dash_speed: int = 200
@@ -11,7 +14,14 @@ export var knockback_value: float = 20
 var targetGroups
 var direction
 
-func enter(msg := {}) -> void:	
+func enter(msg := {}) -> void:
+	if !cooldown_timer.is_stopped():
+		state_machine.transition_to("Chase")
+		return
+	
+	cooldown_timer.wait_time = cooldown_duration
+	cooldown_timer.start()
+	
 	if owner.controlled:
 		targetGroups = ["enemy"]
 	else:
@@ -36,7 +46,6 @@ func is_dashing():
 func end_dash():
 	if is_dashing():
 		owner.set_animation(0.4)
-		print(duration_timer.time_left)
 	else:
 		yield(owner.anim_player, "animation_finished")
 		state_machine.transition_to("Chase")

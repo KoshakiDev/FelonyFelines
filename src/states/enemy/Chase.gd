@@ -44,14 +44,13 @@ func physics_update(delta: float) -> void:
 		steering += arrival_steering(vector_to_target)
 	steering.clamped(owner.max_steering)
 	
-	
-	var direction = owner.return_travel_direction(owner.velocity)
-	if direction != Vector2.ZERO:
-		owner.adjust_blend_position(direction)
-
 	steering += avoid_obstacles_steering()
 	steering = steering.clamped(owner.max_steering)
 	
+	var direction = owner.return_travel_direction(owner.velocity)
+	if direction != Vector2.ZERO:
+		owner.adjust_blend_position(direction)	
+
 	owner.velocity += steering
 	owner.velocity = owner.velocity.clamped(owner.max_speed)
 	
