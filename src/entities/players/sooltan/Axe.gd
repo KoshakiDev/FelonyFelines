@@ -7,7 +7,7 @@ func _ready():
 	pass
 	
 func action():
-	print("Axe attack!")
+	#print("Axe attack!")
 	
 	var enemies = owner.find_targets_in_area(["enemy"], owner.hit_range)
 	for enemy in enemies:

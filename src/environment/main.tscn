@@ -1,25 +1,23 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/environment/BG.png" type="Texture" id=1]
 [ext_resource path="res://assets/environment/Arena.png" type="Texture" id=2]
-[ext_resource path="res://assets/environment/Wires.png" type="Texture" id=3]
+[ext_resource path="res://assets/environment/Shell.png" type="Texture" id=3]
 [ext_resource path="res://assets/environment/Screen.png" type="Texture" id=4]
 [ext_resource path="res://assets/environment/Face.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/tvStatic.tres" type="Material" id=6]
-[ext_resource path="res://assets/environment/Group 4.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/environment/screen.gd" type="Script" id=9]
-[ext_resource path="res://src/entities/enemies/EnemyScissors.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/entities/enemies/EnemyPaper.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/environment/EnemySpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/environment/Rock.png" type="Texture" id=12]
 [ext_resource path="res://assets/environment/Scissors.png" type="Texture" id=13]
 [ext_resource path="res://assets/environment/Ppaer.png" type="Texture" id=14]
 [ext_resource path="res://src/environment/Face.gd" type="Script" id=15]
-[ext_resource path="res://src/entities/enemies/EnemyRock.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
-length = 6.0
+length = 3.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Head/Face:position")
@@ -28,10 +26,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2, 4, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 3, 4 ), Vector2( -117, 15 ), Vector2( 114, 14 ), Vector2( 3, 4 ) ]
+"values": [ Vector2( 3, 50 ), Vector2( -117, 50 ), Vector2( 114, 50 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -51,8 +49,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
-length = 10.0
+length = 16.0
 loop = true
+step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Head:position")
 tracks/0/interp = 1
@@ -60,10 +59,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2, 4, 6, 8, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -150, -80 ), Vector2( 182, -83 ) ]
+"values": [ Vector2( -275, -148 ), Vector2( -275, -168 ), Vector2( -1, -168 ), Vector2( -1, -148 ), Vector2( -1, -168 ), Vector2( 236, -168 ), Vector2( 236, -148 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -81,6 +80,51 @@ tracks/0/keys = {
 "values": [ Vector2( -7, -200 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "zoom_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.333, 1.333 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "zoom_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.333, 1.333 ) ]
+}
+
 [node name="Main" type="Node2D"]
 script = ExtResource( 9 )
 __meta__ = {
@@ -89,11 +133,13 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( -4, 39 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -197, 128 )
+position = Vector2( -283, 163 )
 current = true
 limit_left = -682
 limit_top = -400
@@ -104,9 +150,31 @@ limit_bottom = 400
 position = Vector2( -7, -200 )
 
 [node name="Screen" type="Sprite" parent="Head"]
+position = Vector2( 4, 62 )
 texture = ExtResource( 4 )
 
+[node name="Info" type="RichTextLabel" parent="Head"]
+margin_left = -225.0
+margin_top = -41.0
+margin_right = 239.0
+margin_bottom = 165.0
+custom_colors/default_color = Color( 0.368627, 0.552941, 0.227451, 1 )
+custom_fonts/normal_font = ExtResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]WAVE: 999[/center]
+[center]POINTS: 9999999[/center]
+
+"
+text = "WAVE: 999
+POINTS: 9999999
+
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Face" type="Node2D" parent="Head"]
+visible = false
 position = Vector2( 3, 4 )
 script = ExtResource( 15 )
 
@@ -127,52 +195,37 @@ texture = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="Head"]
 material = ExtResource( 6 )
-margin_left = -234.164
-margin_top = -114.496
-margin_right = 230.836
-margin_bottom = 117.504
+margin_left = -224.0
+margin_top = -48.0
+margin_right = 231.0
+margin_bottom = 167.0
 rect_rotation = -0.604889
 rect_pivot_offset = Vector2( 236.618, 111.49 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Head" type="Sprite" parent="Head"]
-texture = ExtResource( 7 )
-
-[node name="Wires" type="Sprite" parent="Head"]
-position = Vector2( -40, -150 )
 texture = ExtResource( 3 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Head"]
-margin_right = 40.0
-margin_bottom = 40.0
-text = "Hello
-"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="Arena" type="Node2D" parent="."]
-position = Vector2( -35, 199 )
+position = Vector2( 0, 226 )
 
 [node name="Sprite" type="Sprite" parent="Arena"]
-position = Vector2( 0, 40 )
 texture = ExtResource( 2 )
 
 [node name="YSort" type="YSort" parent="Arena"]
 
-[node name="EnemyPaper" parent="Arena/YSort" instance=ExtResource( 11 )]
-position = Vector2( 35, -91 )
-
-[node name="EnemyScissors" parent="Arena/YSort" instance=ExtResource( 10 )]
-position = Vector2( 197, 2 )
-
-[node name="EnemyRock" parent="Arena/YSort" instance=ExtResource( 16 )]
-position = Vector2( -30, 25 )
+[node name="EnemySpawner" parent="Arena/YSort" instance=ExtResource( 10 )]
+position = Vector2( 0, -81 )
+spawn_radius = 50
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
-position = Vector2( -162, -71 )
+position = Vector2( -283, -63 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan"]
 visible = false
@@ -182,7 +235,17 @@ remote_path = NodePath("../../../../Camera2D")
 position = Vector2( 0, 40 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-polygon = PoolVector2Array( -387, 194, -382, -206, 438, -216, 443, 198, 31, 201, 45, 14, 95, 19, 106, 19, 133, 14, 163, 8, 221, 4, 244, -5, 261, -10, 290, -17, 300, -27, 310, -65, 310, -74, 310, -94, 301, -112, 277, -134, 253, -147, 222, -156, 203, -162, 171, -173, 133, -180, 113, -186, 82, -187, 13, -192, 4, -191, -36, -191, -66, -189, -107, -182, -137, -176, -167, -163, -189, -152, -219, -137, -233, -112, -242, -85, -244, -60, -229, -33, -206, -13, -177, 2, -117, 13, -85, 16, -50, 14, -13, 14, 11, 19, 24, 18, 45, 14, 22, 200 )
+polygon = PoolVector2Array( 494, -212, 508, -53, 539, -52, 525, -218 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+polygon = PoolVector2Array( -509, -54, 509, -54, 507, -32, -507, -23 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( 0, 13 )
+polygon = PoolVector2Array( -499, -217, 498, -214, 495, -240, -504, -242 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+polygon = PoolVector2Array( -508, -51, -500, -215, -521, -215, -525, -51 )
 
 [node name="FaceAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HeadAnimationPlayer")
@@ -193,6 +256,9 @@ anims/RESET = SubResource( 4 )
 anims/Idle = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/zoom_in = SubResource( 7 )
+anims/zoom_out = SubResource( 6 )
 
-[connection signal="change_screen_face" from="Head/Face" to="Head/Face" method="_on_Face_change_screen_face"]
+[node name="Timer" type="Timer" parent="."]

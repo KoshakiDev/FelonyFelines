@@ -4,7 +4,7 @@ func _ready():
 	pass
 	
 func action():
-	print("Take chip or do nothing")
+	#print("Take chip or do nothing")
 
 	var targets = owner.find_targets_in_area(["player2"], owner.hit_range)
 	if targets.size() == 0:
@@ -16,9 +16,8 @@ func action():
 	owner.weapon_manager.slots_unlocked[chip_slot] = true
 	owner.weapon_manager.switch_to_weapon_slot(chip_slot)
 	
-	emit_signal("change_screen_face", "none")
 	
-	
+	Global.main.update_currently_controlled("none")
 	player.extract_control_sd()
 	player.add_to_group("enemy")
 	player.remove_from_group("player2")

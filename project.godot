@@ -9,36 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
-"class": "DTS",
-"language": "GDScript",
-"path": "res://addons/dialogic/Localization/translation_service.gd"
-}, {
-"base": "Node",
-"class": "Dialogic",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicClass.gd"
-}, {
-"base": "Control",
-"class": "DialogicBackgroundMusic",
-"language": "GDScript",
-"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
-}, {
-"base": "Node",
-"class": "DialogicDefinitionsUtil",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
-}, {
-"base": "Reference",
-"class": "DialogicResources",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicResources.gd"
-}, {
-"base": "Reference",
-"class": "DialogicUtil",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicUtil.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -50,12 +20,6 @@ _global_script_classes=[ {
 "path": "res://src/states/StatesMachine.gd"
 } ]
 _global_script_class_icons={
-"DTS": "",
-"Dialogic": "",
-"DialogicBackgroundMusic": "",
-"DialogicDefinitionsUtil": "",
-"DialogicResources": "",
-"DialogicUtil": "",
 "State": "",
 "StateMachine": ""
 }
@@ -73,7 +37,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://src/AutoLoad/World.gd"
+Global="*res://src/AutoLoad/Global.gd"
 SceneChanger="res://src/AutoLoad/SceneChanger.tscn"
 
 [display]

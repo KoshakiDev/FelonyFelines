@@ -51,6 +51,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=91]
 resource_name = "Death"
+length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -84,6 +85,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StatesMachine/Death")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "delete_enemy"
+} ]
 }
 
 [sub_resource type="Animation" id=88]
