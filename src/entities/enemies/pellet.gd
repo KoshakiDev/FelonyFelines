@@ -6,6 +6,9 @@ export var knockback_value: float = 20
 
 var direction
 
+func _ready():
+	$AnimationPlayer.play("Spin")
+
 func find_targets(target_groups):
 	var bodies = get_overlapping_bodies()
 	var targets = []
@@ -22,8 +25,6 @@ func _physics_process(delta):
 	if find_targets(["wall"]).size() > 0:
 		queue_free()
 		return
-	
-	
 	
 	var targets = find_targets(["player1", "player2"])
 	for target in targets:

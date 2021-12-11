@@ -13,10 +13,6 @@ export var player_id: String = "_1"
 export var max_speed: int = 50
 export var max_steering: float = 2.5
 
-export var avoid_force: int = 50
-
-export var arrival_zone_radius: int = 50
-
 export var controlled: bool = false
 
 func _input(event):
@@ -89,7 +85,10 @@ func take_damage(health, max_health, damage_value):
 	return new_health
 func _physics_process(delta):
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
-	velocity = velocity - velocity.linear_interpolate(Vector2.ZERO, 1 - Global.FRICTION)
-	
 	velocity = velocity + knockback
-	velocity = move_and_slide(velocity)
+	
+	move_and_slide(velocity)
+	
+	velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)
+
+	

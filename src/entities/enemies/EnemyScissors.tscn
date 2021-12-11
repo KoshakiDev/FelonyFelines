@@ -325,7 +325,8 @@ tracks/3/keys = {
 collision_layer = 11
 collision_mask = 11
 script = ExtResource( 2 )
-max_speed = 150
+max_speed = 200
+max_steering = 7.5
 
 [node name="StatesMachine" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -342,6 +343,7 @@ script = ExtResource( 5 )
 
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 9 )
+dash_speed = 275
 
 [node name="DashDurationTimer" type="Timer" parent="StatesMachine/Attack"]
 wait_time = 0.215
@@ -396,26 +398,6 @@ collision_mask = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
 position = Vector2( -1, -25 )
 shape = SubResource( 117 )
-
-[node name="Raycasts" type="Node2D" parent="."]
-visible = false
-position = Vector2( 0, -37 )
-
-[node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, -22 )
-enabled = true
-cast_to = Vector2( 250, 0 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
-enabled = true
-cast_to = Vector2( 250, 0 )
-collision_mask = 9
-
-[node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, 33 )
-enabled = true
-cast_to = Vector2( 250, 0 )
-collision_mask = 9
 
 [node name="HealthBar" parent="." instance=ExtResource( 10 )]
 margin_left = -16.0

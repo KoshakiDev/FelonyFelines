@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
 [ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=3]
@@ -17,6 +17,34 @@
 [sub_resource type="ShaderMaterial" id=92]
 shader = ExtResource( 12 )
 shader_param/active = false
+
+[sub_resource type="Gradient" id=95]
+offsets = PoolRealArray( 0.301587, 0.984127 )
+colors = PoolColorArray( 0.539683, 0.539683, 0.539683, 1, 0.68254, 0.68254, 0.68254, 1 )
+
+[sub_resource type="GradientTexture" id=96]
+gradient = SubResource( 95 )
+
+[sub_resource type="ParticlesMaterial" id=97]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+spread = 180.0
+flatness = 0.43
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 163.27
+initial_velocity_random = 0.9
+angular_velocity = 264.49
+angular_velocity_random = 0.27
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 4.08
+linear_accel_random = 0.45
+angle = -264.4
+scale = 22.41
+scale_random = 1.0
+color = Color( 0.572549, 0.580392, 0.529412, 1 )
+color_ramp = SubResource( 96 )
 
 [sub_resource type="Animation" id=90]
 resource_name = "Attack"
@@ -260,6 +288,8 @@ material = ExtResource( 10 )
 collision_layer = 11
 collision_mask = 11
 script = ExtResource( 2 )
+max_speed = 150
+max_steering = 7.5
 
 [node name="Pellets" type="Node2D" parent="."]
 position = Vector2( 3, -32 )
@@ -290,6 +320,13 @@ texture = ExtResource( 8 )
 hframes = 7
 vframes = 4
 
+[node name="Particles2D" type="Particles2D" parent="Sprite"]
+visible = false
+scale = Vector2( -0.757537, 0.784026 )
+explosiveness = 0.07
+randomness = 0.12
+process_material = SubResource( 97 )
+
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 90 )
 anims/Death = SubResource( 91 )
@@ -298,10 +335,12 @@ anims/RESET = SubResource( 87 )
 anims/Run = SubResource( 89 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -10 )
 shape = SubResource( 83 )
 
 [node name="HitRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 11
@@ -313,6 +352,7 @@ rotation = -3.14159
 shape = SubResource( 84 )
 
 [node name="VisionArea" type="Area2D" parent="."]
+visible = false
 position = Vector2( -2, -49 )
 collision_layer = 11
 collision_mask = 11
@@ -320,26 +360,6 @@ collision_mask = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
 position = Vector2( 1, 30 )
 shape = SubResource( 85 )
-
-[node name="Raycasts" type="Node2D" parent="."]
-visible = false
-position = Vector2( 0, -37 )
-
-[node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, -22 )
-enabled = true
-cast_to = Vector2( 250, 0 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
-enabled = true
-cast_to = Vector2( 250, 0 )
-collision_mask = 9
-
-[node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, 33 )
-enabled = true
-cast_to = Vector2( 250, 0 )
-collision_mask = 9
 
 [node name="HealthBar" parent="." instance=ExtResource( 11 )]
 margin_left = -18.0

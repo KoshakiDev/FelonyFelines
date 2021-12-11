@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/environment/BG.png" type="Texture" id=1]
-[ext_resource path="res://assets/environment/Arena.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/Arena-removebg (1).png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/Shell.png" type="Texture" id=3]
 [ext_resource path="res://assets/environment/Screen.png" type="Texture" id=4]
 [ext_resource path="res://assets/environment/Face.png" type="Texture" id=5]
@@ -128,23 +128,25 @@ tracks/0/keys = {
 [node name="Main" type="Node2D"]
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_horizontal_guides_": [ -399.0 ],
-"_edit_vertical_guides_": [ -682.0 ]
+"_edit_horizontal_guides_": [ -399.0, 580.0 ],
+"_edit_vertical_guides_": [ -682.0, -570.0, 550.0 ]
 }
 
 [node name="Background" type="Sprite" parent="."]
+position = Vector2( -9.64072, -9 )
+scale = Vector2( 2.46541, 2.08562 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -283, 163 )
+position = Vector2( 280, 270 )
 current = true
-limit_left = -682
+limit_left = -570
 limit_top = -400
-limit_right = 682
-limit_bottom = 400
+limit_right = 550
+limit_bottom = 580
 
 [node name="Head" type="Node2D" parent="."]
 position = Vector2( -7, -200 )
@@ -174,7 +176,6 @@ __meta__ = {
 }
 
 [node name="Face" type="Node2D" parent="Head"]
-visible = false
 position = Vector2( 3, 4 )
 script = ExtResource( 15 )
 
@@ -216,36 +217,41 @@ __meta__ = {
 position = Vector2( 0, 226 )
 
 [node name="Sprite" type="Sprite" parent="Arena"]
+position = Vector2( 5, 85 )
 texture = ExtResource( 2 )
 
 [node name="YSort" type="YSort" parent="Arena"]
 
 [node name="EnemySpawner" parent="Arena/YSort" instance=ExtResource( 10 )]
-position = Vector2( -2, -123 )
+visible = false
+position = Vector2( -24, -76 )
 z_as_relative = false
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
-position = Vector2( -283, -63 )
+position = Vector2( 280, 44 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan"]
-visible = false
 remote_path = NodePath("../../../../Camera2D")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-polygon = PoolVector2Array( 494, -212, 508, -53, 539, -52, 525, -218 )
+position = Vector2( 55, -6 )
+polygon = PoolVector2Array( 422, -226, 447, -133, 495, -133, 497, -19, 454, -18, 454, 126, 535, 125, 524, -225 )
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( 5, 175 )
 polygon = PoolVector2Array( -509, -54, 509, -54, 507, -32, -507, -23 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-position = Vector2( 0, 13 )
-polygon = PoolVector2Array( -499, -217, 498, -214, 495, -240, -504, -242 )
+position = Vector2( 3, 9 )
+polygon = PoolVector2Array( -499, -217, 492, -213, 492, -239, -504, -242 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-polygon = PoolVector2Array( -508, -51, -500, -215, -521, -215, -525, -51 )
+position = Vector2( 0, 216.273 )
+scale = Vector2( 1, 1.8186 )
+polygon = PoolVector2Array( -500, -50.189, -502, -130.471, -534, -129.921, -535, -191.507, -490, -198.655, -490, -247.044, -573, -248.144, -568, -50.189 )
 
 [node name="FaceAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HeadAnimationPlayer")

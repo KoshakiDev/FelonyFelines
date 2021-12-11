@@ -305,7 +305,8 @@ position = Vector2( -2, 0 )
 collision_layer = 11
 collision_mask = 11
 script = ExtResource( 2 )
-max_speed = 100
+max_speed = 225
+max_steering = 7.5
 
 [node name="StatesMachine" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -322,6 +323,7 @@ script = ExtResource( 5 )
 
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 10 )
+cooldown_duration = 1
 
 [node name="Cooldown" type="Timer" parent="StatesMachine/Attack"]
 one_shot = true
@@ -367,26 +369,6 @@ collision_mask = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
 position = Vector2( 2, 36 )
 shape = SubResource( 117 )
-
-[node name="Raycasts" type="Node2D" parent="."]
-visible = false
-position = Vector2( 0, -37 )
-
-[node name="RayCast2D3" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, -22 )
-enabled = true
-cast_to = Vector2( 250, 0 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
-enabled = true
-cast_to = Vector2( 250, 0 )
-collision_mask = 9
-
-[node name="RayCast2D2" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 0, 33 )
-enabled = true
-cast_to = Vector2( 250, 0 )
-collision_mask = 9
 
 [node name="HealthBar" parent="." instance=ExtResource( 9 )]
 margin_top = -75.0
