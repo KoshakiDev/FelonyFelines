@@ -2,7 +2,7 @@ extends State
 
 onready var cooldown_timer = $Cooldown
 
-export var cooldown_duration: int = 1
+export var cooldown_duration = 0.5
 
 var pelletPreload = preload("res://src/entities/enemies/Pellet.tscn")
 

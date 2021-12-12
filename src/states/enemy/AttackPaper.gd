@@ -4,8 +4,8 @@ onready var cooldown_timer = $Cooldown
 
 export var cooldown_duration: int = 5
 
-export var damage_value: float = 10
-export var knockback_value: float = 50
+export var damage_value: float = 3
+export var knockback_value: float = 125
 
 func enter(msg := {}) -> void:
 	if !cooldown_timer.is_stopped():

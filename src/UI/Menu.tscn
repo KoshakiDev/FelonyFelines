@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/environment/Shell.png" type="Texture" id=1]
+[ext_resource path="res://assets/environment/Screen.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/BG.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/theme/tvStatic.tres" type="Material" id=5]
+[ext_resource path="res://src/UI/Menu.gd" type="Script" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 12.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 522, 218 ), Vector2( 522, 140 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/PressKey:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 522, 218 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/PressKey:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 502, 298 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Head" type="Node2D" parent="."]
+position = Vector2( 522, 218 )
+
+[node name="Screen" type="Sprite" parent="Head"]
+position = Vector2( 0, 62 )
+texture = ExtResource( 2 )
+
+[node name="Title" type="RichTextLabel" parent="Head"]
+margin_left = -269.0
+margin_top = -27.0
+margin_right = 275.0
+margin_bottom = 200.0
+custom_colors/default_color = Color( 0.368627, 0.552941, 0.227451, 1 )
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]CONTROL SD[/center]"
+text = "CONTROL SD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PressKey" type="RichTextLabel" parent="Head"]
+margin_left = -267.0
+margin_top = 72.0
+margin_right = 277.0
+margin_bottom = 134.0
+custom_colors/default_color = Color( 0.368627, 0.552941, 0.227451, 1 )
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]PRESS ANY KEY[/center]"
+text = "PRESS ANY KEY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Head"]
+material = ExtResource( 5 )
+margin_left = -225.164
+margin_top = -49.0
+margin_right = 229.836
+margin_bottom = 166.0
+rect_rotation = -0.604889
+rect_pivot_offset = Vector2( 236.618, 111.49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shell" type="Sprite" parent="Head"]
+texture = ExtResource( 1 )

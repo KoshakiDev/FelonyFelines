@@ -8,10 +8,13 @@ onready var info_text = $Head/Info
 onready var spawners = $Arena/YSort/Spawners.get_children()
 onready var face = $Head/Face
 
+onready var timer = $Timer
+
 
 var wave_num = 0
 var points = 0
 var currently_controlled = "none"
+var is_wave_updating = false
 
 var enemy_count = 0
 
@@ -30,7 +33,17 @@ func update_points(point_amount):
 	points += point_amount
 	update_board()
 
+
+func show_board():
+	face.visible = false
+	info_text.visible = true
+
+func hide_board():
+	face.visible = true
+	info_text.visible = false
+
 func update_wave():
+	is_wave_updating = true
 	wave_num += 1
 	
 	for spawner in spawners:
@@ -38,6 +51,13 @@ func update_wave():
 		spawner.add_enemies(wave_num)
 
 	update_board()
+	camera_anim_player.play("zoom_out")
+	show_board()
+	timer.start()
+	yield(timer, "timeout")
+	hide_board()
+	camera_anim_player.play("zoom_in")
+	is_wave_updating = false
 
 func update_currently_controlled(new_face):
 	currently_controlled = new_face

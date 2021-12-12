@@ -7,8 +7,7 @@ func _ready():
 	pass
 	
 func action():
-	#print("Axe attack!")
-	
+	$AttackAnimationPlayer.play("Attack")
 	var enemies = owner.find_targets_in_area(["enemy"], owner.hit_range)
 	for enemy in enemies:
 		enemy.health = enemy.take_damage(enemy.health, enemy.max_health, damage_value)

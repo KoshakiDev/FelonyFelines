@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/environment/Face.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/tvStatic.tres" type="Material" id=6]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=7]
-[ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/entities/players/sooltan/sooltan_simplified.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/environment/screen.gd" type="Script" id=9]
 [ext_resource path="res://src/environment/EnemySpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/environment/Rock.png" type="Texture" id=12]
@@ -128,26 +128,16 @@ tracks/0/keys = {
 [node name="Main" type="Node2D"]
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_horizontal_guides_": [ -399.0, 580.0 ],
-"_edit_vertical_guides_": [ -682.0, -570.0, 550.0 ]
+"_edit_horizontal_guides_": [ 1285.0, 409.0 ],
+"_edit_vertical_guides_": [ -780.0 ]
 }
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( -9.64072, -9 )
-scale = Vector2( 2.46541, 2.08562 )
+scale = Vector2( 2.5, 2 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2( 51, 206 )
-current = true
-limit_left = -570
-limit_top = -400
-limit_right = 550
-limit_bottom = 580
 
 [node name="Head" type="Node2D" parent="."]
 position = Vector2( -7, -200 )
@@ -223,16 +213,6 @@ texture = ExtResource( 2 )
 
 [node name="YSort" type="YSort" parent="Arena"]
 
-[node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 8 )]
-position = Vector2( -24, -15 )
-player_id = "_2"
-
-[node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
-position = Vector2( 51, -20 )
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan"]
-remote_path = NodePath("../../../../Camera2D")
-
 [node name="Spawners" type="Node2D" parent="Arena/YSort"]
 
 [node name="EnemySpawner" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
@@ -240,6 +220,15 @@ position = Vector2( 861, -48 )
 
 [node name="EnemySpawner2" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
 position = Vector2( -867, -42 )
+
+[node name="Sooltan3" parent="Arena/YSort" instance=ExtResource( 8 )]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan3"]
+remote_path = NodePath("../../../../Camera2D")
+
+[node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
+position = Vector2( -153, 23 )
+player_id = "_2"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )
@@ -282,6 +271,13 @@ rotation = 1.56966
 polygon = PoolVector2Array( 268, 0, 268, 34, -104, 45, -104, 0 )
 one_way_collision = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 226 )
+current = true
+limit_left = -780
+limit_right = 780
+limit_bottom = 580
+
 [node name="FaceAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HeadAnimationPlayer")
 anims/Idle = SubResource( 3 )
@@ -297,3 +293,4 @@ anims/zoom_in = SubResource( 7 )
 anims/zoom_out = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0

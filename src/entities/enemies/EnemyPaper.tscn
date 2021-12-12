@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
+[ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
 [ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=3]
 [ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=4]
@@ -96,8 +97,8 @@ radius = 8.0
 height = 4.0
 
 [sub_resource type="CapsuleShape2D" id=116]
-radius = 22.0
-height = 0.0
+radius = 86.0
+height = 55.9999
 
 [sub_resource type="CircleShape2D" id=117]
 radius = 967.005
@@ -147,6 +148,28 @@ tracks/1/keys = {
 "args": [  ],
 "method": "initiate_special_attack"
 } ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("../Smash")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Smash:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=123]
@@ -238,6 +261,18 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Smash:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -415,7 +450,6 @@ position = Vector2( 0, -16 )
 shape = SubResource( 115 )
 
 [node name="HitRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -427,6 +461,7 @@ rotation = -3.14159
 shape = SubResource( 116 )
 
 [node name="VisionArea" type="Area2D" parent="."]
+visible = false
 position = Vector2( -2, -49 )
 collision_layer = 11
 collision_mask = 11
@@ -459,3 +494,6 @@ stream = ExtResource( 13 )
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 12 )
+
+[node name="Smash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
