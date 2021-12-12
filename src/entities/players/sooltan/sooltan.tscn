@@ -1,16 +1,13 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=49 format=2]
 
-[ext_resource path="res://assets/entities/players/sooltan/sooltan packed-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/entities/players/sooltan/sooltan_1.png" type="Texture" id=1]
 [ext_resource path="res://Shader.tres" type="Shader" id=2]
 [ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
-[ext_resource path="res://src/entities/players/sooltan/GoodHand.gd" type="Script" id=5]
 [ext_resource path="res://src/states/sooltan/Move.gd" type="Script" id=6]
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/states/sooltan/Idle.gd" type="Script" id=8]
-[ext_resource path="res://assets/entities/players/sooltan/control sd.png" type="Texture" id=9]
 [ext_resource path="res://src/entities/players/sooltan/WeaponManager.gd" type="Script" id=10]
 [ext_resource path="res://src/entities/players/sooltan/Axe.gd" type="Script" id=11]
-[ext_resource path="res://src/entities/players/sooltan/ControlSD.gd" type="Script" id=12]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=13]
 
 [sub_resource type="GDScript" id=51]
@@ -43,8 +40,17 @@ onready var debug_label = $debug
 
 onready var health_bar = $HealthBar
 
+onready var hit
+
+var sprite_texture = preload(\"res://assets/entities/players/sooltan/sooltan_2.png\")
+var axe_2_texture = preload(\"res://assets/entities/players/sooltan/axe_2.png\")
+
 func _ready():
 	Global.set(\"sooltan\", self)
+	
+	if player_id == \"_2\":
+		sprite.set_texture(sprite_texture)
+		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
 	pass
 
 func find_targets_in_area(target_groups, area):
@@ -58,12 +64,12 @@ func find_targets_in_area(target_groups, area):
 	return targets
 
 func _input(event):
-	if event.is_action_pressed(\"next_weapon_2\"):
+	if event.is_action_pressed(\"next_weapon\" + player_id):
 		weapon_manager.switch_to_next_weapon()
-	if event.is_action_pressed(\"prev_weapon_2\"):
+	if event.is_action_pressed(\"prev_weapon\" + player_id):
 		weapon_manager.switch_to_prev_weapon()
-	if event.is_action_pressed(\"action_2\"):
-		weapon_manager.cur_weapon.action()
+	if event.is_action_pressed(\"action\" + player_id):
+		 weapon_manager.cur_weapon.action()
 		
 func play_animation(animation):
 	animation_tree.get(\"parameters/playback\").travel(animation)
@@ -656,10 +662,11 @@ start_node = "Idle"
 [sub_resource type="Animation" id=54]
 resource_name = "Hit"
 
-[node name="Sooltan" type="KinematicBody2D" groups=["player1"]]
+[node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 11
 collision_mask = 11
 script = SubResource( 51 )
+player_id = "_1"
 max_speed = 275
 
 [node name="StatesMachine" type="Node" parent="."]
@@ -700,16 +707,6 @@ collision_mask = 12
 position = Vector2( 9.0001, -28 )
 rotation = -0.785398
 shape = SubResource( 1 )
-
-[node name="ControlSD" type="Sprite" parent="WeaponManager/HandPosition2D"]
-visible = false
-texture = ExtResource( 9 )
-offset = Vector2( -5, -5 )
-script = ExtResource( 12 )
-
-[node name="GoodHand" type="Sprite" parent="WeaponManager/HandPosition2D"]
-visible = false
-script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 53 )

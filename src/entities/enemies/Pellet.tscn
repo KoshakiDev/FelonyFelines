@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[node name="Pellet" type="Area2D" groups=["bullet"]]
+[node name="Pellet" type="Area2D" groups=["player"]]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
 

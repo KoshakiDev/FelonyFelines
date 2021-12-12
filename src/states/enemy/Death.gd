@@ -7,9 +7,11 @@ func enter(msg := {}) -> void:
 	
 func delete_enemy():
 	Global.main.update_points(100)
-	if owner.controlled:
-		Global.main.update_currently_controlled("none")
-	var chip_slot = Global.sooltan.weapon_manager.WEAPON_SLOT.CONTROL_SD
-	Global.sooltan.weapon_manager.slots_unlocked[chip_slot] = true
+	Global.main.enemy_count = Global.main.enemy_count - 1
+	if Global.main.enemy_count == 0:
+		Global.main.update_wave()
+	
+	Global.main.update_board()
+	
 	owner.queue_free()
 	

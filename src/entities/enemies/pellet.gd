@@ -26,7 +26,7 @@ func _physics_process(delta):
 		queue_free()
 		return
 	
-	var targets = find_targets(["player1", "player2"])
+	var targets = find_targets(["player"])
 	for target in targets:
 		target.health = target.take_damage(target.health, target.max_health, damage_value)
 		target.knockback = (target.position - position).normalized() * knockback_value

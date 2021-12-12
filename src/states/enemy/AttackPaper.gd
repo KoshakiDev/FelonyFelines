@@ -22,10 +22,4 @@ func enter(msg := {}) -> void:
 	state_machine.transition_to("Chase")
 
 func initiate_special_attack():
-	var targetGroups
-	if owner.controlled:
-		targetGroups = ["enemy"]
-	else:
-		targetGroups = ["player1", "player2"]
-		
-	owner.damage_area(targetGroups, owner.hit_range, damage_value, knockback_value)
+	owner.damage_area(["player"], owner.hit_range, damage_value, knockback_value)

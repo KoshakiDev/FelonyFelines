@@ -8,6 +8,8 @@ onready var vision_area = $VisionArea
 
 onready var health_bar = $HealthBar
 
+onready var hit_anim_player = $HitAnimationPlayer
+
 onready var anim_player = $AnimPlayer
 
 onready var raycasts = $Raycasts

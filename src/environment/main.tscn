@@ -141,7 +141,8 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 280, 270 )
+visible = false
+position = Vector2( 51, 206 )
 current = true
 limit_left = -570
 limit_top = -400
@@ -217,41 +218,69 @@ __meta__ = {
 position = Vector2( 0, 226 )
 
 [node name="Sprite" type="Sprite" parent="Arena"]
-position = Vector2( 5, 85 )
+position = Vector2( 5, 78 )
 texture = ExtResource( 2 )
 
 [node name="YSort" type="YSort" parent="Arena"]
 
-[node name="EnemySpawner" parent="Arena/YSort" instance=ExtResource( 10 )]
-visible = false
-position = Vector2( -24, -76 )
-z_as_relative = false
+[node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 8 )]
+position = Vector2( -24, -15 )
+player_id = "_2"
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
-position = Vector2( 280, 44 )
+position = Vector2( 51, -20 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan"]
 remote_path = NodePath("../../../../Camera2D")
+
+[node name="Spawners" type="Node2D" parent="Arena/YSort"]
+
+[node name="EnemySpawner" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
+position = Vector2( 861, -48 )
+
+[node name="EnemySpawner2" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
+position = Vector2( -867, -42 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-position = Vector2( 55, -6 )
-polygon = PoolVector2Array( 422, -226, 447, -133, 495, -133, 497, -19, 454, -18, 454, 126, 535, 125, 524, -225 )
+position = Vector2( -38, 229 )
+polygon = PoolVector2Array( 1269, -378, 1276, -74, 545, -84, 547, -258, 1224, -256, 1225, -380 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( -36, -64 )
+polygon = PoolVector2Array( 1270, -165, 1270, -85, 538, -82, 531, -175 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( 552, 33 )
+rotation = -1.5708
+polygon = PoolVector2Array( 268, 0, 268, 34, -104, 45, -104, 0 )
+one_way_collision = true
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
 position = Vector2( 5, 175 )
 polygon = PoolVector2Array( -509, -54, 509, -54, 507, -32, -507, -23 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-position = Vector2( 3, 9 )
+position = Vector2( 3, -18 )
 polygon = PoolVector2Array( -499, -217, 492, -213, 492, -239, -504, -242 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
-position = Vector2( 0, 216.273 )
-scale = Vector2( 1, 1.8186 )
-polygon = PoolVector2Array( -500, -50.189, -502, -130.471, -534, -129.921, -535, -191.507, -490, -198.655, -490, -247.044, -573, -248.144, -568, -50.189 )
+position = Vector2( 43.6443, -113.985 )
+rotation = 3.14046
+polygon = PoolVector2Array( 1284.94, -262.53, 1282.75, -89.532, 1282.61, 29.4679, 1236.61, 28.4158, 1236.75, -90.5841, 545, -84, 547, -258 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( 38, -317 )
+rotation = 3.14046
+polygon = PoolVector2Array( 1273.2, -174.558, 1277.1, -84.5536, 534.089, -78.3951, 535.198, -174.394 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( -550.256, -125.385 )
+rotation = 1.56966
+polygon = PoolVector2Array( 268, 0, 268, 34, -104, 45, -104, 0 )
+one_way_collision = true
 
 [node name="FaceAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HeadAnimationPlayer")

@@ -1,21 +1,123 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
 [ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=3]
 [ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=4]
-[ext_resource path="res://src/states/enemy/Move.gd" type="Script" id=5]
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=6]
 [ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/paper/paper_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/states/enemy/AttackPaper.gd" type="Script" id=10]
-[ext_resource path="res://Shader.tres" type="Shader" id=11]
 [ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=13]
 
-[sub_resource type="ShaderMaterial" id=124]
-shader = ExtResource( 11 )
+[sub_resource type="VisualShaderNodeColorConstant" id=1]
+
+[sub_resource type="VisualShaderNodeTexture" id=2]
+source = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=3]
+operator = 6
+
+[sub_resource type="VisualShaderNodeVectorOp" id=4]
+operator = 2
+
+[sub_resource type="VisualShaderNodeBooleanUniform" id=5]
+uniform_name = "active"
+
+[sub_resource type="VisualShader" id=127]
+code = "shader_type canvas_item;
+uniform bool active;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:3
+	vec3 n_out3p0;
+	float n_out3p1;
+	{
+		vec4 _tex_read = texture(TEXTURE , UV.xy);
+		n_out3p0 = _tex_read.rgb;
+		n_out3p1 = _tex_read.a;
+	}
+
+// BooleanUniform:9
+	bool n_out9p0 = active;
+
+// Color:11
+	vec3 n_out11p0 = vec3(1.000000, 1.000000, 1.000000);
+	float n_out11p1 = 1.000000;
+
+// VectorOp:6
+	vec3 n_out6p0 = vec3(n_out9p0 ? 1.0 : 0.0) * n_out11p0;
+
+// VectorOp:5
+	vec3 n_out5p0 = max(n_out3p0, n_out6p0);
+
+// Output:0
+	COLOR.rgb = n_out5p0;
+	COLOR.a = n_out3p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 380.259, -42.7217 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 920, 60 )
+nodes/fragment/3/node = SubResource( 2 )
+nodes/fragment/3/position = Vector2( 599, -43 )
+nodes/fragment/5/node = SubResource( 3 )
+nodes/fragment/5/position = Vector2( 800, -40 )
+nodes/fragment/6/node = SubResource( 4 )
+nodes/fragment/6/position = Vector2( 600, 60 )
+nodes/fragment/9/node = SubResource( 5 )
+nodes/fragment/9/position = Vector2( 420, -40 )
+nodes/fragment/11/node = SubResource( 1 )
+nodes/fragment/11/position = Vector2( 420, 60 )
+nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
+
+[sub_resource type="ShaderMaterial" id=128]
+resource_local_to_scene = true
+shader = SubResource( 127 )
 shader_param/active = false
+
+[sub_resource type="CapsuleShape2D" id=115]
+radius = 8.0
+height = 4.0
+
+[sub_resource type="CapsuleShape2D" id=116]
+radius = 22.0
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=117]
+radius = 967.005
+
+[sub_resource type="GDScript" id=118]
+script/source = "extends TextureRect
+
+func _ready():
+	$TextureProgress.value = 100
+
+
+func take_damage(health, max_health, damage_value):
+	health = health - damage_value
+	if health < 0: return 0
+	set_percent_value(health / max_health * 100)
+	return health 
+
+func set_percent_value(value):
+	$TextureProgress.value = value
+"
 
 [sub_resource type="Animation" id=122]
 resource_name = "Attack"
@@ -159,34 +261,6 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=115]
-radius = 8.0
-height = 4.0
-
-[sub_resource type="CapsuleShape2D" id=116]
-radius = 22.0
-height = 0.0
-
-[sub_resource type="CircleShape2D" id=117]
-radius = 192.003
-
-[sub_resource type="GDScript" id=118]
-script/source = "extends TextureRect
-
-func _ready():
-	$TextureProgress.value = 100
-
-
-func take_damage(health, max_health, damage_value):
-	health = health - damage_value
-	if health < 0: return 0
-	set_percent_value(health / max_health * 100)
-	return health 
-
-func set_percent_value(value):
-	$TextureProgress.value = value
-"
-
 [sub_resource type="Animation" id=125]
 resource_name = "Hit"
 length = 0.3
@@ -318,9 +392,6 @@ script = ExtResource( 3 )
 [node name="Idle" type="Node" parent="StatesMachine"]
 script = ExtResource( 4 )
 
-[node name="Move" type="Node" parent="StatesMachine"]
-script = ExtResource( 5 )
-
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 10 )
 cooldown_duration = 1
@@ -332,25 +403,19 @@ one_shot = true
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 124 )
+material = SubResource( 128 )
 position = Vector2( 0, -32 )
 texture = ExtResource( 8 )
 hframes = 8
 vframes = 4
 
-[node name="AnimPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite")
-anims/Attack = SubResource( 122 )
-anims/Death = SubResource( 123 )
-anims/Idle = SubResource( 120 )
-anims/RESET = SubResource( 119 )
-anims/Run = SubResource( 121 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -16 )
 shape = SubResource( 115 )
 
 [node name="HitRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -375,12 +440,22 @@ margin_top = -75.0
 margin_bottom = -43.0
 script = SubResource( 118 )
 
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+anims/Attack = SubResource( 122 )
+anims/Death = SubResource( 123 )
+anims/Idle = SubResource( 120 )
+anims/RESET = SubResource( 119 )
+anims/Run = SubResource( 121 )
+
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Hit = SubResource( 125 )
 anims/RESET = SubResource( 126 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource( 13 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource( 12 )

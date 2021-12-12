@@ -1,8 +1,19 @@
 extends State
 
+onready var cooldown_timer = $Cooldown
+
+export var cooldown_duration: int = 1
+
 var pelletPreload = preload("res://src/entities/enemies/Pellet.tscn")
 
 func enter(msg := {}) -> void:
+	if !cooldown_timer.is_stopped():
+		state_machine.transition_to("Chase")
+		return
+	
+	cooldown_timer.wait_time = cooldown_duration
+	cooldown_timer.start()
+	
 	owner.play_animation("Attack")
 	
 	yield(owner.anim_player, "animation_finished")
@@ -11,12 +22,7 @@ func enter(msg := {}) -> void:
 	pass
 
 func shootPellet():
-	var targetGroups
-	if owner.controlled:
-		targetGroups = ["enemy"]
-	else:
-		targetGroups = ["player1", "player2"]
-	var targets = owner.find_targets_in_area(targetGroups, owner.hit_range)
+	var targets = owner.find_targets_in_area(["player"], owner.hit_range)
 	if targets.size() == 0:
 		state_machine.transition_to("Chase")
 		return

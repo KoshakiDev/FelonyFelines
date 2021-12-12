@@ -1,10 +1,8 @@
 extends Node2D
 
-enum WEAPON_SLOT {GOOD_HAND, CONTROL_SD, AXE}
+enum WEAPON_SLOT {AXE}
 
 var slots_unlocked = {
-	WEAPON_SLOT.GOOD_HAND: true,
-	WEAPON_SLOT.CONTROL_SD: true,
 	WEAPON_SLOT.AXE: true,
 }
 

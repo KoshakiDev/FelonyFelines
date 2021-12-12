@@ -11,7 +11,6 @@ export var dash_speed: int = 200
 export var damage_value: float = 10
 export var knockback_value: float = 20
 
-var targetGroups
 var direction
 
 func enter(msg := {}) -> void:
@@ -21,13 +20,8 @@ func enter(msg := {}) -> void:
 	
 	cooldown_timer.wait_time = cooldown_duration
 	cooldown_timer.start()
-	
-	if owner.controlled:
-		targetGroups = ["enemy"]
-	else:
-		targetGroups = ["player1", "player2"]
 
-	var targets = owner.find_targets_in_area(targetGroups, owner.hit_range)
+	var targets = owner.find_targets_in_area(["player"], owner.hit_range)
 	if targets.size() == 0:
 		state_machine.transition_to("Chase")
 		return
@@ -55,4 +49,4 @@ func end_dash():
 func physics_update(delta):
 	if is_dashing():
 		owner.velocity = direction
-		owner.damage_area(targetGroups, owner.hit_range2, damage_value, knockback_value)
+		owner.damage_area(["player"], owner.hit_range2, damage_value, knockback_value)
