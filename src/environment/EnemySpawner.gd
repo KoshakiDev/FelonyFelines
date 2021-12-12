@@ -6,8 +6,6 @@ var enemyLoad = [preload("res://src/entities/enemies/EnemyRock.tscn"),
 			 preload("res://src/entities/enemies/EnemyScissors.tscn"),
 			 preload("res://src/entities/enemies/EnemyPaper.tscn")]
 
-export var enemy_count: int = 5
-
 onready var enemies = $Enemies
 
 func random_pos():

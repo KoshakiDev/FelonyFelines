@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/entities/enemies/pellet.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/objects/pellet.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/enemies/rock/Pixilart Sprite Sheet.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -25,6 +25,7 @@ tracks/0/keys = {
 [node name="Pellet" type="Area2D" groups=["player"]]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
+knockback_value = 5.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1.90735e-06, 1.90735e-06 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/states/sooltan/Idle.gd" type="Script" id=2]
@@ -85,6 +85,9 @@ func take_damage(health, max_health, damage_value):
 	$HitAnimationPlayer.play(\"Hit\")
 	return $HealthBar.take_damage(health, max_health, damage_value)
 
+func heal(health, max_health, damage_value):
+	return $HealthBar.heal(health, max_health, damage_value)
+
 func _physics_process(delta):
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
 	
@@ -99,8 +102,9 @@ radius = 4.0
 height = 3.0
 
 [sub_resource type="ShaderMaterial" id=53]
+resource_local_to_scene = true
 shader = ExtResource( 8 )
-shader_param/active = null
+shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 22.6757
@@ -261,6 +265,34 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=54]
 resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=60]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 11
@@ -339,6 +371,7 @@ anims/Run = SubResource( 57 )
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Hit")
 anims/Hit = SubResource( 54 )
+anims/RESET = SubResource( 60 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, -24 )

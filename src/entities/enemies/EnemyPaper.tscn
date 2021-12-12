@@ -97,8 +97,8 @@ radius = 8.0
 height = 4.0
 
 [sub_resource type="CapsuleShape2D" id=116]
-radius = 86.0
-height = 55.9999
+radius = 22.0
+height = 0.0
 
 [sub_resource type="CircleShape2D" id=117]
 radius = 967.005
@@ -148,28 +148,6 @@ tracks/1/keys = {
 "args": [  ],
 "method": "initiate_special_attack"
 } ]
-}
-tracks/2/type = "audio"
-tracks/2/path = NodePath("../Smash")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../Smash:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
 }
 
 [sub_resource type="Animation" id=123]
@@ -261,18 +239,6 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Smash:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -430,6 +396,7 @@ script = ExtResource( 4 )
 [node name="Attack" type="Node" parent="StatesMachine"]
 script = ExtResource( 10 )
 cooldown_duration = 1
+damage_value = 10.0
 
 [node name="Cooldown" type="Timer" parent="StatesMachine/Attack"]
 one_shot = true

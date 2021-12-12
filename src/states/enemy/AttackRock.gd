@@ -4,7 +4,7 @@ onready var cooldown_timer = $Cooldown
 
 export var cooldown_duration = 0.5
 
-var pelletPreload = preload("res://src/entities/enemies/Pellet.tscn")
+var pelletPreload = preload("res://src/entities/objects/Pellet.tscn")
 
 func enter(msg := {}) -> void:
 	if !cooldown_timer.is_stopped():

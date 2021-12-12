@@ -12,7 +12,7 @@ onready var timer = $Timer
 
 
 var wave_num = 0
-var points = 0
+var points = 400
 var currently_controlled = "none"
 var is_wave_updating = false
 
@@ -31,16 +31,15 @@ func update_board():
 
 func update_points(point_amount):
 	points += point_amount
+	
+	if points % 500 == 0:
+		$Arena/YSort/medkitSpawner.add_medkit(1)
+	
 	update_board()
-
 
 func show_board():
 	face.visible = false
 	info_text.visible = true
-
-func hide_board():
-	face.visible = true
-	info_text.visible = false
 
 func update_wave():
 	is_wave_updating = true
@@ -55,7 +54,6 @@ func update_wave():
 	show_board()
 	timer.start()
 	yield(timer, "timeout")
-	hide_board()
 	camera_anim_player.play("zoom_in")
 	is_wave_updating = false
 
