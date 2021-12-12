@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/environment/BG.png" type="Texture" id=1]
 [ext_resource path="res://assets/environment/Arena-removebg (1).png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/environment/Ppaer.png" type="Texture" id=14]
 [ext_resource path="res://src/environment/Face.gd" type="Script" id=15]
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=17]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -127,6 +128,61 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.333, 1.333 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dead:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "dead"
+length = 2.3
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Dead")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Dead:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "back_to_menu"
+} ]
+}
+
 [node name="Main" type="Node2D"]
 script = ExtResource( 9 )
 __meta__ = {
@@ -169,6 +225,7 @@ __meta__ = {
 }
 
 [node name="Face" type="Node2D" parent="Head"]
+visible = false
 position = Vector2( 3, 4 )
 script = ExtResource( 15 )
 
@@ -226,10 +283,10 @@ position = Vector2( 861, -48 )
 [node name="EnemySpawner2" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
 position = Vector2( -867, -42 )
 
-[node name="Sooltan3" parent="Arena/YSort" instance=ExtResource( 8 )]
+[node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 8 )]
 position = Vector2( 209, -12 )
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan3"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan2"]
 remote_path = NodePath("../../../../Camera2D")
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
@@ -302,3 +359,10 @@ anims/zoom_out = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="DeathAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/dead = SubResource( 9 )
+
+[node name="Dead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 17 )

@@ -18,6 +18,12 @@ var is_wave_updating = false
 
 var enemy_count = 0
 
+func all_players_dead():
+	$DeathAnimationPlayer.play("dead")
+
+func back_to_menu():
+	SceneChanger.change_scene("res://src/UI/Menu.tscn", "fade")
+
 func _ready():
 	update_board()
 	Global.set("main", self)
@@ -60,3 +66,9 @@ func update_wave():
 func update_currently_controlled(new_face):
 	currently_controlled = new_face
 	face.change_screen_face(currently_controlled)
+	
+func _process(delta):
+	if $Arena/YSort/Sooltan.health <= 0 and $Arena/YSort/Sooltan2.health <= 0:
+		$Arena/YSort/Sooltan.set_physics_process(false)
+		$Arena/YSort/Sooltan2.set_physics_process(false)
+		all_players_dead()
