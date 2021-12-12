@@ -12,7 +12,7 @@ onready var timer = $Timer
 
 
 var wave_num = 0
-var points = 400
+var points = 0
 var currently_controlled = "none"
 var is_wave_updating = false
 

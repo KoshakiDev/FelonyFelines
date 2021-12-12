@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/environment/BG.png" type="Texture" id=1]
 [ext_resource path="res://assets/environment/Arena-removebg (1).png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/environment/Scissors.png" type="Texture" id=13]
 [ext_resource path="res://assets/environment/Ppaer.png" type="Texture" id=14]
 [ext_resource path="res://src/environment/Face.gd" type="Script" id=15]
+[ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -234,6 +235,8 @@ remote_path = NodePath("../../../../Camera2D")
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
 position = Vector2( -153, 23 )
 player_id = "_2"
+
+[node name="Medkit" parent="Arena/YSort" instance=ExtResource( 16 )]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )
