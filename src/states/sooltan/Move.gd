@@ -5,6 +5,8 @@ func enter(msg := {}) -> void:
 	
 
 func physics_update(delta: float) -> void:
+	if owner.no_health:
+		return
 	var input_direction := Vector2.ZERO
 	input_direction.x = Input.get_action_strength("right" + owner.player_id) - Input.get_action_strength("left" + owner.player_id)
 	input_direction.y = Input.get_action_strength("down" + owner.player_id) - Input.get_action_strength("up" + owner.player_id)

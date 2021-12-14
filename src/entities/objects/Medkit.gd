@@ -26,7 +26,12 @@ func _process(delta):
 	var target = targets[0]
 	$AnimationPlayer.play("pickup")
 	yield($AnimationPlayer, "animation_finished")
-	
-	target.health = target.heal(target.health, target.max_health, heal_value)
-	
 	queue_free()
+
+func give_health():
+	print("11")
+	var targets = find_targets(["player"])
+	if targets.size() == 0:
+		return
+	var target = targets[0]
+	target.health = target.heal(target.health, target.max_health, heal_value)

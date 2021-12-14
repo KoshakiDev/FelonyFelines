@@ -16,6 +16,9 @@ func physics_update(delta: float) -> void:
 		
 	var target = targets[0]
 	
+	if target.no_health:
+		return
+	
 	var vector_to_target = target.global_position - owner.global_position
 	
 	var steering: Vector2 = seek_steering(vector_to_target)

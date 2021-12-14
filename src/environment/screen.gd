@@ -56,11 +56,11 @@ func update_wave():
 		spawner.add_enemies(wave_num)
 
 	update_board()
-	camera_anim_player.play("zoom_out")
+	#camera_anim_player.play("zoom_out")
 	show_board()
 	timer.start()
 	yield(timer, "timeout")
-	camera_anim_player.play("zoom_in")
+	#camera_anim_player.play("zoom_in")
 	is_wave_updating = false
 
 func update_currently_controlled(new_face):
