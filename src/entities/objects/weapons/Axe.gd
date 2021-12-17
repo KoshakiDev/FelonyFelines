@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 var damage_value: float =  20
 var knockback_value: float = 50

@@ -21,7 +21,7 @@ func _ready():
 	
 	if player_id == "_2":
 		sprite.set_texture(sprite_texture)
-		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
+#		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
 	pass
 
 func _input(event):

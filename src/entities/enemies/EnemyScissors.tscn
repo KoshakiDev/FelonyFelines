@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/sfx/Jump_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=2]
@@ -314,6 +314,22 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=137]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=135]
 resource_name = "Death"
 tracks/0/type = "value"
@@ -463,6 +479,7 @@ anims/Run = SubResource( 121 )
 
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Hit = SubResource( 136 )
+anims/RESET = SubResource( 137 )
 
 [node name="Death" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Death = SubResource( 135 )

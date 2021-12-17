@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
@@ -91,7 +91,7 @@ nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5
 [sub_resource type="ShaderMaterial" id=128]
 resource_local_to_scene = true
 shader = SubResource( 127 )
-shader_param/active = true
+shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=115]
 radius = 8.0
@@ -307,6 +307,22 @@ tracks/4/keys = {
 "values": [ Vector2( 0, -32 ), Vector2( 0, -32 ), Vector2( 0, -32 ), Vector2( 0, -32 ) ]
 }
 
+[sub_resource type="Animation" id=132]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=131]
 resource_name = "Death"
 tracks/0/type = "value"
@@ -389,7 +405,6 @@ script = ExtResource( 7 )
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 128 )
 position = Vector2( 0, -32 )
-scale = Vector2( 1.5, 1 )
 texture = ExtResource( 8 )
 hframes = 8
 vframes = 4
@@ -449,6 +464,7 @@ anims/Run = SubResource( 121 )
 
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Hit = SubResource( 130 )
+anims/RESET = SubResource( 132 )
 
 [node name="Death" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Death = SubResource( 131 )

@@ -10,7 +10,6 @@ func get_node_name(node):
 
 func find(node_name):
 	for node in children:
-		print(get_node_name(node))
 		if get_node_name(node) == node_name:
 			return node
 	

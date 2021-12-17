@@ -33,4 +33,4 @@ func give_health():
 	if targets.size() == 0:
 		return
 	var target = targets[0]
-	target.heal(target.health, target.max_health, heal_value)
+	target.heal(heal_value)

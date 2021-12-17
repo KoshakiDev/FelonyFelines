@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/sfx/Shoot_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
@@ -324,6 +324,22 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=103]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=101]
 resource_name = "Death"
 tracks/0/type = "value"
@@ -475,7 +491,7 @@ anims/Run = SubResource( 89 )
 
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Hit = SubResource( 102 )
+anims/RESET = SubResource( 103 )
 
 [node name="Death" type="AnimationPlayer" parent="AnimationMachine"]
-root_node = NodePath("../Hit")
 anims/Death = SubResource( 101 )

@@ -135,7 +135,7 @@ position = Vector2( 11, -3 )
 rotation = 0.523599
 
 [node name="Axe" parent="WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
-position = Vector2( -7.13397, -14.3564 )
+position = Vector2( 0, 10 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_top = -65.0
