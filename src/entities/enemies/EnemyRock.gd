@@ -1,8 +1,11 @@
-extends "res://src/scripts/enemySimplified.gd"
+extends "res://src/entities/entityModules.gd"
 
-var type: String = "rock"
+export var type: String = "rock"
 
-onready var state_machine := $StatesMachine
+export var max_speed: int = 50
+export var max_steering: float = 2.5
+
+onready var state_machine := $StateMachine
 
 onready var vision_area := $VisionArea
 
@@ -10,11 +13,7 @@ onready var sprite := $Sprite
 
 onready var health_bar := $HealthBar
 
-onready var anim_player := $AnimPlayer
-
-onready var hit_anim_player := $HitAnimationPlayer
-
-onready var raycasts := $Raycasts
+onready var animation_player := $AnimationPlayer
 
 onready var hit_range := $HitRange
 

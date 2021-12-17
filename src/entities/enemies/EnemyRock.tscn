@@ -1,13 +1,13 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/sfx/Shoot_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
-[ext_resource path="res://src/states/enemy/Chase.gd" type="Script" id=3]
-[ext_resource path="res://src/states/enemy/Idle.gd" type="Script" id=4]
-[ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=5]
-[ext_resource path="res://src/states/enemy/Death.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/enemies/states/Chase.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/enemies/states/Idle.gd" type="Script" id=4]
+[ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/enemies/states/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/rock/rock_simplified-Sheet.png" type="Texture" id=8]
-[ext_resource path="res://src/states/enemy/AttackRock.gd" type="Script" id=9]
+[ext_resource path="res://src/entities/enemies/states/AttackRock.gd" type="Script" id=9]
 [ext_resource path="res://src/shaders/motionBlur.tres" type="Material" id=10]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=13]
@@ -165,7 +165,7 @@ tracks/0/keys = {
 "values": [ 15, 16, 17, 18, 19, 20, 21 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("StatesMachine/Attack")
+tracks/1/path = NodePath("StateMachine/Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -239,7 +239,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("StatesMachine/Death")
+tracks/3/path = NodePath("StateMachine/Death")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -251,6 +251,43 @@ tracks/3/keys = {
 "args": [  ],
 "method": "delete_enemy"
 } ]
+}
+
+[sub_resource type="Animation" id=100]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Hit")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hit:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=88]
@@ -338,59 +375,6 @@ tracks/0/keys = {
 "values": [ 7, 8, 9, 10, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=93]
-resource_name = "Hit"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("Hit")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Hit:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=94]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Hit:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
 [node name="EnemyRock" type="KinematicBody2D" groups=["enemy"]]
 material = ExtResource( 10 )
 collision_layer = 11
@@ -399,23 +383,23 @@ script = ExtResource( 2 )
 max_speed = 150
 max_steering = 7.5
 
-[node name="StatesMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
 initial_state = NodePath("Chase")
 
-[node name="Chase" type="Node" parent="StatesMachine"]
+[node name="Chase" type="Node" parent="StateMachine"]
 script = ExtResource( 3 )
 
-[node name="Idle" type="Node" parent="StatesMachine"]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
-[node name="Attack" type="Node" parent="StatesMachine"]
+[node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
-[node name="Cooldown" type="Timer" parent="StatesMachine/Attack"]
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
 one_shot = true
 
-[node name="Death" type="Node" parent="StatesMachine"]
+[node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
 [node name="Pellets" type="Node2D" parent="."]
@@ -453,6 +437,7 @@ rotation = -3.14159
 shape = SubResource( 84 )
 
 [node name="VisionArea" type="Area2D" parent="."]
+visible = false
 position = Vector2( -2, -49 )
 collision_layer = 11
 collision_mask = 11
@@ -468,16 +453,13 @@ margin_right = 14.0
 margin_bottom = -53.0
 script = SubResource( 86 )
 
-[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 90 )
 anims/Death = SubResource( 91 )
+anims/Hit = SubResource( 100 )
 anims/Idle = SubResource( 88 )
 anims/RESET = SubResource( 87 )
 anims/Run = SubResource( 89 )
-
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 93 )
-anims/RESET = SubResource( 94 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 visible = false

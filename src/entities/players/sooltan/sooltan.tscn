@@ -1,112 +1,16 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://src/states/StatesMachine.gd" type="Script" id=1]
-[ext_resource path="res://src/states/sooltan/Idle.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/players/sooltan/WeaponManager.gd" type="Script" id=3]
-[ext_resource path="res://src/states/sooltan/Move.gd" type="Script" id=4]
-[ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=5]
+[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shader.tres" type="Shader" id=2]
+[ext_resource path="res://src/entities/objects/weapons/Axe.gd" type="Script" id=3]
+[ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
+[ext_resource path="res://assets/entities/players/slash_effect_anim_spritesheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/entities/players/Sprite-0001-Sheet.png" type="Texture" id=6]
-[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Shader.tres" type="Shader" id=8]
-[ext_resource path="res://src/entities/players/sooltan/Axe.gd" type="Script" id=9]
-[ext_resource path="res://assets/entities/players/slash_effect_anim_spritesheet.png" type="Texture" id=10]
-
-[sub_resource type="GDScript" id=51]
-script/source = "extends KinematicBody2D
-
-var velocity: Vector2
-var knockback: Vector2
-
-export var max_health:float = 100
-var health:float = max_health
-
-export var player_id = \"_2\"
-export var max_speed = 200
-
-onready var state_machine := $StatesMachine
-onready var label := $Label
-
-onready var animationPlayer = $AnimationPlayer
-onready var sprite = $Sprite
-
-
-onready var chipText = $ChipText
-
-onready var hit_range = $WeaponManager/HandPosition2D/Axe/HitRange
-
-onready var weapon_manager = $WeaponManager
-
-onready var debug_label = $debug
-
-onready var health_bar = $HealthBar
-
-onready var hit
-
-var no_health = false
-
-var sprite_texture = preload(\"res://assets/entities/players/Sprite-0002-Sheet.png\")
-var axe_2_texture = preload(\"res://assets/entities/players/sooltan/axe_2.png\")
-
-func _ready():
-	$WeaponManager/SlashSprite.visible = false
-	Global.set(\"sooltan\", self)
-	
-	if player_id == \"_2\":
-		sprite.set_texture(sprite_texture)
-		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
-	pass
-
-func find_targets_in_area(target_groups, area):
-	var bodies = area.get_overlapping_bodies()
-	var targets = []
-	for body in bodies:
-		for group in target_groups:
-			if body.is_in_group(group):
-				targets.append(body)
-				break
-	return targets
-
-func _input(event):
-	if no_health:
-		return
-	if event.is_action_pressed(\"next_weapon\" + player_id):
-		weapon_manager.switch_to_next_weapon()
-	if event.is_action_pressed(\"prev_weapon\" + player_id):
-		weapon_manager.switch_to_prev_weapon()
-	if event.is_action_pressed(\"action\" + player_id):
-		 weapon_manager.cur_weapon.action()
-		
-func play_animation(animation):
-	animationPlayer.play(animation)
-	#animation_tree.get(\"parameters/playback\").travel(animation)
-
-func adjust_blend_position(input_direction):
-	if input_direction.x != 0:
-		sprite.scale.x = input_direction.x
-		weapon_manager.scale.x = input_direction.x
-
-func take_damage(health, max_health, damage_value):
-	$HitAnimationPlayer.play(\"Hit\")
-	return $HealthBar.take_damage(health, max_health, damage_value)
-
-func heal(health, max_health, damage_value):
-	return $HealthBar.heal(health, max_health, damage_value)
-
-func _physics_process(delta):
-	if no_health:
-		return
-	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
-	
-	velocity = velocity + knockback
-	move_and_slide(velocity)
-
-	velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)
-	if health <= 0:
-		play_animation(\"Idle\")
-		remove_from_group(\"player\")
-		sprite.scale.y = 0.5
-		no_health = true
-"
+[ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/players/sooltan/states/Move.gd" type="Script" id=9]
+[ext_resource path="res://src/entities/players/WeaponManager.gd" type="Script" id=10]
+[ext_resource path="res://src/entities/players/sooltan/sooltan.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=52]
 radius = 4.0
@@ -114,7 +18,7 @@ height = 3.0
 
 [sub_resource type="ShaderMaterial" id=53]
 resource_local_to_scene = true
-shader = ExtResource( 8 )
+shader = ExtResource( 2 )
 shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -225,6 +129,21 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=60]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
 [sub_resource type="Animation" id=56]
 resource_name = "Idle"
 length = 0.3
@@ -274,53 +193,20 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=54]
-resource_name = "Hit"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
-
-[sub_resource type="Animation" id=60]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
 [node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 11
 collision_mask = 11
-script = SubResource( 51 )
-player_id = "_1"
-max_speed = 275
+script = ExtResource( 11 )
 
-[node name="StatesMachine" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 7 )
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StatesMachine"]
-script = ExtResource( 2 )
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
 
-[node name="Move" type="Node" parent="StatesMachine"]
-script = ExtResource( 4 )
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )
@@ -335,7 +221,7 @@ vframes = 2
 
 [node name="WeaponManager" type="Node2D" parent="."]
 position = Vector2( 0, -16 )
-script = ExtResource( 3 )
+script = ExtResource( 10 )
 
 [node name="HandPosition2D" type="Position2D" parent="WeaponManager"]
 position = Vector2( 11, -3 )
@@ -343,9 +229,9 @@ rotation = 0.523599
 
 [node name="Axe" type="Sprite" parent="WeaponManager/HandPosition2D"]
 position = Vector2( -0.707107, 0.707107 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, -15 )
-script = ExtResource( 9 )
+script = ExtResource( 3 )
 
 [node name="HitRange" type="Area2D" parent="WeaponManager/HandPosition2D/Axe"]
 position = Vector2( 13.435, 9.19239 )
@@ -367,22 +253,18 @@ anims/RESET = SubResource( 59 )
 position = Vector2( 23.8869, -46.9853 )
 rotation = -1.13446
 scale = Vector2( 1, 1.4588 )
-texture = ExtResource( 10 )
+texture = ExtResource( 5 )
 hframes = 3
 
-[node name="HealthBar" parent="." instance=ExtResource( 7 )]
+[node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_top = -65.0
 margin_bottom = -33.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 60 )
 anims/Idle = SubResource( 56 )
 anims/RESET = SubResource( 55 )
 anims/Run = SubResource( 57 )
-
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Hit")
-anims/Hit = SubResource( 54 )
-anims/RESET = SubResource( 60 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, -24 )

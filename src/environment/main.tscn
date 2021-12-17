@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/environment/Face.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/tvStatic.tres" type="Material" id=6]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=7]
-[ext_resource path="res://src/entities/players/sooltan/sooltan_simplified.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/environment/screen.gd" type="Script" id=9]
 [ext_resource path="res://src/environment/EnemySpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/environment/medkitSpawner.tscn" type="PackedScene" id=11]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/environment/Face.gd" type="Script" id=15]
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=17]
+
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
