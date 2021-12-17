@@ -10,10 +10,6 @@ func action():
 	$AttackAnimationPlayer.play("Attack")
 	var enemies = owner.find_targets_in_area(["enemy"], owner.hit_range)
 	for enemy in enemies:
-		enemy.health = enemy.take_damage(enemy.health, enemy.max_health, damage_value)
-		enemy.knockback = (enemy.global_position - owner.global_position).normalized() * knockback_value
+		enemy.take_damage(owner, damage_value, knockback_value)
 	
-	var bullets = owner.find_targets_in_area(["bullet"], owner.hit_range)
-	for bullet in bullets:
-		bullet.queue_free()
 	return

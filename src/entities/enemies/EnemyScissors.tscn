@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/sfx/Jump_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/enemies/states/Chase.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/enemies/states/Idle.gd" type="Script" id=4]
+[ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=5]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=6]
 [ext_resource path="res://src/entities/enemies/states/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/enemies/scissors/scissors_simplified-Sheet.png" type="Texture" id=8]
@@ -179,118 +180,6 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=127]
-resource_name = "Death"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 25, 26, 26, 27, 28, 29 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../Death")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Death:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("../StateMachine/Death")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "delete_enemy"
-} ]
-}
-
-[sub_resource type="Animation" id=134]
-resource_name = "Hit"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1.25 ), Vector2( 1, 1.25 ), Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -32 ), Vector2( 0, -40 ), Vector2( 0, -40 ), Vector2( 0, -32 ) ]
-}
-tracks/3/type = "audio"
-tracks/3/path = NodePath("../Hit")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../Hit:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
 [sub_resource type="Animation" id=120]
 resource_name = "Idle"
 length = 0.4
@@ -364,11 +253,122 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 8 ]
 }
 
+[sub_resource type="Animation" id=136]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.25 ), Vector2( 1, 1.25 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -32 ), Vector2( 0, -40 ), Vector2( 0, -40 ), Vector2( 0, -32 ) ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("../Hit")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Hit:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=135]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 26, 26, 27, 28, 29 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("../Death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Death:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../StateMachine/Death")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "delete_enemy"
+} ]
+}
+
 [node name="EnemyScissors" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 11
 collision_mask = 11
 script = ExtResource( 2 )
-max_speed = 200
 max_steering = 7.5
 
 [node name="StateMachine" type="Node" parent="."]
@@ -408,12 +408,14 @@ position = Vector2( 0, -10 )
 shape = SubResource( 115 )
 
 [node name="HitRange2" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange2"]
 position = Vector2( 0, -18 )
 shape = SubResource( 131 )
 
 [node name="HitRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -425,6 +427,7 @@ rotation = -3.14159
 shape = SubResource( 116 )
 
 [node name="VisionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 11
 collision_mask = 11
 
@@ -439,15 +442,6 @@ margin_right = 16.0
 margin_bottom = -50.0
 script = SubResource( 118 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite")
-anims/Attack = SubResource( 123 )
-anims/Death = SubResource( 127 )
-anims/Hit = SubResource( 134 )
-anims/Idle = SubResource( 120 )
-anims/RESET = SubResource( 119 )
-anims/Run = SubResource( 121 )
-
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 
@@ -456,3 +450,19 @@ stream = ExtResource( 13 )
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
+
+[node name="AnimationMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Movement" type="AnimationPlayer" parent="AnimationMachine"]
+root_node = NodePath("../../Sprite")
+anims/Attack = SubResource( 123 )
+anims/Idle = SubResource( 120 )
+anims/RESET = SubResource( 119 )
+anims/Run = SubResource( 121 )
+
+[node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
+anims/Hit = SubResource( 136 )
+
+[node name="Death" type="AnimationPlayer" parent="AnimationMachine"]
+anims/Death = SubResource( 135 )

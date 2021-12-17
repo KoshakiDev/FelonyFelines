@@ -2,7 +2,6 @@ extends "res://src/entities/entityModules.gd"
 
 export var type: String = "rock"
 
-export var max_speed: int = 50
 export var max_steering: float = 2.5
 
 onready var state_machine := $StateMachine
@@ -13,7 +12,7 @@ onready var sprite := $Sprite
 
 onready var health_bar := $HealthBar
 
-onready var animation_player := $AnimationPlayer
+onready var animation_machine := $AnimationMachine
 
 onready var hit_range := $HitRange
 

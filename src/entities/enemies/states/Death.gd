@@ -1,7 +1,7 @@
 extends State
 
 func enter(msg := {}) -> void:
-	owner.play_animation("Death")
+	owner.play_animation("Death", "Death")
 	pass
 	
 	

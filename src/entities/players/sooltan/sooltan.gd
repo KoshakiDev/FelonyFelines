@@ -4,18 +4,16 @@ export var player_id = "_1"
 
 onready var state_machine := $StateMachine
 
-onready var animationPlayer = $AnimationPlayer
+onready var animation_machine = $AnimationMachine
 onready var sprite = $Sprite
 
 onready var hit_range = $WeaponManager/HandPosition2D/Axe/HitRange
 
 onready var weapon_manager = $WeaponManager
 
-onready var debug_label = $debug
-
 onready var health_bar = $HealthBar
 
-var sprite_texture = preload("res://assets/entities/players/sooltan/sooltan_2.png")
+var sprite_texture = preload("res://assets/entities/players/Sprite-0002-Sheet.png")
 var axe_2_texture = preload("res://assets/entities/players/sooltan/axe_2.png")
 
 func _ready():

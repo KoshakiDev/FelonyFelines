@@ -6,17 +6,19 @@ var knockback: Vector2
 export var max_health: float = 100
 var health: float = max_health
 
+export var max_speed: float = 225
+
 func _ready():
 	pass
 
-func play_animation(animation):
-	self.animation_player.play(animation)
+func play_animation(animation, node_name):
+	self.animation_machine.play_animation(animation, node_name)
 
-func set_animation(duration):
-	self.animation_player.seek(duration, false)
+func set_animation(duration, node_name):
+	self.animation_machine.set_animation(duration, node_name)
 
-func get_animation(animation):
-	return self.animation_player.get_animation(animation)
+func get_animation(animation, node_name):
+	return self.animation_machine.get_animation(animation, node_name)
 
 func adjust_blend_position(input_direction):
 	if input_direction.x != 0:
@@ -32,7 +34,7 @@ func find_targets_in_area(target_groups, area):
 	var targets = []
 	for body in bodies:
 		for group in target_groups:
-			if body.is_in_group(group):
+			if body.is_in_group(group) and not body.is_dead():
 				targets.append(body)
 				break
 	return targets
@@ -47,7 +49,7 @@ func return_travel_direction(vector):
 	return Vector2(x_direction, y_direction)
 
 func take_damage(attacker, damage_value, knockback_value):
-	play_animation("Hit")
+	play_animation("Hit", "Hit")
 	var new_health = self.health_bar.take_damage(health, max_health, damage_value)
 
 	knockback += (global_position - attacker.global_position).normalized() * knockback_value
@@ -60,6 +62,9 @@ func take_damage(attacker, damage_value, knockback_value):
 func heal(heal_value):
 	var new_health = self.health_bar.heal(health, max_health, heal_value)
 	health = new_health
+
+func is_dead():
+	return health <= 0
 
 func _physics_process(delta):
 	velocity = velocity + knockback

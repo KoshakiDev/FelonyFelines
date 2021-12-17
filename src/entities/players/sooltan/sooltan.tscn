@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shader.tres" type="Shader" id=2]
-[ext_resource path="res://src/entities/objects/weapons/Axe.gd" type="Script" id=3]
-[ext_resource path="res://assets/entities/players/sooltan/axe.png" type="Texture" id=4]
-[ext_resource path="res://assets/entities/players/slash_effect_anim_spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://src/entities/objects/weapons/Axe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/players/Sprite-0001-Sheet.png" type="Texture" id=6]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
@@ -20,129 +19,6 @@ height = 3.0
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/active = false
-
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 22.6757
-height = 40.3915
-
-[sub_resource type="Animation" id=58]
-resource_name = "Attack"
-length = 0.3
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("WeaponManager/HandPosition2D:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.23, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 30.0, -120.0, 90.0, 90.0, 30.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("WeaponManager/HandPosition2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.23, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 11, -3 ), Vector2( -8, -35 ), Vector2( 27, 0 ), Vector2( 27, 0 ), Vector2( 11, -3 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("WeaponManager/SlashSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.19 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("WeaponManager/SlashSprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.05, 0.13, 0.18 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2 ]
-}
-
-[sub_resource type="Animation" id=59]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("WeaponManager/HandPosition2D:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 30.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("WeaponManager/HandPosition2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 11, -3 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("WeaponManager/SlashSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("WeaponManager/SlashSprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=60]
-resource_name = "Hit"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
 
 [sub_resource type="Animation" id=56]
 resource_name = "Idle"
@@ -193,6 +69,37 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
+[sub_resource type="Animation" id=58]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="Sooltan" type="KinematicBody2D" groups=["player"]]
 collision_layer = 11
 collision_mask = 11
@@ -227,47 +134,28 @@ script = ExtResource( 10 )
 position = Vector2( 11, -3 )
 rotation = 0.523599
 
-[node name="Axe" type="Sprite" parent="WeaponManager/HandPosition2D"]
-position = Vector2( -0.707107, 0.707107 )
-texture = ExtResource( 4 )
-offset = Vector2( 0, -15 )
-script = ExtResource( 3 )
-
-[node name="HitRange" type="Area2D" parent="WeaponManager/HandPosition2D/Axe"]
-position = Vector2( 13.435, 9.19239 )
-rotation = -0.785402
-collision_layer = 0
-collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponManager/HandPosition2D/Axe/HitRange"]
-position = Vector2( 9.0001, -28 )
-rotation = -0.785398
-shape = SubResource( 1 )
-
-[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="WeaponManager/HandPosition2D/Axe"]
-root_node = NodePath("../../../..")
-anims/Attack = SubResource( 58 )
-anims/RESET = SubResource( 59 )
-
-[node name="SlashSprite" type="Sprite" parent="WeaponManager"]
-position = Vector2( 23.8869, -46.9853 )
-rotation = -1.13446
-scale = Vector2( 1, 1.4588 )
-texture = ExtResource( 5 )
-hframes = 3
+[node name="Axe" parent="WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+position = Vector2( -7.13397, -14.3564 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_top = -65.0
 margin_bottom = -33.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 60 )
-anims/Idle = SubResource( 56 )
-anims/RESET = SubResource( 55 )
-anims/Run = SubResource( 57 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, -24 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, -25 )
+
+[node name="AnimationMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Movement" type="AnimationPlayer" parent="AnimationMachine"]
+root_node = NodePath("../..")
+anims/Idle = SubResource( 56 )
+anims/RESET = SubResource( 55 )
+anims/Run = SubResource( 57 )
+
+[node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
+anims/Hit = SubResource( 58 )
+anims/RESET = SubResource( 59 )
