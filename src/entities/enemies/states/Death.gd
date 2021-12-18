@@ -1,10 +1,8 @@
 extends State
 
 func enter(msg := {}) -> void:
-	owner.play_animation("Death", "Death")
-	print("hello")
+	owner.play_animation("Death", "Animations")
 	pass
-	
 	
 func delete_enemy():
 	Global.main.update_points(100)

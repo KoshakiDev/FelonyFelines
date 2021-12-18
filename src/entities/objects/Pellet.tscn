@@ -3,10 +3,6 @@
 [ext_resource path="res://src/entities/objects/pellet.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/enemies/rock/Pixilart Sprite Sheet.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 5.0
-height = 0.0
-
 [sub_resource type="Animation" id=2]
 resource_name = "Spin"
 tracks/0/type = "value"
@@ -22,7 +18,11 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[node name="Pellet" type="Area2D" groups=["player"]]
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.66667
+height = 0.0
+
+[node name="Pellet" type="KinematicBody2D" groups=["player"]]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
 knockback_value = 5.0
@@ -33,8 +33,10 @@ texture = ExtResource( 2 )
 hframes = 3
 frame = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Spin = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )

@@ -126,16 +126,16 @@ texture = ExtResource( 6 )
 hframes = 4
 vframes = 2
 
-[node name="WeaponManager" type="Node2D" parent="."]
-position = Vector2( 0, -16 )
+[node name="WeaponManager" type="Node2D" parent="Sprite"]
+position = Vector2( 0, 8 )
 script = ExtResource( 10 )
 
-[node name="HandPosition2D" type="Position2D" parent="WeaponManager"]
-position = Vector2( 11, -3 )
+[node name="HandPosition2D" type="Position2D" parent="Sprite/WeaponManager"]
+position = Vector2( 11, -4 )
 rotation = 0.523599
 
-[node name="Axe" parent="WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
-position = Vector2( 0, 10 )
+[node name="Axe" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+position = Vector2( 0.0359006, 8.06218 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_top = -65.0
@@ -159,3 +159,5 @@ anims/Run = SubResource( 57 )
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Hit = SubResource( 58 )
 anims/RESET = SubResource( 59 )
+
+[editable path="Sprite/WeaponManager/HandPosition2D/Axe"]

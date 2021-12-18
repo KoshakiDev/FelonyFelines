@@ -11,6 +11,9 @@ export var max_speed: float = 225
 func _ready():
 	pass
 
+func is_dead():
+	return health <= 0
+
 func play_animation(animation, node_name):
 	self.animation_machine.play_animation(animation, node_name)
 
@@ -33,8 +36,10 @@ func find_targets_in_area(target_groups, area):
 	var bodies = area.get_overlapping_bodies()
 	var targets = []
 	for body in bodies:
+		if body.has_method("is_dead") and body.is_dead():
+			continue
 		for group in target_groups:
-			if body.is_in_group(group) and not body.is_dead():
+			if body.is_in_group(group):
 				targets.append(body)
 				break
 	return targets
@@ -52,7 +57,7 @@ func take_damage(attacker, damage_value, knockback_value):
 	play_animation("Hit", "Hit")
 	var new_health = self.health_bar.take_damage(health, max_health, damage_value)
 
-	knockback += (global_position - attacker.global_position).normalized() * knockback_value
+	knockback = (global_position - attacker.global_position).normalized() * knockback_value
 
 	if new_health <= 0:
 		self.state_machine.transition_to("Death")
@@ -62,9 +67,6 @@ func take_damage(attacker, damage_value, knockback_value):
 func heal(heal_value):
 	var new_health = self.health_bar.heal(health, max_health, heal_value)
 	health = new_health
-
-func is_dead():
-	return health <= 0
 
 func _physics_process(delta):
 	velocity = velocity + knockback

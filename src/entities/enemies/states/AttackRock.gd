@@ -14,9 +14,9 @@ func enter(msg := {}) -> void:
 	cooldown_timer.wait_time = cooldown_duration
 	cooldown_timer.start()
 	
-	owner.play_animation("Attack", "Movement")
+	owner.play_animation("Attack", "Animations")
 	
-	yield(owner.animation_machine.find("Movement"), "animation_finished")
+	yield(owner.animation_machine.find("Animations"), "animation_finished")
 	
 	state_machine.transition_to("Chase")
 	pass

@@ -28,7 +28,7 @@ func enter(msg := {}) -> void:
 		
 	direction = (targets[0].global_position - owner.global_position).normalized() * dash_speed
 	
-	owner.play_animation("Attack", "Movement")
+	owner.play_animation("Attack", "Animations")
 	
 func start_dash():
 	duration_timer.wait_time = dash_duration
@@ -39,9 +39,9 @@ func is_dashing():
 
 func end_dash():
 	if is_dashing():
-		owner.set_animation(0.4, "Movement")
+		owner.set_animation(0.4, "Animations")
 	else:
-		yield(owner.animation_machine.find("Movement"), "animation_finished")
+		yield(owner.animation_machine.find("Animations"), "animation_finished")
 		state_machine.transition_to("Chase")
 		pass
 #		
