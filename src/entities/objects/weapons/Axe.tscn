@@ -4,10 +4,6 @@
 [ext_resource path="res://src/entities/objects/weapons/Axe.gd" type="Script" id=2]
 [ext_resource path="res://assets/entities/players/slash_effect_anim_spritesheet.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 28.0002
-height = 67.9996
-
 [sub_resource type="Animation" id=2]
 resource_name = "Attack"
 length = 0.3
@@ -19,7 +15,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.0763678, 0.12, 0.16 ),
+"times": PoolRealArray( 0.04, 0.14, 0.19 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -31,7 +27,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06, 0.25 ),
+"times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -43,16 +39,52 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.11, 0.15, 0.19, 0.3 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.19, 0.23, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -75.0, 75.0, 105.0, 75.0, 0.0 ]
+"values": [ 0.0, -120.0, 60.0, 105.0, 60.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AxeSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.23, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -19, -32 ), Vector2( 9, -9 ), Vector2( 9, -9 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HitRange:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.23, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -19, -32 ), Vector2( 9, -9 ), Vector2( 9, -9 ), Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HitRange:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.19, 0.23, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -120.0, 60.0, 105.0, 60.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("@@6112/@@6113/Axe/SlashSprite:visible")
+tracks/0/path = NodePath("AxeSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -60,11 +92,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("@@6112/@@6113/Axe/AxeSprite:position")
+tracks/1/path = NodePath("AxeSprite:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -73,10 +105,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("@@6112/@@6113/Axe/AxeSprite:rotation_degrees")
+tracks/2/path = NodePath("HitRange:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -85,37 +117,50 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitRange:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ 0.0 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 26.0
+
 [node name="Axe" type="KinematicBody2D"]
 script = ExtResource( 2 )
-
-[node name="HitRange" type="Area2D" parent="."]
-rotation = -0.785402
-collision_layer = 0
-collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
-position = Vector2( 21.9204, -17.6776 )
-rotation = -0.785398
-shape = SubResource( 1 )
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
+[node name="HitRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
+position = Vector2( 0, -40 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
 [node name="AxeSprite" type="Sprite" parent="."]
-rotation = 0.594999
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -24, -47 )
 
 [node name="SlashSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( -59, -11 )
+position = Vector2( -65, -25 )
 rotation = -1.5708
-scale = Vector2( 0.838569, 1.55203 )
+scale = Vector2( 1, 1.40782 )
 texture = ExtResource( 3 )
 centered = false
 hframes = 3
