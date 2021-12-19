@@ -43,10 +43,6 @@ func update_points(point_amount):
 	
 	update_board()
 
-func show_board():
-	face.visible = false
-	info_text.visible = true
-
 func update_wave():
 	is_wave_updating = true
 	wave_num += 1
@@ -57,7 +53,6 @@ func update_wave():
 
 	update_board()
 	#camera_anim_player.play("zoom_out")
-	show_board()
 	timer.start()
 	yield(timer, "timeout")
 	#camera_anim_player.play("zoom_in")
