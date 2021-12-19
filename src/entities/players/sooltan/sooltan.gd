@@ -8,6 +8,7 @@ onready var animation_machine := $AnimationMachine
 onready var sprite := $Sprite
 
 onready var weapon_manager := $Sprite/WeaponManager
+onready var hand_position := $Sprite/WeaponManager/HandPosition2D
 
 onready var health_bar := $HealthBar
 

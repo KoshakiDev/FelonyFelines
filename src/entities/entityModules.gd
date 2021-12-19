@@ -27,6 +27,15 @@ func adjust_blend_position(input_direction):
 	if input_direction.x != 0:
 		self.sprite.scale.x = input_direction.x
 
+#	if "hand_position" in self:
+#		adjust_weapon_direction(input_direction)
+	
+func adjust_weapon_direction(direction):
+	if direction.x != 0:
+		self.hand_position.scale.x = -direction.x
+	if direction.y != 0:
+		self.hand_position.scale.y = -direction.y
+
 func damage_area(targetGroups, hit_range, damage_value, knockback_value):
 	var targets = find_targets_in_area(targetGroups, hit_range)
 	for target in targets:

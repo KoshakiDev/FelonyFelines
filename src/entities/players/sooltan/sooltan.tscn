@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shader.tres" type="Shader" id=2]
-[ext_resource path="res://src/entities/objects/weapons/Axe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/entities/objects/weapons/melee/Axe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/players/Sprite-0001-Sheet.png" type="Texture" id=6]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
@@ -131,10 +131,11 @@ position = Vector2( 0, 8 )
 script = ExtResource( 10 )
 
 [node name="HandPosition2D" type="Position2D" parent="Sprite/WeaponManager"]
-position = Vector2( 10, 0 )
-rotation = 0.523599
+position = Vector2( 5, 2 )
+rotation = 1.309
 
 [node name="Axe" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+position = Vector2( -0.138796, 5.8293 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_top = -65.0
