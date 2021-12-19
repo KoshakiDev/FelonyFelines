@@ -4,7 +4,7 @@
 [ext_resource path="res://Shader.tres" type="Shader" id=2]
 [ext_resource path="res://src/entities/objects/weapons/melee/Axe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
-[ext_resource path="res://assets/entities/players/Sprite-0001-Sheet.png" type="Texture" id=6]
+[ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/players/sooltan/states/Move.gd" type="Script" id=9]
@@ -22,7 +22,7 @@ shader_param/active = false
 
 [sub_resource type="Animation" id=56]
 resource_name = "Idle"
-length = 0.3
+length = 0.9
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -31,10 +31,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
 
 [sub_resource type="Animation" id=55]
@@ -54,8 +54,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=57]
 resource_name = "Run"
-length = 0.4
+length = 0.6
 loop = true
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -63,10 +64,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6, 7 ]
+"values": [ 9, 10, 11, 12 ]
 }
 
 [sub_resource type="Animation" id=58]
@@ -122,8 +123,8 @@ shape = SubResource( 52 )
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 53 )
 position = Vector2( 0, -24 )
-texture = ExtResource( 6 )
-hframes = 4
+texture = ExtResource( 5 )
+hframes = 9
 vframes = 2
 
 [node name="WeaponManager" type="Node2D" parent="Sprite"]
@@ -135,6 +136,7 @@ position = Vector2( 5, 2 )
 rotation = 1.309
 
 [node name="Axe" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -0.138796, 5.8293 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]

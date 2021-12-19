@@ -1,20 +1,15 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/environment/BG.png" type="Texture" id=1]
 [ext_resource path="res://assets/environment/Arena-removebg (1).png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/Shell.png" type="Texture" id=3]
 [ext_resource path="res://assets/environment/Screen.png" type="Texture" id=4]
-[ext_resource path="res://assets/environment/Face.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/tvStatic.tres" type="Material" id=6]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/environment/screen.gd" type="Script" id=9]
 [ext_resource path="res://src/environment/EnemySpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/environment/medkitSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/environment/Rock.png" type="Texture" id=12]
-[ext_resource path="res://assets/environment/Scissors.png" type="Texture" id=13]
-[ext_resource path="res://assets/environment/Ppaer.png" type="Texture" id=14]
-[ext_resource path="res://src/environment/Face.gd" type="Script" id=15]
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=17]
 
@@ -22,33 +17,9 @@
 resource_name = "Idle"
 length = 3.0
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Head/Face:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 3, 50 ), Vector2( -117, 50 ), Vector2( 114, 50 ) ]
-}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Head/Face:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 3, 4 ) ]
-}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -178,26 +149,6 @@ POINTS: 9999999
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Face" type="Node2D" parent="Head"]
-visible = false
-position = Vector2( 3, 4 )
-script = ExtResource( 15 )
-
-[node name="None" type="Sprite" parent="Head/Face"]
-texture = ExtResource( 5 )
-
-[node name="Scissors" type="Sprite" parent="Head/Face"]
-visible = false
-texture = ExtResource( 13 )
-
-[node name="Paper" type="Sprite" parent="Head/Face"]
-visible = false
-texture = ExtResource( 14 )
-
-[node name="Rock" type="Sprite" parent="Head/Face"]
-visible = false
-texture = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="Head"]
 material = ExtResource( 6 )
