@@ -4,6 +4,20 @@ export var weapon_name := "SNIPER_RIFLE"
 
 onready var animation_player := $AnimationPlayer
 
+onready var bullet_spawner := $BulletSpawner
+
+export var bullet_speed: float = 400
+
+
 func action():
 	animation_player.play("Shoot")
-	pass
+
+func bullet_spawner_set_shooting_true():
+	bullet_spawner.set_shooting(true)
+
+func bullet_spawner_set_shooting_false():
+	bullet_spawner.set_shooting(false)
+
+
+func shoot(dir: Vector2) -> void:
+	bullet_spawner.shoot(dir, bullet_speed)

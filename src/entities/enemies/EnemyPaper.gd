@@ -12,12 +12,30 @@ onready var health_bar := $HealthBar
 
 onready var animation_machine := $AnimationMachine
 
-onready var hit_range := $HitRange
-
 onready var sprite := $Sprite
 
+
+export var damage_value: float = 3
+export var knockback_value: float = 125
+
+
+
+onready var engage_range := $EngageRange
+onready var hitbox = $Hitbox
+onready var hurtbox = $Hurtbox
+
+
+
+
 func _ready():
-	pass
+	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
+	vision_area.connect("body_entered", self, "_on_VisionArea_body_entered")
+	vision_area.connect("body_exited", self, "_on_VisionArea_body_exited")
+	engage_range.connect("body_entered", self, "_on_EngageRange_body_entered")
+	engage_range.connect("body_exited", self, "_on_EngageRange_body_exited")
 
 func _process(delta):
 	pass
+
+
+

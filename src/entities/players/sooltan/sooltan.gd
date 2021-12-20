@@ -39,5 +39,9 @@ func spawn_dust() -> void:
 	dust.position = dust_position.global_position
 	
 	#dust.global_position = Vector2(220, 220)
-	print(dust_position.global_position, global_position)
 	get_parent().add_child_below_node(get_parent(), dust)
+
+
+func _on_Hurtbox_area_entered(area):
+	var areaParent = area.owner
+	take_damage(areaParent)

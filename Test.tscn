@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/enemies/EnemyPaper.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sooltan" parent="." instance=ExtResource( 1 )]
+position = Vector2( 503, 169 )
+
+[node name="Camera2D" type="Camera2D" parent="Sooltan"]
+current = true
+
+[node name="EnemyPaper" parent="." instance=ExtResource( 3 )]
+position = Vector2( 390, 183 )

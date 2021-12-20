@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/playerbullet.wav-916953483622c0b1210d37cc0b39e6de.sample"
+
+[deps]
+
+source_file="res://assets/sfx/sounds/playerbullet.wav"
+dest_files=[ "res://.import/playerbullet.wav-916953483622c0b1210d37cc0b39e6de.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

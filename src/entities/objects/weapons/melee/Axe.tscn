@@ -56,6 +56,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 0, 7 ), Vector2( -19, -25 ), Vector2( 9, -2 ), Vector2( 9, -2 ), Vector2( 0, 7 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("AxeSprite/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.04, 0.19 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -84,7 +96,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("AxeSprite/HitRange:position")
+tracks/2/path = NodePath("AxeSprite/Hitbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -96,7 +108,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("AxeSprite/HitRange:rotation_degrees")
+tracks/3/path = NodePath("AxeSprite/Hitbox:rotation_degrees")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -106,6 +118,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AxeSprite/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -125,14 +149,15 @@ texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -24, -47 )
 
-[node name="HitRange" type="Area2D" parent="AxeSprite"]
-collision_layer = 0
-collision_mask = 12
+[node name="Hitbox" type="Area2D" parent="AxeSprite"]
+collision_layer = 8
+collision_mask = 160
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AxeSprite/HitRange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AxeSprite/Hitbox"]
 position = Vector2( 0, -30 )
 rotation = -1.5708
 shape = SubResource( 1 )
+disabled = true
 
 [node name="SlashSprite" type="Sprite" parent="."]
 visible = false
@@ -142,3 +167,4 @@ scale = Vector2( 1, 1.40782 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 3
+frame = 2

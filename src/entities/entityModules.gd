@@ -8,6 +8,10 @@ var health: float = max_health
 
 export var max_speed: float = 225
 
+var is_vision_area_empty = true
+var allow_attack = false
+
+
 func is_dead():
 	return health <= 0
 
@@ -30,7 +34,7 @@ func adjust_direction(direction):
 	
 func adjust_hand_rotation(direction):
 	if direction.x != 0:
-		self.hand_position.scale.y= direction.x
+		self.hand_position.scale.y = direction.x
 	self.hand_position.look_at(self.hand_position.global_position + direction)
 
 func damage_area(targetGroups, hit_range, damage_value, knockback_value):
@@ -59,11 +63,14 @@ func return_travel_direction(vector):
 		y_direction = stepify(vector.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
 
-func take_damage(attacker, damage_value, knockback_value):
+func take_damage(attacker):
+	var damage_value = attacker.damage_value
+	var knockback_value = attacker.knockback_value
+	var attacker_pos = attacker.global_position
 	play_animation("Hit", "Hit")
 	var new_health = self.health_bar.take_damage(health, max_health, damage_value)
 
-	knockback = (global_position - attacker.global_position).normalized() * knockback_value
+	knockback = (global_position - attacker_pos).normalized() * knockback_value
 
 	if new_health <= 0:
 		self.state_machine.transition_to("Death")
@@ -82,5 +89,21 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity)
 	
-	
-	
+
+func _on_VisionArea_body_entered(body):
+	is_vision_area_empty = false
+
+func _on_VisionArea_body_exited(body):
+	if find_targets_in_area(["player"], $VisionArea).size() == 0:
+		is_vision_area_empty = true
+
+func _on_Hurtbox_area_entered(area):
+	var areaParent = area.owner
+	take_damage(areaParent)
+
+
+func _on_EngageRange_body_entered(body):
+	allow_attack = true
+
+func _on_EngageRange_body_exited(body):
+	allow_attack = false
