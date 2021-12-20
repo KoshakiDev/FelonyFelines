@@ -162,3 +162,5 @@ anims/Run = SubResource( 57 )
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
 anims/Hit = SubResource( 58 )
 anims/RESET = SubResource( 59 )
+
+[node name="DustPosition" type="Position2D" parent="."]

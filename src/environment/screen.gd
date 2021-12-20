@@ -1,12 +1,10 @@
 extends Node2D
 
-onready var face_anim_player = $FaceAnimationPlayer
 onready var head_anim_player = $HeadAnimationPlayer
 onready var camera_anim_player = $CameraAnimationPlayer
 onready var camera = $Camera2D
 onready var info_text = $Head/Info
 onready var spawners = $Arena/YSort/Spawners.get_children()
-onready var face = $Head/Face
 
 onready var timer = $Timer
 
@@ -28,7 +26,6 @@ func _ready():
 	update_board()
 	Global.set("main", self)
 	head_anim_player.play("Idle")
-	face_anim_player.play("Idle")
 	
 	update_wave()
 	
@@ -58,9 +55,6 @@ func update_wave():
 	#camera_anim_player.play("zoom_in")
 	is_wave_updating = false
 
-func update_currently_controlled(new_face):
-	currently_controlled = new_face
-	face.change_screen_face(currently_controlled)
 	
 func _process(delta):
 	if $Arena/YSort/Sooltan.health <= 0 and $Arena/YSort/Sooltan2.health <= 0:

@@ -9,10 +9,13 @@ onready var sprite := $Sprite
 
 onready var weapon_manager := $WeaponManager
 onready var hand_position := $WeaponManager/HandPosition2D
-
+onready var dust_position := $DustPosition
 onready var health_bar := $HealthBar
 
+var DUST_SCENE = preload("res://src/effects/Dust.tscn")
 var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
+
+
 
 func _ready():
 	Global.set("sooltan", self)
@@ -29,3 +32,12 @@ func _input(event):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
 		 weapon_manager.cur_weapon.action()
+
+func spawn_dust() -> void:
+	var dust: Sprite = DUST_SCENE.instance()
+	#dust.set_as_toplevel(true)
+	dust.position = dust_position.global_position
+	
+	#dust.global_position = Vector2(220, 220)
+	print(dust_position.global_position, global_position)
+	get_parent().add_child_below_node(get_parent(), dust)
