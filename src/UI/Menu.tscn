@@ -68,8 +68,7 @@ tracks/1/keys = {
 script = ExtResource( 6 )
 
 [node name="BG" type="Sprite" parent="."]
-position = Vector2( 512.75, 313.5 )
-scale = Vector2( 0.984249, 0.96125 )
+position = Vector2( 502, 298 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
