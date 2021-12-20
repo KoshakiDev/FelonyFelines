@@ -391,7 +391,7 @@ func set_percent_value(value):
 
 [node name="EnemyPaper" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 7
 script = ExtResource( 2 )
 max_steering = 7.5
 

@@ -421,8 +421,8 @@ func set_percent_value(value):
 "
 
 [node name="EnemyScissors" type="KinematicBody2D" groups=["enemy"]]
-collision_layer = 11
-collision_mask = 11
+collision_layer = 4
+collision_mask = 7
 script = ExtResource( 2 )
 max_steering = 7.5
 
@@ -453,6 +453,7 @@ script = ExtResource( 4 )
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
+cooldown_duration = 2
 dash_speed = 300
 
 [node name="DashDurationTimer" type="Timer" parent="StateMachine/Attack"]
@@ -486,7 +487,6 @@ position = Vector2( 0, -10 )
 shape = SubResource( 115 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 64
 
@@ -496,7 +496,6 @@ shape = SubResource( 131 )
 disabled = true
 
 [node name="EngageRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0

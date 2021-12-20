@@ -50,10 +50,7 @@ func _shoot() -> void:
 		timer.stop()
 		emit_signal("shot_ready")
 		return
-	print(rotation, rotation_offset)
-	print(global_rotation, rotation_offset)
 	var shoot_dir = Vector2.RIGHT.rotated(global_rotation + rotation_offset).normalized()
-	#var shoot_dir = Vector2.RIGHT.rotated(rotation + rotation_offset).normalized()
 	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed)
 
 # Workaround for resource list

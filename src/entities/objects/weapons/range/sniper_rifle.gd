@@ -17,7 +17,3 @@ func bullet_spawner_set_shooting_true():
 
 func bullet_spawner_set_shooting_false():
 	bullet_spawner.set_shooting(false)
-
-
-func shoot(dir: Vector2) -> void:
-	bullet_spawner.shoot(dir, bullet_speed)

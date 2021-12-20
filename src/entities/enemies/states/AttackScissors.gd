@@ -15,11 +15,10 @@ func enter(msg := {}) -> void:
 	if !cooldown_timer.is_stopped():
 		state_machine.transition_to("Chase")
 		return
-	
 	cooldown_timer.wait_time = cooldown_duration
 	cooldown_timer.start()
 
-	var targets = owner.find_targets_in_area(["player"], owner.dash_range)
+	var targets = owner.find_targets_in_area(["player"], owner.engage_range)
 	if targets.size() == 0:
 		state_machine.transition_to("Chase")
 		return

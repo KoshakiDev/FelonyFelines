@@ -21,8 +21,16 @@ func enter(msg := {}) -> void:
 	state_machine.transition_to("Chase")
 	pass
 
+
+func bullet_spawner_set_shooting_true():
+	owner.bullet_spawner.set_shooting(true)
+
+func bullet_spawner_set_shooting_false():
+	owner.bullet_spawner.set_shooting(false)
+
+
 func shootPellet():
-	var targets = owner.find_targets_in_area(["player"], owner.hit_range)
+	var targets = owner.find_targets_in_area(["player"], owner.engage_range)
 	if targets.size() == 0:
 		state_machine.transition_to("Chase")
 		return
@@ -30,9 +38,11 @@ func shootPellet():
 	
 	var direction = target.global_position - owner.global_position
 	
+	#shoot(direction)
+
 	var pellet = pelletPreload.instance()
 	owner.pellets.add_child(pellet)
-	
+
 	pellet.set_as_toplevel(true)
 	pellet.position = owner.pellets.global_position
 	pellet.direction = direction.normalized()

@@ -10,7 +10,13 @@ var shooting: bool = false
 
 onready var start_pos := global_position
 
-var is_player_bullet = false
+var is_player_bullet = true
+
+var is_projectile = true
+
+export var damage_value = 5
+export var knockback_value = 20
+
 
 func _ready() -> void:
 	shooting = true
@@ -28,5 +34,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_Bullet_area_entered(area):
-	print(area)
-	queue_free()
+	#queue_free()
+	pass
