@@ -7,13 +7,12 @@ onready var state_machine := $StateMachine
 onready var animation_machine := $AnimationMachine
 onready var sprite := $Sprite
 
-onready var weapon_manager := $Sprite/WeaponManager
-onready var hand_position := $Sprite/WeaponManager/HandPosition2D
+onready var weapon_manager := $WeaponManager
+onready var hand_position := $WeaponManager/HandPosition2D
 
 onready var health_bar := $HealthBar
 
 var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
-var axe_2_texture = preload("res://assets/entities/items/weapons/axe/axe_blue_48x48.png")
 
 func _ready():
 	Global.set("sooltan", self)

@@ -8,9 +8,6 @@ var health: float = max_health
 
 export var max_speed: float = 225
 
-func _ready():
-	pass
-
 func is_dead():
 	return health <= 0
 
@@ -23,18 +20,18 @@ func set_animation(duration, node_name):
 func get_animation(animation, node_name):
 	return self.animation_machine.get_animation(animation, node_name)
 
-func adjust_blend_position(input_direction):
-	if input_direction.x != 0:
-		self.sprite.scale.x = input_direction.x
 
-#	if "hand_position" in self:
-#		adjust_weapon_direction(input_direction)
-	
-func adjust_weapon_direction(direction):
+func adjust_direction(direction):
 	if direction.x != 0:
-		self.hand_position.scale.x = -direction.x
-	if direction.y != 0:
-		self.hand_position.scale.y = -direction.y
+		self.sprite.scale.x = direction.x
+
+	if "hand_position" in self:
+		adjust_hand_rotation(direction)
+	
+func adjust_hand_rotation(direction):
+	if direction.x != 0:
+		self.hand_position.scale.y= direction.x
+	self.hand_position.look_at(self.hand_position.global_position + direction)
 
 func damage_area(targetGroups, hit_range, damage_value, knockback_value):
 	var targets = find_targets_in_area(targetGroups, hit_range)

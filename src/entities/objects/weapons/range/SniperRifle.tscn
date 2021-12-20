@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/entities/items/weapons/sniper-rifle/Sniper-rifle.png" type="Texture" id=1]
-[ext_resource path="res://src/entities/objects/weapons/range/rangeModule.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/objects/weapons/range/sniper_rifle.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"
@@ -34,7 +34,9 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -10, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Gun" type="Node2D"]
+[node name="Sniper_rifle" type="Node2D"]
+position = Vector2( 7, 0 )
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

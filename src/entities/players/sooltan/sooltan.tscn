@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shader.tres" type="Shader" id=2]
 [ext_resource path="res://src/entities/objects/weapons/melee/Axe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
+[ext_resource path="res://src/entities/objects/weapons/range/SniperRifle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/players/sooltan/states/Move.gd" type="Script" id=9]
@@ -127,17 +128,17 @@ texture = ExtResource( 5 )
 hframes = 9
 vframes = 2
 
-[node name="WeaponManager" type="Node2D" parent="Sprite"]
-position = Vector2( 0, 8 )
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2( 0, -16 )
 script = ExtResource( 10 )
 
-[node name="HandPosition2D" type="Position2D" parent="Sprite/WeaponManager"]
-position = Vector2( 5, 2 )
-rotation = 1.309
+[node name="HandPosition2D" type="Position2D" parent="WeaponManager"]
+position = Vector2( 0, 7 )
 
-[node name="Axe" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+[node name="Axe" parent="WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+
+[node name="Gun" parent="WeaponManager/HandPosition2D" instance=ExtResource( 6 )]
 visible = false
-position = Vector2( -0.138796, 5.8293 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_top = -65.0

@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 
 	var direction = owner.return_travel_direction(owner.velocity)
 	if direction != Vector2.ZERO:
-		owner.adjust_blend_position(direction)	
+		owner.adjust_direction(direction)	
 	
 	if owner.find_targets_in_area(["player"], owner.hit_range).size() != 0:
 		state_machine.transition_to("Attack")

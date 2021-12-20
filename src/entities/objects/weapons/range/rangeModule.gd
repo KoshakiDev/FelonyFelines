@@ -1,5 +1,7 @@
 extends Node2D
 
+export var type = "Range"
 
-func _ready():
-	pass
+export var damage_value: float =  20
+export var knockback_value: float = 50
+
