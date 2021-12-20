@@ -70,6 +70,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 9, 10, 11, 12 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
+}
 
 [sub_resource type="Animation" id=58]
 resource_name = "Hit"

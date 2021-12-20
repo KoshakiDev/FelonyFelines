@@ -231,7 +231,7 @@ polygon = PoolVector2Array( 268, 0, 268, 34, -104, 45, -104, 0 )
 one_way_collision = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, 125 )
+position = Vector2( 0, -101 )
 current = true
 zoom = Vector2( 1.333, 1.333 )
 
