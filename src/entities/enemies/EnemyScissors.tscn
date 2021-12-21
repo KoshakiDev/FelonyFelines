@@ -467,7 +467,6 @@ one_shot = true
 script = ExtResource( 7 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 128
 collision_mask = 0
 
@@ -483,10 +482,12 @@ hframes = 5
 vframes = 6
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -10 )
 shape = SubResource( 115 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 64
 
@@ -496,6 +497,7 @@ shape = SubResource( 131 )
 disabled = true
 
 [node name="EngageRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0

@@ -26,6 +26,8 @@ func _ready():
 	pass
 
 func _input(event):
+	if is_dead():
+		return
 	if event.is_action_pressed("next_weapon" + player_id):
 		weapon_manager.switch_to_next_weapon()
 	if event.is_action_pressed("prev_weapon" + player_id):
@@ -44,4 +46,5 @@ func spawn_dust() -> void:
 
 func _on_Hurtbox_area_entered(area):
 	var areaParent = area.owner
+	Shake.shake(4.0, .5)
 	take_damage(areaParent)

@@ -13,6 +13,7 @@ func _ready() -> void:
 	for cam in get_tree().get_nodes_in_group("camera"):
 		if cam.current:
 			camera = cam
+	print(camera)
 
 func _process(delta: float) -> void:
 	if shake_duration <= 0.0:

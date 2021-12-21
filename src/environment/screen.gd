@@ -25,6 +25,7 @@ func back_to_menu():
 func _ready():
 	update_board()
 	Global.set("main", self)
+	Shake.set_camera($Camera2D)
 	head_anim_player.play("Idle")
 	
 	update_wave()

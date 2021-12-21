@@ -4,7 +4,7 @@
 [ext_resource path="res://src/entities/objects/weapons/range/sniper_rifle.gd" type="Script" id=2]
 [ext_resource path="res://src/components/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/components/bullet type/PlayerBullet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/components/bullet_emitters/BulletEmitterSingle.gd" type="Script" id=5]
+[ext_resource path="res://src/components/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"
@@ -57,7 +57,8 @@ tracks/1/keys = {
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-spread = 10
+amount = 10
+spread_angle = 5.0
 
 [node name="Sniper_rifle" type="Node2D"]
 position = Vector2( 7, 0 )
@@ -74,4 +75,5 @@ anims/Shoot = SubResource( 2 )
 [node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 48, 0 )
 bullet_scene = ExtResource( 4 )
+shot_delay = 1.0
 bullet_emitter = SubResource( 3 )

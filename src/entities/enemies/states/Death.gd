@@ -5,6 +5,9 @@ func enter(msg := {}) -> void:
 	pass
 	
 func delete_enemy():
+	if Global.main == null:
+		owner.queue_free()
+		return
 	Global.main.update_points(100)
 	Global.main.enemy_count = Global.main.enemy_count - 1
 	if Global.main.enemy_count == 0:

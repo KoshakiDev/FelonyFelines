@@ -36,7 +36,7 @@ func adjust_hand_rotation(direction):
 	if direction.x != 0:
 		self.hand_position.scale.y = direction.x
 	self.hand_position.look_at(self.hand_position.global_position + direction)
-	print(direction)
+	#print(direction)
 
 func damage_area(targetGroups, hit_range, damage_value, knockback_value):
 	var targets = find_targets_in_area(targetGroups, hit_range)
@@ -65,7 +65,6 @@ func return_travel_direction(vector):
 	return Vector2(x_direction, y_direction)
 
 func take_damage(attacker):
-	print(attacker)
 	var damage_value = attacker.damage_value
 	var knockback_value = attacker.knockback_value
 	var attacker_pos = attacker.global_position
@@ -101,15 +100,14 @@ func _on_VisionArea_body_exited(body):
 		is_vision_area_empty = true
 
 func _on_Hurtbox_area_entered(area):
+	print(area)
 	var areaParent = area.owner
 	if "is_projectile" in area:
 		areaParent = area
 	take_damage(areaParent)
 
 func _on_EngageRange_body_entered(body):
-	print("attack allowed")
 	allow_attack = true
 
 func _on_EngageRange_body_exited(body):
-	print("attack denied")
 	allow_attack = false
