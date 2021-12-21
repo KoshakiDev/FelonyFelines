@@ -1,9 +1,7 @@
 extends Node2D
 
-onready var head_anim_player = $HeadAnimationPlayer
-onready var camera_anim_player = $CameraAnimationPlayer
 onready var camera = $Camera2D
-onready var info_text = $Head/Info
+onready var info_text = $Info
 onready var spawners = $Arena/YSort/Spawners.get_children()
 
 onready var timer = $Timer
@@ -26,7 +24,7 @@ func _ready():
 	update_board()
 	Global.set("main", self)
 	Shake.set_camera($Camera2D)
-	head_anim_player.play("Idle")
+	#head_anim_player.play("Idle")
 	
 	update_wave()
 	
@@ -58,7 +56,5 @@ func update_wave():
 
 	
 func _process(delta):
-	if $Arena/YSort/Sooltan.health <= 0 and $Arena/YSort/Sooltan2.health <= 0:
-		$Arena/YSort/Sooltan.set_physics_process(false)
-		$Arena/YSort/Sooltan2.set_physics_process(false)
+	if Global.brother_1.health <= 0 and Global.brother_2.health <= 0:
 		all_players_dead()
