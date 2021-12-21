@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/sfx/Jump_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyScissors.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/entities/enemies/scissors/scissors_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/entities/enemies/states/AttackScissors.gd" type="Script" id=9]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://cowboy_boss-shadow.png" type="Texture" id=11]
 [ext_resource path="res://assets/sfx/Explosion_02.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=13]
 
@@ -473,6 +474,12 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( -0.5, -28 )
 shape = SubResource( 139 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( -0.5, 0 )
+scale = Vector2( 1.64, 1 )
+texture = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 133 )

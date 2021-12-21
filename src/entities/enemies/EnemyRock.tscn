@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/sfx/Shoot_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyRock.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sfx/Explosion_03.wav" type="AudioStream" id=14]
 [ext_resource path="res://src/components/bullet_emitters/BulletEmitterSingle.gd" type="Script" id=15]
 [ext_resource path="res://src/components/bullet type/SheriffBullet.tscn" type="PackedScene" id=16]
+[ext_resource path="res://cowboy_boss-shadow.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=90]
 resource_name = "Attack"
@@ -449,6 +450,12 @@ bullet_emitter = SubResource( 106 )
 
 [node name="Pellets" type="Node2D" parent="."]
 position = Vector2( 3, -32 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( -0.5, 0 )
+scale = Vector2( 1.56, 1 )
+texture = ExtResource( 17 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 99 )

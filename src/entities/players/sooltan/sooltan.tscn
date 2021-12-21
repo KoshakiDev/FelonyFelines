@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shader.tres" type="Shader" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/entities/players/sooltan/states/Death.gd" type="Script" id=13]
 [ext_resource path="res://assets/sfx/cat_death.wav" type="AudioStream" id=14]
 [ext_resource path="res://src/entities/objects/weapons/melee/Fists.tscn" type="PackedScene" id=15]
+[ext_resource path="res://cowboy_boss-shadow.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=61]
 resource_name = "Death"
@@ -75,6 +76,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shadow:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=56]
 resource_name = "Idle"
@@ -130,6 +143,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=57]
@@ -283,6 +308,12 @@ collision_mask = 48
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( -0.5, -21.5 )
 shape = SubResource( 60 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( -3.57628e-07, 0 )
+scale = Vector2( 0.8, 1 )
+texture = ExtResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 53 )

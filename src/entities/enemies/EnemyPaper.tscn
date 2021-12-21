@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/entities/enemies/paper/paper_simplified-Sheet.png" type="Texture" id=8]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/entities/enemies/states/AttackPaper.gd" type="Script" id=10]
+[ext_resource path="res://cowboy_boss-shadow.png" type="Texture" id=11]
 [ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=13]
 
@@ -430,6 +431,12 @@ one_shot = true
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 1, 0 )
+scale = Vector2( 1.68, 1 )
+texture = ExtResource( 11 )
+
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 128 )
 position = Vector2( 0, -32 )
@@ -452,6 +459,7 @@ position = Vector2( -1, -24 )
 shape = SubResource( 134 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 64
 
@@ -461,6 +469,7 @@ shape = SubResource( 135 )
 disabled = true
 
 [node name="EngageRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
