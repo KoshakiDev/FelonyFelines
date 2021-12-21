@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var camera = $Camera2D
-onready var info_text = $Info
+onready var info_text = $InfoPos/Info
 onready var spawners = $Arena/YSort/Spawners.get_children()
 
 onready var timer = $Timer
@@ -14,18 +14,12 @@ var is_wave_updating = false
 
 var enemy_count = 0
 
-func all_players_dead():
-	$DeathAnimationPlayer.play("dead")
-
-func back_to_menu():
-	SceneChanger.change_scene("res://src/UI/Menu.tscn", "fade")
 
 func _ready():
+	$InfoAnimationPlayer.play("Idle")
 	update_board()
 	Global.set("main", self)
 	Shake.set_camera($Camera2D)
-	#head_anim_player.play("Idle")
-	
 	update_wave()
 	
 func update_board():
@@ -48,13 +42,18 @@ func update_wave():
 		spawner.add_enemies(wave_num)
 
 	update_board()
-	#camera_anim_player.play("zoom_out")
 	timer.start()
 	yield(timer, "timeout")
-	#camera_anim_player.play("zoom_in")
 	is_wave_updating = false
 
-	
 func _process(delta):
 	if Global.brother_1.health <= 0 and Global.brother_2.health <= 0:
 		all_players_dead()
+
+func all_players_dead():
+	$Dead.play()
+	yield($Dead, "finished")
+	back_to_menu()
+
+func back_to_menu():
+	SceneChanger.change_scene("res://src/UI/Menu.tscn", "fade")

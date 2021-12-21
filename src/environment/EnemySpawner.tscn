@@ -3,7 +3,7 @@
 [ext_resource path="res://src/environment/EnemySpawner.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 254.336, 43.5 )
+extents = Vector2( 170, 43.5 )
 
 [node name="EnemySpawner" type="Position2D"]
 script = ExtResource( 1 )

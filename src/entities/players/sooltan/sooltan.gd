@@ -65,3 +65,5 @@ func _on_Hurtbox_area_entered(area):
 func _physics_process(delta):
 	if is_stationary:
 		position = Vector2(0, -42)
+		play_animation("Idle", "Movement")
+
