@@ -100,7 +100,6 @@ func _on_VisionArea_body_exited(body):
 		is_vision_area_empty = true
 
 func _on_Hurtbox_area_entered(area):
-	print(area)
 	var areaParent = area.owner
 	if "is_projectile" in area:
 		areaParent = area

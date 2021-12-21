@@ -9,7 +9,6 @@ func seek_steering(vector_to_target: Vector2) -> Vector2:
 	
 func physics_update(delta: float) -> void:
 	var targets = owner.find_targets_in_area(["player"], owner.vision_area)
-
 	if targets.size() == 0:
 		state_machine.transition_to("Idle")
 		return
@@ -28,5 +27,5 @@ func physics_update(delta: float) -> void:
 	var direction = owner.return_travel_direction(owner.velocity)
 	if direction != Vector2.ZERO:
 		owner.adjust_direction(direction)	
-	if owner.allow_attack:
+	if owner.find_targets_in_area(["player"], owner.engage_range).size() != 0:
 		state_machine.transition_to("Attack")

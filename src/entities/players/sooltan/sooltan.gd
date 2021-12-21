@@ -21,6 +21,7 @@ func _ready():
 	Global.set("sooltan", self)
 	
 	if player_id == "_2":
+		$WeaponManager/HandPosition2D.position.y = 1
 		sprite.set_texture(sprite_texture)
 #		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
 	pass
