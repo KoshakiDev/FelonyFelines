@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/environment/finalDay/finalDay_6.png" type="Texture" id=1]
 [ext_resource path="res://assets/environment/finalDay/finalDay_4.png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/finalDay/finalDay_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/environment/finalDay/finalDay_3.png" type="Texture" id=4]
 [ext_resource path="res://assets/environment/finalDay/finalDay_5.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/environment/screen.gd" type="Script" id=9]
 [ext_resource path="res://src/environment/EnemySpawner.tscn" type="PackedScene" id=10]
@@ -13,6 +13,11 @@
 [ext_resource path="res://Test.tres" type="TileSet" id=12]
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=17]
+
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 64
+font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -56,7 +61,6 @@ __meta__ = {
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -248 )
 motion_scale = Vector2( 0.2, 0.2 )
 
 [node name="SpriteLayer1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
@@ -65,7 +69,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2150, 1344 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -248 )
 motion_scale = Vector2( 0.3, 0.3 )
 
 [node name="SpriteLayer2" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
@@ -74,7 +77,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2150, 1344 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -248 )
 motion_scale = Vector2( 0.4, 0.4 )
 
 [node name="SpriteLayer3" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
@@ -83,7 +85,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2150, 1344 )
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -248 )
 motion_scale = Vector2( 0.5, 0.5 )
 
 [node name="SpriteLayer4" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
@@ -92,7 +93,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2150, 1344 )
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -248 )
 motion_scale = Vector2( 0.6, 0.6 )
 
 [node name="SpriteLayer5" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
@@ -101,7 +101,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2150, 1344 )
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -248 )
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="SpriteLayer6" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
@@ -116,8 +115,8 @@ region_rect = Rect2( 0, 0, 2150, 1344 )
 margin_left = -258.0
 margin_top = -83.0
 margin_right = 245.0
-margin_bottom = 113.0
-custom_fonts/normal_font = ExtResource( 7 )
+margin_bottom = 192.0
+custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]WAVE: 999[/center]
 [center]POINTS: 9999[/center]
@@ -126,7 +125,6 @@ text = "WAVE: 999
 POINTS: 9999
 LEFT: 999"
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -145,16 +143,10 @@ tile_data = PoolIntArray( -524299, 5, 0, -524298, 5, 0, -524297, 5, 0, -524296, 
 [node name="Spawners" type="Node2D" parent="Arena/YSort"]
 
 [node name="EnemySpawner" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
-position = Vector2( 861, -48 )
+position = Vector2( 712, -48 )
 
-[node name="CollisionShape2D" parent="Arena/YSort/Spawners/EnemySpawner/Area2D" index="0"]
-position = Vector2( -7, 0 )
-
-[node name="EnemySpawner2" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
-position = Vector2( -936, -48 )
-
-[node name="CollisionShape2D" parent="Arena/YSort/Spawners/EnemySpawner2/Area2D" index="0"]
-position = Vector2( 84, 0 )
+[node name="EnemySpawner3" parent="Arena/YSort/Spawners" instance=ExtResource( 10 )]
+position = Vector2( -696, -48 )
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 8 )]
 position = Vector2( 313, 0 )
@@ -203,6 +195,3 @@ stream = ExtResource( 17 )
 [node name="CombatLoop" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CombatIntro" type="AudioStreamPlayer2D" parent="."]
-
-[editable path="Arena/YSort/Spawners/EnemySpawner"]
-[editable path="Arena/YSort/Spawners/EnemySpawner2"]
