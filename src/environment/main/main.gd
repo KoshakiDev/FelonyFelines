@@ -58,7 +58,7 @@ func all_players_dead():
 	back_to_menu()
 
 func back_to_menu():
-	SceneChanger.change_scene("res://src/UI/Menu.tscn", "fade")
+	SceneChanger.change_scene("res://src/menu/Menu.tscn", "fade")
 
 
 func _on_Main_all_dead():

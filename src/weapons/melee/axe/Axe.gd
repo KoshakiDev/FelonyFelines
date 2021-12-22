@@ -1,4 +1,4 @@
-extends "res://src/entities/objects/weapons/melee/meleeModule.gd"
+extends "res://src/weapons/melee/meleeModule.gd"
 
 export var weapon_name := "AXE"
 

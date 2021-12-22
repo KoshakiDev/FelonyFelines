@@ -1,4 +1,4 @@
-extends "res://src/entities/objects/weapons/range/rangeModule.gd"
+extends "res://src/weapons/range/rangeModule.gd"
 
 export var weapon_name := "SNIPER_RIFLE"
 
