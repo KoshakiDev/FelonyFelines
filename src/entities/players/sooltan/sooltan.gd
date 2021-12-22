@@ -26,7 +26,7 @@ func _ready():
 	else:
 		Global.set("brother_1", self)
 		Global.set("parent_location", get_parent())
-	print(Global.parent_location)
+	#print(Global.parent_location)
 
 func _input(event):
 	if is_dead():
@@ -59,6 +59,8 @@ func spawn_dust() -> void:
 
 func _on_Hurtbox_area_entered(area):
 	var areaParent = area.owner
+	if "is_projectile" in area:
+		areaParent = area
 	Shake.shake(4.0, .5)
 	take_damage(areaParent)
 

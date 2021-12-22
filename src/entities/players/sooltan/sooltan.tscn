@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Shader.tres" type="Shader" id=2]
-[ext_resource path="res://src/entities/objects/weapons/melee/Axe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/shaders/Shader.tres" type="Shader" id=2]
+[ext_resource path="res://src/weapons/melee/axe/Axe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
-[ext_resource path="res://src/entities/objects/weapons/range/SniperRifle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/weapons/range/sniper rifle/SniperRifle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/players/sooltan/states/Move.gd" type="Script" id=9]
@@ -14,8 +14,8 @@
 [ext_resource path="res://assets/sfx/sounds/player_hit.wav" type="AudioStream" id=12]
 [ext_resource path="res://src/entities/players/sooltan/states/Death.gd" type="Script" id=13]
 [ext_resource path="res://assets/sfx/cat_death.wav" type="AudioStream" id=14]
-[ext_resource path="res://src/entities/objects/weapons/melee/Fists.tscn" type="PackedScene" id=15]
-[ext_resource path="res://cowboy_boss-shadow.png" type="Texture" id=16]
+[ext_resource path="res://src/weapons/melee/fists/Fists.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/entities/shadow.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=61]
 resource_name = "Death"

@@ -12,27 +12,27 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://src/components/Bullet.gd"
+"path": "res://src/components/bullet-related/Bullet.gd"
 }, {
 "base": "Resource",
 "class": "BulletEmitter",
 "language": "GDScript",
-"path": "res://src/components/BulletEmitter.gd"
+"path": "res://src/components/bullet-related/BulletEmitter.gd"
 }, {
 "base": "BulletEmitter",
 "class": "BulletEmitterSingle",
 "language": "GDScript",
-"path": "res://src/components/bullet_emitters/BulletEmitterSingle.gd"
+"path": "res://src/components/bullet-related/bullet_emitters/BulletEmitterSingle.gd"
 }, {
 "base": "BulletEmitter",
 "class": "BulletEmitterSpread",
 "language": "GDScript",
-"path": "res://src/components/bullet_emitters/BulletEmitterSpread.gd"
+"path": "res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd"
 }, {
 "base": "Position2D",
 "class": "BulletSpawner",
 "language": "GDScript",
-"path": "res://src/components/BulletSpawner.gd"
+"path": "res://src/components/bullet-related/BulletSpawner.gd"
 }, {
 "base": "",
 "class": "GitAPI",
@@ -67,7 +67,7 @@ config/description="Command & Collab is an action puzzle platformer about a warm
 The Caretaker's farm has suffered a cyber attack when he was secretly away with his adopted cub Charlie. 
 He and Charlie must take the farm back before the virus destroys the farm.
 "
-run/main_scene="res://src/UI/Menu.tscn"
+run/main_scene="res://src/menu/Menu.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
