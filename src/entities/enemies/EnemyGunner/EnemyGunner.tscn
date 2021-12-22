@@ -445,6 +445,7 @@ offset = Vector2( 0, 17 )
 [node name="BulletSpawner" parent="Sprite/Shoulder1/Cannon" instance=ExtResource( 13 )]
 position = Vector2( 35, 0 )
 bullet_scene = ExtResource( 15 )
+shot_delay = 1.0
 bullet_emitter = SubResource( 106 )
 
 [node name="Shoulder2" type="Sprite" parent="Sprite"]

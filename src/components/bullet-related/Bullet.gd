@@ -14,17 +14,19 @@ var is_player_bullet = true
 
 var is_projectile = true
 
-export var damage_value = 5
-export var knockback_value = 20
+var damage_value = 5
+var knockback_value = 20
 
 
 func _ready() -> void:
 	shooting = true
 	$ShootSound.play()
 
-func setup(dir, speed) -> void:
+func setup(dir, speed, damage_value, knockback_value) -> void:
 	self.dir = dir
 	self.speed = speed
+	self.damage_value = damage_value
+	self.knockback_value = knockback_value
 
 func _physics_process(delta: float) -> void:
 	if shooting:

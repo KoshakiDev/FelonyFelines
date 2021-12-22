@@ -11,6 +11,10 @@ export var bullet_scene: PackedScene
 export var shot_delay: float = .1
 # speed of the emitted bullets
 export var bullet_speed: float = 400
+
+export var bullet_damage_value = 5
+export var bullet_knockback_value = 20
+
 # the emitter to be used for spawning bullets (controls behaviour)
 var bullet_emitter: BulletEmitter
 
@@ -51,7 +55,7 @@ func _shoot() -> void:
 		emit_signal("shot_ready")
 		return
 	var shoot_dir = Vector2.RIGHT.rotated(global_rotation + rotation_offset).normalized()
-	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed)
+	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, bullet_knockback_value)
 
 # Workaround for resource list
 func _get_property_list() -> Array:

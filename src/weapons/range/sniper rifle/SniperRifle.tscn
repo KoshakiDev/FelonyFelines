@@ -64,6 +64,8 @@ spread_angle = 1.0
 position = Vector2( 7, 0 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
+damage_value = null
+knockback_value = null
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
