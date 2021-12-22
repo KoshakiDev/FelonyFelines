@@ -364,3 +364,5 @@ stream = ExtResource( 12 )
 [node name="DustPosition" type="Position2D" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="WeaponManager/HandPosition2D/Fists"]

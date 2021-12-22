@@ -1073,8 +1073,10 @@ tracks/30/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=9]
+radius = 13.4629
 
 [sub_resource type="CircleShape2D" id=10]
+radius = 14.0
 
 [node name="Fists" type="Node2D"]
 script = ExtResource( 1 )
@@ -1132,7 +1134,7 @@ hframes = 3
 [node name="BarrageSprite" type="Sprite" parent="."]
 visible = false
 position = Vector2( 28, -15 )
-rotation = 0.353308
+rotation = 0.353309
 texture = ExtResource( 2 )
 hframes = 3
 frame = 1
@@ -1140,7 +1142,7 @@ frame = 1
 [node name="BarrageSprite2" type="Sprite" parent="."]
 visible = false
 position = Vector2( 21, -33 )
-rotation = 0.353308
+rotation = 0.353309
 texture = ExtResource( 2 )
 hframes = 3
 

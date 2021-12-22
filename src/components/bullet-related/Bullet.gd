@@ -36,5 +36,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_Bullet_area_entered(area):
-	#queue_free()
+	if area.is_in_group("hitbox"):
+		queue_free()
 	pass
