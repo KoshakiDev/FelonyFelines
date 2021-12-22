@@ -15,10 +15,15 @@ func _physics_process(delta):
 	if find_targets_in_area(["wall"], $Area2D).size() > 0:
 		queue_free()
 		return
-	
+
 	var targets = find_targets_in_area(["player"], $Area2D)
 	for target in targets:
 		target.take_damage(self, damage_value, knockback_value)
 		queue_free()
 		break
 
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group('hitbox'):
+		queue_free()

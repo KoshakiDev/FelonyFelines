@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/enemies/EnemyRock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://finalDay.PNG" type="Texture" id=3]
 [ext_resource path="res://Test.tres" type="TileSet" id=4]
 
@@ -31,3 +32,6 @@ current = true
 [node name="Sooltan2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 434, 177 )
 player_id = "_2"
+
+[node name="EnemyRock" parent="." instance=ExtResource( 2 )]
+position = Vector2( 289, 111 )

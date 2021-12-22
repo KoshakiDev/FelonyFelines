@@ -10,7 +10,7 @@ onready var sprite := $Sprite
 onready var weapon_manager := $WeaponManager
 onready var hand_position := $WeaponManager/HandPosition2D
 onready var dust_position := $DustPosition
-onready var health_bar := $HealthBar
+onready var health_bar := $Node2D/HealthBar
 
 var DUST_SCENE = preload("res://src/effects/Dust.tscn")
 var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")

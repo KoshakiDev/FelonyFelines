@@ -14,6 +14,7 @@ var is_wave_updating = false
 
 var enemy_count = 0
 
+signal all_dead
 
 func _ready():
 	$InfoAnimationPlayer.play("Idle")
@@ -48,7 +49,8 @@ func update_wave():
 
 func _process(delta):
 	if Global.brother_1.health <= 0 and Global.brother_2.health <= 0:
-		all_players_dead()
+		emit_signal("all_dead")
+		set_process(false)
 
 func all_players_dead():
 	$Dead.play()
@@ -57,3 +59,7 @@ func all_players_dead():
 
 func back_to_menu():
 	SceneChanger.change_scene("res://src/UI/Menu.tscn", "fade")
+
+
+func _on_Main_all_dead():
+	all_players_dead()
