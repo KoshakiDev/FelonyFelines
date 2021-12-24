@@ -10,10 +10,13 @@ onready var player2 = Global.brother_2
 onready var viewport1 = $ViewportContainer/Viewport1
 onready var viewport2 = $ViewportContainer2/Viewport2
 onready var view = $View
-onready var camera1 = $ViewportContainer/Viewport1/Camera2D
-onready var camera2 = $ViewportContainer2/Viewport2/Camera2D
+onready var camera1 = $ViewportContainer/Viewport1/Camera1
+onready var camera2 = $ViewportContainer2/Viewport2/Camera2
 
 func _ready():
+	print(player1, player2)
+	Shake.set_camera(camera1, camera2)
+	
 	viewport2.world_2d = viewport1.world_2d
 	_on_size_changed()
 	_update_splitscreen()

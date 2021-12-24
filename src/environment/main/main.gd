@@ -20,7 +20,6 @@ func _ready():
 	$InfoAnimationPlayer.play("Idle")
 	update_board()
 	Global.set("main", self)
-	Shake.set_camera($Camera2D)
 	update_wave()
 	
 func update_board():

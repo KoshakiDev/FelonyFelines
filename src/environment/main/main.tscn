@@ -1,14 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/environment/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/environment/main/main.gd" type="Script" id=3]
-[ext_resource path="res://assets/environment/parallax background/finalDay_5.png" type="Texture" id=4]
+[ext_resource path="res://src/environment/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/environment/parallax background/finalDay_6.png" type="Texture" id=6]
-[ext_resource path="res://assets/environment/parallax background/finalDay_1.png" type="Texture" id=7]
-[ext_resource path="res://assets/environment/parallax background/finalDay_3.png" type="Texture" id=8]
-[ext_resource path="res://assets/environment/parallax background/finalDay_4.png" type="Texture" id=9]
 [ext_resource path="res://src/components/spawners/medkit/medkitSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/components/spawners/enemy/EnemySpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=12]
@@ -58,62 +54,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ -780.0 ]
 }
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 0.2 )
-
-[node name="SpriteLayer1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 0, -336 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 2150, 1344 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.3, 0.3 )
-
-[node name="SpriteLayer2" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 0, -336 )
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 2150, 1344 )
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.4, 0.4 )
-
-[node name="SpriteLayer3" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 0, -336 )
-texture = ExtResource( 9 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 2150, 1344 )
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 0.5 )
-
-[node name="SpriteLayer4" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
-position = Vector2( 0, -336 )
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 2150, 1344 )
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.6, 0.6 )
-
-[node name="SpriteLayer5" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
-position = Vector2( 0, -336 )
-texture = ExtResource( 7 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 2150, 1344 )
-
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.7, 0.7 )
-
-[node name="SpriteLayer6" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
-position = Vector2( 0, -336 )
-scale = Vector2( 1, 5 )
-texture = ExtResource( 7 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 2150, 1344 )
+[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="InfoPos" type="Position2D" parent="."]
 
@@ -163,8 +104,6 @@ position = Vector2( 313, 0 )
 position = Vector2( -285, 0 )
 player_id = "_2"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Arena/YSort/Sooltan2"]
-
 [node name="Medkit" parent="Arena/YSort" instance=ExtResource( 12 )]
 
 [node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
@@ -184,11 +123,6 @@ position = Vector2( -552, -112 )
 rotation = 1.5708
 polygon = PoolVector2Array( 169, -39.9994, 169, -23.9994, -22.9999, -24.0001, -22.9999, -40.0001 )
 one_way_collision = true
-
-[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
-position = Vector2( 0, -112 )
-current = true
-zoom = Vector2( 1.4, 1.4 )
 
 [node name="InfoAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/environment/parallax background/finalDay_6.png" type="Texture" id=1]
+[ext_resource path="res://assets/environment/parallax background/finalDay_3.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/parallax background/finalDay_4.png" type="Texture" id=3]
+[ext_resource path="res://assets/environment/parallax background/finalDay_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/environment/parallax background/finalDay_5.png" type="Texture" id=5]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.2, 0.2 )
+
+[node name="SpriteLayer1" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 0, -336 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2150, 1344 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 0.3 )
+
+[node name="SpriteLayer2" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 0, -336 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2150, 1344 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.4, 0.4 )
+
+[node name="SpriteLayer3" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 0, -336 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2150, 1344 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="SpriteLayer4" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( 0, -336 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2150, 1344 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.6, 0.6 )
+
+[node name="SpriteLayer5" type="Sprite" parent="ParallaxLayer5"]
+position = Vector2( 0, -336 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2150, 1344 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="SpriteLayer6" type="Sprite" parent="ParallaxLayer6"]
+position = Vector2( 0, -336 )
+scale = Vector2( 1, 5 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2150, 1344 )
