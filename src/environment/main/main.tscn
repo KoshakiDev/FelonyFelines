@@ -145,8 +145,10 @@ tile_data = PoolIntArray( -524299, 5, 0, -524298, 5, 0, -524297, 5, 0, -524296, 
 [node name="YSort" type="YSort" parent="Arena"]
 
 [node name="medkitSpawner" parent="Arena/YSort" instance=ExtResource( 10 )]
+visible = false
 
 [node name="Spawners" type="Node2D" parent="Arena/YSort"]
+visible = false
 
 [node name="EnemySpawner" parent="Arena/YSort/Spawners" instance=ExtResource( 11 )]
 position = Vector2( 776, 0 )

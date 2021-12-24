@@ -26,7 +26,6 @@ func _ready():
 	else:
 		Global.set("brother_1", self)
 		Global.set("parent_location", get_parent())
-	#print(Global.parent_location)
 
 func _input(event):
 	if is_dead():
