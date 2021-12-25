@@ -47,6 +47,8 @@ func update_wave():
 
 func _process(delta):
 	if Global.brother_1.health <= 0 and Global.brother_2.health <= 0:
+		Global.brother_1.set_process(false)
+		Global.brother_1.set_process(false)
 		emit_signal("all_dead")
 		set_process(false)
 

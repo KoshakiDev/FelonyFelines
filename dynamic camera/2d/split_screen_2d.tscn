@@ -44,6 +44,7 @@ handle_input_locally = false
 disable_3d = true
 usage = 0
 render_target_update_mode = 3
+audio_listener_enable_2d = true
 
 [node name="Camera1" type="Camera2D" parent="Cameras/ViewportContainer/Viewport1" groups=["camera"]]
 current = true
@@ -61,6 +62,7 @@ handle_input_locally = false
 disable_3d = true
 usage = 1
 render_target_update_mode = 3
+audio_listener_enable_2d = true
 
 [node name="Camera2" type="Camera2D" parent="Cameras/ViewportContainer2/Viewport2" groups=["camera"]]
 current = true

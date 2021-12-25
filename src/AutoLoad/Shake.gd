@@ -28,7 +28,6 @@ func _process(delta: float) -> void:
 		var offset = Vector2(randf(), randf()) * shake_intensity
 		camera1.offset = offset
 		camera2.offset = offset
-		print('!')
 
 func set_camera(cam1, cam2):
 	camera1 = cam1
