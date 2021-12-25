@@ -34,4 +34,6 @@ func _ready():
 
 
 func _process(delta):
+	if $Death.playing == true:
+		print("I am playing!")
 	pass

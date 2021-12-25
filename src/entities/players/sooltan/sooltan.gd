@@ -17,6 +17,10 @@ var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_9
 
 export var is_stationary = false
 
+onready var respawn_radius = $RespawnRadius
+onready var respawn_timer = $RespawnRadius/Timer
+onready var timer_label = $RespawnRadius/TimerLabel
+
 func _ready():
 	if player_id == "_2":
 		Global.set("brother_2", self)
@@ -55,16 +59,38 @@ func spawn_dust() -> void:
 	#dust.global_position = Vector2(220, 220)
 	get_parent().add_child_below_node(get_parent(), dust)
 
+func frame_freeze(time_scale, duration):
+	Engine.time_scale = time_scale
+	yield(get_tree().create_timer(duration * time_scale), "timeout")
+	Engine.time_scale = 1.0
 
 func _on_Hurtbox_area_entered(area):
 	var areaParent = area.owner
 	if "is_projectile" in area:
 		areaParent = area
 	Shake.shake(4.0, .5)
+	#frame_freeze(0.05, 1.0)
 	take_damage(areaParent)
 
 func _physics_process(delta):
+	if respawn_timer.time_left != 0:
+		timer_label.set_text("time left: " + str(respawn_timer.time_left))
 	if is_stationary:
 		position = Vector2(0, -42)
 		play_animation("Idle", "Movement")
 
+func respawn_player():
+	heal(max_health)
+	state_machine.transition_to("Idle")
+
+
+func _on_RespawnRadius_body_entered(body):
+	print("respawn area entered")
+	if (player_id == "_1" and body == Global.brother_1) or (player_id == "_2" and body == Global.brother_2) or !body.is_in_group("player") or health > 0:
+		return
+	respawn_timer.start(5)
+	print('timer started')
+	
+
+func _on_Timer_timeout():
+	play_animation("Respawn", "Movement")
