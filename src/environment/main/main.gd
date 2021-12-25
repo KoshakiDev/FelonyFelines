@@ -6,7 +6,6 @@ onready var spawners = $Arena/YSort/Spawners.get_children()
 
 onready var timer = $Timer
 
-
 var wave_num = 0
 var points = 0
 var currently_controlled = "none"

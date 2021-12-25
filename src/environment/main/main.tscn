@@ -98,7 +98,7 @@ position = Vector2( 776, 0 )
 position = Vector2( -776, 0 )
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 13 )]
-position = Vector2( 313, 0 )
+position = Vector2( -173, -64 )
 
 [node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 13 )]
 position = Vector2( -285, 0 )
