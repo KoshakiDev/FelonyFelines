@@ -10,6 +10,8 @@
 shader = ExtResource( 4 )
 shader_param/viewport_size = null
 shader_param/split_active = null
+shader_param/is_player1_dead = null
+shader_param/is_player2_dead = null
 shader_param/player1_position = null
 shader_param/player2_position = null
 shader_param/split_line_thickness = null
