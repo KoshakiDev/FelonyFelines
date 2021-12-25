@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=1]
-[ext_resource path="res://assets/items/weapons/sniper-rifle/Sniper-rifle.png" type="Texture" id=2]
+[ext_resource path="res://assets/items/weapons/sniper-rifle/rifle.png" type="Texture" id=2]
 [ext_resource path="res://src/weapons/range/sniper rifle/sniper_rifle.gd" type="Script" id=3]
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/components/bullet-related/bullet type/PlayerBullet.tscn" type="PackedScene" id=5]
@@ -64,8 +64,6 @@ spread_angle = 1.0
 position = Vector2( 7, 0 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
-damage_value = null
-knockback_value = null
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -75,6 +73,6 @@ anims/RESET = SubResource( 1 )
 anims/Shoot = SubResource( 2 )
 
 [node name="BulletSpawner" parent="." instance=ExtResource( 4 )]
-position = Vector2( 48, 0 )
+position = Vector2( 22, -4 )
 bullet_scene = ExtResource( 5 )
 bullet_emitter = SubResource( 3 )
