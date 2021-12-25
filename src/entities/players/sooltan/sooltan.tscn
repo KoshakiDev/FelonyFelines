@@ -323,7 +323,6 @@ hframes = 9
 vframes = 3
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, -11 )
 shape = SubResource( 52 )
 
@@ -335,9 +334,9 @@ script = ExtResource( 10 )
 position = Vector2( 0, 7 )
 
 [node name="Axe" parent="WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
-visible = false
 
 [node name="SniperRifle" parent="WeaponManager/HandPosition2D" instance=ExtResource( 6 )]
+visible = false
 scale = Vector2( 1, 1 )
 
 [node name="Fists" parent="WeaponManager/HandPosition2D" instance=ExtResource( 15 )]
