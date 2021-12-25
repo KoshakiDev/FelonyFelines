@@ -5,6 +5,10 @@ uniform vec2 viewport_size;         // size in pixels of the viewport. Cannot be
 uniform sampler2D viewport1 : hint_albedo;
 uniform sampler2D viewport2 : hint_albedo;
 uniform bool split_active;          // true: split screen, false: use view1
+
+uniform bool is_player1_dead;          // true: player1 is dead, false: not dead
+uniform bool is_player2_dead;          // true: player2 is dead, false: not dead
+
 uniform vec2 player1_position;      // position of player 1 un UV coordinates
 uniform vec2 player2_position;      // position of player 2 un UV coordinates
 uniform float split_line_thickness; // width of the split boder
@@ -26,7 +30,11 @@ void fragment() {
 	float width = viewport_size.x;
 	float height = viewport_size.y;
 
-	if (split_active) {
+	if (is_player1_dead && !is_player2_dead) {
+		COLOR = vec4(view2, 1.0);
+	} else if (is_player2_dead && !is_player1_dead) {
+		COLOR = vec4(view1, 1.0);
+	} else if (split_active) {
 		vec2 dx = player2_position - player1_position;
 		float split_slope;
 //		
