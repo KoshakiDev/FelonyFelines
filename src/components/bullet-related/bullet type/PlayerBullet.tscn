@@ -11,8 +11,6 @@ radius = 3.00641
 collision_layer = 0
 collision_mask = 129
 script = ExtResource( 1 )
-damage_value = 20
-knockback_value = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

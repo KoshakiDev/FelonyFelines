@@ -14,7 +14,11 @@ onready var camera1 = $ViewportContainer/Viewport1/Camera1
 onready var camera2 = $ViewportContainer2/Viewport2/Camera2
 
 func _ready():
-	print(player1, player2)
+	if player1 == null or player2 == null:
+		printerr("SPLIT SCREEN ERROR: Player(s) are null!")
+		set_physics_process(false)
+		return
+	
 	Shake.set_camera(camera1, camera2)
 	
 	viewport2.world_2d = viewport1.world_2d

@@ -6,7 +6,11 @@ var brother_1
 var brother_2
 var parent_location
 var main
+var root 
 
+func _ready():
+	root = get_parent()
+	print(root)
 
 enum WEAPON_SLOT {
 	AXE,
