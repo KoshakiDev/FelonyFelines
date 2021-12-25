@@ -26,6 +26,8 @@ func get_animation(animation, node_name):
 
 
 func adjust_direction(direction):
+	direction = return_travel_direction(direction)
+	
 	if direction.x != 0:
 		self.sprite.scale.x = direction.x
 
@@ -85,9 +87,12 @@ func heal(heal_value):
 
 func _physics_process(delta):
 	velocity = velocity + knockback
-
+	
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
 	velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)
+
+	if not (is_equal_approx(velocity.x, 0.0) and is_equal_approx(velocity.y, 0.0)):
+		adjust_direction(velocity)
 	
 	move_and_slide(velocity)
 	
