@@ -199,6 +199,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=63]
 resource_name = "Respawn"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -206,10 +207,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 22, 21, 20, 19, 18, 18 ]
+"values": [ 22, 21, 20, 19, 18 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Revive:playing")
@@ -218,7 +219,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -230,7 +231,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -461,16 +462,19 @@ shape = SubResource( 62 )
 
 [node name="Timer" type="Timer" parent="RespawnRadius"]
 wait_time = 5.0
+one_shot = true
 
 [node name="TimerLabel" type="RichTextLabel" parent="RespawnRadius"]
-margin_left = -21.0
-margin_top = -77.0
-margin_right = 19.0
-margin_bottom = -53.0
+margin_left = -56.0
+margin_top = -80.0
+margin_right = 102.0
+margin_bottom = -48.0
+text = "timer left"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="body_entered" from="RespawnRadius" to="." method="_on_RespawnRadius_body_entered"]
+[connection signal="body_exited" from="RespawnRadius" to="." method="_on_RespawnRadius_body_exited"]
 [connection signal="timeout" from="RespawnRadius/Timer" to="." method="_on_Timer_timeout"]

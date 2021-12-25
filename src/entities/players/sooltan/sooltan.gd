@@ -75,6 +75,8 @@ func _on_Hurtbox_area_entered(area):
 func _physics_process(delta):
 	if respawn_timer.time_left != 0:
 		timer_label.set_text("time left: " + str(respawn_timer.time_left))
+	else:
+		timer_label.set_text("")
 	if is_stationary:
 		position = Vector2(0, -42)
 		play_animation("Idle", "Movement")
@@ -94,3 +96,7 @@ func _on_RespawnRadius_body_entered(body):
 
 func _on_Timer_timeout():
 	play_animation("Respawn", "Movement")
+
+
+func _on_RespawnRadius_body_exited(body):
+	respawn_timer.stop()
