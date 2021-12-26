@@ -3,7 +3,7 @@ extends Position2D
 onready var spawn_area = $Area2D/CollisionShape2D.shape.extents
 
 var enemyLoad = [preload("res://src/entities/enemies/EnemyGunner/EnemyGunner.tscn"),
-			 preload("res://src/entities/enemies/EnemyScissors.tscn"),
+			 preload("res://src/entities/enemies/EnemyBall/EnemyBall.tscn"),
 			 preload("res://src/entities/enemies/EnemyPaper.tscn")]
 
 #onready var enemies = $"../YSort"

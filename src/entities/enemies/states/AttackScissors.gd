@@ -3,10 +3,10 @@ extends State
 onready var duration_timer = $DashDurationTimer
 onready var cooldown_timer = $Cooldown
 
-export var cooldown_duration: int = 5
+export var cooldown_duration: float = 5
 
-export var dash_duration: int = 1
-export var dash_speed: int = 200
+export var dash_duration: float = 3
+export var dash_speed: int = 1000
 
 
 var direction
@@ -36,7 +36,7 @@ func is_dashing():
 
 func end_dash():
 	if is_dashing():
-		owner.set_animation(0.4, "Animations")
+		owner.set_animation(0.6, "Animations")
 	else:
 		yield(owner.animation_machine.find("Animations"), "animation_finished")
 		state_machine.transition_to("Chase")
