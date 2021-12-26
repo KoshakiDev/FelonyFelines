@@ -110,7 +110,7 @@ cell_size = Vector2( 96, 96 )
 format = 1
 tile_data = PoolIntArray( 131061, 0, 0, 131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 196603, 0, 0, 131076, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
 
-[node name="TileMap2" type="TileMap" parent="Arena"]
+[node name="TileMap" type="TileMap" parent="Arena"]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
