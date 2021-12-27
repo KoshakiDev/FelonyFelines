@@ -43,6 +43,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -63,6 +75,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "pickup"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
 tracks/0/interp = 1
@@ -100,6 +113,18 @@ tracks/2/keys = {
 "args": [  ],
 "method": "give_health"
 } ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="CapsuleShape2D" id=3]

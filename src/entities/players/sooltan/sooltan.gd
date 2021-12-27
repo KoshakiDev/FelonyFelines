@@ -14,12 +14,16 @@ onready var health_bar := $Node2D/HealthBar
 
 var DUST_SCENE = preload("res://src/components/effects/Dust.tscn")
 var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
+onready var shadow = $Shadow
 
 export var is_stationary = false
 
 onready var respawn_radius = $RespawnRadius
 onready var respawn_timer = $RespawnRadius/Timer
 onready var timer_label = $RespawnRadius/TimerLabel
+
+onready var hurtbox_collision = $Hurtbox/CollisionShape2D2
+onready var collision = $Collider
 
 func _ready():
 	if player_id == "_2":
@@ -83,6 +87,7 @@ func _physics_process(delta):
 
 func respawn_player():
 	heal(max_health)
+	_turn_on_all()
 	state_machine.transition_to("Idle")
 
 
@@ -100,3 +105,16 @@ func _on_Timer_timeout():
 
 func _on_RespawnRadius_body_exited(body):
 	respawn_timer.stop()
+
+
+func _turn_off_all():
+	hurtbox_collision.disabled = true
+	collision.disabled = true
+	weapon_manager.visible = false
+	shadow.visible = false
+
+func _turn_on_all():
+	hurtbox_collision.disabled = false
+	collision.disabled = false
+	weapon_manager.visible = true
+	shadow.visible = true
