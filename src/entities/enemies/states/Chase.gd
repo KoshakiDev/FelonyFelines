@@ -8,6 +8,8 @@ func seek_steering(vector_to_target: Vector2) -> Vector2:
 	return desired_velocity - owner.velocity
 	
 func physics_update(delta: float) -> void:
+	if owner.is_dead():
+		state_machine.transition_to("Death")
 	var targets = owner.find_targets_in_area(["player"], owner.vision_area)
 	if targets.size() == 0:
 		state_machine.transition_to("Idle")

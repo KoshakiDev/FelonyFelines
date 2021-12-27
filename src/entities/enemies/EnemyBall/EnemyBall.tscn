@@ -272,6 +272,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Vector2( 38.5, 48 ) ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../Hurtbox/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=121]
 resource_name = "Run"
