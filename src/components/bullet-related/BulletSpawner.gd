@@ -46,8 +46,7 @@ func set_shooting(val: bool) -> void:
 			_shoot()
 			timer.start()
 	else:
-		if !val:
-			can_shoot = false
+		can_shoot = false
 
 func _shoot() -> void:
 	if not can_shoot:

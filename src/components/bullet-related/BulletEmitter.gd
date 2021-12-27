@@ -13,9 +13,9 @@ func shoot(position: Vector2, dir: Vector2, speed: float, bullet_damage_value: i
 	pass
 
 func shoot_single(position: Vector2, dir: Vector2, speed: float, bullet_damage_value: int, bullet_knockback_value: int):
-	var bullet_instance = bullet_scene.instance()
+	var bullet_instance = self.bullet_scene.instance()
 	bullet_instance.setup(dir, speed, bullet_damage_value, bullet_knockback_value)
 	bullet_instance.set_as_toplevel(true)
 	bullet_instance.global_position = position
 	bullet_instance.shooting = true
-	parent.add_child(bullet_instance)
+	self.parent.add_child(bullet_instance)

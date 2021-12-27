@@ -364,6 +364,7 @@ shader = SubResource( 98 )
 shader_param/active = false
 
 [sub_resource type="Resource" id=106]
+resource_local_to_scene = true
 script = ExtResource( 4 )
 amount = 9
 spread_angle = 5.0
