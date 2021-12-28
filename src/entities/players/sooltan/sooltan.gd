@@ -92,11 +92,9 @@ func respawn_player():
 
 
 func _on_RespawnRadius_body_entered(body):
-	print("respawn area entered")
 	if (player_id == "_1" and body == Global.brother_1) or (player_id == "_2" and body == Global.brother_2) or !body.is_in_group("player") or health > 0:
 		return
 	respawn_timer.start(5)
-	print('timer started')
 	
 
 func _on_Timer_timeout():

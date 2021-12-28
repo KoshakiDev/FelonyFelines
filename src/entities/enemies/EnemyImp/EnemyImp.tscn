@@ -1,22 +1,22 @@
 [gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=1]
-[ext_resource path="res://src/entities/enemies/EnemyPaper.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/enemies/states/Chase.gd" type="Script" id=3]
-[ext_resource path="res://src/entities/enemies/states/Idle.gd" type="Script" id=4]
-[ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=5]
-[ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=6]
-[ext_resource path="res://src/entities/enemies/states/Death.gd" type="Script" id=7]
-[ext_resource path="res://assets/entities/enemies/paper/paper_simplified-Sheet.png" type="Texture" id=8]
-[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/entities/enemies/states/AttackPaper.gd" type="Script" id=10]
-[ext_resource path="res://assets/entities/shadow.png" type="Texture" id=11]
-[ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=13]
+[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/enemies/states/AttackPaper.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/enemies/states/Death.gd" type="Script" id=4]
+[ext_resource path="res://src/entities/enemies/states/Chase.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/enemies/EnemyImp/EnemyImp.gd" type="Script" id=6]
+[ext_resource path="res://assets/entities/shadow.png" type="Texture" id=7]
+[ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=8]
+[ext_resource path="res://src/entities/enemies/states/Idle.gd" type="Script" id=9]
+[ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=10]
+[ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/entities/enemies/imp/new pusher-Sheet.png" type="Texture" id=12]
+[ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=122]
 resource_name = "Attack"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -24,10 +24,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 16, 17, 18, 19, 20, 21 ]
+"values": [ 9, 10, 11, 12, 13, 14, 15, 0 ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("../Smash")
@@ -58,7 +58,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -73,10 +73,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 24, 25, 26, 27, 28, 29, 30, 31 ]
+"values": [ 18, 19, 20, 21, 22, 23, 24, 25, 26, 26 ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("../Death")
@@ -95,7 +95,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -185,7 +185,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=121]
 resource_name = "Run"
-length = 0.6
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -194,14 +194,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9, 10, 11, 12, 13 ]
+"values": [ 9, 10, 11, 12, 13, 14, 15 ]
 }
 
 [sub_resource type="Animation" id=130]
 resource_name = "Hit"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:material:shader_param/active")
 tracks/0/interp = 1
@@ -258,7 +259,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -32 ), Vector2( 0, -32 ), Vector2( 0, -32 ), Vector2( 0, -32 ) ]
+"values": [ Vector2( 0, -16 ), Vector2( 0, -16 ), Vector2( 0, -16 ), Vector2( 0, -16 ) ]
 }
 
 [sub_resource type="Animation" id=132]
@@ -275,6 +276,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -16 ) ]
 }
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
@@ -358,17 +371,16 @@ shader = SubResource( 127 )
 shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=115]
-radius = 8.0
 height = 4.0
 
 [sub_resource type="RectangleShape2D" id=134]
-extents = Vector2( 19, 24 )
+extents = Vector2( 10.5, 12 )
 
 [sub_resource type="CircleShape2D" id=135]
-radius = 93.086
+radius = 54.0
 
 [sub_resource type="CircleShape2D" id=136]
-radius = 56.0
+radius = 39.0128
 
 [sub_resource type="CircleShape2D" id=117]
 radius = 967.005
@@ -390,14 +402,18 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
-[node name="EnemyPaper" type="KinematicBody2D" groups=["enemy"]]
+[node name="EnemyImp" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource( 2 )
+script = ExtResource( 6 )
+max_health = 40.0
+max_speed = 800.0
 max_steering = 7.5
+damage_value = 10.0
+knockback_value = 10.0
 
 [node name="AnimationMachine" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 2 )
 
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine"]
 root_node = NodePath("../../Sprite")
@@ -412,41 +428,41 @@ anims/Hit = SubResource( 130 )
 anims/RESET = SubResource( 132 )
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource( 10 )
 initial_state = NodePath("Chase")
 
 [node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource( 10 )
+script = ExtResource( 3 )
 cooldown_duration = 1
 
 [node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
 one_shot = true
 
 [node name="Death" type="Node" parent="StateMachine"]
-script = ExtResource( 7 )
+script = ExtResource( 4 )
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.498039 )
-position = Vector2( 1, 0 )
-scale = Vector2( 1.68, 1 )
-texture = ExtResource( 11 )
+position = Vector2( 1.48, 0.444445 )
+scale = Vector2( 0.96, 0.888889 )
+texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 128 )
-position = Vector2( 0, -32 )
-texture = ExtResource( 8 )
-hframes = 8
-vframes = 4
+position = Vector2( 0, -16 )
+texture = ExtResource( 12 )
+hframes = 9
+vframes = 3
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, -10 )
+position = Vector2( 0, -12 )
 shape = SubResource( 115 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -455,11 +471,10 @@ collision_layer = 128
 collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( -1, -24 )
+position = Vector2( 0.5, -12 )
 shape = SubResource( 134 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 64
 
@@ -469,7 +484,6 @@ shape = SubResource( 135 )
 disabled = true
 
 [node name="EngageRange" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -485,24 +499,24 @@ collision_mask = 3
 position = Vector2( 2, 36 )
 shape = SubResource( 117 )
 
-[node name="HealthBar" parent="." instance=ExtResource( 9 )]
+[node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_left = -16.0
-margin_top = -75.0
+margin_top = -50.0
 margin_right = 16.0
-margin_bottom = -43.0
+margin_bottom = -18.0
 script = SubResource( 118 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource( 13 )
+stream = ExtResource( 11 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource( 12 )
+stream = ExtResource( 8 )
 
 [node name="Smash" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource( 1 )
+stream = ExtResource( 13 )
 
 [connection signal="body_entered" from="EngageRange" to="." method="_on_EngageRange_body_entered"]
 [connection signal="body_exited" from="EngageRange" to="." method="_on_EngageRange_body_exited"]

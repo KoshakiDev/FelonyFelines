@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spear.png-7370c06584730921e26a99ab643b51fa.stex"
+path="res://.import/scissors_simplified.png-2a6f0335684237f294d6da11fd8b8564.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/spear.png"
-dest_files=[ "res://.import/spear.png-7370c06584730921e26a99ab643b51fa.stex" ]
+source_file="res://assets/entities/enemies/ball/scissors_simplified.png"
+dest_files=[ "res://.import/scissors_simplified.png-2a6f0335684237f294d6da11fd8b8564.stex" ]
 
 [params]
 

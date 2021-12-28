@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paper_simplified-Sheet.png-cf7aa4d65b85627660723c9e0e9c4e01.stex"
+path="res://.import/gun 1.png-333a7e16ff12f234480cb15f7e895701.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/paper/paper_simplified-Sheet.png"
-dest_files=[ "res://.import/paper_simplified-Sheet.png-cf7aa4d65b85627660723c9e0e9c4e01.stex" ]
+source_file="res://assets/items/weapons/gun 1.png"
+dest_files=[ "res://.import/gun 1.png-333a7e16ff12f234480cb15f7e895701.stex" ]
 
 [params]
 

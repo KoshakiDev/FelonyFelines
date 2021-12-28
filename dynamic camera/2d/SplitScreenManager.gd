@@ -10,5 +10,4 @@ onready var cameras = $Cameras
 
 func _ready():
 	cameras.setup(enable_splitscreen)
-	print(enable_splitscreen)
 	#Global.reparent(current_world, viewport1)

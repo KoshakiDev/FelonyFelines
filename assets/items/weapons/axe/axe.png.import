@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paper_simplified.png-b5fbe732bac188f23e556cccbd2a0458.stex"
+path="res://.import/axe.png-7645d67261ddac369fc1815460ac574d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/paper/paper_simplified.png"
-dest_files=[ "res://.import/paper_simplified.png-b5fbe732bac188f23e556cccbd2a0458.stex" ]
+source_file="res://assets/items/weapons/axe/axe.png"
+dest_files=[ "res://.import/axe.png-7645d67261ddac369fc1815460ac574d.stex" ]
 
 [params]
 

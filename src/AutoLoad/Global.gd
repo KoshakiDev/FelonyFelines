@@ -10,8 +10,7 @@ var root
 
 func _ready():
 	root = get_parent()
-	print(root)
-
+	
 enum WEAPON_SLOT {
 	AXE,
 	SNIPER_RIFLE,

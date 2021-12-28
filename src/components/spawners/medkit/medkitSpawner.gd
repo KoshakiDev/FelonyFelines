@@ -16,5 +16,4 @@ func add_medkit(count):
 		var metkit = metkit_preload.instance()
 		medkits.add_child(metkit)
 	
-		metkit.set_as_toplevel(true)	
 		metkit.global_position = random_pos()

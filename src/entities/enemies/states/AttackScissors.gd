@@ -44,6 +44,8 @@ func end_dash():
 #		
 
 func physics_update(delta):
+	if owner.is_dead():
+		state_machine.transition_to("Death")
 	if is_dashing():
 		owner.velocity = direction
 		#owner.damage_area(["player"], owner.hitbox, damage_value, knockback_value)

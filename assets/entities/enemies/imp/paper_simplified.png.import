@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spear.png-7370c06584730921e26a99ab643b51fa.stex"
+path="res://.import/paper_simplified.png-c1e7fe8f89f3bf3e634edd0eaf99dae6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/spear.png"
-dest_files=[ "res://.import/spear.png-7370c06584730921e26a99ab643b51fa.stex" ]
+source_file="res://assets/entities/enemies/imp/paper_simplified.png"
+dest_files=[ "res://.import/paper_simplified.png-c1e7fe8f89f3bf3e634edd0eaf99dae6.stex" ]
 
 [params]
 

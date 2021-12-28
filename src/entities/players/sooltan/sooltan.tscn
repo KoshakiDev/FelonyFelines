@@ -1,11 +1,11 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/shaders/Shader.tres" type="Shader" id=2]
 [ext_resource path="res://src/weapons/melee/axe/Axe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
-[ext_resource path="res://src/weapons/range/sniper rifle/SniperRifle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/weapons/range/assault rifle/AssaultRifle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/players/sooltan/states/Move.gd" type="Script" id=9]
@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/entities/shadow.png" type="Texture" id=16]
 [ext_resource path="res://assets/sfx/Pickup_01.wav" type="AudioStream" id=17]
 [ext_resource path="res://src/weapons/melee/spear/Spear.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Animation" id=61]
 resource_name = "Death"
@@ -384,10 +385,10 @@ script = ExtResource( 10 )
 position = Vector2( 0, 7 )
 
 [node name="Axe" parent="WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
+visible = false
 
 [node name="SniperRifle" parent="WeaponManager/HandPosition2D" instance=ExtResource( 6 )]
 visible = false
-scale = Vector2( 1, 1 )
 
 [node name="Fists" parent="WeaponManager/HandPosition2D" instance=ExtResource( 15 )]
 visible = false
@@ -396,6 +397,8 @@ knockback_value = 0.0
 
 [node name="Spear" parent="WeaponManager/HandPosition2D" instance=ExtResource( 18 )]
 visible = false
+
+[node name="Shotgun" parent="WeaponManager/HandPosition2D" instance=ExtResource( 19 )]
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = 3

@@ -4,7 +4,7 @@ onready var spawn_area = $Area2D/CollisionShape2D.shape.extents
 
 var enemyLoad = [preload("res://src/entities/enemies/EnemyGunner/EnemyGunner.tscn"),
 			 preload("res://src/entities/enemies/EnemyBall/EnemyBall.tscn"),
-			 preload("res://src/entities/enemies/EnemyPaper.tscn")]
+			 preload("res://src/entities/enemies/EnemyImp/EnemyImp.tscn")]
 
 #onready var enemies = $"../YSort"
 
@@ -19,9 +19,9 @@ func random_pos():
 
 func add_enemies(count):
 	randomize()
+	var imp_counter = 0
 	for i in range(count):
 		var enemy = enemyLoad[randi() % enemyLoad.size()].instance()
 		parent.add_child(enemy)
-		
-		enemy.set_as_toplevel(true)	
+		#enemy.set_as_toplevel(true)	
 		enemy.global_position = random_pos()

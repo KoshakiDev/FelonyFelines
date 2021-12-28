@@ -4,8 +4,8 @@ onready var weapons_container = $HandPosition2D
 
 onready var weapons = weapons_container.get_children()
 
-var max_slot_size = 4
-var weapon_slots_size = 4
+var max_slot_size = 5
+var weapon_slots_size = 5
 var cur_slot = 0
 var cur_weapon = null
 

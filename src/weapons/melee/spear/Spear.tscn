@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/weapons/melee/axe/Axe.gd" type="Script" id=1]
-[ext_resource path="res://assets/items/weapons/Spear.png" type="Texture" id=2]
+[ext_resource path="res://assets/items/weapons/spear.png" type="Texture" id=2]
 [ext_resource path="res://assets/items/weapons/axe/axe_slash_effect_sheet_240x80.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=2]
@@ -109,7 +109,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 20, 40.5082 )
+extents = Vector2( 6, 50 )
 
 [node name="Spear" type="Node2D"]
 rotation = 1.5708
@@ -122,16 +122,14 @@ anims/RESET = SubResource( 3 )
 
 [node name="SpearSprite" type="Sprite" parent="."]
 rotation = -1.5708
-scale = Vector2( 0.382639, 0.25 )
 texture = ExtResource( 2 )
-offset = Vector2( 20, -5 )
 
 [node name="Hitbox" type="Area2D" parent="SpearSprite" groups=["hitbox"]]
 collision_layer = 8
 collision_mask = 160
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpearSprite/Hitbox"]
-position = Vector2( 121.524, -0.000488363 )
+position = Vector2( -2.86769e-05, 0 )
 rotation = -1.5708
 shape = SubResource( 4 )
 disabled = true

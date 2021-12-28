@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new dasher remaster-Sheet.png-d2b43332c3ba38d35df11c3120883a6c.stex"
+path="res://.import/shotgun.png-4b53153508b507c45905611c75bfc109.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/scissors/new dasher remaster-Sheet.png"
-dest_files=[ "res://.import/new dasher remaster-Sheet.png-d2b43332c3ba38d35df11c3120883a6c.stex" ]
+source_file="res://assets/items/weapons/shotgun.png"
+dest_files=[ "res://.import/shotgun.png-4b53153508b507c45905611c75bfc109.stex" ]
 
 [params]
 

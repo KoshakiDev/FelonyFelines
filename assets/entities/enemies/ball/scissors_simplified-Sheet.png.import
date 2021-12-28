@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new dasher 2-Sheet.png-de7ce90e55e3acdfe6aa089dc6ffd898.stex"
+path="res://.import/scissors_simplified-Sheet.png-abb40d89f9ee31f0a665fe8a044877c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/enemies/scissors/new dasher 2-Sheet.png"
-dest_files=[ "res://.import/new dasher 2-Sheet.png-de7ce90e55e3acdfe6aa089dc6ffd898.stex" ]
+source_file="res://assets/entities/enemies/ball/scissors_simplified-Sheet.png"
+dest_files=[ "res://.import/scissors_simplified-Sheet.png-abb40d89f9ee31f0a665fe8a044877c3.stex" ]
 
 [params]
 

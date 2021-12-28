@@ -37,5 +37,7 @@ func _process(delta):
 	pass
 
 func call_hit():
+	if is_dead():
+		return
 	state_machine.transition_to("Idle")
 	velocity = Vector2.ZERO
