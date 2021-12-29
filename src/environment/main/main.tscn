@@ -11,11 +11,6 @@
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=13]
 
-[sub_resource type="DynamicFont" id=3]
-resource_local_to_scene = true
-size = 64
-font_data = ExtResource( 1 )
-
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
 
@@ -41,6 +36,11 @@ points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 64
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -82,25 +82,6 @@ __meta__ = {
 }
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
-
-[node name="InfoPos" type="Position2D" parent="."]
-
-[node name="Info" type="RichTextLabel" parent="InfoPos"]
-margin_left = -258.0
-margin_top = -83.0
-margin_right = 245.0
-margin_bottom = 192.0
-custom_fonts/normal_font = SubResource( 3 )
-bbcode_enabled = true
-bbcode_text = "[center]WAVE: 999[/center]
-[center]POINTS: 9999[/center]
-[center]LEFT: 999[/center]"
-text = "WAVE: 999
-POINTS: 9999
-LEFT: 999"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Arena" type="Node2D" parent="."]
 
@@ -156,6 +137,25 @@ position = Vector2( -520, -112 )
 rotation = 1.5708
 polygon = PoolVector2Array( 169, -39.9994, 169, -23.9994, -22.9999, -24.0001, -22.9999, -40.0001 )
 one_way_collision = true
+
+[node name="InfoPos" type="Position2D" parent="."]
+
+[node name="Info" type="RichTextLabel" parent="InfoPos"]
+margin_left = -258.0
+margin_top = -83.0
+margin_right = 245.0
+margin_bottom = 192.0
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]WAVE: 999[/center]
+[center]POINTS: 9999[/center]
+[center]LEFT: 999[/center]"
+text = "WAVE: 999
+POINTS: 9999
+LEFT: 999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="InfoAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )

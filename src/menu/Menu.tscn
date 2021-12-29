@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/environment/parallax background/finalDay_5.png" type="Texture" id=8]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/environment/tileset_simple.png" type="Texture" id=10]
+[ext_resource path="res://src/menu/DeathScreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
@@ -267,3 +268,6 @@ anims/Idle = SubResource( 8 )
 anims/RESET = SubResource( 6 )
 
 [node name="Position2D" type="Position2D" parent="."]
+
+[node name="DeathScreen" parent="." instance=ExtResource( 11 )]
+position = Vector2( 0, 587 )

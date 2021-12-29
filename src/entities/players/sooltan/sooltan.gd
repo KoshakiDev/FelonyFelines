@@ -78,7 +78,7 @@ func _on_Hurtbox_area_entered(area):
 
 func _physics_process(delta):
 	if respawn_timer.time_left != 0:
-		timer_label.set_text("time left: " + str(respawn_timer.time_left))
+		timer_label.bbcode_text = "[center]RESPAWNING IN:[/center]\n" + "[center][color=#ff0000]" + str(respawn_timer.time_left) + "[/color][/center]" 
 	else:
 		timer_label.set_text("")
 	if is_stationary:

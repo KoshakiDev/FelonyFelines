@@ -8,6 +8,9 @@ var parent_location
 var main
 var root 
 
+var final_score
+var wave_survived
+
 func _ready():
 	root = get_parent()
 	

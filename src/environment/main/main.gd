@@ -55,7 +55,13 @@ func _process(delta):
 func all_players_dead():
 	$Dead.play()
 	yield($Dead, "finished")
+	#show_death_screen()
+	Global.final_score = points
+	Global.wave_survived = wave_num
 	back_to_menu()
+
+func show_death_screen():
+	SceneChanger.change_scene("res://src/menu/DeathScreen.tscn", "fade")
 
 func back_to_menu():
 	SceneChanger.change_scene("res://src/menu/Menu.tscn", "fade")
