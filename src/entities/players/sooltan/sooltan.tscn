@@ -429,7 +429,6 @@ stream = ExtResource( 17 )
 [node name="DustPosition" type="Position2D" parent="."]
 
 [node name="RespawnRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -437,6 +436,7 @@ collision_mask = 2
 shape = SubResource( 62 )
 
 [node name="Timer" type="Timer" parent="RespawnRadius"]
+process_mode = 0
 wait_time = 5.0
 one_shot = true
 

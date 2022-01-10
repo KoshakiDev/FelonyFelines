@@ -62,13 +62,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ControlSD"
-config/description="Command & Collab is an action puzzle platformer about a warm relationship between a father and son; 
-The Caretaker's farm has suffered a cyber attack when he was secretly away with his adopted cub Charlie. 
-He and Charlie must take the farm back before the virus destroys the farm.
-"
+config/name="Felony Felines"
 run/main_scene="res://src/menu/Menu.tscn"
-boot_splash/bg_color=Color( 0, 0, 0, 1 )
+boot_splash/image="res://splashscreen.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.933333, 0.713726, 0.12549, 1 )
 config/icon="res://icon.png"
 
 [autoload]
