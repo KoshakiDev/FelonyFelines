@@ -11,10 +11,10 @@
 [ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=13]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="TileSet" id=2]
 0/name = "tileset_simple.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -25,14 +25,14 @@ points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 5 )
+0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -42,8 +42,7 @@ resource_local_to_scene = true
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[sub_resource type="Animation" id=4]
 length = 5.0
 loop = true
 tracks/0/type = "value"
@@ -59,7 +58,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -400 ), Vector2( 0, -350 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("InfoPos:position")
@@ -78,7 +77,7 @@ tracks/0/keys = {
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 1285.0, 409.0 ],
-"_edit_vertical_guides_": [ -780.0 ]
+"_edit_vertical_guides_": [ -780.0, 0.481323, 39.5946 ]
 }
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
@@ -86,7 +85,7 @@ __meta__ = {
 [node name="Arena" type="Node2D" parent="."]
 
 [node name="CliffSideTileMap" type="TileMap" parent="Arena"]
-tile_set = SubResource( 4 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 96, 96 )
 format = 1
 tile_data = PoolIntArray( 131061, 0, 0, 131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 196603, 0, 0, 131076, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
@@ -120,7 +119,9 @@ player_id = "_2"
 
 [node name="Medkit" parent="Arena/YSort" instance=ExtResource( 12 )]
 
-[node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
+[node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=[
+"wall",
+]]
 position = Vector2( 0, 40 )
 __meta__ = {
 "_edit_lock_": true
@@ -158,8 +159,8 @@ __meta__ = {
 }
 
 [node name="InfoAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 1 )
-anims/RESET = SubResource( 2 )
+anims/Idle = SubResource( 4 )
+anims/RESET = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

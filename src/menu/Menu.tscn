@@ -12,10 +12,10 @@
 [ext_resource path="res://assets/environment/tileset_simple.png" type="Texture" id=10]
 [ext_resource path="res://src/menu/DeathScreen.tscn" type="PackedScene" id=11]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
 
-[sub_resource type="TileSet" id=7]
+[sub_resource type="TileSet" id=2]
 0/name = "tileset_simple.png 0"
 0/texture = ExtResource( 10 )
 0/tex_offset = Vector2( 0, 0 )
@@ -26,14 +26,14 @@ points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 5 )
+0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -82,7 +82,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -72 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 length = 10.0
 loop = true
 tracks/0/type = "value"
@@ -177,7 +177,7 @@ region_rect = Rect2( 0, 0, 2150, 1344 )
 position = Vector2( 0, 408 )
 
 [node name="CliffSideTileMap2" type="TileMap" parent="Arena"]
-tile_set = SubResource( 7 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 96, 96 )
 format = 1
 tile_data = PoolIntArray( 131061, 0, 0, 131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 196603, 0, 0, 131076, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
@@ -202,8 +202,8 @@ margin_left = -160.0
 margin_top = -147.0
 margin_right = 160.0
 margin_bottom = 29.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]FELONYFELINES[/center]"
 text = "FELONYFELINES"
@@ -244,8 +244,8 @@ margin_top = 24.0
 margin_right = 162.0
 margin_bottom = 120.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 1, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]AND[/center]"
 text = "AND"
@@ -253,7 +253,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+[node name="Camera2D" type="Camera2D" parent="." groups=[
+"camera",
+]]
 position = Vector2( -104, -72 )
 current = true
 zoom = Vector2( 1.333, 1.333 )
@@ -264,7 +266,7 @@ anims/Idle = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 8 )
+anims/Idle = SubResource( 5 )
 anims/RESET = SubResource( 6 )
 
 [node name="Position2D" type="Position2D" parent="."]

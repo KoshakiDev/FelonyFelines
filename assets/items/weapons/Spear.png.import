@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spear.png-7370c06584730921e26a99ab643b51fa.stex"
+path="res://.import/Spear.png-d2e39234e23fc3c19195285104e838da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/spear.png"
-dest_files=[ "res://.import/spear.png-7370c06584730921e26a99ab643b51fa.stex" ]
+source_file="res://assets/items/weapons/Spear.png"
+dest_files=[ "res://.import/Spear.png-d2e39234e23fc3c19195285104e838da.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
