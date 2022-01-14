@@ -5,6 +5,7 @@ onready var info_text = $InfoPos/Info
 onready var spawners = $Arena/YSort/Spawners.get_children()
 
 onready var timer = $Timer
+onready var objects = $Arena/YSort/Objects
 
 var wave_num = 0
 var points = 0
@@ -19,6 +20,7 @@ func _ready():
 	$InfoAnimationPlayer.play("Idle")
 	update_board()
 	Global.set("main", self)
+	Global.set("objects", objects)
 	update_wave()
 	
 func update_board():

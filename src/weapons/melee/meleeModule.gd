@@ -1,6 +1,8 @@
 extends Node2D
 
-export var type = "Melee"
+export var type = "Weapon"
+
+export var in_inventory: bool = false
 
 export var damage_value: float =  20
 export var knockback_value: float = 50
@@ -15,4 +17,4 @@ func find_targets_in_area(target_groups, area):
 			if body.is_in_group(group):
 				targets.append(body)
 				break
-	return targets	
+	return targets

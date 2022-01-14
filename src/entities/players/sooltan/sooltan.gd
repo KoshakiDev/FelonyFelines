@@ -43,7 +43,7 @@ func _input(event):
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
-		 weapon_manager.cur_weapon.action()
+		 weapon_manager.cur_weapon.action(self)
 	if event.is_action_pressed("reparent") and player_id == '_1':
 		if !is_stationary:
 			Global.reparent(self, Global.brother_2)
@@ -116,3 +116,27 @@ func _turn_on_all():
 	collision.disabled = false
 	weapon_manager.visible = true
 	shadow.visible = true
+
+
+func _on_PickupArea_area_entered(area):	
+	if not area.is_in_group("Object"):
+		return
+	
+	var target = area.owner
+
+	if target.type == "Medkit":
+		print("Medkit applied")
+		target._action(self)
+	elif target.type == "Weapon":
+		if target.in_inventory: return
+
+		print("Weapon picked up")
+		var weapons_container = hand_position
+		
+		target.in_inventory = true
+
+		target.set_as_toplevel(false)
+		target.position = Vector2.ZERO
+		
+		Global.reparent(target, weapons_container)
+		weapon_manager.update_children()
