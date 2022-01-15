@@ -7,6 +7,14 @@ func seek_steering(desired_direction_vector: Vector2) -> Vector2:
 	var desired_velocity: Vector2 = desired_direction_vector.normalized() * owner.max_speed
 	return desired_velocity - owner.velocity
 
+func move_according_to(vector):
+	var steering: Vector2 = seek_steering(vector)
+	steering = steering.clamped(owner.max_steering)
+	
+	owner.velocity = owner.velocity + steering
+
+	owner.velocity = owner.velocity.clamped(owner.max_speed)
+
 func ent_dist(entity1, entity2):
 	return (entity1.global_position - entity2.global_position).length()
 
@@ -148,12 +156,7 @@ func physics_update(delta: float) -> void:
 		total_vector = vector_to_target
 	
 	# moving into the direction
-	var steering: Vector2 = seek_steering(total_vector)
-	steering = steering.clamped(owner.max_steering)
-	
-	owner.velocity = owner.velocity + steering
-
-	owner.velocity = owner.velocity.clamped(owner.max_speed)
+	move_according_to(total_vector)
 
 	if owner.find_targets_in_area(["player"], owner.engage_range).size() != 0:
 		state_machine.transition_to("Attack")

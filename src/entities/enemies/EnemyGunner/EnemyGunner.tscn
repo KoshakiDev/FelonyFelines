@@ -59,20 +59,22 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite/Shoulder1:position")
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/Death")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -35, -22 ), Vector2( -35, 19 ) ]
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "delete_enemy"
+} ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite/Shoulder2:position")
+tracks/4/path = NodePath("Sprite/Shoulder1:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -81,10 +83,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 35, -22 ), Vector2( 35, 19 ) ]
+"values": [ Vector2( -35, -22 ), Vector2( -35, 19 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite/Shoulder2/Cannon2:rotation_degrees")
+tracks/5/path = NodePath("Sprite/Shoulder2:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -93,21 +95,19 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -90.0 ]
+"values": [ Vector2( 35, -22 ), Vector2( 35, 19 ) ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("StateMachine/Death")
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/Shoulder2/Cannon2:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "delete_enemy"
-} ]
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
 }
 
 [sub_resource type="Animation" id=3]
