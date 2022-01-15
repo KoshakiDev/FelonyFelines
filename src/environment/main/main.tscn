@@ -117,7 +117,9 @@ player_id = "_2"
 
 [node name="Medkit" parent="Arena/YSort/Items" instance=ExtResource( 12 )]
 
-[node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
+[node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=[
+"wall",
+]]
 position = Vector2( 0, 40 )
 __meta__ = {
 "_edit_lock_": true
