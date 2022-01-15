@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/environment/tileset.tres" type="TileSet" id=2]
@@ -6,9 +6,8 @@
 [ext_resource path="res://src/environment/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/environment/tileset_simple.png" type="Texture" id=6]
-[ext_resource path="res://src/components/spawners/medkit/medkitSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/components/spawners/enemy/EnemySpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/entities/objects/Medkit.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/entities/items/medkit/Medkit.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -98,9 +97,6 @@ tile_data = PoolIntArray( -524301, 5, 0, -524300, 5, 0, -524299, 5, 0, -524298, 
 
 [node name="YSort" type="YSort" parent="Arena"]
 
-[node name="medkitSpawner" parent="Arena/YSort" instance=ExtResource( 10 )]
-visible = false
-
 [node name="Spawners" type="Node2D" parent="Arena/YSort"]
 visible = false
 
@@ -117,9 +113,9 @@ position = Vector2( -173, -64 )
 position = Vector2( -285, 0 )
 player_id = "_2"
 
-[node name="Objects" type="Node2D" parent="Arena/YSort"]
+[node name="Items" type="Node2D" parent="Arena/YSort"]
 
-[node name="Medkit" parent="Arena/YSort/Objects" instance=ExtResource( 12 )]
+[node name="Medkit" parent="Arena/YSort/Items" instance=ExtResource( 12 )]
 
 [node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )

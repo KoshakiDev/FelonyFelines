@@ -6,7 +6,7 @@ var brother_1
 var brother_2
 var parent_location
 var main
-var objects
+var items
 var root 
 
 var final_score
@@ -14,11 +14,13 @@ var wave_survived
 
 
 var ITEM_DROP_WEIGHTS = {
-	"src/weapons/melee/axe/Axe": 1,
-	"src/weapons/melee/fists/Fists": 1,
-	"src/weapons/melee/spear/Spear": 1,
-	"src/weapons/range/assault rifle/AssaultRifle": 1,
-	"src/weapons/range/shotgun/Shotgun": 1
+	"weapons/melee/axe/Axe": 2,
+	"weapons/melee/fists/Fists": 3,
+	"weapons/melee/spear/Spear": 2,
+	"weapons/range/assault rifle/AssaultRifle": 1,
+	"weapons/range/shotgun/Shotgun": 1,
+	
+	"medkit/Medkit": 5
 }
 
 func _ready():

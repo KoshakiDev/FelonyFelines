@@ -5,7 +5,7 @@ onready var info_text = $InfoPos/Info
 onready var spawners = $Arena/YSort/Spawners.get_children()
 
 onready var timer = $Timer
-onready var objects = $Arena/YSort/Objects
+onready var items = $Arena/YSort/Items
 
 var wave_num = 0
 var points = 0
@@ -20,7 +20,7 @@ func _ready():
 	$InfoAnimationPlayer.play("Idle")
 	update_board()
 	Global.set("main", self)
-	Global.set("objects", objects)
+	Global.set("items", items)
 	update_wave()
 	
 func update_board():
@@ -28,10 +28,7 @@ func update_board():
 
 func update_points(point_amount):
 	points += point_amount
-	
-	if points % 500 == 0:
-		$Arena/YSort/medkitSpawner.add_medkit(1)
-	
+		
 	update_board()
 
 func update_wave():

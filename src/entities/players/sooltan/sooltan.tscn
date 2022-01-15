@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/sfx/sounds/player_hit.wav" type="AudioStream" id=12]
 [ext_resource path="res://src/entities/players/sooltan/states/Death.gd" type="Script" id=13]
 [ext_resource path="res://assets/sfx/cat_death.wav" type="AudioStream" id=14]
-[ext_resource path="res://src/weapons/melee/fists/Fists.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/entities/items/weapons/melee/fists/Fists.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/entities/shadow.png" type="Texture" id=16]
 [ext_resource path="res://assets/sfx/Pickup_01.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=20]
@@ -399,6 +399,7 @@ position = Vector2( 0, 7 )
 
 [node name="Fists" parent="WeaponManager/HandPosition2D" instance=ExtResource( 15 )]
 position = Vector2( 11, 0 )
+despawnable = false
 in_inventory = true
 knockback_value = 0.0
 
@@ -425,7 +426,6 @@ stream = ExtResource( 17 )
 [node name="DustPosition" type="Position2D" parent="."]
 
 [node name="RespawnRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 

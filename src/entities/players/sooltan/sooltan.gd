@@ -28,9 +28,8 @@ onready var collision = $Collider
 func _ready():
 	if player_id == "_2":
 		Global.set("brother_2", self)
-		$WeaponManager/HandPosition2D.position.y = 1
+		hand_position.position.y = 1
 		sprite.set_texture(sprite_texture)
-#		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
 	else:
 		Global.set("brother_1", self)
 		Global.set("parent_location", get_parent())
@@ -119,24 +118,23 @@ func _turn_on_all():
 
 
 func _on_PickupArea_area_entered(area):	
-	if not area.is_in_group("Object"):
+	if not area.is_in_group("ITEM"):
 		return
 	
-	var target = area.owner
+	var item = area.owner
+	
+	if item.item_type == "WEAPON":
+		if item.in_inventory: return
 
-	if target.type == "Medkit":
-		print("Medkit applied")
-		target._action(self)
-	elif target.type == "Weapon":
-		if target.in_inventory: return
-
-		print("Weapon picked up")
 		var weapons_container = hand_position
 		
-		target.in_inventory = true
-
-		target.set_as_toplevel(false)
-		target.position = Vector2.ZERO
+		item.in_inventory = true
+		item.despawnable = false
 		
-		Global.reparent(target, weapons_container)
-		weapon_manager.update_children()
+		item.set_as_toplevel(false)
+		item.position = Vector2.ZERO
+		
+		Global.reparent(item, weapons_container)
+		weapon_manager.update_children()		
+	else:
+		item._action(self)

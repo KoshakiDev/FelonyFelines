@@ -7,21 +7,19 @@ func enter(msg := {}) -> void:
 
 func enemy_drop():
 	# drop is a number between 0 and 99
-	var drop = 0 # randi() % 100
+	var drop = 0 #randi() % 100
 
 	# if drop is strictly less than our percentage, then drop something
 	if drop < owner.ITEM_DROP_PERCENT:
 		var drop_list = []
 		for key in Global.ITEM_DROP_WEIGHTS:
-			for i in range(Global.ITEM_DROP_WEIGHTS[key]):
+			for _i in range(Global.ITEM_DROP_WEIGHTS[key]):
 				drop_list.append(key)
-
-		print(drop_list)
 
 		# index is a number between 0 and list size - 1
 		var index = randi() % drop_list.size()
 		# load the scene at index
-		var scene = str("res://", drop_list[index], ".tscn")
+		var scene = str("res://src/entities/items/", drop_list[index], ".tscn")
 		
 		print(scene)
 		
@@ -31,7 +29,7 @@ func instance_scene(instance):
 	instance.set_as_toplevel(true)
 	
 	instance.position = owner.global_position
-	Global.objects.add_child(instance)
+	Global.items.add_child(instance)
 	
 
 func delete_enemy():
