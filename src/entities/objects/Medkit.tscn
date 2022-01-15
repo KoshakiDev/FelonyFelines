@@ -150,9 +150,9 @@ anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 2 )
 anims/pickup = SubResource( 4 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Pickupbox" type="Area2D" parent="." groups=["Object"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
 position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 

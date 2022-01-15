@@ -6,7 +6,7 @@ onready var animation_player := $AnimationPlayer
 
 onready var bullet_spawner := $BulletSpawner
 
-func action():
+func action(subject):
 	animation_player.play("Shoot")
 
 func bullet_spawner_set_shooting_true():

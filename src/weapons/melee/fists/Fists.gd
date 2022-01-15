@@ -9,7 +9,7 @@ onready var attack_restart = $AttackRestart
 
 var punch_points = 2
 
-func action():
+func action(subject):
 	if punch_points == 2:
 		#print("Attack 1")
 		animation_player.play("Attack1")
@@ -26,7 +26,7 @@ func action():
 		knockback_value = 25
 		attack_restart.start()
 	var direction = Vector2.RIGHT.rotated(global_rotation).normalized()
-	owner.velocity += direction * 50
+	subject.velocity += direction * 50
 #	elif punch_points == 1:
 #		print("Attack 3")
 #		animation_player.play("Attack3")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/components/bullet-related/bullet type/PlayerBullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=2]
@@ -60,6 +60,10 @@ script = ExtResource( 3 )
 amount = 5
 spread_angle = 5.0
 
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 11.0
+height = 20.0
+
 [node name="Shotgun" type="Node2D"]
 position = Vector2( 7, 0 )
 script = ExtResource( 4 )
@@ -80,3 +84,10 @@ bullet_speed = 800.0
 bullet_damage_value = 10
 bullet_knockback_value = 50
 bullet_emitter = SubResource( 3 )
+
+[node name="Pickupbox" type="Area2D" parent="." groups=["Object"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
+position = Vector2( 0, -2 )
+rotation = 1.5708
+shape = SubResource( 4 )

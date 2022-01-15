@@ -5,7 +5,7 @@ onready var weapons_container = $HandPosition2D
 onready var weapons = weapons_container.get_children()
 
 var max_slot_size = 5
-var weapon_slots_size = 5
+var weapon_slots_size = 1
 var cur_slot = 0
 var cur_weapon = null
 
@@ -37,3 +37,9 @@ func disable_all_weapons():
 			weapon.set_inactive()
 		else:
 			weapon.visible = false
+
+func update_children():
+	weapons = weapons_container.get_children()
+	weapon_slots_size = weapons.size()
+
+	switch_to_weapon_slot(cur_slot)

@@ -7,6 +7,7 @@ export var max_health: float = 100
 var health: float = max_health
 
 export var max_speed: float = 225
+export var ITEM_DROP_PERCENT = 10
 
 var is_vision_area_empty = true
 var allow_attack = false
