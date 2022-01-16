@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/weapons/melee/fists/Fists.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/weapons/melee/fists/Fists.gd" type="Script" id=1]
 [ext_resource path="res://assets/items/weapons/fists/fist_swoosh.png" type="Texture" id=2]
 [ext_resource path="res://assets/items/weapons/fists/fists.png" type="Texture" id=4]
 
@@ -1078,8 +1078,14 @@ radius = 13.4629
 [sub_resource type="CircleShape2D" id=10]
 radius = 14.0
 
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 13.0
+height = 4.0
+
 [node name="Fists" type="Node2D"]
 script = ExtResource( 1 )
+item_type = "WEAPON"
+item_name = "FISTS"
 damage_value = 5.0
 knockback_value = 1.0
 
@@ -1161,6 +1167,15 @@ rotation = -0.356265
 scale = Vector2( 1, -1 )
 texture = ExtResource( 2 )
 hframes = 3
+
+[node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
+rotation = 1.5708
+shape = SubResource( 11 )
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="AttackRestart" to="." method="_on_AttackRestart_timeout"]

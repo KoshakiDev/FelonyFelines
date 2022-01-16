@@ -28,9 +28,8 @@ onready var collision = $Collider
 func _ready():
 	if player_id == "_2":
 		Global.set("brother_2", self)
-		$WeaponManager/HandPosition2D.position.y = 1
+		hand_position.position.y = 1
 		sprite.set_texture(sprite_texture)
-#		$WeaponManager/HandPosition2D/Axe.set_texture(axe_2_texture)
 	else:
 		Global.set("brother_1", self)
 		Global.set("parent_location", get_parent())
@@ -43,7 +42,7 @@ func _input(event):
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
-		 weapon_manager.cur_weapon.action()
+		 weapon_manager.cur_weapon.action(self)
 	if event.is_action_pressed("reparent") and player_id == '_1':
 		if !is_stationary:
 			Global.reparent(self, Global.brother_2)
@@ -116,3 +115,26 @@ func _turn_on_all():
 	collision.disabled = false
 	weapon_manager.visible = true
 	shadow.visible = true
+
+
+func _on_PickupArea_area_entered(area):	
+	if not area.is_in_group("ITEM"):
+		return
+	
+	var item = area.owner
+	
+	if item.item_type == "WEAPON":
+		if item.in_inventory: return
+
+		var weapons_container = hand_position
+		
+		item.in_inventory = true
+		item.despawnable = false
+		
+		item.set_as_toplevel(false)
+		item.position = Vector2.ZERO
+		
+		Global.reparent(item, weapons_container)
+		weapon_manager.update_children()		
+	else:
+		item._action(self)

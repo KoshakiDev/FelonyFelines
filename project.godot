@@ -63,6 +63,10 @@ _global_script_class_icons={
 [application]
 
 config/name="Felony Felines"
+config/description="Command & Collab is an action puzzle platformer about a warm relationship between a father and son; 
+The Caretaker's farm has suffered a cyber attack when he was secretly away with his adopted cub Charlie. 
+He and Charlie must take the farm back before the virus destroys the farm.
+"
 run/main_scene="res://src/menu/Menu.tscn"
 boot_splash/image="res://splashscreen.png"
 boot_splash/fullsize=false

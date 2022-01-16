@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/sfx/sounds/sheriffbullet.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/items/weapons/bullets/enemy_bullet.png" type="Texture" id=3]
 
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.00641
 

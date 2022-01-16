@@ -7,8 +7,23 @@ func seek_steering(desired_direction_vector: Vector2) -> Vector2:
 	var desired_velocity: Vector2 = desired_direction_vector.normalized() * owner.max_speed
 	return desired_velocity - owner.velocity
 
+func move_according_to(vector):
+	var steering: Vector2 = seek_steering(vector)
+	steering = steering.clamped(owner.max_steering)
+	
+	owner.velocity = owner.velocity + steering
+
+	owner.velocity = owner.velocity.clamped(owner.max_speed)
+
 func ent_dist(entity1, entity2):
 	return (entity1.global_position - entity2.global_position).length()
+
+func farthest_target(targets: Array):
+	var max_id = 0
+	for i in range(len(targets)):
+		if(ent_dist(owner, targets[i]) > ent_dist(owner, targets[max_id])):
+			max_id = i
+	return targets[max_id]
 
 func closest_target(targets: Array):
 	var min_id = 0
@@ -17,6 +32,25 @@ func closest_target(targets: Array):
 			min_id = i
 	return targets[min_id]
 
+func lowest_hp_target(targets: Array):
+	var min_id = 0
+	for i in range(len(targets)):
+		if(targets[i].health < targets[min_id].health):
+			min_id = i
+	return targets[min_id]
+
+func highest_hp_target(targets: Array):
+	var max_id = 0
+	for i in range(len(targets)):
+		if(targets[i].health > targets[max_id].health):
+			max_id = i
+	return targets[max_id]
+
+# todo
+func get_out_of_spawn():
+	return Vector2.ZERO
+func in_spawn():
+	return false
 
 func boid_cohesion(entities: Array):
 	var neighborhood_distance = 300
@@ -90,11 +124,23 @@ func physics_update(delta: float) -> void:
 		return
 		
 	
-	var target = closest_target(targets)
+	var target
 	var total_vector
 	
+	# strategy to choose targets
+	if(owner.type == "imp"):
+		target = lowest_hp_target(targets)
+	elif(owner.type == "rock"):
+		target = closest_target(targets)
+	elif(owner.type == "scissors"):
+		target = farthest_target(targets)
+	else:
+		target = closest_target(targets)
+	
+	
+	# direction of motion
 	var vector_to_target = target.global_position - owner.global_position
-
+	
 	if(owner.type == "imp" and len(similar_enemies) > 1):
 		var c = boid_cohesion(similar_enemies)
 		var a = boid_alignment(similar_enemies)
@@ -109,12 +155,8 @@ func physics_update(delta: float) -> void:
 	else:
 		total_vector = vector_to_target
 	
-	var steering: Vector2 = seek_steering(total_vector)
-	steering = steering.clamped(owner.max_steering)
-	
-	owner.velocity = owner.velocity + steering
-
-	owner.velocity = owner.velocity.clamped(owner.max_speed)
+	# moving into the direction
+	move_according_to(total_vector)
 
 	if owner.find_targets_in_area(["player"], owner.engage_range).size() != 0:
 		state_machine.transition_to("Attack")

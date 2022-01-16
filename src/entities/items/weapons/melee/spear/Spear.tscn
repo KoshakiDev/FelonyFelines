@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/weapons/melee/axe/Axe.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/weapons/melee/spear/Spear.gd" type="Script" id=1]
 [ext_resource path="res://assets/items/weapons/spear.png" type="Texture" id=2]
 [ext_resource path="res://assets/items/weapons/axe/axe_slash_effect_sheet_240x80.png" type="Texture" id=3]
 
@@ -111,10 +111,14 @@ tracks/4/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 6, 50 )
 
+[sub_resource type="CapsuleShape2D" id=5]
+height = 86.0
+
 [node name="Spear" type="Node2D"]
 rotation = 1.5708
 script = ExtResource( 1 )
-weapon_name = "SPEAR"
+item_type = "WEAPON"
+item_name = "SPEAR"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 2 )
@@ -142,3 +146,11 @@ scale = Vector2( 1, 1.40782 )
 texture = ExtResource( 3 )
 centered = false
 hframes = 3
+
+[node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
+shape = SubResource( 5 )
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true

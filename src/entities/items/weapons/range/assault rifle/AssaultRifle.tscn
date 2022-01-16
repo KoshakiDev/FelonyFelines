@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/components/bullet-related/bullet type/PlayerBullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=3]
-[ext_resource path="res://src/weapons/range/assault rifle/sniper_rifle.gd" type="Script" id=4]
-[ext_resource path="res://assets/items/weapons/shotgun.png" type="Texture" id=5]
+[ext_resource path="res://src/entities/items/weapons/range/assault rifle/AssaultRifle.gd" type="Script" id=4]
+[ext_resource path="res://assets/items/weapons/sniper-rifle/rifle.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"
@@ -57,13 +57,18 @@ tracks/1/keys = {
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 3 )
-amount = 5
-spread_angle = 5.0
+amount = 2
+spread_angle = 1.0
 
-[node name="Shotgun" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 12.0
+height = 18.0
+
+[node name="AssaultRifle" type="Node2D"]
 position = Vector2( 7, 0 )
 script = ExtResource( 4 )
-weapon_name = "SHOTGUN"
+item_type = "WEAPON"
+item_name = "ASSAULTRIFLE"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )
@@ -73,10 +78,15 @@ anims/RESET = SubResource( 1 )
 anims/Shoot = SubResource( 2 )
 
 [node name="BulletSpawner" parent="." instance=ExtResource( 2 )]
-position = Vector2( 18, -6 )
+position = Vector2( 22, -4 )
 bullet_scene = ExtResource( 1 )
-shot_delay = 0.8
-bullet_speed = 800.0
-bullet_damage_value = 10
-bullet_knockback_value = 50
 bullet_emitter = SubResource( 3 )
+
+[node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true

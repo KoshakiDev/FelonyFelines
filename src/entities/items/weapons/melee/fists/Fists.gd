@@ -1,15 +1,16 @@
-extends "res://src/weapons/melee/meleeModule.gd"
+extends "res://src/entities/items/weapons/melee/meleeModule.gd"
 
-export var weapon_name := "FISTS"
-
-onready var hitbox := $AxeSprite/Hitbox
 onready var animation_player := $AnimationPlayer
+onready var despawn_timer := $DespawnTimer
 
 onready var attack_restart = $AttackRestart
 
 var punch_points = 2
 
-func action():
+func _ready():
+	setup_despawn()
+	
+func action(_subject):
 	if punch_points == 2:
 		#print("Attack 1")
 		animation_player.play("Attack1")
@@ -26,7 +27,7 @@ func action():
 		knockback_value = 25
 		attack_restart.start()
 	var direction = Vector2.RIGHT.rotated(global_rotation).normalized()
-	owner.velocity += direction * 50
+	_subject.velocity += direction * 50
 #	elif punch_points == 1:
 #		print("Attack 3")
 #		animation_player.play("Attack3")
