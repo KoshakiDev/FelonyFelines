@@ -117,8 +117,7 @@ height = 86.0
 [node name="Spear" type="Node2D"]
 rotation = 1.5708
 script = ExtResource( 1 )
-item_type = "WEAPON"
-item_name = "SPEAR"
+entity_name = "SPEAR"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 2 )

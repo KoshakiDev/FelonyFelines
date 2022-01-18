@@ -26,9 +26,7 @@ func enemy_drop():
 		instance_scene(load(scene).instance())
 
 func instance_scene(instance):
-	instance.set_as_toplevel(true)
-	
-	instance.position = owner.global_position
+	instance.global_position = owner.global_position
 	Global.items.add_child(instance)
 	
 

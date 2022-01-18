@@ -133,7 +133,8 @@ height = 0.0
 
 [node name="Medkit" type="Position2D"]
 script = ExtResource( 2 )
-item_name = "MEDKIT"
+item_type = "MEDKIT"
+entity_name = "MEDKIT"
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.498039 )

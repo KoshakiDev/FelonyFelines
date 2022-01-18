@@ -66,8 +66,7 @@ radius = 11.0
 [node name="Shotgun" type="Node2D"]
 position = Vector2( 7, 3 )
 script = ExtResource( 4 )
-item_type = "WEAPON"
-item_name = "SHOTGUN"
+entity_name = "SHOTGUN"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )

@@ -2,14 +2,14 @@ extends Node2D
 
 onready var camera = $Camera2D
 onready var info_text = $InfoPos/Info
-onready var spawners = $Arena/YSort/Spawners.get_children()
+onready var spawners = $Arena/Spawners.get_children()
 
 onready var timer = $Timer
 onready var items = $Arena/YSort/Items
+onready var entity_world = $Arena/YSort
 
 var wave_num = 0
 var points = 0
-var currently_controlled = "none"
 var is_wave_updating = false
 
 var enemy_count = 0
@@ -21,6 +21,7 @@ func _ready():
 	update_board()
 	Global.set("main", self)
 	Global.set("items", items)
+	Global.set("entity_world", entity_world)
 	update_wave()
 	
 func update_board():

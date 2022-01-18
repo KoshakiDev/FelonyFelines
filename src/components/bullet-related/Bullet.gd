@@ -7,10 +7,9 @@ const MAX_DISTANCE := 2000
 var dir: Vector2 = Vector2.RIGHT
 var speed: float = 1.0
 var shooting: bool = false
+export var is_player_bullet:bool = true
 
 onready var start_pos := global_position
-
-var is_player_bullet = true
 
 var is_projectile = true
 
@@ -36,6 +35,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_Bullet_area_entered(area):
-	if area.is_in_group("hitbox"):
-		queue_free()
+	var areaParent = area.owner
+	
+	if is_player_bullet:
+		if areaParent.entity_type == "PLAYER": return
+	else:
+		if areaParent.entity_type == "ENEMY": return
+	
+	queue_free()
 	pass

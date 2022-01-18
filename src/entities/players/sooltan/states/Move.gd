@@ -1,8 +1,7 @@
 extends State
 
 func enter(msg := {}) -> void:
-	if !owner.is_stationary:
-		owner.play_animation("Run", "Movement")
+	owner.play_animation("Run", "Movement")
 	
 
 func physics_update(delta: float) -> void:
