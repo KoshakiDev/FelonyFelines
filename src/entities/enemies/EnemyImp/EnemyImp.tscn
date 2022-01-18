@@ -402,7 +402,9 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
-[node name="EnemyImp" type="KinematicBody2D" groups=["enemy"]]
+[node name="EnemyImp" type="KinematicBody2D" groups=[
+"enemy",
+]]
 collision_layer = 4
 collision_mask = 7
 =======
@@ -414,7 +416,7 @@ script = ExtResource( 6 )
 entity_name = "IMP"
 entity_type = "ENEMY"
 max_health = 40.0
-max_speed = 1600.0
+max_speed = 800.0
 max_steering = 7.5
 damage_value = 10.0
 knockback_value = 10.0

@@ -155,18 +155,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 50, 51, 52, 53, 54, 55, 56, 57 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("../Hurtbox/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -270,18 +258,6 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../Collider:disabled")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -497,6 +473,7 @@ radius = 192.0
 height = 0.0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [node name="EnemyBall" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 7
@@ -510,6 +487,14 @@ script = ExtResource( 2 )
 entity_name = "BALL"
 entity_type = "ENEMY"
 >>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
+=======
+[node name="EnemyBall" type="KinematicBody2D" groups=[
+"enemy",
+]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource( 2 )
+>>>>>>> parent of 0240c8b (increased speed of enemies)
 damage_value = 30.0
 knockback_value = 50.0
 
@@ -565,6 +550,7 @@ hframes = 10
 vframes = 6
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -16 )
 shape = SubResource( 16 )
 

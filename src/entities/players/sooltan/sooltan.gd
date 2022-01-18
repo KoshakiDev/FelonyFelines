@@ -26,11 +26,14 @@ onready var collision = $Collider
 
 func _ready():
 <<<<<<< HEAD
+<<<<<<< HEAD
 	respawn_radius.visible = true
 =======
 	health = max_health
 	
 >>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
+=======
+>>>>>>> parent of 0240c8b (increased speed of enemies)
 	if player_id == "_2":
 		hand_position.position.y = 1
 		sprite.set_texture(sprite_texture)
@@ -111,10 +114,13 @@ func _on_PickupArea_area_entered(area):
 <<<<<<< HEAD
 		
 		item.set_as_toplevel(false)
+<<<<<<< HEAD
 		
 =======
 	
 >>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
+=======
+>>>>>>> parent of 0240c8b (increased speed of enemies)
 		item.position = Vector2.ZERO
 		
 		Global.reparent(item, weapons_container)

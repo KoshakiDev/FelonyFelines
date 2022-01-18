@@ -375,8 +375,9 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 44, 61 )
 
-[sub_resource type="CircleShape2D" id=21]
-radius = 371.163
+[sub_resource type="CapsuleShape2D" id=18]
+radius = 195.0
+height = 0.0
 
 <<<<<<< HEAD
 [sub_resource type="CircleShape2D" id=19]
@@ -399,20 +400,29 @@ func set_percent_value(value):
 	$TextureProgress.value = value
 "
 
+<<<<<<< HEAD
 [node name="EnemyGunner" type="KinematicBody2D" groups=["enemy"]]
 =======
 [node name="EnemyGunner" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
 >>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
+=======
+[node name="EnemyGunner" type="KinematicBody2D" groups=[
+"enemy",
+]]
+>>>>>>> parent of 0240c8b (increased speed of enemies)
 material = SubResource( 1 )
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
+<<<<<<< HEAD
 <<<<<<< HEAD
 max_speed = 675.0
 =======
 entity_name = "GUNNER"
 entity_type = "ENEMY"
 >>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
+=======
+>>>>>>> parent of 0240c8b (increased speed of enemies)
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 17 )
@@ -500,6 +510,7 @@ position = Vector2( 2, -61 )
 shape = SubResource( 17 )
 
 [node name="EngageRange" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -508,7 +519,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EngageRange"]
 position = Vector2( -29, -1.00011 )
 rotation = -3.14159
-shape = SubResource( 21 )
+shape = SubResource( 18 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 14 )]
 margin_top = -152.0
