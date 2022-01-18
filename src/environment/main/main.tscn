@@ -117,19 +117,7 @@ player_id = "_2"
 
 [node name="Medkit" parent="Arena/YSort/Items" instance=ExtResource( 12 )]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-[node name="AssaultRifle" parent="Arena/YSort/Items" instance=ExtResource( 7 )]
-position = Vector2( 8, 48 )
-
-=======
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
 [node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
-=======
-[node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=[
-"wall",
-]]
->>>>>>> parent of 0240c8b (increased speed of enemies)
 position = Vector2( 0, 40 )
 __meta__ = {
 "_edit_lock_": true

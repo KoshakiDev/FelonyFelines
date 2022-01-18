@@ -1,15 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=1]
-<<<<<<< HEAD
-<<<<<<< HEAD
-[ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=2]
-=======
 [ext_resource path="res://src/entities/enemies/EnemyBall/EnemyBall.tscn" type="PackedScene" id=2]
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
-=======
-[ext_resource path="res://src/entities/enemies/EnemyImp/EnemyImp.tscn" type="PackedScene" id=2]
->>>>>>> parent of 0240c8b (increased speed of enemies)
 [ext_resource path="res://src/environment/tileset.tres" type="TileSet" id=4]
 
 [node name="Node2D" type="Node2D" groups=["is_level"]]
@@ -28,33 +20,5 @@ position = Vector2( 216, 472 )
 position = Vector2( 384, 472 )
 player_id = "_2"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-[node name="Shotgun" parent="." instance=ExtResource( 2 )]
-position = Vector2( 315, 283 )
-=======
 [node name="EnemyBall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 308, 294 )
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
-=======
-[node name="EnemyPaper" parent="." instance=ExtResource( 2 )]
-position = Vector2( 400, 272 )
-
-[node name="EnemyPaper2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 489, 216 )
-
-[node name="EnemyPaper3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, 216 )
-
-[node name="EnemyPaper4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 584, 220 )
-
-[node name="EnemyPaper5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 391, 192 )
-
-[node name="EnemyPaper6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 296, 304 )
-
-[node name="EnemyPaper7" parent="." instance=ExtResource( 2 )]
-position = Vector2( 560, 292 )
->>>>>>> parent of 0240c8b (increased speed of enemies)

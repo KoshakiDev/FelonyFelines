@@ -428,17 +428,8 @@ stream = ExtResource( 17 )
 [node name="DustPosition" type="Position2D" parent="."]
 
 [node name="RespawnRadius" type="Area2D" parent="."]
-<<<<<<< HEAD
-<<<<<<< HEAD
-visible = false
-=======
->>>>>>> parent of 0240c8b (increased speed of enemies)
-collision_layer = 0
-collision_mask = 2
-=======
 collision_layer = 2
 collision_mask = 10
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnRadius"]
 shape = SubResource( 62 )

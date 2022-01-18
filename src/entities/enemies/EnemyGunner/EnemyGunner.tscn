@@ -379,50 +379,13 @@ extents = Vector2( 44, 61 )
 radius = 195.0
 height = 0.0
 
-<<<<<<< HEAD
-[sub_resource type="CircleShape2D" id=19]
-radius = 963.102
-
-[sub_resource type="GDScript" id=20]
-script/source = "extends TextureRect
-
-func _ready():
-	$TextureProgress.value = 100
-
-
-func take_damage(health, max_health, damage_value):
-	health = health - damage_value
-	if health < 0: return 0
-	set_percent_value(health / max_health * 100)
-	return health 
-
-func set_percent_value(value):
-	$TextureProgress.value = value
-"
-
-<<<<<<< HEAD
-[node name="EnemyGunner" type="KinematicBody2D" groups=["enemy"]]
-=======
 [node name="EnemyGunner" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
-=======
-[node name="EnemyGunner" type="KinematicBody2D" groups=[
-"enemy",
-]]
->>>>>>> parent of 0240c8b (increased speed of enemies)
 material = SubResource( 1 )
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
-<<<<<<< HEAD
-<<<<<<< HEAD
-max_speed = 675.0
-=======
 entity_name = "GUNNER"
 entity_type = "ENEMY"
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
-=======
->>>>>>> parent of 0240c8b (increased speed of enemies)
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 17 )
@@ -510,7 +473,6 @@ position = Vector2( 2, -61 )
 shape = SubResource( 17 )
 
 [node name="EngageRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0

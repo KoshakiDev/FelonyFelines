@@ -381,37 +381,9 @@ extents = Vector2( 10.5, 12 )
 [sub_resource type="CircleShape2D" id=18]
 radius = 39.0128
 
-<<<<<<< HEAD
-[sub_resource type="CircleShape2D" id=19]
-radius = 967.005
-
-[sub_resource type="GDScript" id=20]
-script/source = "extends TextureRect
-
-func _ready():
-	$TextureProgress.value = 100
-
-
-func take_damage(health, max_health, damage_value):
-	health = health - damage_value
-	if health < 0: return 0
-	set_percent_value(health / max_health * 100)
-	return health 
-
-func set_percent_value(value):
-	$TextureProgress.value = value
-"
-
-[node name="EnemyImp" type="KinematicBody2D" groups=[
-"enemy",
-]]
-collision_layer = 4
-collision_mask = 7
-=======
 [node name="EnemyImp" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
 collision_layer = 5
 collision_mask = 73
->>>>>>> b3ce2ac15fa7f399aa08642a827ea278033e6694
 script = ExtResource( 6 )
 entity_name = "IMP"
 entity_type = "ENEMY"
