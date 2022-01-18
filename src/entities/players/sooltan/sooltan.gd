@@ -26,6 +26,7 @@ onready var hurtbox_collision = $Hurtbox/CollisionShape2D2
 onready var collision = $Collider
 
 func _ready():
+	respawn_radius.visible = true
 	if player_id == "_2":
 		Global.set("brother_2", self)
 		hand_position.position.y = 1
@@ -132,6 +133,7 @@ func _on_PickupArea_area_entered(area):
 		item.despawnable = false
 		
 		item.set_as_toplevel(false)
+		
 		item.position = Vector2.ZERO
 		
 		Global.reparent(item, weapons_container)

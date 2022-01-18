@@ -15,7 +15,7 @@ var wave_survived
 
 var ITEM_DROP_WEIGHTS = {
 	"weapons/melee/axe/Axe": 2,
-	"weapons/melee/fists/Fists": 3,
+	"weapons/melee/fists/Fists": 0,
 	"weapons/melee/spear/Spear": 2,
 	"weapons/range/assault rifle/AssaultRifle": 1,
 	"weapons/range/shotgun/Shotgun": 1,
