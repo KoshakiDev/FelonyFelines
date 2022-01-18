@@ -323,10 +323,12 @@ resource_local_to_scene = true
 size = 32
 font_data = ExtResource( 20 )
 
-[node name="Sooltan" type="KinematicBody2D" groups=["player"]]
+[node name="Sooltan" type="KinematicBody2D" groups=["ENTITY", "PLAYER"]]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 79
 script = ExtResource( 11 )
+entity_name = "SOOLTAN"
+entity_type = "PLAYER"
 max_speed = 450.0
 
 [node name="AnimationMachine" type="Node" parent="."]
@@ -358,13 +360,13 @@ script = ExtResource( 9 )
 script = ExtResource( 13 )
 
 [node name="PickupArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2( 0, -11 )
 shape = SubResource( 65 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 64
 collision_mask = 48
 
@@ -426,8 +428,8 @@ stream = ExtResource( 17 )
 [node name="DustPosition" type="Position2D" parent="."]
 
 [node name="RespawnRadius" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 2
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnRadius"]
 shape = SubResource( 62 )
@@ -451,7 +453,6 @@ __meta__ = {
 }
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_PickupArea_area_entered"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="body_entered" from="RespawnRadius" to="." method="_on_RespawnRadius_body_entered"]
 [connection signal="body_exited" from="RespawnRadius" to="." method="_on_RespawnRadius_body_exited"]
 [connection signal="timeout" from="RespawnRadius/Timer" to="." method="_on_Timer_timeout"]

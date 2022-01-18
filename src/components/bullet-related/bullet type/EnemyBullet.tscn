@@ -4,14 +4,14 @@
 [ext_resource path="res://assets/sfx/sounds/sheriffbullet.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/items/weapons/bullets/enemy_bullet.png" type="Texture" id=3]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.00641
 
-[node name="Bullet" type="Area2D"]
-collision_layer = 0
-collision_mask = 73
+[node name="Bullet" type="Area2D" groups=["hitbox"]]
+collision_layer = 32
+collision_mask = 64
 script = ExtResource( 1 )
+is_player_bullet = false
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

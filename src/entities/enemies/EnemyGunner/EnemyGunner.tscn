@@ -1,10 +1,9 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/entities/enemies/EnemyGunner/EnemyGunner.gd" type="Script" id=1]
-[ext_resource path="res://src/entities/enemies/states/Idle.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/enemies/states/Chase.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/enemies/EnemyGunner/states/ChaseGunner.gd" type="Script" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=4]
-[ext_resource path="res://src/entities/enemies/states/Death.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=5]
 [ext_resource path="res://assets/entities/enemies/gunner/rock_hand 1.png" type="Texture" id=6]
 [ext_resource path="res://assets/shaders/control_mask.gdshader" type="Shader" id=7]
 [ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=8]
@@ -15,7 +14,7 @@
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/components/bullet-related/bullet type/EnemyBullet.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/entities/enemies/states/AttackRock.gd" type="Script" id=16]
+[ext_resource path="res://src/entities/enemies/EnemyGunner/states/AttackGunner.gd" type="Script" id=16]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=17]
 [ext_resource path="res://assets/entities/enemies/gunner/rock_hand 2.png" type="Texture" id=18]
 [ext_resource path="res://assets/entities/enemies/gunner/new shooter-Sheet.png" type="Texture" id=19]
@@ -380,33 +379,13 @@ extents = Vector2( 44, 61 )
 radius = 195.0
 height = 0.0
 
-[sub_resource type="CircleShape2D" id=19]
-radius = 963.102
-
-[sub_resource type="GDScript" id=20]
-script/source = "extends TextureRect
-
-func _ready():
-	$TextureProgress.value = 100
-
-
-func take_damage(health, max_health, damage_value):
-	health = health - damage_value
-	if health < 0: return 0
-	set_percent_value(health / max_health * 100)
-	return health 
-
-func set_percent_value(value):
-	$TextureProgress.value = value
-"
-
-[node name="EnemyGunner" type="KinematicBody2D" groups=[
-"enemy",
-]]
+[node name="EnemyGunner" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
 material = SubResource( 1 )
 collision_layer = 4
-collision_mask = 7
+collision_mask = 5
 script = ExtResource( 1 )
+entity_name = "GUNNER"
+entity_type = "ENEMY"
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 17 )
@@ -427,9 +406,6 @@ script = ExtResource( 11 )
 initial_state = NodePath("Chase")
 
 [node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource( 3 )
-
-[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 2 )
 
 [node name="Attack" type="Node" parent="StateMachine"]
@@ -489,7 +465,6 @@ position = Vector2( 0, -30 )
 shape = SubResource( 16 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 128
 collision_mask = 40
 
@@ -498,7 +473,6 @@ position = Vector2( 2, -61 )
 shape = SubResource( 17 )
 
 [node name="EngageRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -509,22 +483,9 @@ position = Vector2( -29, -1.00011 )
 rotation = -3.14159
 shape = SubResource( 18 )
 
-[node name="VisionArea" type="Area2D" parent="."]
-visible = false
-position = Vector2( -2, -49 )
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
-position = Vector2( 1, 30 )
-shape = SubResource( 19 )
-
 [node name="HealthBar" parent="." instance=ExtResource( 14 )]
-margin_left = -16.0
-margin_top = -144.0
-margin_right = 16.0
-margin_bottom = -112.0
-script = SubResource( 20 )
+margin_top = -152.0
+margin_bottom = -120.0
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 visible = false

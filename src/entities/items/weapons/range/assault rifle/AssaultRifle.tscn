@@ -67,8 +67,7 @@ height = 18.0
 [node name="AssaultRifle" type="Node2D"]
 position = Vector2( 7, 0 )
 script = ExtResource( 4 )
-item_type = "WEAPON"
-item_name = "ASSAULTRIFLE"
+entity_name = "ASSAULT RIFLE"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )
