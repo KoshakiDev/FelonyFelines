@@ -12,7 +12,7 @@ var health: float
 export var max_speed: float = 225
 export var max_steering: float = 2.5
 
-export var ITEM_DROP_PERCENT = 10
+export var ITEM_DROP_PERCENT = 50
 
 # Enemy variables
 var bodies_in_engage_area = 0
@@ -83,6 +83,8 @@ func take_damage(attacker):
 	return
 
 func _on_Hurtbox_area_entered(area):
+	if is_dead(): return
+	
 	var attacker = area.owner
 	if "is_projectile" in area:
 		attacker = area

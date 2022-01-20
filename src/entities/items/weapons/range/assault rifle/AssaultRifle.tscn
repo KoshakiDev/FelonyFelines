@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/components/bullet-related/bullet type/PlayerBullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=3]
+[ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSingle.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/items/weapons/range/assault rifle/AssaultRifle.gd" type="Script" id=4]
 [ext_resource path="res://assets/items/weapons/sniper-rifle/rifle.png" type="Texture" id=5]
 
@@ -55,10 +55,10 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=5]
+resource_local_to_scene = true
 script = ExtResource( 3 )
-amount = 2
-spread_angle = 1.0
+spread = 1
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 12.0
@@ -67,7 +67,6 @@ height = 18.0
 [node name="AssaultRifle" type="Node2D"]
 position = Vector2( 7, 0 )
 script = ExtResource( 4 )
-entity_name = "ASSAULT RIFLE"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )
@@ -79,7 +78,9 @@ anims/Shoot = SubResource( 2 )
 [node name="BulletSpawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 22, -4 )
 bullet_scene = ExtResource( 1 )
-bullet_emitter = SubResource( 3 )
+bullet_speed = 600.0
+bullet_damage_value = 10
+bullet_emitter = SubResource( 5 )
 
 [node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
 

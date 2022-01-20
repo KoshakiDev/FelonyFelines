@@ -17,6 +17,7 @@ var enemy_count = 0
 signal all_dead
 
 func _ready():
+	AudioServer.set_bus_volume_db(0, 0)
 	$InfoAnimationPlayer.play("Idle")
 	update_board()
 	Global.set("main", self)
