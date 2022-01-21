@@ -48,6 +48,7 @@ audio_listener_enable_2d = true
 
 [node name="Camera1" type="Camera2D" parent="Cameras/ViewportContainer/Viewport1" groups=["camera"]]
 current = true
+zoom = Vector2( 1.25, 1.25 )
 
 [node name="Main" parent="Cameras/ViewportContainer/Viewport1" instance=ExtResource( 1 )]
 
@@ -66,6 +67,7 @@ audio_listener_enable_2d = true
 
 [node name="Camera2" type="Camera2D" parent="Cameras/ViewportContainer2/Viewport2" groups=["camera"]]
 current = true
+zoom = Vector2( 1.25, 1.25 )
 
 [node name="ParallaxBackground" parent="Cameras/ViewportContainer2/Viewport2" instance=ExtResource( 5 )]
 

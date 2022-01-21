@@ -1,6 +1,6 @@
 extends Control
 
-export var max_separation:float = 500.0
+export var max_separation:float = 400.0
 export var split_line_thickness:float = 3.0
 export var split_line_color:Color = Color.black
 export var adaptive_split_line_thickness:bool = true

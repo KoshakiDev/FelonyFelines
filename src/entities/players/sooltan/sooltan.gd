@@ -108,6 +108,6 @@ func _on_PickupArea_area_entered(area):
 		item.position = Vector2.ZERO
 		
 		Global.reparent(item, weapons_container)
-		weapon_manager.update_children()		
+		weapon_manager.update_children()
 	else:
 		item._action(self)
