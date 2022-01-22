@@ -111,17 +111,10 @@ position = Vector2( -920, 8 )
 [node name="YSort" type="YSort" parent="Arena"]
 
 [node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 13 )]
-<<<<<<< HEAD
 position = Vector2( 100, 0 )
 
 [node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 13 )]
-position = Vector2( -100, 0 )
-=======
-position = Vector2( 248, 0 )
-
-[node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 13 )]
 position = Vector2( -256, 0 )
->>>>>>> 918d49db7d6105a19940d9ef1c65cbc6eb6582a1
 player_id = "_2"
 
 [node name="Items" type="Node2D" parent="Arena/YSort"]
