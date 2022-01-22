@@ -78,15 +78,15 @@ func _on_RespawnRadius_body_exited(body):
 
 func _turn_off_all():
 	hurtbox_collision.disabled = true
-	collision.disabled = true
 	weapon_manager.visible = false
 	shadow.visible = false
+	set_collision_layer_bit(1, false)
 
 func _turn_on_all():
 	hurtbox_collision.disabled = false
-	collision.disabled = false
 	weapon_manager.visible = true
 	shadow.visible = true
+	set_collision_layer_bit(1, true)
 
 
 func _on_PickupArea_area_entered(area):	
@@ -106,6 +106,6 @@ func _on_PickupArea_area_entered(area):
 		item.position = Vector2.ZERO
 		
 		Global.reparent(item, weapons_container)
-		weapon_manager.update_children()		
+		weapon_manager.update_children()
 	else:
 		item._action(self)

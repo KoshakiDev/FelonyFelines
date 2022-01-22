@@ -7,7 +7,7 @@ func enter(msg := {}) -> void:
 
 func enemy_drop():
 	# drop is a number between 0 and 99
-	var drop = 0 #randi() % 100
+	var drop = randi() % 100
 
 	# if drop is strictly less than our percentage, then drop something
 	if drop < owner.ITEM_DROP_PERCENT:
