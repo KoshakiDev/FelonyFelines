@@ -387,9 +387,9 @@ collision_mask = 73
 script = ExtResource( 6 )
 entity_name = "IMP"
 entity_type = "ENEMY"
-max_health = 40.0
 max_speed = 800.0
 max_steering = 7.5
+max_health = 40.0
 damage_value = 10.0
 knockback_value = 10.0
 
@@ -469,9 +469,7 @@ position = Vector2( 0, -8 )
 shape = SubResource( 18 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
-margin_left = -16.0
 margin_top = -48.0
-margin_right = 16.0
 margin_bottom = -16.0
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]

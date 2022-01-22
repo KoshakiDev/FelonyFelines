@@ -16,8 +16,7 @@ export var damage_value: float = 3
 export var knockback_value: float = 125
 
 func _ready():
-	health = max_health
-	
+	_initialize_health_bar(health_bar)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
 	engage_range.connect("body_entered", self, "_on_EngageRange_body_entered")
 	engage_range.connect("body_exited", self, "_on_EngageRange_body_exited")

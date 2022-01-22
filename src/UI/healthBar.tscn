@@ -1,35 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/UI/lifebar_fill.png" type="Texture" id=2]
 [ext_resource path="res://assets/UI/lifebar_bg.png" type="Texture" id=3]
 
-[sub_resource type="GDScript" id=1]
-resource_local_to_scene = true
-script/source = "extends TextureRect
-
-func _ready():
-	$TextureProgress.value = 100
-
-func set_percent(percent):
-	$TextureProgress.value = percent * 100
-"
-
-[node name="HealthBar" type="TextureRect"]
-margin_left = -17.0
-margin_top = -18.0
-margin_right = 15.0
-margin_bottom = 14.0
-texture = ExtResource( 3 )
-script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="."]
-margin_left = 8.0
-margin_right = 48.0
-margin_bottom = 40.0
+[node name="HealthBar" type="TextureProgress"]
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
 value = 100.0
+texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

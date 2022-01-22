@@ -6,9 +6,6 @@ export var entity_type = "ENTITY"
 var velocity: Vector2
 var knockback: Vector2
 
-export var max_health: float = 100
-var health: float
-
 export var max_speed: float = 225
 export var max_steering: float = 2.5
 
@@ -16,6 +13,56 @@ export var ITEM_DROP_PERCENT = 10
 
 # Enemy variables
 var bodies_in_engage_area = 0
+
+
+#HEALTH
+signal max_health_changed(new_max_health)
+signal health_changed(new_health)
+signal no_health
+
+export(float) var max_health = 1 setget set_max_health
+onready var health = max_health setget set_health
+
+func set_max_health(new_max_health):
+	max_health = new_max_health
+	max_health = max(1, new_max_health)
+	emit_signal("max_health_changed", max_health)
+
+func set_health(new_value):
+	health = new_value
+	health = clamp(health, 0, max_health)
+	emit_signal("health_changed", health)
+	if health <= 0:
+		emit_signal("no_health")
+
+func _ready():
+	pass
+
+#this function is called from the entity itself
+func _initialize_health_bar(health_bar):
+	connect("health_changed", health_bar, "set_value")
+	connect("max_health_changed", health_bar, "set_max")
+	emit_signal("max_health_changed", max_health)
+	emit_signal("health_changed", health)
+##HEALTH
+
+
+func heal(heal_value):
+	health += heal_value
+	set_health(health)
+
+func take_damage(attacker):
+	var damage_value = attacker.damage_value
+	var knockback_value = attacker.knockback_value
+	var attacker_pos = attacker.global_position
+
+	knockback = (global_position - attacker_pos).normalized() * knockback_value
+
+	health -= damage_value
+	set_health(health)
+	if is_dead():
+		self.state_machine.transition_to("Death")
+	return
 
 func is_dead():
 	return is_equal_approx(health, 0)
@@ -53,9 +100,6 @@ func return_travel_direction(vector):
 		y_direction = stepify(vector.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
 
-func heal(heal_value):	
-	health = min(max_health, health + heal_value)
-	self.health_bar.set_percent(health / max_health)
 
 func _physics_process(delta):
 	velocity = velocity + knockback
@@ -68,19 +112,7 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity)
 	
-func take_damage(attacker):
-	var damage_value = attacker.damage_value
-	var knockback_value = attacker.knockback_value
-	var attacker_pos = attacker.global_position
 
-	knockback = (global_position - attacker_pos).normalized() * knockback_value
-
-	health = max(0, health - damage_value)	
-	self.health_bar.set_percent(health / max_health)
-	if is_dead():
-		self.state_machine.transition_to("Death")
-
-	return
 
 func _on_Hurtbox_area_entered(area):
 	var attacker = area.owner
@@ -97,7 +129,7 @@ func _on_Hurtbox_area_entered(area):
 	
 	play_animation("Hit", "Hit")	
 
-	print(entity_type, attacker)
+	#print(entity_type, attacker)
 
 	take_damage(attacker)
 

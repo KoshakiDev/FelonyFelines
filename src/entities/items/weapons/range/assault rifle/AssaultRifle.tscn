@@ -9,7 +9,7 @@
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Position2D/Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -26,7 +26,7 @@ resource_name = "Shoot"
 length = 0.15
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Position2D/Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -65,27 +65,30 @@ radius = 12.0
 height = 18.0
 
 [node name="AssaultRifle" type="Node2D"]
-position = Vector2( 7, 0 )
 script = ExtResource( 4 )
 entity_name = "ASSAULT RIFLE"
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 7, 0 )
+
+[node name="Sprite" type="Sprite" parent="Position2D"]
 texture = ExtResource( 5 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Position2D"]
+root_node = NodePath("../..")
 anims/RESET = SubResource( 1 )
 anims/Shoot = SubResource( 2 )
 
-[node name="BulletSpawner" parent="." instance=ExtResource( 2 )]
+[node name="BulletSpawner" parent="Position2D" instance=ExtResource( 2 )]
 position = Vector2( 22, -4 )
 bullet_scene = ExtResource( 1 )
 bullet_emitter = SubResource( 3 )
 
-[node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
+[node name="Pickupbox" type="Area2D" parent="Position2D" groups=["ITEM"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Pickupbox"]
 rotation = 1.5708
 shape = SubResource( 4 )
 
-[node name="DespawnTimer" type="Timer" parent="."]
+[node name="DespawnTimer" type="Timer" parent="Position2D"]
 one_shot = true

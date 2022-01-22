@@ -25,12 +25,10 @@ onready var hurtbox = $Hurtbox
 onready var collision = $Collider
 
 func _ready():
-	health = max_health
-	
+	_initialize_health_bar(health_bar)
 	if player_id == "_2":
 		hand_position.position.y = 1
 		sprite.set_texture(sprite_texture)
-
 	Global.set("brother" + player_id, self)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
 

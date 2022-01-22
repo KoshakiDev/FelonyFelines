@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test health/Health.gd" type="Script" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="HealthBar" parent="Health" instance=ExtResource( 1 )]
+margin_left = 428.0
+margin_top = 246.0
+margin_right = 460.0
+margin_bottom = 278.0
+rect_scale = Vector2( 5, 5 )

@@ -386,6 +386,7 @@ collision_mask = 5
 script = ExtResource( 1 )
 entity_name = "GUNNER"
 entity_type = "ENEMY"
+max_health = 100.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 17 )

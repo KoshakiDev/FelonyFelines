@@ -47,9 +47,8 @@ func physics_update(delta):
 	if is_dashing(): owner.velocity = direction
 	
 func call_hit():
+	if owner.is_dead():
+		return
 	owner.velocity = Vector2.ZERO
-	
-	
 	state_machine.transition_to("Chase")
-	
 	pass
