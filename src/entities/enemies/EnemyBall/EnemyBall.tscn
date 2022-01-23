@@ -478,7 +478,8 @@ collision_mask = 73
 script = ExtResource( 2 )
 entity_name = "BALL"
 entity_type = "ENEMY"
-max_health = 100.0
+max_speed = 1200.0
+max_health = 250.0
 damage_value = 30.0
 knockback_value = 50.0
 

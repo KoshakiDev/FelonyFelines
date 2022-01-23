@@ -5,7 +5,7 @@ signal max_health_changed(new_max_health)
 signal health_changed(new_health)
 signal no_health
 
-export(float) var max_health = 1 setget set_max_health
+export(float) var max_health = 100 setget set_max_health
 onready var health = max_health setget set_health
 
 func set_max_health(new_max_health):

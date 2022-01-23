@@ -312,12 +312,12 @@ font_data = ExtResource( 20 )
 
 [node name="Sooltan" type="KinematicBody2D" groups=["ENTITY", "PLAYER"]]
 collision_layer = 2
-collision_mask = 79
+collision_mask = 77
 script = ExtResource( 11 )
 entity_name = "SOOLTAN"
 entity_type = "PLAYER"
 max_speed = 450.0
-max_health = 100.0
+max_health = 101.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -399,8 +399,8 @@ knockback_value = 0.0
 z_index = 3
 
 [node name="HealthBar" parent="Node2D" instance=ExtResource( 1 )]
-margin_top = -71.0
-margin_bottom = -39.0
+margin_top = -79.0
+margin_bottom = -47.0
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, -24 )

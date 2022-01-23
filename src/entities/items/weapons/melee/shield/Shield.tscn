@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/entities/items/weapons/melee/shield/Shield.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -12,6 +12,9 @@ height = 29.9999
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 16 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Attack"
 
 [node name="Shield" type="Node2D"]
 rotation = 1.5708
@@ -45,8 +48,11 @@ one_shot = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -4.4509e-07, -32 )
 shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 4 )

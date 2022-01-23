@@ -2,24 +2,19 @@ extends TextureProgress
 
 #THIS ONLY CONTROLS THE REPRESENTATION, THERE IS ALSO HEALTH IN THE ENTITY MODULE
 
-var healthbar: float setget set_healthbar
-var max_healthbar: float setget set_max_healthbar
+onready var tween = $Tween
+onready var animation_player = $AnimationPlayer
 
-func set_healthbar(value):
-	print(value)
-	healthbar = clamp(value, 0, max_healthbar)
-	set_percent_value(healthbar / max_healthbar * 100)
-
-func set_max_healthbar(value):
-	max_healthbar = max(value, 1)
+export(Gradient) var gradient
 
 func _ready():
-	pass
-#	print(owner, owner.max_health, owner.health)
-#	if owner.health == null:
-#		owner.health = owner.max_health
-#	max_healthbar = owner.max_health
-#	healthbar = owner.health
+	tint_progress = gradient.interpolate(ratio)
 
-func set_percent_value(value):
-	$TextureProgress.value = value
+func _on_value_changed(new_value):
+	tint_progress = gradient.interpolate(ratio)
+
+func set_value(new_value):
+	animation_player.play("twinkle")
+	var duration = animation_player.current_animation_length
+	tween.interpolate_property(self, "value", value, new_value, duration, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	tween.start()

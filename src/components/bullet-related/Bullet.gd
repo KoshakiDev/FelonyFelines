@@ -39,6 +39,9 @@ func _on_Bullet_area_entered(area):
 	
 	if is_player_bullet:
 		if areaParent.entity_type == "PLAYER": return
+		elif areaParent.entity_type == "ITEM":
+			if areaParent.entity_name == "SHIELD":
+				return
 	else:
 		if areaParent.entity_type == "ENEMY": return
 	

@@ -26,6 +26,7 @@ onready var collision = $Collider
 
 func _ready():
 	_initialize_health_bar(health_bar)
+	set_health(health)
 	if player_id == "_2":
 		hand_position.position.y = 1
 		sprite.set_texture(sprite_texture)
@@ -66,6 +67,8 @@ func respawn_player():
 
 
 func _on_RespawnRadius_body_entered(body):
+	if !body.get("player_id"):
+		return
 	if player_id == body.player_id or not is_dead(): return
 	respawn_timer.start(5)
 	

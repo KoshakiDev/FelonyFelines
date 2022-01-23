@@ -1,7 +1,44 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://src/UI/healthBar.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/lifebar_fill.png" type="Texture" id=2]
 [ext_resource path="res://assets/UI/lifebar_bg.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.174455, 0.563863, 1 )
+colors = PoolColorArray( 0.85098, 0.341176, 0.388235, 1, 0.984314, 0.94902, 0.211765, 1, 0.388235, 0.670588, 0.247059, 1 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "twinkle"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.5, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ), Color( 0.5, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ), Color( 0.5, 0.5, 0.5, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="HealthBar" type="TextureProgress"]
 margin_left = -16.0
@@ -11,6 +48,17 @@ margin_bottom = 16.0
 value = 100.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+gradient = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Tween")
+anims/RESET = SubResource( 2 )
+anims/twinkle = SubResource( 1 )
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

@@ -376,7 +376,7 @@ height = 18.0
 extents = Vector2( 44, 61 )
 
 [sub_resource type="CapsuleShape2D" id=18]
-radius = 195.0
+radius = 300.0
 height = 0.0
 
 [node name="EnemyGunner" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
@@ -386,7 +386,8 @@ collision_mask = 5
 script = ExtResource( 1 )
 entity_name = "GUNNER"
 entity_type = "ENEMY"
-max_health = 100.0
+max_speed = 600.0
+max_health = 500.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 17 )
