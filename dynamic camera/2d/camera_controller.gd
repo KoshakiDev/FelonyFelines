@@ -14,6 +14,11 @@ onready var camera1 = $ViewportContainer/Viewport1/Camera1
 onready var camera2 = $ViewportContainer2/Viewport2/Camera2
 
 func _ready():
+	setup()
+	pass
+
+func setup():
+	print(player1, player2)
 	if player1 == null or player2 == null:
 		printerr("SPLIT SCREEN ERROR: Player(s) are null!")
 		set_physics_process(false)
@@ -28,7 +33,6 @@ func _ready():
 
 	view.material.set_shader_param("viewport1", viewport1.get_texture())
 	view.material.set_shader_param("viewport2", viewport2.get_texture())
-
 
 func _physics_process(delta):
 	_move_cameras()

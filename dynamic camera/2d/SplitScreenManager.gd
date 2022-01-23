@@ -2,12 +2,15 @@ extends Node
 
 export var enable_splitscreen = true
 
-var current_world
+export var current_world_path := NodePath()
 
 onready var viewport1 = $Cameras/ViewportContainer/Viewport1
 
 onready var cameras = $Cameras
 
 func _ready():
-	cameras.setup(enable_splitscreen)
-	#Global.reparent(current_world, viewport1)
+	var current_world = get_node(current_world_path)
+	print(current_world, viewport1)
+	Global.reparent(current_world, viewport1)
+	cameras.setup()
+	

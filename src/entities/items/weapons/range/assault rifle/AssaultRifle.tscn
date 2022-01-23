@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "Shoot"
-length = 0.15
+length = 0.1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Position2D/Sprite:position")
@@ -32,7 +32,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0368341, 0.0838562, 0.128841 ),
+"times": PoolRealArray( 0, 0.0368341, 0.07, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 0.143587 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -10, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ) ]
@@ -44,7 +44,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -71,7 +71,6 @@ script = ExtResource( 4 )
 position = Vector2( 7, 0 )
 
 [node name="Sprite" type="Sprite" parent="Position2D"]
-position = Vector2( 7, 0 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Position2D"]

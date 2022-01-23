@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/environment/main/main.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dynamic camera/2d/SplitScreenCamera.tscn" type="PackedScene" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="Splitscreen" parent="." instance=ExtResource( 2 )]
+current_world_path = NodePath("../Main")
+
+[node name="Main" parent="." instance=ExtResource( 1 )]
+
+[editable path="Splitscreen"]
