@@ -5,15 +5,17 @@ export var player_id = "_1"
 onready var state_machine := $StateMachine
 
 onready var animation_machine := $AnimationMachine
+onready var movement_player := $AnimationMachine/Movement
 onready var sprite := $Sprite
 
-onready var weapon_manager := $WeaponManager
-onready var hand_position := $WeaponManager/HandPosition2D
+onready var weapon_manager := $Sprite/WeaponManager
+onready var hand_position := $Sprite/WeaponManager/HandPosition2D
 onready var dust_position := $DustPosition
-onready var health_bar := $Node2D/HealthBar
+onready var health_bar := $HealthBarPos/HealthBar
+onready var health_bar_position := $HealthBarPos
 
 var DUST_SCENE = preload("res://src/components/effects/Dust.tscn")
-var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
+var sprite_texture = preload("res://test new brother sprites/blue_colored-Sheet2.png")
 onready var shadow = $Shadow
 
 onready var respawn_radius = $RespawnRadius
@@ -24,11 +26,22 @@ onready var hurtbox_collision = $Hurtbox/CollisionShape2D2
 onready var hurtbox = $Hurtbox
 onready var collision = $Collider
 
+onready var tween = $Tween
+
+
+onready var run_timer = $RunTimer
+var fast_run = true
+onready var max_speed_memory = max_speed
+onready var slow_max_speed = max_speed - 200
+
+
 func _ready():
+	respawn_radius.visible = true
 	_initialize_health_bar(health_bar)
 	set_health(health)
 	if player_id == "_2":
-		hand_position.position.y = 1
+		health_bar_position.position.y -= 11
+		hand_position.position.y -= 11
 		sprite.set_texture(sprite_texture)
 	Global.set("brother" + player_id, self)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
@@ -41,7 +54,8 @@ func _input(event):
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
-		 weapon_manager.cur_weapon.action(self)
+		weapon_manager.cur_weapon.action(self)
+		disable_fast_run()
 
 func spawn_dust() -> void:
 	var dust: Sprite = DUST_SCENE.instance()
@@ -112,3 +126,20 @@ func _on_PickupArea_area_entered(area):
 		weapon_manager.update_children()
 	else:
 		item._action(self)
+
+func disable_fast_run():
+	fast_run = false
+	max_speed = slow_max_speed
+	if state_machine.state.name == "Move":
+		animation_machine.play_animation("Run_1", "Movement")
+	run_timer.start()
+
+func enable_fast_run():
+	fast_run = true
+	max_speed = max_speed_memory
+	if state_machine.state.name == "Move":
+		animation_machine.play_animation("Run_2", "Movement")
+		print("animation changed")
+
+func _on_RunTimer_timeout():
+	enable_fast_run()

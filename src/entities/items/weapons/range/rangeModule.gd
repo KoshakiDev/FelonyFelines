@@ -30,7 +30,7 @@ func action(_subject):
 	if ammo <= 0:
 		print("no ammo")
 		return
-	deplete_ammo()
+	#deplete_ammo()
 	self.animation_player.play("Shoot")
 	print("ammo left: ", ammo)
 

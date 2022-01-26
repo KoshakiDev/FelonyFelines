@@ -82,14 +82,17 @@ func adjust_direction(direction):
 	
 	if direction.x != 0:
 		self.sprite.scale.x = direction.x
-
 	if "hand_position" in self:
 		adjust_hand_rotation(direction)
 	
 func adjust_hand_rotation(direction):
-	if direction.x != 0:
-		self.hand_position.scale.y = direction.x
+#	if direction.x != 0:
+#		self.hand_position.scale.y = direction.x
+	#self.tween.interpolate_property(self.hand_position, "position", self.hand_position.position, self.hand_position.global_position + direction, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#self.tween.start()
+	#print(self.hand_position.global_position + direction)
 	self.hand_position.look_at(self.hand_position.global_position + direction)
+
 
 func return_travel_direction(vector):
 	var x_direction = 1

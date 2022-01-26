@@ -357,7 +357,7 @@ nodes/fragment/11/node = SubResource( 8 )
 nodes/fragment/11/position = Vector2( 400, 120 )
 nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
 
-[sub_resource type="ShaderMaterial" id=14]
+[sub_resource type="ShaderMaterial" id=19]
 resource_local_to_scene = true
 shader = SubResource( 13 )
 shader_param/active = false
@@ -423,7 +423,7 @@ scale = Vector2( 2.64, 1.42222 )
 texture = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 14 )
+material = SubResource( 19 )
 position = Vector2( 0, -64 )
 texture = ExtResource( 19 )
 hframes = 15
