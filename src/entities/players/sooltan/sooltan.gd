@@ -96,13 +96,11 @@ func _on_RespawnRadius_body_exited(body):
 func _turn_off_all():
 	hurtbox_collision.disabled = true
 	weapon_manager.visible = false
-	shadow.visible = false
 	set_collision_layer_bit(1, false)
 
 func _turn_on_all():
 	hurtbox_collision.disabled = false
 	weapon_manager.visible = true
-	shadow.visible = true
 	set_collision_layer_bit(1, true)
 
 

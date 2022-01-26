@@ -120,12 +120,9 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = false
 tracks/1/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Run_1", -1, 1.0, false ],
-"method": "play"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -156,6 +153,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 48, 49, 50, 51, 52 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 1 ), Vector2( 2.2, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shadow:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -4.40001, 0 ) ]
 }
 
 [sub_resource type="Animation" id=72]
@@ -324,6 +345,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shadow:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=75]
 resource_name = "Respawn"
@@ -457,6 +502,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=58]
 resource_name = "Hit"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:material:shader_param/active")
 tracks/0/interp = 1
@@ -490,6 +536,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "disable_fast_run"
+} ]
 }
 
 [sub_resource type="Animation" id=59]
@@ -549,7 +609,6 @@ max_health = 100.0
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.498039 )
-position = Vector2( -3.57628e-07, 0 )
 scale = Vector2( 0.8, 1 )
 texture = ExtResource( 16 )
 
@@ -682,6 +741,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="RunTimer" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_PickupArea_area_entered"]

@@ -8,6 +8,13 @@ func enter(msg := {}) -> void:
 	else:
 		owner.play_animation("Run_1", "Movement")	
 
+func exit() -> void:
+#	if owner.movement_player.current_animation == "Run_1":
+#		owner.play_animation("Decel_1", "Movement")
+#	else:
+#		owner.play_animation("Decel_2", "Movement")
+	owner.play_animation("Decel_1", "Movement")
+	
 func physics_update(delta: float) -> void:
 	if owner.is_dead(): return
 	
@@ -18,5 +25,5 @@ func physics_update(delta: float) -> void:
 	owner.velocity = owner.velocity.linear_interpolate(input_direction * owner.max_speed, .1 if input_direction.length() > 0 else .2)
 
 	if is_equal_approx(input_direction.x, 0.0) and is_equal_approx(input_direction.y, 0.0):
-		state_machine.transition_to("Idle", {decel = owner.movement_player.current_animation})
+		state_machine.transition_to("Idle")
 
