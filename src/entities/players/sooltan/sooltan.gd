@@ -15,7 +15,7 @@ onready var health_bar := $HealthBarPos/HealthBar
 onready var health_bar_position := $HealthBarPos
 
 var DUST_SCENE = preload("res://src/components/effects/Dust.tscn")
-var sprite_texture = preload("res://test new brother sprites/blue_colored-Sheet2.png")
+var sprite_texture = preload("res://test new brother sprites/blue_colored-Sheet.png")
 onready var shadow = $Shadow
 
 onready var respawn_radius = $RespawnRadius
@@ -27,7 +27,6 @@ onready var hurtbox = $Hurtbox
 onready var collision = $Collider
 
 onready var tween = $Tween
-
 
 onready var run_timer = $RunTimer
 var fast_run = true
@@ -126,18 +125,21 @@ func _on_PickupArea_area_entered(area):
 		item._action(self)
 
 func disable_fast_run():
+	if state_machine.state.name == "Idle":
+		animation_machine.play_animation("Knockback", "Movement")
+	if !run_timer.is_stopped():
+		return
 	fast_run = false
 	max_speed = slow_max_speed
 	if state_machine.state.name == "Move":
-		animation_machine.play_animation("Run_1", "Movement")
+		state_machine.transition_to("Move")
 	run_timer.start()
 
 func enable_fast_run():
 	fast_run = true
 	max_speed = max_speed_memory
 	if state_machine.state.name == "Move":
-		animation_machine.play_animation("Run_2", "Movement")
-		print("animation changed")
+		state_machine.transition_to("Move")
 
 func _on_RunTimer_timeout():
 	enable_fast_run()
