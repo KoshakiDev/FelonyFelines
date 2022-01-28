@@ -4,7 +4,7 @@
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSingle.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/items/weapons/range/assault rifle/AssaultRifle.gd" type="Script" id=4]
-[ext_resource path="res://assets/items/weapons/sniper-rifle/rifle.png" type="Texture" id=5]
+[ext_resource path="res://assets/items/weapons/range/assault_rifle/rifle.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"

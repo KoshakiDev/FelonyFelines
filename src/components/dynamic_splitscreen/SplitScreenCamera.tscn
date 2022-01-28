@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/components/dynamic_splitscreen/camera_controller.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://src/components/dynamic_splitscreen/SplitScreenManager.gd" type="Script" id=3]
+[ext_resource path="res://src/components/dynamic_splitscreen/split_screen_2d.gdshader" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 5 )
+shader_param/viewport_size = null
+shader_param/split_active = null
+shader_param/is_player1_dead = null
+shader_param/is_player2_dead = null
+shader_param/player1_position = null
+shader_param/player2_position = null
+shader_param/split_line_thickness = null
+shader_param/split_line_color = null
+
+[node name="Splitscreen" type="Node"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "Custom-made dynamic split screen "
+}
+
+[node name="Cameras" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Cameras"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport1" type="Viewport" parent="Cameras/ViewportContainer"]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+
+[node name="Camera1" type="Camera2D" parent="Cameras/ViewportContainer/Viewport1" groups=["camera"]]
+current = true
+
+[node name="ViewportContainer2" type="ViewportContainer" parent="Cameras"]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport2" type="Viewport" parent="Cameras/ViewportContainer2"]
+size = Vector2( 1024, 600 )
+own_world = true
+handle_input_locally = false
+disable_3d = true
+usage = 1
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+
+[node name="Camera2" type="Camera2D" parent="Cameras/ViewportContainer2/Viewport2" groups=["camera"]]
+current = true
+
+[node name="View" type="TextureRect" parent="Cameras"]
+material = SubResource( 2 )
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

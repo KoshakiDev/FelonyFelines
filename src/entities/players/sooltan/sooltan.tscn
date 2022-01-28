@@ -1,10 +1,8 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/entities/items/weapons/melee/shield/Shield.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
-[ext_resource path="res://test new brother sprites/red_colored-Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/sooltan/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/players/sooltan/states/Move.gd" type="Script" id=9]
@@ -177,6 +175,37 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -4.40001, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("AnimationMachine/Movement")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Death_loop", -1, 1.0, false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=77]
+resource_name = "Death_loop"
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 52 ]
 }
 
 [sub_resource type="Animation" id=72]
@@ -593,7 +622,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("..")
+tracks/3/path = NodePath("../../Sooltan2")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -688,11 +717,6 @@ despawnable = false
 in_inventory = true
 knockback_value = 0.0
 
-[node name="Shield" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 3 )]
-visible = false
-
-[node name="Shotgun" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 2 )]
-
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 4 )
 
@@ -700,6 +724,7 @@ script = ExtResource( 4 )
 root_node = NodePath("../..")
 anims/Accel = SubResource( 67 )
 anims/Death = SubResource( 74 )
+anims/Death_loop = SubResource( 77 )
 anims/Decel_1 = SubResource( 72 )
 anims/Decel_2 = SubResource( 68 )
 anims/Idle = SubResource( 69 )
@@ -769,6 +794,7 @@ stream = ExtResource( 17 )
 position = Vector2( 0, -4 )
 
 [node name="RespawnRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 10
 

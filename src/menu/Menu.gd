@@ -14,7 +14,7 @@ func _ready():
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed:
-			SceneChanger.change_scene("res://dynamic camera/2d/split_screen_2d.tscn", "fade")
+			SceneChanger.change_scene("res://src/components/dynamic_splitscreen/scene_containing_main/main_with_splitscreen.tscn", "fade")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

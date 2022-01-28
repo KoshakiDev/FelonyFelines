@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=8]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=10]
 [ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/entities/enemies/imp/new pusher-Sheet.png" type="Texture" id=12]
+[ext_resource path="res://assets/entities/enemies/imp/imp_sheet_32x32.png" type="Texture" id=12]
 [ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=1]

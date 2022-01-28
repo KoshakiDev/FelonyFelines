@@ -15,7 +15,7 @@ onready var health_bar := $HealthBarPos/HealthBar
 onready var health_bar_position := $HealthBarPos
 
 var DUST_SCENE = preload("res://src/components/effects/Dust.tscn")
-var sprite_texture = preload("res://test new brother sprites/blue_colored-Sheet.png")
+var sprite_texture = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
 onready var shadow = $Shadow
 
 onready var respawn_radius = $RespawnRadius
@@ -95,11 +95,13 @@ func _on_RespawnRadius_body_exited(body):
 func _turn_off_all():
 	hurtbox_collision.disabled = true
 	weapon_manager.visible = false
+	health_bar_position.visible = false
 	set_collision_layer_bit(1, false)
 
 func _turn_on_all():
 	hurtbox_collision.disabled = false
 	weapon_manager.visible = true
+	health_bar_position.visible = true
 	set_collision_layer_bit(1, true)
 
 
@@ -125,8 +127,10 @@ func _on_PickupArea_area_entered(area):
 		item._action(self)
 
 func disable_fast_run():
-	if state_machine.state.name == "Idle":
-		animation_machine.play_animation("Knockback", "Movement")
+	if is_dead():
+		return
+#	if state_machine.state.name == "Idle":
+#		animation_machine.play_animation("Knockback", "Movement")
 	if !run_timer.is_stopped():
 		return
 	fast_run = false
@@ -136,6 +140,8 @@ func disable_fast_run():
 	run_timer.start()
 
 func enable_fast_run():
+	if is_dead():
+		return
 	fast_run = true
 	max_speed = max_speed_memory
 	if state_machine.state.name == "Move":

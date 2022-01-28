@@ -6,7 +6,7 @@
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=5]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=6]
 [ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=7]
-[ext_resource path="res://assets/entities/enemies/ball/new dasher remaster-Sheet.png" type="Texture" id=8]
+[ext_resource path="res://assets/entities/enemies/ball/ball_sheet_128x192.png" type="Texture" id=8]
 [ext_resource path="res://src/entities/enemies/EnemyBall/states/AttackBall.gd" type="Script" id=9]
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/entities/shadow.png" type="Texture" id=11]
@@ -540,6 +540,7 @@ position = Vector2( 0, -16 )
 shape = SubResource( 16 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 128
 collision_mask = 40
 
