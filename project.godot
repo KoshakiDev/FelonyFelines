@@ -79,6 +79,7 @@ config/icon="res://icon.png"
 Global="*res://src/AutoLoad/Global.gd"
 SceneChanger="*res://src/AutoLoad/SceneChanger.tscn"
 Shake="*res://src/AutoLoad/Shake.gd"
+Ngio="*res://src/AutoLoad/ngio.gd"
 
 [display]
 

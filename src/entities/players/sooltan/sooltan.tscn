@@ -669,7 +669,7 @@ radius = 12.0
 height = 0.0
 
 [sub_resource type="RectangleShape2D" id=60]
-extents = Vector2( 10.5, 21.5 )
+extents = Vector2( 10.5, 27 )
 
 [sub_resource type="CapsuleShape2D" id=52]
 height = 2.0
@@ -759,12 +759,11 @@ position = Vector2( 0, -11 )
 shape = SubResource( 65 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 64
 collision_mask = 48
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( -0.5, -21.5 )
+position = Vector2( -0.5, -27 )
 shape = SubResource( 60 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]

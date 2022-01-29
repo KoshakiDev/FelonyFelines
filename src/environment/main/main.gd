@@ -59,6 +59,8 @@ func all_players_dead():
 	#show_death_screen()
 	Global.final_score = points
 	Global.wave_survived = wave_num
+	Ngio.request("ScoreBoard.postScore", {"id": 11467, "value": points})
+	Ngio.request("ScoreBoard.postScore", {"id": 11468, "value": wave_num})
 	back_to_menu()
 
 func show_death_screen():
