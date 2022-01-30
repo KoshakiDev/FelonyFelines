@@ -27,7 +27,7 @@ func action(_subject):
 		knockback_value = 25
 		attack_restart.start()
 	var direction = Vector2.RIGHT.rotated(global_rotation).normalized()
-	_subject.velocity += direction * 50
+	_subject.knockback += _subject.movement_direction * knockback_value_on_action
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	animation_player.play("Idle")

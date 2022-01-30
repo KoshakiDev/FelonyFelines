@@ -1,6 +1,8 @@
 extends "res://src/entities/items/itemModules.gd"
 
 export var max_ammo = 10
+export var knockback_value_on_action = 50
+
 onready var ammo = max_ammo
 
 func _ready():
@@ -32,6 +34,10 @@ func action(_subject):
 		return
 	#deplete_ammo()
 	self.animation_player.play("Shoot")
+	
+
+	_subject.knockback += -1 * _subject.movement_direction * knockback_value_on_action
+	
 	print("ammo left: ", ammo)
 
 func bullet_spawner_set_shooting_true():

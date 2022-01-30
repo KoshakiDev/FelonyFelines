@@ -242,9 +242,9 @@ __meta__ = {
 }
 
 [node name="Info3" type="RichTextLabel" parent="InfoPos"]
-margin_left = -62.0
+margin_left = -40.0
 margin_top = 24.0
-margin_right = 162.0
+margin_right = 184.0
 margin_bottom = 120.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_colors/default_color = Color( 1, 0, 0, 1 )

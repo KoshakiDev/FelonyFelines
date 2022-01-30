@@ -24,5 +24,8 @@ func physics_update(delta: float) -> void:
 	
 	owner.velocity = owner.velocity.linear_interpolate(input_direction * owner.max_speed, .1 if input_direction.length() > 0 else .2)
 
+	if not(is_equal_approx(input_direction.x, 0.0) and is_equal_approx(input_direction.y, 0.0)):
+		owner.movement_direction = input_direction
+	
 	if is_equal_approx(input_direction.x, 0.0) and is_equal_approx(input_direction.y, 0.0):
 		state_machine.transition_to("Idle")

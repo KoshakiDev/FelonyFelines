@@ -31,6 +31,7 @@ func physics_update(delta: float) -> void:
 	
 	# moving into the direction
 	move_according_to(total_vector)
+	owner.movement_direction = vector_to_target
 
 	if owner.bodies_in_engage_area > 0:
 		state_machine.transition_to("Attack")
