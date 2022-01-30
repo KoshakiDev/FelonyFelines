@@ -66,6 +66,7 @@ height = 18.0
 
 [node name="AssaultRifle" type="Node2D"]
 script = ExtResource( 4 )
+knockback_value_on_action = 25
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 7, 0 )

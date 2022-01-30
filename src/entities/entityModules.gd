@@ -5,6 +5,7 @@ export var entity_type = "ENTITY"
 
 var velocity: Vector2
 var knockback: Vector2
+var movement_direction: Vector2
 
 export var max_speed: float = 225
 export var max_steering: float = 2.5
@@ -110,8 +111,8 @@ func _physics_process(delta):
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
 	velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)
 
-	if not (is_equal_approx(velocity.x, 0.0) and is_equal_approx(velocity.y, 0.0)):
-		adjust_direction(velocity)
+	if not (is_equal_approx(movement_direction.x, 0.0) and is_equal_approx(movement_direction.y, 0.0)):
+		adjust_direction(movement_direction)
 	
 	move_and_slide(velocity)
 	
