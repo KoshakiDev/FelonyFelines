@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/cowboys.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/environment/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/environment/parallax background/finalDay_1.png" type="Texture" id=4]
 [ext_resource path="res://assets/environment/parallax background/finalDay_6.png" type="Texture" id=5]
@@ -200,58 +200,18 @@ player_id = "_2"
 
 [node name="InfoPos" type="Position2D" parent="."]
 
-[node name="Info4" type="RichTextLabel" parent="InfoPos"]
-margin_left = -160.0
-margin_top = -147.0
-margin_right = 160.0
-margin_bottom = 29.0
+[node name="TitleEng" type="RichTextLabel" parent="InfoPos"]
+margin_left = -248.0
+margin_top = -194.0
+margin_right = 244.0
+margin_bottom = -18.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[center]FELONYFELINES[/center]"
-text = "FELONYFELINES"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Info" type="RichTextLabel" parent="InfoPos"]
-margin_left = -160.0
-margin_top = -152.0
-margin_right = 160.0
-margin_bottom = 24.0
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center]FELONYFELINES[/center]"
-text = "FELONYFELINES"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Info2" type="RichTextLabel" parent="InfoPos"]
-margin_left = -152.0
-margin_top = 24.0
-margin_right = 456.0
-margin_bottom = 112.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center]DEAD          ALIVE[/center]"
-text = "DEAD          ALIVE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Info3" type="RichTextLabel" parent="InfoPos"]
-margin_left = -62.0
-margin_top = 24.0
-margin_right = 162.0
-margin_bottom = 120.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_colors/default_color = Color( 1, 0, 0, 1 )
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center]AND[/center]"
-text = "AND"
+bbcode_text = "[center]FELONY
+FELINES[/center]"
+text = "FELONY
+FELINES"
 __meta__ = {
 "_edit_use_anchors_": false
 }
