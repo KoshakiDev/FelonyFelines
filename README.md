@@ -20,6 +20,24 @@
 - Equipment booster (Decrease shot delay, spread; increase bullet speed, bullet amount)
 - Equipment dampener (Increase shot delay, spread; Decrease bullet speed, bullet amount)
 
+## Entity Statistics Reference:
+- Velocity
+- Health
+- Attack Damage Value
+- Hurt Damage Value
+- Player score points value
+- Item drop percent
+- Knockback value
+- Knockback value on action
+ - Gun characteristics (If any):
+  - Bullet type
+  - Shot delay
+  - Bullet speed
+  - Bullet spread
+  - Bullet amount
+  - Current Ammo
+  - Max Ammo
+  - 
 ## GENERAL ENEMY Behaviour:
 - There is a slight chance that an enemy will cause an explosion caused by a weapon:
   - Any gun
