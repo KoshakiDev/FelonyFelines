@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cowboy_boss-gun.png-0f04994f4533150605ff03d50535fb32.stex"
+path="res://.import/Revolver.png-bf304ca8c77110fe20740124693dab0b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/range/revolver/cowboy_boss-gun.png"
-dest_files=[ "res://.import/cowboy_boss-gun.png-0f04994f4533150605ff03d50535fb32.stex" ]
+source_file="res://assets/items/weapons/range/revolver/Revolver.png"
+dest_files=[ "res://.import/Revolver.png-bf304ca8c77110fe20740124693dab0b.stex" ]
 
 [params]
 

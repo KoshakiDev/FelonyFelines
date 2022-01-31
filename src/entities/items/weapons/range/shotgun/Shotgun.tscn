@@ -54,6 +54,17 @@ tracks/1/keys = {
 "method": "bullet_spawner_set_shooting_false"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
 
 [sub_resource type="GDScript" id=5]
 script/source = "tool
@@ -139,6 +150,7 @@ radius = 11.0
 script = ExtResource( 4 )
 entity_name = "SHOTGUN"
 max_ammo = 50
+knockback_value_on_action = 5
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 7, 0 )

@@ -129,8 +129,6 @@ func _on_PickupArea_area_entered(area):
 func disable_fast_run():
 	if is_dead():
 		return
-#	if state_machine.state.name == "Idle":
-#		animation_machine.play_animation("Knockback", "Movement")
 	if !run_timer.is_stopped():
 		return
 	fast_run = false

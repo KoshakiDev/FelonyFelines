@@ -33,11 +33,9 @@ func action(_subject):
 		print("no ammo")
 		return
 	#deplete_ammo()
-	self.animation_player.play("Shoot")
-	
-
 	_subject.knockback += -1 * _subject.movement_direction * knockback_value_on_action
-	
+	self.animation_player.play("Shoot")
+	yield(self.animation_player, "animation_finished")
 	print("ammo left: ", ammo)
 
 func bullet_spawner_set_shooting_true():

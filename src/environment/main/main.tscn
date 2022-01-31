@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/environment/tileset.tres" type="TileSet" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/environment/tileset_simple.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/entities/items/weapons/range/minigun/Minigun.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/entities/items/weapons/range/revolver/Revolver.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/components/spawners/enemy/EnemySpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/entities/items/medkit/Medkit.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=13]
@@ -122,6 +124,20 @@ player_id = "_2"
 
 [node name="Shotgun" parent="Arena/YSort/Items" instance=ExtResource( 7 )]
 position = Vector2( -192, 0 )
+
+[node name="Minigun" parent="Arena/YSort/Items" instance=ExtResource( 8 )]
+
+[node name="Minigun2" parent="Arena/YSort/Items" instance=ExtResource( 8 )]
+position = Vector2( -176, -88 )
+
+[node name="Minigun3" parent="Arena/YSort/Items" instance=ExtResource( 8 )]
+position = Vector2( -264, -88 )
+
+[node name="Revolver" parent="Arena/YSort/Items" instance=ExtResource( 9 )]
+position = Vector2( -288, 0 )
+
+[node name="Revolver2" parent="Arena/YSort/Items" instance=ExtResource( 9 )]
+position = Vector2( 72, 0 )
 
 [node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )

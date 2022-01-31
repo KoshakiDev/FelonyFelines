@@ -25,7 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "twinkle"
-length = 0.3
+length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:self_modulate")

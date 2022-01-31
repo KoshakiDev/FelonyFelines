@@ -3,8 +3,8 @@
 [ext_resource path="res://src/components/bullet-related/bullet type/PlayerBullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSingle.gd" type="Script" id=3]
-[ext_resource path="res://src/entities/items/weapons/range/assault rifle/AssaultRifle.gd" type="Script" id=4]
-[ext_resource path="res://assets/items/weapons/range/assault_rifle/rifle.png" type="Texture" id=5]
+[ext_resource path="res://src/entities/items/weapons/range/revolver/Revolver.gd" type="Script" id=4]
+[ext_resource path="res://assets/items/weapons/range/revolver/Revolver.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"
@@ -64,15 +64,17 @@ spread = 1
 radius = 12.0
 height = 18.0
 
-[node name="AssaultRifle" type="Node2D"]
+[node name="Revolver" type="Node2D"]
 script = ExtResource( 4 )
-entity_name = "ASSAULTRIFLE"
-knockback_value_on_action = 5
+entity_name = "REVOLVER"
+despawn_time = 60
+knockback_value_on_action = 1
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 7, 0 )
+position = Vector2( 8, 0 )
 
 [node name="Sprite" type="Sprite" parent="Position2D"]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Position2D"]
@@ -81,14 +83,15 @@ anims/RESET = SubResource( 1 )
 anims/Shoot = SubResource( 2 )
 
 [node name="BulletSpawner" parent="Position2D" instance=ExtResource( 2 )]
-position = Vector2( 22, -4 )
+position = Vector2( 22, -6 )
 bullet_scene = ExtResource( 1 )
+shot_delay = 0.25
 bullet_speed = 600.0
-bullet_damage_value = 10
+bullet_damage_value = 15
 bullet_emitter = SubResource( 5 )
 
 [node name="Pickupbox" type="Area2D" parent="Position2D" groups=["ITEM"]]
-position = Vector2( -1, 0 )
+position = Vector2( 7, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Pickupbox"]
 rotation = 1.5708

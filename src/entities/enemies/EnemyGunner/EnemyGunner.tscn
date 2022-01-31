@@ -387,7 +387,7 @@ script = ExtResource( 1 )
 entity_name = "GUNNER"
 entity_type = "ENEMY"
 max_speed = 600.0
-max_health = 500.0
+max_health = 250.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 17 )

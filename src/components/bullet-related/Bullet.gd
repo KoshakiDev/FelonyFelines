@@ -36,6 +36,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_Bullet_area_entered(area):
 	var areaParent = area.owner
+	print(areaParent)
+	
+	if areaParent.entity_type == "WORLD": queue_free()
 	
 	if is_player_bullet:
 		if areaParent.entity_type == "PLAYER": return
