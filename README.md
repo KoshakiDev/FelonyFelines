@@ -29,7 +29,7 @@
 - Item drop percent
 - Knockback value
 - Knockback value on action
- - Gun characteristics (If any):
+  - Gun characteristics (If any):
   - Bullet type
   - Shot delay
   - Bullet speed
@@ -37,7 +37,6 @@
   - Bullet amount
   - Current Ammo
   - Max Ammo
-  - 
 ## GENERAL ENEMY Behaviour:
 - There is a slight chance that an enemy will cause an explosion caused by a weapon:
   - Any gun
