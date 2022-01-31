@@ -29,7 +29,7 @@
 - Item drop percent
 - Knockback value
 - Knockback value on action
-  - Gun characteristics (If any):
+- Gun characteristics (If any):
   - Bullet type
   - Shot delay
   - Bullet speed
