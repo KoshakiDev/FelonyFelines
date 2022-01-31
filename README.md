@@ -8,7 +8,7 @@
 ## FIXED:
 - Velocity used to apply direction FIXED [ Range weapons now apply knockback to player ]
 
-## ENVIRONMENT OBJECTS:
+## ENVIRONMENT OBJECTS (All are considered as Area2Ds, except Wall):
 - Wall (Stops entities and bullets)
 - Accelerator (Increases velocity, bullet speed; decreases shot delay)
 - Decelerator (Decreases velocity, bullet speed; increases shot delay)
