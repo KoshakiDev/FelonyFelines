@@ -1,10 +1,24 @@
 # TOEDOE:
-- Velocity used to apply direction FIXED [ Range weapons now apply knockback to player ]
 - enable/disable fast run optimize
 - Fix limited bullets
 - Single player mode (if possible add AI to Second player)
-- Improve map
+- Add interactable environment objects 
 - Add behaviors to enemies
+
+# FIXED:
+- Velocity used to apply direction FIXED [ Range weapons now apply knockback to player ]
+
+## ENVIRONMENT OBJECTS:
+- Wall (Stops entities and bullets)
+- Accelerator (Increases velocity, bullet speed; decreases shot delay)
+- Decelerator (Decreases velocity, bullet speed; increases shot delay)
+- Safe Zone (Decreases attack damage, all hurt damage is ignored; player does not collect score points from killed enemies)
+- Rage Area (Increase attack damage, bullet amount; decrease shot delay, hurt damage; player score points from killed enemies is boosted; the effect lasts for 8 secounds, requires recharge for 60 seconds)
+- Heal Area (Increases health; attack damage is ignored; player score points are dampened)
+- Damage Area (Decreases health; Increases attack damage, hurt damage, player score points are boosted)
+- Pusher (Pushes all entities who stand on it into a certain direction)
+- Equipment booster (Decrease shot delay, spread; increase bullet speed, bullet amount)
+- Equipment dampener (Increase shot delay, spread; Decrease bullet speed, bullet amount)
 
 ## GENERAL ENEMY Behaviour:
 - There is a slight chance that an enemy will cause an explosion caused by a weapon:
