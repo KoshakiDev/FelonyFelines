@@ -1,5 +1,3 @@
-![github-cover](https://user-images.githubusercontent.com/2206700/136808110-7caa2d2c-44c0-4d8e-a272-fd01b990c6ba.png)
-
 ## TO-DO (Sorted by priority):
 - Add interactable environment objects
 - Fix limited bullets
