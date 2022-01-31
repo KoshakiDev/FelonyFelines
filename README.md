@@ -1,11 +1,11 @@
-# TOEDOE:
-- enable/disable fast run optimize
+## TO-DO (Sorted by priority):
+- Add interactable environment objects
 - Fix limited bullets
 - Single player mode (if possible add AI to Second player)
-- Add interactable environment objects 
-- Add behaviors to enemies
+- enable/disable fast run optimize
+- Add behaviors to enemies 
 
-# FIXED:
+## FIXED:
 - Velocity used to apply direction FIXED [ Range weapons now apply knockback to player ]
 
 ## ENVIRONMENT OBJECTS:
