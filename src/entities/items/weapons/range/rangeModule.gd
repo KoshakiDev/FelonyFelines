@@ -22,7 +22,7 @@ func deplete_ammo():
 	
 	print(ceil(b/a), " ", bullet_emitter_amount)
 	ammo -= bullet_emitter_amount * ceil(shots_fired)
-	print("ammo fired: ", bullet_emitter_amount * ceil(shots_fired))
+	#print("ammo fired: ", bullet_emitter_amount * ceil(shots_fired))
 	#print(shot_delay)
 	#print(animation_length)
 	#print(bullet_emitter_amount)
@@ -36,7 +36,7 @@ func action(_subject):
 	_subject.knockback += -1 * _subject.movement_direction * knockback_value_on_action
 	self.animation_player.play("Shoot")
 	yield(self.animation_player, "animation_finished")
-	print("ammo left: ", ammo)
+	#print("ammo left: ", ammo)
 
 func bullet_spawner_set_shooting_true():
 	self.bullet_spawner.set_shooting(true)
@@ -53,3 +53,7 @@ func setup_max_ammo(shot_delay, animation_length, bullet_emitter_type):
 	var shots_fired = ceil(b/a)
 	
 	return bullet_emitter_amount * shots_fired * max_ammo
+
+func modify_bullet_spawner():
+	
+	pass

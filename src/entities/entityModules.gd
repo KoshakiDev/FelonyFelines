@@ -30,10 +30,13 @@ func set_max_health(new_max_health):
 	emit_signal("max_health_changed", max_health)
 
 func set_health(new_value):
+	if health > new_value:
+		play_animation("Hit", "Hit")
 	health = new_value
 	health = clamp(health, 0, max_health)
 	emit_signal("health_changed", health)
-	if health <= 0:
+	if is_dead():
+		self.state_machine.transition_to("Death")
 		emit_signal("no_health")
 
 func _ready():
@@ -47,7 +50,6 @@ func _initialize_health_bar(health_bar):
 	emit_signal("health_changed", health)
 ##HEALTH
 
-
 func heal(heal_value):
 	health += heal_value
 	set_health(health)
@@ -56,13 +58,8 @@ func take_damage(attacker):
 	var damage_value = attacker.damage_value
 	var knockback_value = attacker.knockback_value
 	var attacker_pos = attacker.global_position
-
 	knockback = (global_position - attacker_pos).normalized() * knockback_value
-
-	health -= damage_value
-	set_health(health)
-	if is_dead():
-		self.state_machine.transition_to("Death")
+	set_health(health-damage_value)
 	return
 
 func is_dead():
@@ -132,11 +129,7 @@ func _on_Hurtbox_area_entered(area):
 
 	if self.entity_type == "PLAYER":
 		Shake.shake(4.0, .5)
-	
-	play_animation("Hit", "Hit")	
-
-	#print(entity_type, attacker)
-
+	#play_animation("Hit", "Hit")
 	take_damage(attacker)
 
 func _on_EngageRange_body_entered(body):

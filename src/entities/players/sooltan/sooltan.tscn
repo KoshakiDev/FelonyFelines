@@ -711,7 +711,6 @@ script = ExtResource( 10 )
 position = Vector2( 9, -16 )
 
 [node name="Fists" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 15 )]
-visible = false
 position = Vector2( 11, 0 )
 despawnable = false
 in_inventory = true
