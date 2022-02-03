@@ -5,6 +5,9 @@
 - enable/disable fast run optimize
 - Add behaviors to enemies 
 
+## Entities 3 Versions of themselves, change depend on environment objects (Original, Overpowered, Underpowered)
+
+
 ## ENVIRONMENT OBJECTS (All are considered as Area2Ds, except Wall):
 - Wall (Stops entities and bullets)
 - Accelerator (Increases velocity, bullet speed; decreases shot delay)
