@@ -4,7 +4,6 @@
 - Single player mode (if possible add AI to Second player)
 - enable/disable fast run optimize
 - Add behaviors to enemies 
-- \gya  nigeer sapce
 
 ## Entities 3 Versions of themselves, change depend on environment objects (Original, Overpowered, Underpowered)
 
