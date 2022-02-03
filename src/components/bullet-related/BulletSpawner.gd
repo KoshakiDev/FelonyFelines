@@ -25,7 +25,25 @@ var can_shoot: bool = false
 
 onready var timer := Timer.new()
 
+
+onready var og_bullet_scene = bullet_scene
+onready var og_shot_delay = shot_delay
+onready var og_bullet_speed = bullet_speed
+onready var og_bullet_damage_value = bullet_damage_value
+onready var og_bullet_knockback_value = bullet_knockback_value
+onready var og_bullet_emitter = bullet_emitter
+
+
+func recall_original_values() -> void:
+	bullet_scene = og_bullet_scene
+	timer.wait_time = og_shot_delay
+	bullet_speed = og_bullet_speed
+	bullet_damage_value = og_bullet_damage_value
+	bullet_knockback_value = og_bullet_knockback_value
+	#bullet_emitter = og_bullet_emitter
+
 func _ready() -> void:
+	recall_original_values()
 	if Engine.editor_hint:
 		return
 	add_child(timer)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/items/weapons/range/assault rifle/AssaultRifle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://test folder/new env objects/BaseObject.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/entities/items/weapons/range/minigun/Minigun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://test folder/new env objects/rage_area/RageArea.tscn" type="PackedScene" id=6]
 
 [node name="Node" type="Node"]
 
@@ -37,3 +38,6 @@ position = Vector2( 576, 260 )
 
 [node name="Minigun" parent="." instance=ExtResource( 5 )]
 position = Vector2( 569, 290 )
+
+[node name="EnvObject3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 888, 120 )

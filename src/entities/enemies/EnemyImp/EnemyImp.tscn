@@ -389,6 +389,7 @@ entity_name = "IMP"
 entity_type = "ENEMY"
 max_speed = 1600.0
 max_steering = 7.5
+ITEM_DROP_PERCENT = 70
 max_health = 40.0
 damage_value = 10.0
 knockback_value = 10.0

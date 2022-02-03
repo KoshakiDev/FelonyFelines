@@ -14,11 +14,13 @@ var final_score
 var wave_survived
 
 var ITEM_DROP_WEIGHTS = {
-	"weapons/melee/axe/Axe": 2,
-	"weapons/melee/spear/Spear": 2,
-	"weapons/range/assault rifle/AssaultRifle": 1,
-	"weapons/range/shotgun/Shotgun": 1,
-	"medkit/Medkit": 5
+	"weapons/melee/axe/Axe": 3,
+	"weapons/melee/spear/Spear": 3,
+	"weapons/range/assault rifle/AssaultRifle": 2,
+	"weapons/range/shotgun/Shotgun": 2,
+	"medkit/Medkit": 5,
+	"weapons/range/minigun/Minigun": 1,
+	"weapons/range/revolver/Revolver": 3
 }
 
 func _ready():

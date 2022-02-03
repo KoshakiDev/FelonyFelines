@@ -675,7 +675,7 @@ extents = Vector2( 10.5, 27 )
 height = 2.0
 
 [sub_resource type="CircleShape2D" id=62]
-radius = 54.037
+radius = 134.239
 
 [sub_resource type="DynamicFont" id=64]
 resource_local_to_scene = true
@@ -792,7 +792,6 @@ stream = ExtResource( 17 )
 position = Vector2( 0, -4 )
 
 [node name="RespawnRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 10
 
@@ -811,8 +810,8 @@ margin_right = 117.0
 margin_bottom = -78.0
 custom_fonts/normal_font = SubResource( 64 )
 bbcode_enabled = true
-bbcode_text = "[center]RESPAWNING IN:[/center] [color=#ff0000][center]5.24232[/center][/color]"
-text = "RESPAWNING IN: 5.24232"
+bbcode_text = "[center]COME RESPAWN  ME PLEASE[/center]"
+text = "COME RESPAWN  ME PLEASE"
 __meta__ = {
 "_edit_use_anchors_": false
 }

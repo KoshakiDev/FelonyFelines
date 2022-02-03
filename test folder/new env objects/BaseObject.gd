@@ -48,7 +48,10 @@ func update_enemy(target, condition):
 	update_health(target)
 	target.ITEM_DROP_PERCENT += change_item_drop_percent * condition
 	if target.entity_name == "GUNNER":
-		update_bullet_spawner(target.bullet_spawner, condition)
+		if condition == -1:
+			recall_original_bullet_spawner(target.bullet_spawner)
+		else:
+			update_bullet_spawner(target.bullet_spawner)
 	if target.entity_name == "BALL" or target.entity_name == "IMP":
 		target.damage_value += change_attack_damage * condition
 		target.knockback_value += change_knockback * condition
@@ -58,23 +61,28 @@ func update_player(target, condition=1):
 	update_health(target)
 	update_all_weapons(target, condition)
 	
-
+func recall_original_bullet_spawner(bullet_spawner):
+	bullet_spawner.recall_original_values()
 
 func update_all_weapons(target, condition):
 	var weapons = target.weapon_manager.weapons
 	for weapon in weapons:
 		if weapon.get("bullet_spawner"):
-			update_bullet_spawner(weapon.bullet_spawner, condition)
+			if condition == -1:
+				print(weapon.bullet_spawner)
+				recall_original_bullet_spawner(weapon.bullet_spawner)
+			else:
+				update_bullet_spawner(weapon.bullet_spawner)
 
-func update_bullet_spawner(bullet_spawner, condition):
-	bullet_spawner.timer.wait_time += change_shot_delay * condition
-	bullet_spawner.bullet_speed += change_bullet_speed * condition
-	bullet_spawner.bullet_damage_value += change_attack_damage * condition
-	bullet_spawner.bullet_knockback_value += change_knockback * condition
-	
+func update_bullet_spawner(bullet_spawner):
+	if change_shot_delay + bullet_spawner.timer.wait_time > 0:
+		bullet_spawner.timer.wait_time += change_shot_delay
+	bullet_spawner.bullet_speed += change_bullet_speed
+	bullet_spawner.bullet_damage_value += change_attack_damage
+	bullet_spawner.bullet_knockback_value += change_knockback
 	if bullet_spawner.bullet_emitter.get("amount"):
-		bullet_spawner.bullet_emitter.amount += change_bullet_amount * condition
-		bullet_spawner.bullet_emitter.spread_angle += change_bullet_spread * condition
+		bullet_spawner.bullet_emitter.amount += change_bullet_amount
+		bullet_spawner.bullet_emitter.spread_angle += change_bullet_spread
 		
 
 

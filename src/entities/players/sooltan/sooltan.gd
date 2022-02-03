@@ -70,6 +70,8 @@ func spawn_dust() -> void:
 func _physics_process(delta):
 	if respawn_timer.time_left != 0:
 		timer_label.bbcode_text = "[center]RESPAWNING IN:[/center]\n" + "[center][color=#ff0000]" + str(respawn_timer.time_left) + "[/color][/center]" 
+	elif is_dead():
+		timer_label.bbcode_text = "[center]COME RESPAWN ME PLEASE[/center]"
 	else:
 		timer_label.set_text("")
 

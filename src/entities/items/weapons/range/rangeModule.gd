@@ -53,7 +53,3 @@ func setup_max_ammo(shot_delay, animation_length, bullet_emitter_type):
 	var shots_fired = ceil(b/a)
 	
 	return bullet_emitter_amount * shots_fired * max_ammo
-
-func modify_bullet_spawner():
-	
-	pass

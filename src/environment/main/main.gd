@@ -17,6 +17,9 @@ var enemy_count = 0
 signal all_dead
 
 func _ready():
+	Ngio.request("Event.logEvent", {"event_name": "NewRoundLoaded","host": "https://newgrounds.com/"})
+	
+	#Ngio.request("App.logView", {"host": "https://newgrounds.com/"})
 	AudioServer.set_bus_volume_db(0, 0)
 	$InfoAnimationPlayer.play("Idle")
 	update_board()
