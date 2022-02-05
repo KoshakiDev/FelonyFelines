@@ -16,21 +16,21 @@
 [ext_resource path="res://assets/sfx/Pickup_01.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=20]
 
-[sub_resource type="VisualShaderNodeColorConstant" id=8]
+[sub_resource type="VisualShaderNodeColorConstant" id=78]
 
-[sub_resource type="VisualShaderNodeTexture" id=9]
+[sub_resource type="VisualShaderNodeTexture" id=79]
 source = 2
 
-[sub_resource type="VisualShaderNodeVectorOp" id=10]
+[sub_resource type="VisualShaderNodeVectorOp" id=80]
 operator = 6
 
-[sub_resource type="VisualShaderNodeVectorOp" id=11]
+[sub_resource type="VisualShaderNodeVectorOp" id=81]
 operator = 2
 
-[sub_resource type="VisualShaderNodeBooleanUniform" id=12]
+[sub_resource type="VisualShaderNodeBooleanUniform" id=82]
 uniform_name = "active"
 
-[sub_resource type="VisualShader" id=13]
+[sub_resource type="VisualShader" id=83]
 code = "shader_type canvas_item;
 uniform bool active;
 
@@ -78,21 +78,21 @@ void light() {
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 1040, 60 )
-nodes/fragment/3/node = SubResource( 9 )
+nodes/fragment/3/node = SubResource( 79 )
 nodes/fragment/3/position = Vector2( 600, -40 )
-nodes/fragment/5/node = SubResource( 10 )
+nodes/fragment/5/node = SubResource( 80 )
 nodes/fragment/5/position = Vector2( 860, -60 )
-nodes/fragment/6/node = SubResource( 11 )
+nodes/fragment/6/node = SubResource( 81 )
 nodes/fragment/6/position = Vector2( 600, 100 )
-nodes/fragment/9/node = SubResource( 12 )
+nodes/fragment/9/node = SubResource( 82 )
 nodes/fragment/9/position = Vector2( 400, 0 )
-nodes/fragment/11/node = SubResource( 8 )
+nodes/fragment/11/node = SubResource( 78 )
 nodes/fragment/11/position = Vector2( 400, 120 )
 nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
 
 [sub_resource type="ShaderMaterial" id=73]
 resource_local_to_scene = true
-shader = SubResource( 13 )
+shader = SubResource( 83 )
 shader_param/active = false
 
 [sub_resource type="Animation" id=67]

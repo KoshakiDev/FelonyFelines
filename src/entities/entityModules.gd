@@ -102,17 +102,30 @@ func return_travel_direction(vector):
 	return Vector2(x_direction, y_direction)
 
 
+export var is_inside_friction_area = false
+
 func _physics_process(delta):
 	velocity = velocity + knockback
 	
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
-	velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)
-
+	
+	if is_inside_friction_area:
+		apply_less_friction()
+	else:
+		velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)	
 	if not (is_equal_approx(movement_direction.x, 0.0) and is_equal_approx(movement_direction.y, 0.0)):
 		adjust_direction(movement_direction)
 	
 	move_and_slide(velocity)
 	
+func apply_less_friction():
+	var ICE_FRICTION = 0
+	velocity = velocity.linear_interpolate(Vector2.ZERO, ICE_FRICTION)
+
+func apply_more_friction():
+	var SAND_FRICTION = 0.7
+	velocity = velocity.linear_interpolate(Vector2.ZERO, SAND_FRICTION)
+
 
 
 func _on_Hurtbox_area_entered(area):
