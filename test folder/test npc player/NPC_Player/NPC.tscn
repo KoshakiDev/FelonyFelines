@@ -758,10 +758,6 @@ collision_mask = 4
 position = Vector2( 0, -8 )
 shape = SubResource( 18 )
 
-[node name="HealthBar" parent="." instance=ExtResource( 2 )]
-margin_top = -86.0
-margin_bottom = -54.0
-
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 11 )
@@ -773,5 +769,12 @@ stream = ExtResource( 5 )
 [node name="Smash" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 10 )
+
+[node name="HealthBarPos" type="Node2D" parent="."]
+z_index = 3
+
+[node name="HealthBar" parent="HealthBarPos" instance=ExtResource( 2 )]
+margin_top = -87.0
+margin_bottom = -55.0
 
 [connection signal="body_entered" from="EngageRange" to="." method="_on_EngageRange_body_entered"]
