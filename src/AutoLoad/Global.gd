@@ -97,6 +97,41 @@ func get_closest_enemy(position: Vector2):
 	
 	return closest_enemy
 
+func get_farthest_enemy(position: Vector2):
+	var farthest_enemy: Vector2
+	var farthest_distance = 0
+	
+	var all_enemies = get_all_enemies_list()
+	if len(all_enemies) == 0:
+		farthest_enemy = Vector2.ZERO
+	else:
+		farthest_enemy = all_enemies[0].position
+	
+	
+	for enemy in all_enemies:
+		var distance = (position - enemy.global_position).length()
+		if distance > farthest_distance:
+			farthest_enemy = enemy.global_position
+			farthest_distance = distance
+	
+	return farthest_enemy
+
+func get_heighest_hp_enemy():
+	var heighest_hp_enemy: Vector2 = Vector2.ZERO
+	var heighest_hp = 0
+	
+	for enemy in get_all_enemies_list():
+		var hp = enemy.health
+		if hp > heighest_hp:
+			heighest_hp_enemy = enemy.global_position
+			heighest_hp = hp
+	
+	return heighest_hp_enemy
+
+func get_brother():
+	for player in entity_world.get_children():
+		if not player.is_in_group("PLAYER"): continue
+		return player
 
 func get_closest_player(position: Vector2):
 	var closest_player: Vector2 = Vector2.ZERO
