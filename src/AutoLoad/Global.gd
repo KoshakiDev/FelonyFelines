@@ -50,6 +50,19 @@ func get_all_enemies():
 
 	return enemies
 
+func get_all_enemies_list():
+	var enemies = []
+	var enemy_names = ["BALL", "GUNNER", "IMP"]
+	
+	for entity in entity_world.get_children():
+		if not entity.is_in_group("ENTITY"):
+			continue
+
+		if entity.entity_name in enemy_names:
+			enemies.append(entity)
+	
+	return enemies
+
 
 func normalize_item_drop_weights():
 	var sum = 0
@@ -70,6 +83,19 @@ func normalize_item_drop_weights():
 			ITEM_DROP_WEIGHTS[key] = 1
 		else:
 			ITEM_DROP_WEIGHTS[key] = round(ITEM_DROP_WEIGHTS[key])
+
+
+func get_closest_enemy(position: Vector2):
+	var closest_enemy: Vector2 = Vector2.ZERO
+	var closest_distance = 999999999
+	
+	for enemy in get_all_enemies_list():
+		var distance = (position - enemy.global_position).length()
+		if distance < closest_distance:
+			closest_enemy = enemy.global_position
+			closest_distance = distance
+	
+	return closest_enemy
 
 
 func get_closest_player(position: Vector2):

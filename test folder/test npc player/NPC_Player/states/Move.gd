@@ -38,7 +38,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Death")
 		return
 	
-	var target_pos = Global.get_closest_player(owner.global_position)
+	var target_pos = Global.get_closest_enemy(owner.global_position)
 	var total_vector
 		
 	# direction of motion
@@ -54,7 +54,7 @@ func physics_update(delta: float) -> void:
 	owner.movement_direction = vector_to_target
 	
 	
-	if owner.bodies_in_engage_area > 0:
-		print("will attack")
-		#state_machine.transition_to("Attack")
+	if vector_to_target.length() < 50:
+		# print("will attack")
+		state_machine.transition_to("Attack")
 		return
