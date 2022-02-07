@@ -22,6 +22,7 @@ onready var respawn_radius = $RespawnRadius
 onready var respawn_timer = $RespawnRadius/Timer
 onready var timer_label = $RespawnRadius/TimerLabel
 
+onready var pickup_area = $PickupArea
 onready var hurtbox_collision = $Hurtbox/CollisionShape2D2
 onready var hurtbox = $Hurtbox
 onready var collision = $Collider

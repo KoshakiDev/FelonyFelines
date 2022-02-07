@@ -1,13 +1,17 @@
 extends State
 
+#NPC ATTACK STATE
+
 func enter(msg := {}) -> void:
-	owner.play_animation("Idle", "Animations")
-	owner.bullet_spawner.set_shooting(true)
+	owner.play_animation("Idle", "Movement")
+	owner.action()
 
 func exit() -> void:
-	owner.cannon.rotation_degrees = 0
-	owner.bullet_spawner.set_shooting(false)
+	pass
 
+
+
+#don't use this not finished
 func physics_update(_delta: float) -> void:	
 	var target_pos = Global.get_closest_player(owner.global_position)
 
