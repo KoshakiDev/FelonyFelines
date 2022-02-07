@@ -38,7 +38,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Death")
 		return
 	
-	var target_pos = Global.get_closest_player(owner.global_position)
+	var target_pos = Global.get_closest_enemy(owner.global_position)
 	var total_vector
 		
 	# direction of motion
