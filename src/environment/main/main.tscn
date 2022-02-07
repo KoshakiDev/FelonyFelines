@@ -110,9 +110,6 @@ position = Vector2( -920, 8 )
 
 [node name="YSort" type="YSort" parent="Arena"]
 
-[node name="Sooltan" parent="Arena/YSort" instance=ExtResource( 13 )]
-position = Vector2( 100, 0 )
-
 [node name="Sooltan2" parent="Arena/YSort" instance=ExtResource( 13 )]
 position = Vector2( -256, 0 )
 player_id = "_2"
@@ -125,7 +122,7 @@ player_id = "_2"
 position = Vector2( -288, 0 )
 
 [node name="Revolver2" parent="Arena/YSort/Items" instance=ExtResource( 9 )]
-position = Vector2( 72, 0 )
+position = Vector2( 800, 672 )
 
 [node name="NPC" parent="Arena/YSort" instance=ExtResource( 7 )]
 position = Vector2( 832, 704 )

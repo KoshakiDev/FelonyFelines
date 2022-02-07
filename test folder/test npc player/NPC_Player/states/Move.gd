@@ -20,7 +20,18 @@ func ent_dist(pos1: Vector2, pos2: Vector2):
 
 
 func enter(msg := {}) -> void:
-	owner.play_animation("Run_1", "Movement")
+	if msg.has("Accel"):
+		owner.play_animation("Accel", "Movement")
+		yield(owner.movement_player, "animation_finished")
+	if owner.fast_run:
+		owner.play_animation("Run_2", "Movement")
+	else:
+		owner.play_animation("Run_1", "Movement")	
+
+
+func exit() -> void:
+	owner.play_animation("Decel_1", "Movement")
+
 
 func physics_update(delta: float) -> void:
 	if owner.is_dead():
