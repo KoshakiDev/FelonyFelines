@@ -14,6 +14,9 @@ func exit() -> void:
 #don't use this not finished
 func physics_update(_delta: float) -> void:	
 	var target_pos = Global.get_closest_enemy(owner.global_position)
+	
+	if (target_pos - owner.global_position).length() > 50:
+		state_machine.transition_to("Move")
 
 	owner.hand_position.look_at(target_pos)
 	var look_dir = (target_pos - owner.global_position).normalized()
@@ -21,6 +24,3 @@ func physics_update(_delta: float) -> void:
 		owner.sprite.scale.x = -1
 	else:
 		owner.sprite.scale.x = 1
-		
-	if Global.get_closest_enemy(owner.global_position).length() > 50:
-		state_machine.transition_to("Move")
