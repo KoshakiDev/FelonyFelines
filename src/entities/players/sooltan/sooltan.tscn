@@ -16,21 +16,21 @@
 [ext_resource path="res://assets/sfx/Pickup_01.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=20]
 
-[sub_resource type="VisualShaderNodeColorConstant" id=78]
+[sub_resource type="VisualShaderNodeColorConstant" id=1]
 
-[sub_resource type="VisualShaderNodeTexture" id=79]
+[sub_resource type="VisualShaderNodeTexture" id=2]
 source = 2
 
-[sub_resource type="VisualShaderNodeVectorOp" id=80]
+[sub_resource type="VisualShaderNodeVectorOp" id=3]
 operator = 6
 
-[sub_resource type="VisualShaderNodeVectorOp" id=81]
+[sub_resource type="VisualShaderNodeVectorOp" id=4]
 operator = 2
 
-[sub_resource type="VisualShaderNodeBooleanUniform" id=82]
+[sub_resource type="VisualShaderNodeBooleanUniform" id=5]
 uniform_name = "active"
 
-[sub_resource type="VisualShader" id=83]
+[sub_resource type="VisualShader" id=6]
 code = "shader_type canvas_item;
 uniform bool active;
 
@@ -78,24 +78,24 @@ void light() {
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 1040, 60 )
-nodes/fragment/3/node = SubResource( 79 )
+nodes/fragment/3/node = SubResource( 2 )
 nodes/fragment/3/position = Vector2( 600, -40 )
-nodes/fragment/5/node = SubResource( 80 )
+nodes/fragment/5/node = SubResource( 3 )
 nodes/fragment/5/position = Vector2( 860, -60 )
-nodes/fragment/6/node = SubResource( 81 )
+nodes/fragment/6/node = SubResource( 4 )
 nodes/fragment/6/position = Vector2( 600, 100 )
-nodes/fragment/9/node = SubResource( 82 )
+nodes/fragment/9/node = SubResource( 5 )
 nodes/fragment/9/position = Vector2( 400, 0 )
-nodes/fragment/11/node = SubResource( 78 )
+nodes/fragment/11/node = SubResource( 1 )
 nodes/fragment/11/position = Vector2( 400, 120 )
 nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
 
-[sub_resource type="ShaderMaterial" id=73]
+[sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
-shader = SubResource( 83 )
+shader = SubResource( 6 )
 shader_param/active = false
 
-[sub_resource type="Animation" id=67]
+[sub_resource type="Animation" id=8]
 resource_name = "Accel"
 length = 0.3
 step = 0.02
@@ -137,7 +137,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=9]
 resource_name = "Death"
 length = 0.5
 tracks/0/type = "value"
@@ -191,7 +191,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=77]
+[sub_resource type="Animation" id=10]
 resource_name = "Death_loop"
 length = 0.001
 loop = true
@@ -208,7 +208,7 @@ tracks/0/keys = {
 "values": [ 52 ]
 }
 
-[sub_resource type="Animation" id=72]
+[sub_resource type="Animation" id=11]
 resource_name = "Decel_1"
 length = 0.3
 step = 0.02
@@ -268,7 +268,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=68]
+[sub_resource type="Animation" id=12]
 resource_name = "Decel_2"
 length = 0.6
 step = 0.01
@@ -343,7 +343,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=69]
+[sub_resource type="Animation" id=13]
 resource_name = "Idle"
 length = 0.4
 loop = true
@@ -360,7 +360,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=76]
+[sub_resource type="Animation" id=14]
 resource_name = "Knockback"
 length = 0.1
 step = 0.05
@@ -391,7 +391,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=66]
+[sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -430,7 +430,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=75]
+[sub_resource type="Animation" id=16]
 resource_name = "Respawn"
 length = 0.5
 tracks/0/type = "value"
@@ -484,7 +484,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=17]
 resource_name = "Run_1"
 length = 0.8
 loop = true
@@ -531,7 +531,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=70]
+[sub_resource type="Animation" id=18]
 resource_name = "Run_2"
 length = 0.6
 loop = true
@@ -584,7 +584,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=58]
+[sub_resource type="Animation" id=19]
 resource_name = "Hit"
 length = 0.3
 tracks/0/type = "value"
@@ -636,7 +636,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=59]
+[sub_resource type="Animation" id=20]
 resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
@@ -664,25 +664,28 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="CapsuleShape2D" id=65]
+[sub_resource type="CapsuleShape2D" id=21]
 radius = 12.0
 height = 0.0
 
-[sub_resource type="RectangleShape2D" id=60]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 10.5, 27 )
 
-[sub_resource type="CapsuleShape2D" id=52]
+[sub_resource type="CapsuleShape2D" id=23]
 height = 2.0
 
-[sub_resource type="CircleShape2D" id=62]
+[sub_resource type="CircleShape2D" id=24]
 radius = 134.239
 
-[sub_resource type="DynamicFont" id=64]
+[sub_resource type="DynamicFont" id=25]
 resource_local_to_scene = true
 size = 32
 font_data = ExtResource( 20 )
 
-[node name="Sooltan" type="KinematicBody2D" groups=["ENTITY", "PLAYER"]]
+[node name="Sooltan" type="KinematicBody2D" groups=[
+"ENTITY",
+"PLAYER",
+]]
 collision_layer = 2
 collision_mask = 77
 script = ExtResource( 11 )
@@ -697,7 +700,7 @@ scale = Vector2( 0.8, 1 )
 texture = ExtResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 73 )
+material = SubResource( 7 )
 position = Vector2( 0, -48 )
 texture = ExtResource( 5 )
 hframes = 8
@@ -721,21 +724,21 @@ script = ExtResource( 4 )
 
 [node name="Movement" type="AnimationPlayer" parent="AnimationMachine"]
 root_node = NodePath("../..")
-anims/Accel = SubResource( 67 )
-anims/Death = SubResource( 74 )
-anims/Death_loop = SubResource( 77 )
-anims/Decel_1 = SubResource( 72 )
-anims/Decel_2 = SubResource( 68 )
-anims/Idle = SubResource( 69 )
-anims/Knockback = SubResource( 76 )
-anims/RESET = SubResource( 66 )
-anims/Respawn = SubResource( 75 )
-anims/Run_1 = SubResource( 71 )
-anims/Run_2 = SubResource( 70 )
+anims/Accel = SubResource( 8 )
+anims/Death = SubResource( 9 )
+anims/Death_loop = SubResource( 10 )
+anims/Decel_1 = SubResource( 11 )
+anims/Decel_2 = SubResource( 12 )
+anims/Idle = SubResource( 13 )
+anims/Knockback = SubResource( 14 )
+anims/RESET = SubResource( 15 )
+anims/Respawn = SubResource( 16 )
+anims/Run_1 = SubResource( 17 )
+anims/Run_2 = SubResource( 18 )
 
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
-anims/Hit = SubResource( 58 )
-anims/RESET = SubResource( 59 )
+anims/Hit = SubResource( 19 )
+anims/RESET = SubResource( 20 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 7 )
@@ -754,7 +757,7 @@ script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2( 0, -11 )
-shape = SubResource( 65 )
+shape = SubResource( 21 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 64
@@ -762,12 +765,12 @@ collision_mask = 48
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( -0.5, -27 )
-shape = SubResource( 60 )
+shape = SubResource( 22 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, -11 )
-shape = SubResource( 52 )
+shape = SubResource( 23 )
 
 [node name="HealthBarPos" type="Node2D" parent="."]
 z_index = 3
@@ -795,7 +798,7 @@ collision_layer = 2
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnRadius"]
-shape = SubResource( 62 )
+shape = SubResource( 24 )
 
 [node name="Timer" type="Timer" parent="RespawnRadius"]
 process_mode = 0
@@ -807,7 +810,7 @@ margin_left = -116.0
 margin_top = -139.0
 margin_right = 117.0
 margin_bottom = -78.0
-custom_fonts/normal_font = SubResource( 64 )
+custom_fonts/normal_font = SubResource( 25 )
 bbcode_enabled = true
 bbcode_text = "[center]COME RESPAWN  ME PLEASE[/center]"
 text = "COME RESPAWN  ME PLEASE"
