@@ -679,7 +679,7 @@ extents = Vector2( 10.5, 27 )
 height = 2.0
 
 [sub_resource type="CircleShape2D" id=37]
-radius = 134.239
+radius = 75.0
 
 [sub_resource type="DynamicFont" id=38]
 resource_local_to_scene = true
@@ -808,11 +808,11 @@ stream = ExtResource( 10 )
 position = Vector2( 0, -4 )
 
 [node name="RespawnRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnRadius"]
+visible = false
 shape = SubResource( 37 )
 
 [node name="Timer" type="Timer" parent="RespawnRadius"]

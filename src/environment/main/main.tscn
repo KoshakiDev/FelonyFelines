@@ -125,7 +125,7 @@ position = Vector2( -288, 0 )
 position = Vector2( 800, 672 )
 
 [node name="NPC" parent="Arena/YSort" instance=ExtResource( 7 )]
-position = Vector2( 832, 704 )
+position = Vector2( 111, 6 )
 
 [node name="OneWayCollision" type="StaticBody2D" parent="Arena" groups=["wall"]]
 position = Vector2( 0, 40 )

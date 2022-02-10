@@ -675,7 +675,7 @@ extents = Vector2( 10.5, 27 )
 height = 2.0
 
 [sub_resource type="CircleShape2D" id=62]
-radius = 134.239
+radius = 75.0267
 
 [sub_resource type="DynamicFont" id=64]
 resource_local_to_scene = true

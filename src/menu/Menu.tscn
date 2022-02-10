@@ -203,8 +203,8 @@ margin_left = -160.0
 margin_top = -147.0
 margin_right = 160.0
 margin_bottom = 29.0
-custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]FELONYFELINES[/center]"
 text = "FELONYFELINES"
@@ -245,8 +245,8 @@ margin_top = 24.0
 margin_right = 162.0
 margin_bottom = 120.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 1, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]AND[/center]"
 text = "AND"
@@ -254,9 +254,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera2D" type="Camera2D" parent="." groups=[
-"camera",
-]]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2( -104, -72 )
 current = true
 zoom = Vector2( 1.333, 1.333 )
