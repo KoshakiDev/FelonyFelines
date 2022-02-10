@@ -154,3 +154,17 @@ func _on_EngageRange_body_entered(body):
 func _on_EngageRange_body_exited(body):
 	if not body.is_in_group("PLAYER"): return
 	bodies_in_engage_area -= 1
+
+func _on_EngageRange_enemy_entered(body):
+	var enemy_names = ["BALL", "GUNNER", "IMP"]
+	if not body.is_in_group("ENTITY"): return
+	if not body.entity_name in enemy_names: return
+	
+	bodies_in_engage_area += 1
+
+func _on_EngageRange_enemy_exited(body):
+	var enemy_names = ["BALL", "GUNNER", "IMP"]
+	if not body.is_in_group("ENTITY"): return
+	if not body.entity_name in enemy_names: return
+	
+	bodies_in_engage_area -= 1
