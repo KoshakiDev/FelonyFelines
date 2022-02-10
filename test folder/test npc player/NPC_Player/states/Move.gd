@@ -65,7 +65,7 @@ func physics_update(delta: float) -> void:
 
 	var brother = Global.get_brother()	
 	
-	if there_is_an_enemy_in_distance(50):
+	if owner.bodies_in_engage_area > 0:
 		# attack closest enemy
 		state_machine.transition_to("Attack")
 		return

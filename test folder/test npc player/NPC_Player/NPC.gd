@@ -59,8 +59,8 @@ func _input(event):
 func _ready():
 	_initialize_health_bar(health_bar)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
-	engage_range.connect("body_entered", self, "_on_EngageRange_body_entered")
-	engage_range.connect("body_exited", self, "_on_EngageRange_body_exited")
+	engage_range.connect("body_entered", self, "_on_EngageRange_enemy_entered")
+	engage_range.connect("body_exited", self, "_on_EngageRange_enemy_exited")
 	respawn_radius.connect("body_entered", self, "_on_RespawnRadius_body_entered")
 	respawn_radius.connect("body_exited", self, "_on_RespawnRadius_body_exited")
 	respawn_timer.connect("timeout", self, "_on_Timer_timeout")
