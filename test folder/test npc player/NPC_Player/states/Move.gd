@@ -67,6 +67,7 @@ func physics_update(delta: float) -> void:
 	
 	if owner.bodies_in_engage_area > 0:
 		# attack closest enemy
+		owner.switch_to_next_weapon()
 		state_machine.transition_to("Attack")
 		return
 	elif there_is_an_enemy_in_distance(300):
