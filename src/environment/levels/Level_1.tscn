@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/entities/players/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/environment/tilesets/Plants.tscn" type="PackedScene" id=2]
@@ -16,6 +16,16 @@
 resource_local_to_scene = true
 size = 64
 font_data = ExtResource( 10 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+glow_enabled = true
+glow_bloom = 0.4
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 2.0
+adjustment_saturation = 1.5
 
 [node name="Main" instance=ExtResource( 3 )]
 
@@ -97,3 +107,6 @@ position = Vector2( 2415, 1046 )
 
 [node name="Info" parent="InfoPos" index="0"]
 custom_fonts/normal_font = SubResource( 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
+environment = SubResource( 2 )
