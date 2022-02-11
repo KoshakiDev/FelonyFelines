@@ -2,11 +2,6 @@ extends State
 
 #NPC MOVE STATE
 
-var rng = RandomNumberGenerator.new()
-func random_vector2(n):
-	rng.randomize()
-	return Vector2(rng.randf_range(-n, n), rng.randf_range(-n, n))
-
 func spiral(direction_vector):
 	var x = direction_vector.x
 	var y = direction_vector.y
@@ -82,7 +77,7 @@ func physics_update(delta: float) -> void:
 		target_pos = brother.global_position
 	else:
 		# go random
-		target_pos = random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
+		target_pos = Global.random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
 	
 	# direction of motion
 	vector_to_target = target_pos - owner.global_position
