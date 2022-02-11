@@ -1168,6 +1168,8 @@ texture = ExtResource( 2 )
 hframes = 3
 
 [node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
 rotation = 1.5708

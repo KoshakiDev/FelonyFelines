@@ -153,6 +153,8 @@ anims/idle = SubResource( 2 )
 anims/pickup = SubResource( 4 )
 
 [node name="Pickupbox" type="Area2D" parent="." groups=["ITEM"]]
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickupbox"]
 position = Vector2( 0, -1 )

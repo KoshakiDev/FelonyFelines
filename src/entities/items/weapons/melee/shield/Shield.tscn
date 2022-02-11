@@ -38,6 +38,8 @@ shape = SubResource( 1 )
 
 [node name="PickupBox" type="Area2D" parent="." groups=["ITEM"]]
 visible = false
+collision_layer = 256
+collision_mask = 256
 
 [node name="Area2D" type="CollisionShape2D" parent="PickupBox"]
 position = Vector2( -1.00006, -16 )

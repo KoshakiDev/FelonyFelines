@@ -91,6 +91,8 @@ bullet_emitter = SubResource( 5 )
 
 [node name="Pickupbox" type="Area2D" parent="Position2D" groups=["ITEM"]]
 position = Vector2( 7, 0 )
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Pickupbox"]
 position = Vector2( -7, 0 )

@@ -25,3 +25,4 @@ shape = SubResource( 1 )
 stream = ExtResource( 2 )
 
 [connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
