@@ -16,7 +16,7 @@ shader_param/player2_position = null
 shader_param/split_line_thickness = null
 shader_param/split_line_color = null
 
-[node name="Splitscreen" type="Node"]
+[node name="Splitscreen" type="Node2D"]
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": "Custom-made dynamic split screen "
