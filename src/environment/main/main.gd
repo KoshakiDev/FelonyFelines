@@ -1,12 +1,10 @@
 extends Node2D
 
-onready var camera = $Camera2D
 onready var info_text = $InfoPos/Info
-onready var spawners = $Arena/Spawners.get_children()
-
-onready var timer = $Timer
-onready var items = $Arena/YSort/Items
-onready var entity_world = $Arena/YSort
+onready var spawners = $World/EntityWorld/Spawners.get_children()
+onready var timer = $WaveTimer
+onready var items = $World/EntityWorld/Items
+onready var entity_world = $World/EntityWorld
 
 var wave_num = 0
 var points = 0
@@ -33,7 +31,6 @@ func update_board():
 
 func update_points(point_amount):
 	points += point_amount
-		
 	update_board()
 
 func update_wave():
@@ -45,8 +42,8 @@ func update_wave():
 		spawner.add_enemies(wave_num)
 
 	update_board()
-	timer.start()
-	yield(timer, "timeout")
+	#timer.start()
+	#yield(timer, "timeout")
 	is_wave_updating = false
 
 func _process(delta):

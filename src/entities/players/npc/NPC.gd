@@ -1,5 +1,5 @@
 #extends "res://src/entities/entityModules.gd"
-extends "res://src/entities/players/sooltan/sooltan.gd"
+extends "res://src/entities/players/player/player.gd"
 
 #onready var state_machine := $StateMachine
 

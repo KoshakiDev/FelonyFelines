@@ -1,0 +1,262 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://test folder/test tileset trees/Texture/TX Plant.png" type="Texture" id=2]
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 84.8845, 152.879, 73.6688, 152.879, 73.6688, 151.87, 84.8845, 151.87 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 85.1088, 153.188, 74.1175, 153.188, 74.1175, 144.888, 85.1088, 144.888 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 41.3616, 37.4285, 2.17859, 37.4285, 2.17859, 21.0185, 41.3616, 21.0185 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 53.416, 152.717, 41.1685, 152.717, 41.1685, 142.488, 53.416, 142.488 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 53.436, 118.859, 42.6151, 118.859, 42.6151, 110.461, 53.436, 110.461 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 26.4783, 24.9153, 5.96713, 24.9153, 5.96713, 15.0634, 26.4783, 15.0634 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 29.1801, 27.4993, 2.69321, 27.4993, 2.69321, 16.194, 29.1801, 16.194 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 40.466, 32.9219, 2.02768, 32.9219, 2.02768, 18.2249, 40.466, 18.2249 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( 50.1368, 41.9905, 5.23827, 41.9905, 5.23827, 26.0015, 50.1368, 26.0015 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391, 43.4403, 31.6852 )
+
+[sub_resource type="TileSet" id=1]
+1/name = "Tree Large"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( -64, -128 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 160, 160 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/occluder = SubResource( 2 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( -64, -128 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, -64, -128 )
+1/shape = SubResource( 3 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -64, -128 )
+} ]
+1/z_index = 0
+2/name = "Tree Medium"
+2/texture = ExtResource( 2 )
+2/tex_offset = Vector2( -32, -128 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 160, 0, 96, 160 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( -32, -128 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, -32, -128 )
+2/shape = SubResource( 4 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -32, -128 )
+} ]
+2/z_index = 0
+3/name = "Tree Small"
+3/texture = ExtResource( 2 )
+3/tex_offset = Vector2( -32, -96 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 288, 32, 96, 128 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( -32, -96 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, -32, -96 )
+3/shape = SubResource( 5 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -32, -96 )
+} ]
+3/z_index = 0
+4/name = "Bush 1"
+4/texture = ExtResource( 2 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 32, 192, 32, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 7 )
+4/shape_one_way = false
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+4/z_index = 0
+5/name = "Bush 2"
+5/texture = ExtResource( 2 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 96, 192, 32, 32 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape = SubResource( 6 )
+5/shape_one_way = false
+5/shape_one_way_margin = 1.0
+5/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+5/z_index = 0
+6/name = "Bush 3"
+6/texture = ExtResource( 2 )
+6/tex_offset = Vector2( -5, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 154, 189, 42, 34 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( -5, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, -5, 0 )
+6/shape = SubResource( 8 )
+6/shape_one_way = false
+6/shape_one_way_margin = 1.0
+6/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -5, 0 )
+} ]
+6/z_index = 0
+7/name = "Bush 4"
+7/texture = ExtResource( 2 )
+7/tex_offset = Vector2( -10, -10 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 212, 183, 53, 44 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( -10, -10 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, -10, -10 )
+7/shape = SubResource( 9 )
+7/shape_one_way = false
+7/shape_one_way_margin = 1.0
+7/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 9 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -10, -10 )
+} ]
+7/z_index = 0
+8/name = "Bush 5"
+8/texture = ExtResource( 2 )
+8/tex_offset = Vector2( -10, -10 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 277, 182, 52, 49 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( -10, -10 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, -10, -10 )
+8/shape = SubResource( 10 )
+8/shape_one_way = false
+8/shape_one_way_margin = 1.0
+8/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -10, -10 )
+} ]
+8/z_index = 0
+9/name = "Grass Small"
+9/texture = ExtResource( 2 )
+9/tex_offset = Vector2( 0, 12 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 384, 128, 128 )
+9/tile_mode = 2
+9/autotile/icon_coordinate = Vector2( 0, 0 )
+9/autotile/tile_size = Vector2( 32, 32 )
+9/autotile/spacing = 0
+9/autotile/occluder_map = [  ]
+9/autotile/navpoly_map = [  ]
+9/autotile/priority_map = [  ]
+9/autotile/z_index_map = [  ]
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+10/name = "Bush 6"
+10/texture = ExtResource( 2 )
+10/tex_offset = Vector2( -5, -5 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 344, 187, 45, 39 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( -5, -5 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, -5, -5 )
+10/shape = SubResource( 11 )
+10/shape_one_way = false
+10/shape_one_way_margin = 1.0
+10/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -5, -5 )
+} ]
+10/z_index = 0
+
+[node name="Plants" type="TileMap"]
+scale = Vector2( 2, 2 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_tile_origin = 2
+cell_y_sort = true
+show_collision = true
+collision_use_kinematic = true
+collision_mask = 33
+format = 1
+tile_data = PoolIntArray( 196610, 9, 65538 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 192.0, 257.0 ],
+"_edit_vertical_guides_": [ 129.0, 193.0 ]
+}

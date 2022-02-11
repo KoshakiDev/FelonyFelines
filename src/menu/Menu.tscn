@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/environment/parallax background/finalDay_3.png" type="Texture" id=6]
 [ext_resource path="res://assets/environment/parallax background/finalDay_4.png" type="Texture" id=7]
 [ext_resource path="res://assets/environment/parallax background/finalDay_5.png" type="Texture" id=8]
-[ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/entities/players/player/player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/environment/tileset_simple.png" type="Texture" id=10]
 [ext_resource path="res://src/menu/DeathScreen.tscn" type="PackedScene" id=11]
 
