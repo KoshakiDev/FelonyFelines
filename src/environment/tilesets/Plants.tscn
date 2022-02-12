@@ -35,15 +35,15 @@ points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391,
 [sub_resource type="TileSet" id=1]
 1/name = "Tree Large"
 1/texture = ExtResource( 2 )
-1/tex_offset = Vector2( -64, -128 )
+1/tex_offset = Vector2( -64, -120 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 160, 160 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/occluder = SubResource( 2 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( -64, -128 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, -64, -128 )
+1/shape_offset = Vector2( -64, -120 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, -64, -120 )
 1/shape = SubResource( 3 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -52,19 +52,19 @@ points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391,
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -64, -128 )
+"shape_transform": Transform2D( 1, 0, 0, 1, -64, -120 )
 } ]
 1/z_index = 0
 2/name = "Tree Medium"
 2/texture = ExtResource( 2 )
-2/tex_offset = Vector2( -32, -128 )
+2/tex_offset = Vector2( -32, -120 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 160, 0, 96, 160 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( -32, -128 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, -32, -128 )
+2/shape_offset = Vector2( -32, -120 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, -32, -120 )
 2/shape = SubResource( 4 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -73,19 +73,19 @@ points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391,
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -32, -128 )
+"shape_transform": Transform2D( 1, 0, 0, 1, -32, -120 )
 } ]
 2/z_index = 0
 3/name = "Tree Small"
 3/texture = ExtResource( 2 )
-3/tex_offset = Vector2( -32, -96 )
+3/tex_offset = Vector2( -32, -85 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 288, 32, 96, 128 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( -32, -96 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, -32, -96 )
+3/shape_offset = Vector2( -32, -85 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, -32, -85 )
 3/shape = SubResource( 5 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
@@ -94,7 +94,7 @@ points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391,
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -32, -96 )
+"shape_transform": Transform2D( 1, 0, 0, 1, -32, -85 )
 } ]
 3/z_index = 0
 4/name = "Bush 1"
@@ -183,14 +183,14 @@ points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391,
 7/z_index = 0
 8/name = "Bush 5"
 8/texture = ExtResource( 2 )
-8/tex_offset = Vector2( -10, -10 )
+8/tex_offset = Vector2( -10, -15 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 277, 182, 52, 49 )
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( -10, -10 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, -10, -10 )
+8/shape_offset = Vector2( -10, -15 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, -10, -15 )
 8/shape = SubResource( 10 )
 8/shape_one_way = false
 8/shape_one_way_margin = 1.0
@@ -199,7 +199,7 @@ points = PoolVector2Array( 40.3717, 48.3202, 5.64801, 40.0834, 6.13251, 31.0391,
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -10, -10 )
+"shape_transform": Transform2D( 1, 0, 0, 1, -10, -15 )
 } ]
 8/z_index = 0
 9/name = "Grass Small"
@@ -255,7 +255,7 @@ show_collision = true
 collision_use_kinematic = true
 collision_mask = 33
 format = 1
-tile_data = PoolIntArray( 196610, 9, 65538 )
+tile_data = PoolIntArray( 196610, 3, 0 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 192.0, 257.0 ],
 "_edit_vertical_guides_": [ 129.0, 193.0 ]
