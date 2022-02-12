@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_Bullet_area_entered(area):
 	var areaParent = area.owner
-	print(area)
+	#print(area)
 	
 	if areaParent.entity_type == "WORLD": queue_free()
 	
@@ -55,6 +55,6 @@ func _on_Bullet_area_entered(area):
 func _on_Bullet_body_entered(body):
 	#var bodyParent = body.owner
 	#print(areaParent)
-	print(body)
+	#print(body)
 	if body.get_name() == "Walls" or body.get_name() == "Plants": queue_free()
 

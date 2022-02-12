@@ -686,7 +686,7 @@ resource_local_to_scene = true
 size = 32
 font_data = ExtResource( 15 )
 
-[node name="NPC" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
+[node name="NPC" type="KinematicBody2D" groups=["ENTITY", "PLAYER"]]
 collision_layer = 2
 collision_mask = 77
 script = ExtResource( 12 )
@@ -767,6 +767,8 @@ shape = SubResource( 21 )
 
 [node name="PickupArea" type="Area2D" parent="."]
 visible = false
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2( 0, -11 )
