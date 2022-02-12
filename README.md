@@ -9,7 +9,6 @@
 
 
 ## ENVIRONMENT OBJECTS (All are considered as Area2Ds, except Wall):
-- Wall (Stops entities and bullets)
 - Booster (Increases velocity)
 - Heal Area (Increases health when stood on)
 - Damage Area (Decreases health when stood on)
