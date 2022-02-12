@@ -686,7 +686,7 @@ resource_local_to_scene = true
 size = 32
 font_data = ExtResource( 15 )
 
-[node name="NPC" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
+[node name="NPC" type="KinematicBody2D" groups=["ENTITY", "PLAYER"]]
 collision_layer = 2
 collision_mask = 77
 script = ExtResource( 12 )
