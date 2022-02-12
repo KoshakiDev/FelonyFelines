@@ -20,6 +20,23 @@ func there_is_an_enemy_in_distance(distance):
 	else:
 		return false
 
+func is_there_item(target_item):
+	#the target item name must match the existing item types 
+	for item in Global.items.get_children():
+		if item.item_type == target_item:
+			return true
+	return false
+
+func return_item_position(target_item):
+	#the target item name must match the existing item types 
+	var target_item_position = Vector2.ZERO
+	#print(Global.items.get_children())
+	for item in Global.items.get_children():
+		if item.item_type == target_item:
+			target_item_position = item.global_position
+	return target_item_position
+
+
 func there_is_a_box():
 	return false
 
@@ -73,10 +90,10 @@ func physics_update(delta: float) -> void:
 	elif there_is_an_enemy_in_distance(300):
 		# go to closest enemy
 		target_pos = Global.get_closest_enemy(owner.global_position)
-	elif owner.health < 50 && there_is_a_box():
+	elif owner.health < 50 && is_there_item("MEDKIT"):
 		# go to the box
 		# target_pos = position_of_box()
-		target_pos = Vector2.ZERO
+		target_pos = return_item_position("MEDKIT")
 	elif brother.is_dead():
 		# go to brother
 		target_pos = brother.global_position

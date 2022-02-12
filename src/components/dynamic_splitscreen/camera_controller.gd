@@ -18,7 +18,7 @@ func _ready():
 	pass
 
 func setup():
-	print(player1, player2)
+	#print(player1, player2)
 	if player1 == null or player2 == null:
 		printerr("SPLIT SCREEN ERROR: Player(s) are null!")
 		set_physics_process(false)

@@ -767,6 +767,8 @@ shape = SubResource( 21 )
 
 [node name="PickupArea" type="Area2D" parent="."]
 visible = false
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2( 0, -11 )
