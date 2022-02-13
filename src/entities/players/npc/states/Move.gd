@@ -68,6 +68,7 @@ func physics_update(delta: float) -> void:
 	var target_pos = Vector2.ZERO
 	var vector_to_target
 	var total_vector
+	var center = Vector2(2277, 1067)
 
 	var brother = Global.get_brother()
 	
@@ -87,10 +88,10 @@ func physics_update(delta: float) -> void:
 		# go to closest enemy
 		target_pos = Global.get_closest_enemy(owner.global_position)
 	else:
-		# go random
-		target_pos = Global.random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
+		# go after the boss
+		target_pos = Global.get_heighest_hp_enemy() + Global.random_vector2(100)
 	
-
+	owner.get_target_path(target_pos)
 	# direction of motion
 	if owner.path.size() > 0:
 		vector_to_target = owner.get_next_direction_to_target()
@@ -99,5 +100,3 @@ func physics_update(delta: float) -> void:
 		# moving into the direction
 		move_according_to(total_vector)
 		owner.movement_direction = vector_to_target
-	else:
-		print("reached destination")
