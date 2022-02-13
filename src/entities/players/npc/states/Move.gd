@@ -77,7 +77,7 @@ func physics_update(delta: float) -> void:
 		owner.switch_to_next_weapon()
 		state_machine.transition_to("Attack")
 		return
-	elif owner.health < 50 && is_there_item("MEDKIT"):
+	elif owner.health < 90 && is_there_item("MEDKIT"):
 		# go to the box
 		# target_pos = position_of_box()
 		target_pos = return_item_position("MEDKIT")
