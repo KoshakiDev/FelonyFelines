@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://src/environment/post-processing/Default.tres" type="Environment" id=12]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
 size = 64
 font_data = ExtResource( 11 )
@@ -76,7 +76,7 @@ margin_left = -52.0
 margin_top = -160.0
 margin_right = 451.0
 margin_bottom = 115.0
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
 environment = ExtResource( 12 )
