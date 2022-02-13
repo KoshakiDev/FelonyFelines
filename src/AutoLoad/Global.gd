@@ -38,6 +38,12 @@ func reparent(child: Node, new_parent: Node):
 	old_parent.remove_child(child)
 	new_parent.add_child(child)
 
+func random_vector2(n):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	return Vector2(rng.randf_range(-n, n), rng.randf_range(-n, n))
+
+
 func get_all_enemies():
 	var enemies_result = {
 		"BALL":[],
@@ -137,7 +143,7 @@ func get_brother():
 	#for player in entity_world.get_children():
 
 func get_closest_player(position: Vector2):
-	var closest_player: Vector2 = Vector2.ZERO
+	var closest_player: Vector2 = random_vector2(10)
 	var closest_distance = 999999999
 	
 	for player in players.get_children():
@@ -152,7 +158,7 @@ func get_closest_player(position: Vector2):
 	return closest_player
 
 func get_farthest_player(position: Vector2):
-	var farthest_player: Vector2 = Vector2.ZERO
+	var farthest_player: Vector2 = random_vector2(10)
 	var farthest_distance = 0
 
 	for player in players.get_children():
@@ -167,7 +173,7 @@ func get_farthest_player(position: Vector2):
 	return farthest_player	
 
 func get_lowest_hp_player():
-	var lowest_hp_player: Vector2 = Vector2.ZERO
+	var lowest_hp_player: Vector2 = random_vector2(10)
 	var lowest_hp = 999999999
 	
 	for player in players.get_children():

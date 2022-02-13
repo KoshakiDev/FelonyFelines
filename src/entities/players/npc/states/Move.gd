@@ -2,11 +2,6 @@ extends State
 
 #NPC MOVE STATE
 
-var rng = RandomNumberGenerator.new()
-func random_vector2(n):
-	rng.randomize()
-	return Vector2(rng.randf_range(-n, n), rng.randf_range(-n, n))
-
 func spiral(direction_vector):
 	var x = direction_vector.x
 	var y = direction_vector.y
@@ -93,10 +88,9 @@ func physics_update(delta: float) -> void:
 		target_pos = Global.get_closest_enemy(owner.global_position)
 	else:
 		# go random
-		target_pos = brother.global_position
-		#print("going random")
-		#target_pos = random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
-	owner.get_target_path(target_pos)
+		target_pos = Global.random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
+	
+
 	# direction of motion
 	if owner.path.size() > 0:
 		vector_to_target = owner.get_next_direction_to_target()
