@@ -39,7 +39,13 @@ func set_health(new_value):
 		self.state_machine.transition_to("Death")
 		emit_signal("no_health")
 
+
+
+
 func _ready():
+	#yield(owner, "ready")
+	navigation = Global.navigation
+	line2d = $Line2D
 	pass
 
 #this function is called from the entity itself
@@ -101,31 +107,51 @@ func return_travel_direction(vector):
 		y_direction = stepify(vector.y / max_speed, 1)
 	return Vector2(x_direction, y_direction)
 
+#navigation2d
+var navigation = null #this is set in ready(), see upwards
+var path = []
+var threshold = 1
+var line2d 
 
-export var is_inside_friction_area = false
+# This is what moves the target towards the path
+# It basically iterates an array of several positions which needs to be walked to
+func move_to_target():
+	#print(global_position.distance_to(path[0]), " ", threshold)
+	# This "if" checks if the next position has been reached, which then removes it
+	if global_position.distance_to(path[0]) < threshold:
+		path.remove(0)
+	else:
+		# Otherwise, it continues moving towards a point
+		var direction = global_position.direction_to(path[0])
+		velocity = direction * max_speed
+		velocity = move_and_slide(velocity)
+
+# get target path receives a position to walk to which adds to the path array
+func get_target_path(target_position):
+	path = navigation.get_simple_path(global_position, target_position, false)
+	line2d.points = path
+	print(path)
+#navigation2d
 
 func _physics_process(delta):
+	# Ok, so this needs to be in a physics process (like in a move state or smth)
+	# Mansoor, this basically checks if there is a path to walk to
+	if line2d != null:
+		line2d.global_position = Vector2.ZERO
+	if path.size() > 0:
+		move_to_target()
+	
+	
+	
 	velocity = velocity + knockback
 	
 	knockback = knockback.linear_interpolate(Vector2.ZERO, Global.FRICTION)
 	
-	if is_inside_friction_area:
-		apply_less_friction()
-	else:
-		velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)	
+	velocity = velocity.linear_interpolate(Vector2.ZERO, Global.FRICTION)	
 	if not (is_equal_approx(movement_direction.x, 0.0) and is_equal_approx(movement_direction.y, 0.0)):
 		adjust_direction(movement_direction)
 	
 	move_and_slide(velocity)
-	
-func apply_less_friction():
-	var ICE_FRICTION = 0
-	velocity = velocity.linear_interpolate(Vector2.ZERO, ICE_FRICTION)
-
-func apply_more_friction():
-	var SAND_FRICTION = 0.7
-	velocity = velocity.linear_interpolate(Vector2.ZERO, SAND_FRICTION)
-
 
 
 func _on_Hurtbox_area_entered(area):

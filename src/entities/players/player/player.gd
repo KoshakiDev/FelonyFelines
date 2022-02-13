@@ -60,8 +60,7 @@ func _input(event):
 func spawn_dust() -> void:
 	var dust: Sprite = DUST_SCENE.instance()
 	dust.position = dust_position.global_position
-
-	get_parent().add_child_below_node(get_parent(), dust)
+	Global.misc.add_child(dust)
 
 # func frame_freeze(time_scale, duration):
 # 	Engine.time_scale = time_scale

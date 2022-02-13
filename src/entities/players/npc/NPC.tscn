@@ -715,10 +715,9 @@ script = ExtResource( 14 )
 position = Vector2( 9, -16 )
 
 [node name="Fists" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 13 )]
-position = Vector2( 11, 0 )
 despawnable = false
 in_inventory = true
-knockback_value = 0.0
+knockback_value_on_action = 0.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 1 )
