@@ -26,18 +26,18 @@ func physics_update(delta: float) -> void:
 	
 	var target_pos = Global.get_closest_player(owner.global_position)
 	var total_vector
-		
+	owner.get_target_path(target_pos)
 	# direction of motion
-	var vector_to_target = target_pos - owner.global_position
-	
-	if ent_dist(owner.global_position, target_pos) < 50:
-		total_vector = -vector_to_target
-	else:
-		total_vector = vector_to_target
+	if owner.path.size() > 0:
+		var vector_to_target = owner.get_next_direction_to_target()
+		if ent_dist(owner.global_position, target_pos) < 50:
+			total_vector = -vector_to_target
+		else:
+			total_vector = vector_to_target
 
-	# moving into the direction
-	move_according_to(total_vector)
-	owner.movement_direction = vector_to_target
+		# moving into the direction
+		move_according_to(total_vector)
+		owner.movement_direction = vector_to_target
 	
 	if owner.bodies_in_engage_area > 0:
 		state_machine.transition_to("Attack")

@@ -89,8 +89,3 @@ func back_to_menu():
 
 func _on_Main_all_dead():
 	all_players_dead()
-
-
-func _on_Timer_timeout():
-	print("sent signal")
-	get_tree().call_group("enemy", 'get_target_path', Global.brother_1.global_position)

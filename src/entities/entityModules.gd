@@ -43,8 +43,7 @@ func set_health(new_value):
 
 
 func _ready():
-	#yield(owner, "ready")
-	navigation = Global.navigation
+	#navigation = Global.navigation
 	line2d = $Line2D
 	pass
 
@@ -108,29 +107,28 @@ func return_travel_direction(vector):
 	return Vector2(x_direction, y_direction)
 
 #navigation2d
-var navigation = null #this is set in ready(), see upwards
+#var navigation = null #this is set in ready(), see upwards
 var path = []
-var threshold = 1
+var threshold = 16
 var line2d 
 
 # This is what moves the target towards the path
 # It basically iterates an array of several positions which needs to be walked to
-func move_to_target():
+func get_next_direction_to_target():
 	#print(global_position.distance_to(path[0]), " ", threshold)
 	# This "if" checks if the next position has been reached, which then removes it
 	if global_position.distance_to(path[0]) < threshold:
 		path.remove(0)
-	else:
-		# Otherwise, it continues moving towards a point
-		var direction = global_position.direction_to(path[0])
-		velocity = direction * max_speed
-		velocity = move_and_slide(velocity)
+	# Otherwise, it continues moving towards a point
+	var direction = global_position.direction_to(path[0])
+	return direction
+		#velocity = direction * max_speed
+		#velocity = move_and_slide(velocity)
 
 # get target path receives a position to walk to which adds to the path array
 func get_target_path(target_position):
-	path = navigation.get_simple_path(global_position, target_position, false)
+	path = Global.navigation.get_simple_path(global_position, target_position, false)
 	line2d.points = path
-	print(path)
 #navigation2d
 
 func _physics_process(delta):
@@ -138,10 +136,8 @@ func _physics_process(delta):
 	# Mansoor, this basically checks if there is a path to walk to
 	if line2d != null:
 		line2d.global_position = Vector2.ZERO
-	if path.size() > 0:
-		move_to_target()
-	
-	
+#	if path.size() > 0:
+#		move_to_target()
 	
 	velocity = velocity + knockback
 	

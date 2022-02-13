@@ -839,4 +839,7 @@ __meta__ = {
 [node name="RunTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color( 0.615686, 1, 0.4, 1 )
+
 [connection signal="body_entered" from="EngageRange" to="." method="_on_EngageRange_body_entered"]

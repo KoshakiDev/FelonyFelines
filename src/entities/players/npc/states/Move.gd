@@ -50,9 +50,6 @@ func move_according_to(vector):
 	
 	owner.velocity = owner.velocity.clamped(owner.max_speed)
 
-func ent_dist(pos1: Vector2, pos2: Vector2):
-	return (pos1 - pos2).length()
-
 
 func enter(msg := {}) -> void:
 	if msg.has("Accel"):
@@ -77,7 +74,7 @@ func physics_update(delta: float) -> void:
 	var vector_to_target
 	var total_vector
 
-	var brother = Global.get_brother()	
+	var brother = Global.get_brother()
 	
 	if owner.bodies_in_engage_area > 0:
 		# attack closest enemy
@@ -96,12 +93,17 @@ func physics_update(delta: float) -> void:
 		target_pos = Global.get_closest_enemy(owner.global_position)
 	else:
 		# go random
-		target_pos = random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
-	
+		target_pos = brother.global_position
+		#print("going random")
+		#target_pos = random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
+	owner.get_target_path(target_pos)
 	# direction of motion
-	vector_to_target = target_pos - owner.global_position
-	total_vector = vector_to_target
+	if owner.path.size() > 0:
+		vector_to_target = owner.get_next_direction_to_target()
+		total_vector = vector_to_target
 
-	# moving into the direction
-	move_according_to(total_vector)
-	owner.movement_direction = vector_to_target
+		# moving into the direction
+		move_according_to(total_vector)
+		owner.movement_direction = vector_to_target
+	else:
+		print("reached destination")

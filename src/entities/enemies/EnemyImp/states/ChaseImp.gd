@@ -85,22 +85,22 @@ func physics_update(delta: float) -> void:
 		return
 
 	var similar_enemies = Global.get_all_enemies()[owner.entity_name]
-	
+
 	var target_pos = Global.get_closest_player(owner.global_position)
 	var total_vector
-	
+
 	# direction of motion
 	var vector_to_target = target_pos - owner.global_position
-	
+
 	if len(similar_enemies) > 1:
 		var c = boid_cohesion(similar_enemies)
 		var a = boid_alignment(similar_enemies)
 		var s = boid_separate(similar_enemies)
-		
+
 		total_vector = vector_to_target * .3 + c * .2 + a * .2 + s * .3
 	else:
 		total_vector = vector_to_target
-	
+
 	# moving into the direction
 	move_according_to(total_vector)
 	owner.movement_direction = vector_to_target
