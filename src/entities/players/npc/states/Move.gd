@@ -37,9 +37,6 @@ func return_item_position(target_item):
 	return target_item_position
 
 
-func there_is_a_box():
-	return false
-
 func seek_steering(desired_direction_vector: Vector2) -> Vector2:
 	var desired_velocity: Vector2 = desired_direction_vector.normalized() * owner.max_speed
 	return desired_velocity - owner.velocity
@@ -87,9 +84,6 @@ func physics_update(delta: float) -> void:
 		owner.switch_to_next_weapon()
 		state_machine.transition_to("Attack")
 		return
-	elif there_is_an_enemy_in_distance(300):
-		# go to closest enemy
-		target_pos = Global.get_closest_enemy(owner.global_position)
 	elif owner.health < 50 && is_there_item("MEDKIT"):
 		# go to the box
 		# target_pos = position_of_box()
@@ -97,6 +91,9 @@ func physics_update(delta: float) -> void:
 	elif brother.is_dead():
 		# go to brother
 		target_pos = brother.global_position
+	elif there_is_an_enemy_in_distance(300):
+		# go to closest enemy
+		target_pos = Global.get_closest_enemy(owner.global_position)
 	else:
 		# go random
 		target_pos = random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99

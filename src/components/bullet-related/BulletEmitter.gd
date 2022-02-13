@@ -18,5 +18,5 @@ func shoot_single(position: Vector2, dir: Vector2, speed: float, bullet_damage_v
 	#bullet_instance.set_as_toplevel(true)
 	bullet_instance.global_position = position
 	bullet_instance.shooting = true
-	Global.entity_world.add_child(bullet_instance)
+	Global.projectiles.add_child(bullet_instance)
 	#self.parent.add_child(bullet_instance) 

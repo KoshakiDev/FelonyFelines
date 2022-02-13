@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/environment/base_world/base_world.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/environment/NavigationTileMap.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=3]
 resource_local_to_scene = true
@@ -48,6 +49,10 @@ __meta__ = {
 
 [node name="World" type="Node2D" parent="."]
 
+[node name="Navigation2D" type="Navigation2D" parent="World"]
+
+[node name="TileMap" parent="World/Navigation2D" instance=ExtResource( 4 )]
+
 [node name="EntityWorld" type="YSort" parent="World"]
 
 [node name="Items" type="YSort" parent="World/EntityWorld"]
@@ -55,6 +60,14 @@ __meta__ = {
 [node name="Spawners" type="YSort" parent="World/EntityWorld"]
 
 [node name="Objects" type="YSort" parent="World/EntityWorld"]
+
+[node name="Players" type="YSort" parent="World/EntityWorld"]
+
+[node name="Projectiles" type="YSort" parent="World/EntityWorld"]
+
+[node name="Enemies" type="YSort" parent="World/EntityWorld"]
+
+[node name="Misc" type="YSort" parent="World/EntityWorld"]
 
 [node name="InfoPos" type="Position2D" parent="."]
 position = Vector2( 0, -400 )

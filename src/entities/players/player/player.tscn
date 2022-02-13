@@ -714,7 +714,6 @@ position = Vector2( 9, -16 )
 position = Vector2( 11, 0 )
 despawnable = false
 in_inventory = true
-knockback_value = 0.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 4 )

@@ -1,10 +1,22 @@
 extends Node2D
 
 onready var info_text = $InfoPos/Info
-onready var spawners = $World/EntityWorld/Spawners.get_children()
+
+
+
 onready var timer = $WaveTimer
-onready var items = $World/EntityWorld/Items
+
+
 onready var entity_world = $World/EntityWorld
+
+onready var enemies = $World/EntityWorld/Enemies
+onready var projectiles = $World/EntityWorld/Projectiles
+onready var players = $World/EntityWorld/Players
+onready var items = $World/EntityWorld/Items
+onready var spawners = $World/EntityWorld/Spawners.get_children()
+onready var misc = $World/EntityWorld/Misc
+
+onready var navigation = $World/Navigation2D
 
 var wave_num = 0
 var points = 0
@@ -22,8 +34,13 @@ func _ready():
 	$InfoAnimationPlayer.play("Idle")
 	update_board()
 	Global.set("main", self)
-	Global.set("items", items)
 	Global.set("entity_world", entity_world)
+	Global.set("items", items)
+	Global.set("players", players)
+	Global.set("projectiles", projectiles)
+	Global.set("enemies", enemies)
+	Global.set("misc", misc)
+	Global.set("navigation", navigation)
 	update_wave()
 	
 func update_board():
@@ -72,3 +89,8 @@ func back_to_menu():
 
 func _on_Main_all_dead():
 	all_players_dead()
+
+
+func _on_Timer_timeout():
+	print("sent signal")
+	get_tree().call_group("enemy", 'get_target_path', Global.brother_1.global_position)

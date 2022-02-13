@@ -17,5 +17,5 @@ func add_enemies(count):
 	var imp_counter = 0
 	for i in range(count):
 		var enemy = enemyLoad[randi() % enemyLoad.size()].instance()
-		Global.entity_world.add_child(enemy)
+		Global.enemies.add_child(enemy)
 		enemy.global_position = random_pos()
