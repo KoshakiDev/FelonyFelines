@@ -2,11 +2,6 @@ extends State
 
 #NPC MOVE STATE
 
-var rng = RandomNumberGenerator.new()
-func random_vector2(n):
-	rng.randomize()
-	return Vector2(rng.randf_range(-n, n), rng.randf_range(-n, n))
-
 func spiral(direction_vector):
 	var x = direction_vector.x
 	var y = direction_vector.y
@@ -73,6 +68,7 @@ func physics_update(delta: float) -> void:
 	var target_pos = Vector2.ZERO
 	var vector_to_target
 	var total_vector
+	var center = Vector2(2277, 1067)
 
 	var brother = Global.get_brother()
 	
@@ -81,7 +77,7 @@ func physics_update(delta: float) -> void:
 		owner.switch_to_next_weapon()
 		state_machine.transition_to("Attack")
 		return
-	elif owner.health < 50 && is_there_item("MEDKIT"):
+	elif owner.health < 90 && is_there_item("MEDKIT"):
 		# go to the box
 		# target_pos = position_of_box()
 		target_pos = return_item_position("MEDKIT")
@@ -92,10 +88,9 @@ func physics_update(delta: float) -> void:
 		# go to closest enemy
 		target_pos = Global.get_closest_enemy(owner.global_position)
 	else:
-		# go random
-		target_pos = brother.global_position
-		#print("going random")
-		#target_pos = random_vector2(2) + owner.movement_direction * 1 + owner.global_position * 0.99
+		# go after the boss
+		target_pos = Global.get_heighest_hp_enemy() + Global.random_vector2(100)
+	
 	owner.get_target_path(target_pos)
 	# direction of motion
 	if owner.path.size() > 0:
@@ -105,5 +100,3 @@ func physics_update(delta: float) -> void:
 		# moving into the direction
 		move_according_to(total_vector)
 		owner.movement_direction = vector_to_target
-	else:
-		print("reached destination")
