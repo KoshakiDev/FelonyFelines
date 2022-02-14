@@ -88,7 +88,7 @@ func physics_update(delta: float) -> void:
 	elif brother.is_dead():
 		# go to brother
 		target_pos = brother.global_position
-	elif there_is_an_enemy_in_distance(300):
+	elif there_is_an_enemy_in_distance(800):
 		# go to closest enemy
 		target_pos = Global.get_closest_enemy(owner.global_position)
 	else:
