@@ -10,10 +10,24 @@ func spiral(direction_vector):
 
 func there_is_an_enemy_in_distance(distance):
 	var closest_enemy_position = Global.get_closest_enemy(owner.global_position)
-	if (closest_enemy_position - owner.global_position).length() < distance:
+	var path = Global.navigation.get_simple_path(owner.global_position, closest_enemy_position, false)
+	var path_length = 0
+	
+	if path.size() > 0:
+		for i in range(path.size() - 1):
+			path_length += (path[i] - path[i-1]).length()
+			
+	if path_length < distance:
 		return true
 	else:
 		return false
+
+func there_is_an_enemy_in_attack_angle():
+	var closest_enemy_position = Global.get_closest_enemy(owner.global_position)
+	var angle_rad = (owner.global_position - closest_enemy_position).angle()
+	var angle_deg = int(abs(angle_rad * (180/PI)))
+	
+	return angle_deg % 45 < 3
 
 func is_there_item(target_item):
 	#the target item name must match the existing item types 
@@ -68,35 +82,40 @@ func physics_update(delta: float) -> void:
 	var target_pos = Vector2.ZERO
 	var vector_to_target
 	var total_vector
-	var center = Vector2(2277, 1067)
-
+	
+	var attack = false
 	var brother = Global.get_brother()
 	
-	if owner.bodies_in_engage_area > 0:
+	if there_is_an_enemy_in_distance(100) or (there_is_an_enemy_in_distance(500) and there_is_an_enemy_in_attack_angle()):
 		# attack closest enemy
-		owner.switch_to_next_weapon()
-		state_machine.transition_to("Attack")
-		return
+		attack = true
+		target_pos = Global.get_closest_enemy(owner.global_position)
 	elif owner.health < 90 && is_there_item("MEDKIT"):
 		# go to the box
 		# target_pos = position_of_box()
 		target_pos = return_item_position("MEDKIT")
+	elif is_there_item("WEAPON"):
+		target_pos = return_item_position("WEAPON")
 	elif brother.is_dead():
 		# go to brother
 		target_pos = brother.global_position
-	elif there_is_an_enemy_in_distance(300):
+	else:
 		# go to closest enemy
 		target_pos = Global.get_closest_enemy(owner.global_position)
-	else:
-		# go after the boss
-		target_pos = Global.get_heighest_hp_enemy() + Global.random_vector2(100)
-	
-	owner.get_target_path(target_pos)
-	# direction of motion
-	if owner.path.size() > 0:
-		vector_to_target = owner.get_next_direction_to_target()
-		total_vector = vector_to_target
 
-		# moving into the direction
-		move_according_to(total_vector)
+		
+	if not attack:
+		owner.get_target_path(target_pos)
+		# direction of motion
+		if owner.path.size() > 0:
+			vector_to_target = owner.get_next_direction_to_target()
+			total_vector = vector_to_target
+
+			# moving into the direction
+			move_according_to(total_vector)
+			owner.movement_direction = vector_to_target
+	else:
+		vector_to_target = target_pos - owner.global_position
+		total_vector = vector_to_target
 		owner.movement_direction = vector_to_target
+		state_machine.transition_to("Attack")
