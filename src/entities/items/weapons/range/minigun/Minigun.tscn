@@ -55,7 +55,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Resource" id=5]
+[sub_resource type="Resource" id=3]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 spread = 5
@@ -87,9 +87,11 @@ shot_delay = 0.01
 bullet_speed = 1200.0
 bullet_damage_value = 15
 bullet_knockback_value = 40
-bullet_emitter = SubResource( 5 )
+bullet_emitter = SubResource( 3 )
 
-[node name="Pickupbox" type="Area2D" parent="Position2D" groups=["ITEM"]]
+[node name="Pickupbox" type="Area2D" parent="Position2D" groups=[
+"ITEM",
+]]
 position = Vector2( 7, 0 )
 collision_layer = 256
 collision_mask = 256
