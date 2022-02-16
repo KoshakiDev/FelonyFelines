@@ -468,9 +468,8 @@ extents = Vector2( 38.5, 48 )
 
 [sub_resource type="CircleShape2D" id=21]
 
-[sub_resource type="CapsuleShape2D" id=18]
-radius = 192.0
-height = 0.0
+[sub_resource type="CircleShape2D" id=22]
+radius = 400.0
 
 [node name="EnemyBall" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
 collision_layer = 5
@@ -559,7 +558,6 @@ shape = SubResource( 21 )
 disabled = true
 
 [node name="EngageRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
@@ -568,7 +566,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EngageRange"]
 position = Vector2( -24, -8.58307e-05 )
 rotation = -3.14159
-shape = SubResource( 18 )
+shape = SubResource( 22 )
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
@@ -584,4 +582,4 @@ margin_top = -128.0
 margin_bottom = -96.0
 
 [node name="Line2D" type="Line2D" parent="."]
-default_color = Color( 1, 0.4, 0.4, 1 )
+default_color = Color( 0.980392, 1, 0.4, 1 )
