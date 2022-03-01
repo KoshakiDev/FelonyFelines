@@ -1,17 +1,17 @@
 [gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/components/weapon_manager/WeaponManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
 [ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/players/player/states/Idle.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/players/player/states/Move.gd" type="Script" id=9]
-[ext_resource path="res://src/entities/players/WeaponManager.gd" type="Script" id=10]
 [ext_resource path="res://src/entities/players/player/player.gd" type="Script" id=11]
 [ext_resource path="res://assets/sfx/sounds/player_hit.wav" type="AudioStream" id=12]
 [ext_resource path="res://src/entities/players/player/states/Death.gd" type="Script" id=13]
 [ext_resource path="res://assets/sfx/cat_death.wav" type="AudioStream" id=14]
-[ext_resource path="res://src/entities/items/weapons/melee/fists/Fists.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/entities/shadow.png" type="Texture" id=16]
 [ext_resource path="res://assets/sfx/Pickup_01.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=20]
@@ -672,7 +672,8 @@ height = 0.0
 extents = Vector2( 10.5, 27 )
 
 [sub_resource type="CapsuleShape2D" id=23]
-height = 2.0
+radius = 5.0
+height = 8.0
 
 [sub_resource type="CircleShape2D" id=24]
 radius = 134.239
@@ -686,10 +687,9 @@ font_data = ExtResource( 20 )
 collision_layer = 2
 collision_mask = 77
 script = ExtResource( 11 )
-entity_name = "SOOLTAN"
+entity_name = "CAT"
 entity_type = "PLAYER"
 max_speed = 675.0
-max_health = 100.0
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.498039 )
@@ -703,17 +703,7 @@ texture = ExtResource( 5 )
 hframes = 8
 vframes = 8
 
-[node name="WeaponManager" type="Node2D" parent="Sprite"]
-position = Vector2( 0, 48 )
-script = ExtResource( 10 )
-
-[node name="HandPosition2D" type="Position2D" parent="Sprite/WeaponManager"]
-position = Vector2( 9, -16 )
-
-[node name="Fists" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 15 )]
-position = Vector2( 11, 0 )
-despawnable = false
-in_inventory = true
+[node name="WeaponManager" parent="Sprite" instance=ExtResource( 2 )]
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -758,6 +748,7 @@ position = Vector2( 0, -11 )
 shape = SubResource( 21 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 48
 
@@ -766,8 +757,8 @@ position = Vector2( -0.5, -27 )
 shape = SubResource( 22 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, -11 )
+position = Vector2( 0, -5 )
+rotation = -1.5708
 shape = SubResource( 23 )
 
 [node name="HealthBarPos" type="Node2D" parent="."]
@@ -788,8 +779,7 @@ stream = ExtResource( 12 )
 [node name="Revive" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 17 )
 
-[node name="DustPosition" type="Position2D" parent="."]
-position = Vector2( 0, -4 )
+[node name="DustPosition" parent="." instance=ExtResource( 3 )]
 
 [node name="RespawnRadius" type="Area2D" parent="."]
 collision_layer = 2

@@ -89,9 +89,7 @@ bullet_damage_value = 15
 bullet_knockback_value = 40
 bullet_emitter = SubResource( 3 )
 
-[node name="Pickupbox" type="Area2D" parent="Position2D" groups=[
-"ITEM",
-]]
+[node name="Pickupbox" type="Area2D" parent="Position2D" groups=["ITEM"]]
 position = Vector2( 7, 0 )
 collision_layer = 256
 collision_mask = 256

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/components/dust_spawner/DustSpawner.gd" type="Script" id=1]
+[ext_resource path="res://src/components/dust_spawner/dust_types/player/Dust.tscn" type="PackedScene" id=2]
+
+[node name="DustSpawner" type="Position2D"]
+position = Vector2( 0, -5 )
+script = ExtResource( 1 )
+DUST_SCENE = ExtResource( 2 )

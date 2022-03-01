@@ -2,42 +2,35 @@ extends State
 
 #NPC ATTACK STATE
 
-var close_range_weapons = ["FISTS", "AXE", "SPEAR", "SHIELD"]
-var long_range_weapons = ["REVOLVER", "SHOTGUN", "ASSAULTRIFEL", "MINIGUN"]
+var melee_weapons = ["FISTS", "AXE", "SPEAR", "SHIELD"]
+var long_range_weapons = ["REVOLVER", "SHOTGUN", "ASSAULTRIFLE", "MINIGUN"]
 
-func chooseWeapon():
-	var enemy_position = Global.get_closest_enemy(owner.global_position)
-	var distance = enemy_position.distance_to(owner.global_position)
-	
-	if distance > 100:
-		while not owner.weapon_manager.cur_weapon.entity_name in long_range_weapons:			
-			owner.switch_to_next_weapon()
-	else:
-		while not owner.weapon_manager.cur_weapon.entity_name in close_range_weapons:
-			owner.switch_to_next_weapon()
+
+func chooseLongRange():
+	while not owner.weapon_manager.cur_weapon.entity_name in long_range_weapons:
+		owner.switch_to_next_weapon()
+
+func chooseMelee():
+	while not owner.weapon_manager.cur_weapon.entity_name in melee_weapons:
+		owner.switch_to_next_weapon()
 
 func enter(msg := {}) -> void:
+	if owner.movement_player.current_animation == "Decel_1" or owner.movement_player.current_animation == "Decel_2":
+		yield(owner.movement_player, "animation_finished")
 	owner.play_animation("Idle", "Movement")
-	chooseWeapon()
-	owner.action()
-	state_machine.transition_to("Move")
-
+	print("transitioned to attack")
+	
 func exit() -> void:
 	pass
-	
 
+func point_gun():
+	var target_pos = Global.get_closest_enemy(owner.global_position)
+	print("Shooting at ", target_pos)
+	owner.adjust_hand_rotation(target_pos)
 
-#don't use this not finished
 func physics_update(_delta: float) -> void:
-	pass
-#	var target_pos = Global.get_closest_enemy(owner.global_position)
-#	owner.hand_position.look_at(target_pos)
-#
-#	var look_dir = (target_pos - owner.global_position).normalized()
-#	if look_dir.x < 0:
-#		owner.sprite.scale.x = -1
-#	else:
-#		owner.sprite.scale.x = 1
-#	owner.action()
-#	if owner.bodies_in_engage_area <= 0:
-#		state_machine.transition_to("Move")
+	if !owner.there_is_an_enemy_in_distance(64 * 100):
+		state_machine.transition_to("Move", {Accel = true})
+	chooseLongRange()
+	point_gun()
+	owner.action()

@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.00641
 
-[node name="Bullet" type="Area2D" groups=["hitbox"]]
+[node name="Bullet" type="Area2D" groups=["PROJECTILE"]]
 collision_layer = 32
 collision_mask = 129
 script = ExtResource( 1 )

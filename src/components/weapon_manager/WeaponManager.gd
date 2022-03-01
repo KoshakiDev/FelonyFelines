@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var weapons_container = $HandPosition2D
+onready var weapons_container = self
 
 onready var weapons = weapons_container.get_children()
 
@@ -10,8 +10,30 @@ var cur_slot = 0
 var cur_weapon = null
 
 func _ready():
-	switch_to_weapon_slot(cur_slot)
-	pass
+	if weapons.size() != 0:
+		switch_to_weapon_slot(cur_slot)
+
+func add_weapon(new_weapon):
+	new_weapon.cancel_despawn()
+	if is_duplicant(new_weapon):
+		print("is duplicant")
+		new_weapon.queue_free()
+		return
+	new_weapon.in_inventory = true
+	new_weapon.despawnable = false
+	new_weapon.position = Vector2.ZERO
+	Global.reparent(new_weapon, weapons_container)
+	update_children()
+
+func is_duplicant(new_weapon):
+	if weapons.size() == 0:
+		return false
+	#print(weapons.size())
+	#print(new_weapon, new_weapon.entity_name)
+	for weapon in weapons:
+		if new_weapon.entity_name == weapon.entity_name:
+			return true
+	return false
 
 func switch_to_next_weapon():
 	cur_slot = (cur_slot + 1) % weapon_slots_size

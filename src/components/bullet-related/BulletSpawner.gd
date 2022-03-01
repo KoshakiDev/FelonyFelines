@@ -13,7 +13,7 @@ export var shot_delay: float = .1
 export var bullet_speed: float = 400
 
 export var bullet_damage_value = 5
-export var bullet_knockback_value = 20
+export var knockback_value = 20
 
 # the emitter to be used for spawning bullets (controls behaviour)
 var bullet_emitter: BulletEmitter
@@ -26,24 +26,7 @@ var can_shoot: bool = false
 onready var timer := Timer.new()
 
 
-onready var og_bullet_scene = bullet_scene
-onready var og_shot_delay = shot_delay
-onready var og_bullet_speed = bullet_speed
-onready var og_bullet_damage_value = bullet_damage_value
-onready var og_bullet_knockback_value = bullet_knockback_value
-onready var og_bullet_emitter = bullet_emitter
-
-
-func recall_original_values() -> void:
-	bullet_scene = og_bullet_scene
-	timer.wait_time = og_shot_delay
-	bullet_speed = og_bullet_speed
-	bullet_damage_value = og_bullet_damage_value
-	bullet_knockback_value = og_bullet_knockback_value
-	#bullet_emitter = og_bullet_emitter
-
 func _ready() -> void:
-	recall_original_values()
 	if Engine.editor_hint:
 		return
 	add_child(timer)
@@ -57,6 +40,14 @@ func _ready() -> void:
 		printerr("emitter in BulletSpawner is not a BulletEmitter!")
 		queue_free()
 
+#func shoot():
+##	if timer.is_stopped():
+##		return
+#	var shoot_dir = Vector2.RIGHT.rotated(global_rotation + rotation_offset).normalized()
+#	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, knockback_value)
+#
+##	timer.start()
+
 func set_shooting(val: bool) -> void:
 	if val:
 		can_shoot = true
@@ -65,14 +56,18 @@ func set_shooting(val: bool) -> void:
 			timer.start()
 	else:
 		can_shoot = false
+		
 
 func _shoot() -> void:
 	if not can_shoot:
+		
+		#print("no shooting")
 		timer.stop()
 		emit_signal("shot_ready")
 		return
+	#print("shooting")
 	var shoot_dir = Vector2.RIGHT.rotated(global_rotation + rotation_offset).normalized()
-	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, bullet_knockback_value)
+	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, knockback_value)
 
 # Workaround for resource list
 func _get_property_list() -> Array:

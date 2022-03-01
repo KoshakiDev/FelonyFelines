@@ -1,14 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/environment/post-processing/Default.tres" type="Environment" id=2]
 [ext_resource path="res://src/environment/tilesets/Path.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/environment/tilesets/Plants.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/entities/players/player/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/entities/players/new inherited player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/environment/base_world/base_world.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/entities/items/weapons/range/revolver/Revolver.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/environment/tilesets/Ground.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/entities/items/medkit/Medkit.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/environment/tilesets/Walls.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
@@ -24,15 +22,6 @@ tile_data = PoolIntArray( 0, 1, 65539, 1, 1, 1, 2, 1, 196612, 3, 1, 131077, 4, 1
 [node name="Path" parent="World" index="1" instance=ExtResource( 3 )]
 tile_data = PoolIntArray( 524323, 0, 196615, 589859, 0, 131072, 655395, 0, 1, 720931, 0, 4, 786467, 0, 196614, 852003, 0, 131075, 917539, 0, 131072, 983075, 0, 6, 1048601, 0, 196608, 1048602, 0, 2, 1048603, 0, 65537, 1048604, 0, 65541, 1048605, 0, 131075, 1048606, 0, 131074, 1048607, 0, 65536, 1048608, 0, 131079, 1048609, 0, 65543, 1048610, 0, 196614, 1048611, 0, 196614, 1048612, 0, 1, 1048613, 0, 65543, 1048614, 0, 131076, 1048615, 0, 65536, 1048616, 0, 196608, 1048617, 0, 196608, 1048618, 0, 196614, 1048619, 0, 131079, 1048620, 0, 7, 1048621, 0, 131077, 1114147, 0, 131079, 1179683, 0, 196615, 1245219, 0, 65537, 1310755, 0, 65537, 1376291, 0, 2, 1441827, 0, 131076, 1507363, 0, 65542, 1572899, 0, 196610 )
 
-[node name="Medkit" parent="World/EntityWorld/Items" index="0" instance=ExtResource( 9 )]
-position = Vector2( 2277, 1061 )
-
-[node name="Revolver" parent="World/EntityWorld/Items" index="1" instance=ExtResource( 7 )]
-position = Vector2( 2131, 1060 )
-
-[node name="Revolver2" parent="World/EntityWorld/Items" index="2" instance=ExtResource( 7 )]
-position = Vector2( 2401, 1051 )
-
 [node name="Plants" parent="World/EntityWorld/Objects" index="0" instance=ExtResource( 4 )]
 tile_data = PoolIntArray( 524324, 9, 131075, 589858, 9, 2, 851996, 8, 0, 851997, 3, 0, 851998, 6, 0, 852000, 10, 0, 852009, 3, 0, 852010, 6, 0, 917534, 9, 65536, 917541, 9, 2, 917543, 10, 0, 983065, 9, 65538, 983067, 9, 196611, 983068, 9, 196608, 983072, 9, 1, 983082, 9, 2, 983084, 9, 196609, 1048615, 9, 65537, 1114151, 9, 196609, 1245213, 1, 0, 1245223, 9, 196611, 1245225, 1, 0 )
 
@@ -46,11 +35,11 @@ cell_tile_origin = 2
 cell_y_sort = true
 tile_data = PoolIntArray( 524313, 1, 4, 524314, 1, 65538, 524315, 1, 0, 524316, 1, 131076, 524317, 1, 196614, 524318, 1, 7, 524319, 1, 65542, 524320, 1, 131072, 524321, 1, 131075, 524325, 1, 65540, 524326, 1, 196614, 524327, 1, 65543, 524328, 1, 65540, 524329, 1, 131075, 524330, 1, 131073, 524331, 1, 131074, 524332, 1, 65539, 524333, 1, 3, 589849, 1, 131079, 589850, 1, 65538, 589851, 1, 4, 589852, 1, 196613, 589853, 1, 0, 589854, 1, 131074, 589855, 1, 65539, 589856, 1, 0, 589857, 1, 0, 589861, 1, 65538, 589862, 1, 1, 589863, 1, 196611, 589864, 1, 65537, 589865, 1, 4, 589866, 1, 196612, 589867, 1, 4, 589868, 1, 196611, 589869, 1, 5, 655385, 1, 131072, 655386, 1, 0, 655387, 1, 196613, 655388, 1, 196614, 655389, 1, 131075, 655390, 1, 1, 655391, 1, 131073, 655392, 1, 65536, 655393, 1, 1, 655397, 1, 3, 655398, 1, 196612, 655399, 1, 196613, 655400, 1, 196614, 655401, 1, 196611, 655402, 1, 131073, 655403, 1, 3, 655404, 1, 7, 655405, 1, 3, 720921, 1, 131079, 720922, 1, 4, 720923, 1, 6, 720939, 1, 6, 720940, 1, 196608, 720941, 1, 196611, 786457, 1, 0, 786458, 1, 6, 786459, 1, 1, 786475, 1, 1, 786476, 1, 65537, 786477, 1, 131077, 852011, 1, 131072, 852012, 1, 196614, 852013, 1, 131074, 1114137, 1, 196611, 1114138, 1, 4, 1114139, 1, 0, 1114155, 1, 131076, 1114156, 1, 196610, 1114157, 1, 65541, 1179673, 1, 65538, 1179674, 1, 0, 1179675, 1, 131079, 1179691, 1, 131079, 1179692, 1, 196608, 1179693, 1, 196614, 1245209, 1, 4, 1245210, 1, 131078, 1245211, 1, 3, 1245227, 1, 131074, 1245228, 1, 196612, 1245229, 1, 196608, 1310745, 1, 6, 1310746, 1, 2, 1310747, 1, 0, 1310748, 1, 196615, 1310749, 1, 196609, 1310750, 1, 196608, 1310751, 1, 131074, 1310752, 1, 196614, 1310753, 1, 1, 1310757, 1, 65541, 1310758, 1, 131074, 1310759, 1, 65536, 1310760, 1, 3, 1310761, 1, 65542, 1310762, 1, 0, 1310763, 1, 196611, 1310764, 1, 65536, 1310765, 1, 65537, 1376281, 1, 0, 1376282, 1, 131072, 1376283, 1, 131077, 1376284, 1, 65540, 1376285, 1, 131075, 1376286, 1, 196609, 1376287, 1, 1, 1376288, 1, 65542, 1376289, 1, 1, 1376293, 1, 196610, 1376294, 1, 1, 1376295, 1, 65540, 1376296, 1, 196614, 1376297, 1, 4, 1376298, 1, 131076, 1376299, 1, 65539, 1376300, 1, 196610, 1376301, 1, 131078, 1441817, 1, 5, 1441818, 1, 65538, 1441819, 1, 196609, 1441820, 1, 6, 1441821, 1, 65539, 1441822, 1, 7, 1441823, 1, 196611, 1441824, 1, 4, 1441825, 1, 7, 1441829, 1, 65542, 1441830, 1, 65540, 1441831, 1, 6, 1441832, 1, 196609, 1441833, 1, 7, 1441834, 1, 65540, 1441835, 1, 65538, 1441836, 1, 0, 1441837, 1, 3 )
 
-[node name="Sooltan2" parent="World/EntityWorld" index="3" instance=ExtResource( 5 )]
-position = Vector2( 2406, 1059 )
+[node name="Player" parent="World/EntityWorld/Players" index="0" instance=ExtResource( 5 )]
+position = Vector2( 2118, 1071 )
 
-[node name="Sooltan3" parent="World/EntityWorld" index="4" instance=ExtResource( 5 )]
-position = Vector2( 2137, 1070 )
+[node name="Player2" parent="World/EntityWorld/Players" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2400, 1064 )
 player_id = "_2"
 
 [node name="Info" parent="InfoPos" index="0"]

@@ -172,7 +172,6 @@ scale = Vector2( 1, 1.40782 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 3
-frame = 2
 
 [node name="PickupBox" type="Area2D" parent="." groups=["ITEM"]]
 collision_layer = 256

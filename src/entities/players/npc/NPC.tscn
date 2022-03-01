@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/entities/players/npc/NPC.gd" type="Script" id=12]
 [ext_resource path="res://src/entities/items/weapons/melee/fists/Fists.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/entities/players/WeaponManager.gd" type="Script" id=14]
+[ext_resource path="res://src/components/weapon_manager/WeaponManager.gd" type="Script" id=14]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://src/entities/players/npc/states/Idle.gd" type="Script" id=16]
 
@@ -675,8 +675,9 @@ height = 0.0
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 10.5, 27 )
 
-[sub_resource type="CapsuleShape2D" id=24]
-height = 2.0
+[sub_resource type="CapsuleShape2D" id=27]
+radius = 5.0
+height = 8.0
 
 [sub_resource type="CircleShape2D" id=25]
 radius = 134.239
@@ -717,7 +718,7 @@ position = Vector2( 9, -16 )
 [node name="Fists" parent="Sprite/WeaponManager/HandPosition2D" instance=ExtResource( 13 )]
 despawnable = false
 in_inventory = true
-knockback_value_on_action = 0.0
+knockback_value_on_action = 2.0
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -742,7 +743,7 @@ anims/RESET = SubResource( 20 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
-initial_state = NodePath("Move")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
@@ -757,6 +758,7 @@ script = ExtResource( 7 )
 script = ExtResource( 3 )
 
 [node name="EngageRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -774,6 +776,7 @@ position = Vector2( 0, -11 )
 shape = SubResource( 22 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 48
 
@@ -782,9 +785,9 @@ position = Vector2( -0.5, -27 )
 shape = SubResource( 23 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, -11 )
-shape = SubResource( 24 )
+position = Vector2( 0, -5 )
+rotation = -1.5708
+shape = SubResource( 27 )
 
 [node name="HealthBarPos" type="Node2D" parent="."]
 z_index = 3
@@ -818,7 +821,7 @@ shape = SubResource( 25 )
 
 [node name="Timer" type="Timer" parent="RespawnRadius"]
 process_mode = 0
-wait_time = 5.0
+wait_time = 2.5
 one_shot = true
 
 [node name="TimerLabel" type="RichTextLabel" parent="RespawnRadius"]
@@ -841,5 +844,3 @@ one_shot = true
 
 [node name="Line2D" type="Line2D" parent="."]
 default_color = Color( 0.615686, 1, 0.4, 1 )
-
-[connection signal="body_entered" from="EngageRange" to="." method="_on_EngageRange_body_entered"]

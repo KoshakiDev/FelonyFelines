@@ -16,6 +16,6 @@ func _action(target):
 	$AnimationPlayer.play("pickup")
 	yield($AnimationPlayer, "animation_finished")
 	
-	target.heal(heal_value)
+	target.get_owner().health_manager.heal(heal_value)
 	
 	queue_free()

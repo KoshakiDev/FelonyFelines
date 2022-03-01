@@ -75,9 +75,7 @@ __meta__ = {
 position = Vector2( 2275, 876 )
 texture = ExtResource( 4 )
 
-[node name="Camera2D" type="Camera2D" parent="." groups=[
-"camera",
-]]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2( 2275, 950 )
 current = true
 zoom = Vector2( 1.2, 1.2 )

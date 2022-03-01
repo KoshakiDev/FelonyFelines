@@ -1,6 +1,7 @@
 extends Node
 
 onready var FRICTION = 0.1
+onready var ACCEL = 0.1
 
 var brother_1
 var brother_2
@@ -37,6 +38,7 @@ func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)
 	new_parent.add_child(child)
+	
 
 func random_vector2(n):
 	var rng = RandomNumberGenerator.new()
@@ -137,22 +139,22 @@ func get_heighest_hp_enemy():
 
 func get_brother():
 	for player in players.get_children():
-		if player.entity_name == "SOOLTAN":
+		if player.entity_type == "PLAYER":
 			return player
 		#if not player.is_in_group("PLAYER"): continue
 	#for player in entity_world.get_children():
 
 func get_closest_player(position: Vector2):
-	var closest_player: Vector2 = random_vector2(10)
+	var closest_player: KinematicBody2D
 	var closest_distance = 999999999
 	
 	for player in players.get_children():
-		#if not player.is_in_group("PLAYER"): continue
-		if player.is_dead(): continue
+		if player.health_manager.is_dead(): continue
 		
 		var distance = (position - player.global_position).length()
 		if distance < closest_distance:
-			closest_player = player.global_position
+			closest_player = player
+			#closest_player = player.global_position
 			closest_distance = distance
 	
 	return closest_player

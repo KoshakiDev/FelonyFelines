@@ -15,8 +15,6 @@ onready var animation_machine := $AnimationMachine
 onready var hurtbox = $Hurtbox
 onready var engage_range := $EngageRange
 
-onready var pellets := $Pellets
-
 onready var bullet_spawner = $Sprite/Shoulder1/Cannon/BulletSpawner
 
 onready var cannon = $Sprite/Shoulder1/Cannon

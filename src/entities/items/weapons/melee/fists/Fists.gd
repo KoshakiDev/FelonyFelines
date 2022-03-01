@@ -1,7 +1,6 @@
 extends "res://src/entities/items/weapons/melee/meleeModule.gd"
 
 onready var animation_player := $AnimationPlayer
-onready var despawn_timer := $DespawnTimer
 
 onready var attack_restart = $AttackRestart
 
@@ -27,7 +26,8 @@ func action(_subject):
 		knockback_value = 25
 		attack_restart.start()
 	var direction = Vector2.RIGHT.rotated(global_rotation).normalized()
-	_subject.knockback += _subject.movement_direction * knockback_value_on_action
+	print(_subject, " ", direction, " ", _subject.movement_direction)
+	_subject.knockback += _subject.movement_direction * recoil
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	animation_player.play("Idle")

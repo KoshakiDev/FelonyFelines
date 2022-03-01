@@ -1,7 +1,7 @@
-extends "res://src/entities/items/itemModules.gd"
+extends "res://src/entities/items/base_templates/base_item/base_item.gd"
 
 export var max_ammo = 10
-export var knockback_value_on_action = 50
+export var recoil = 50
 
 onready var ammo = max_ammo
 
@@ -33,7 +33,10 @@ func action(_subject):
 		print("no ammo")
 		return
 	#deplete_ammo()
-	_subject.knockback += -1 * _subject.movement_direction * knockback_value_on_action
+	print(recoil)
+	print(_subject.movement_direction)
+	_subject.knockback += -1 * _subject.movement_direction * recoil
+	#print(_subject.knockback)
 	self.animation_player.play("Shoot")
 	yield(self.animation_player, "animation_finished")
 	#print("ammo left: ", ammo)
