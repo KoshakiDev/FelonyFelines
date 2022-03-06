@@ -97,13 +97,13 @@ func normalize_item_drop_weights():
 
 
 func get_closest_enemy(position: Vector2):
-	var closest_enemy: Vector2 = Vector2.ZERO
+	var closest_enemy: KinematicBody2D
 	var closest_distance = 999999999
 	
 	for enemy in enemies.get_children():
 		var distance = (position - enemy.global_position).length()
 		if distance < closest_distance:
-			closest_enemy = enemy.global_position
+			closest_enemy = enemy
 			closest_distance = distance
 	
 	return closest_enemy
@@ -154,25 +154,23 @@ func get_closest_player(position: Vector2):
 		var distance = (position - player.global_position).length()
 		if distance < closest_distance:
 			closest_player = player
-			#closest_player = player.global_position
 			closest_distance = distance
 	
 	return closest_player
 
 func get_farthest_player(position: Vector2):
-	var farthest_player: Vector2 = random_vector2(10)
+	var farthest_player: KinematicBody2D
 	var farthest_distance = 0
 
 	for player in players.get_children():
-		#if not player.is_in_group("PLAYER"): continue
-		if player.is_dead(): continue
+		if player.health_manager.is_dead(): continue
 		
 		var distance = (position - player.global_position).length()
 		if distance > farthest_distance:
-			farthest_player = player.global_position
+			farthest_player = player
 			farthest_distance = distance
 	
-	return farthest_player	
+	return farthest_player
 
 func get_lowest_hp_player():
 	var lowest_hp_player: Vector2 = random_vector2(10)

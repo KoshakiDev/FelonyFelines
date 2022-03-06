@@ -1,4 +1,4 @@
-extends "res://src/entities/base_templates/base_entity/base_entity.gd"
+extends "res://src/entities/base_templates/base_npc/base_npc.gd"
 
 export var player_id = "_1"
 var red_sprite = preload("res://assets/entities/players/red_brother_sheet_96x96.png")
@@ -18,6 +18,21 @@ onready var run_timer = $RunTimer
 
 var is_resistance = false
 
+func attack(target):
+	var look_dir = (target.global_position - global_position).normalized()
+	if look_dir.x < 0:
+		sprite.scale.x = -1
+	else:
+		sprite.scale.x = 1
+	
+	if sprite.scale.x == -1:
+		weapon_manager.rotation = PI - (target.global_position - global_position).angle()
+	elif sprite.scale.x == 1:
+		weapon_manager.rotation = (target.global_position - global_position).angle()
+	weapon_manager.cur_weapon.action(self)
+	enable_resistance()
+
+
 func _ready():
 	setup_player()
 
@@ -32,19 +47,15 @@ func setup_player():
 		sprite.set_texture(blue_sprite)
 	Global.set("brother" + player_id, self)
 
-func _input(event):
-	if health_manager.is_dead():
-		return
-	if event.is_action_pressed("next_weapon" + player_id):
-		weapon_manager.switch_to_next_weapon()
-	if event.is_action_pressed("prev_weapon" + player_id):
-		weapon_manager.switch_to_prev_weapon()
-	if event.is_action_pressed("action" + player_id):
-		weapon_manager.cur_weapon.action(self)
-		enable_resistance()
+#func _input(event):
+##	if health_manager.is_dead():
+##		return
+##	if event.is_action_pressed("next_weapon" + player_id):
+##		weapon_manager.switch_to_next_weapon()
+##	if event.is_action_pressed("prev_weapon" + player_id):
+##		weapon_manager.switch_to_prev_weapon()
 
 func _on_Hurtbox_area_entered(area):
-	if health_manager.is_dead(): return
 	._on_Hurtbox_area_entered(area)
 	Shake.shake(4.0, .5)
 	enable_resistance()

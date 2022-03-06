@@ -30,6 +30,7 @@ onready var sprite = $Visuals/Sprite
 #Area Variables
 onready var hurtbox = $Areas/Hurtbox
 onready var hurtbox_shape = $Areas/Hurtbox/HurtboxShape
+var can_get_hit = true
 
 #Healthbar
 onready var healthbar = $HealthBar/HealthBarVisual
@@ -56,11 +57,15 @@ func _physics_process(delta):
 	if not (is_equal_approx(intended_velocity.x, 0.0) and is_equal_approx(intended_velocity.y, 0.0)):
 		sprite_dir_manager.adjust_direction(intended_velocity)
 	move_and_slide(actual_velocity)
-	
+
+
+# This is the "hit" function, it can be called in children 
+# and add additional code by calling "._on_Hurtbox_area_entered(area)" first
 func _on_Hurtbox_area_entered(area):
+	print("hurting ", self)
 	if health_manager.is_dead(): return
+	if !can_get_hit: return
 	var attacker = area.owner
-	
 	if area.is_in_group("PROJECTILE"):
 		attacker = area
 		if attacker.is_player_bullet:
@@ -69,10 +74,7 @@ func _on_Hurtbox_area_entered(area):
 		elif entity_type == "ENEMY": 
 			return
 	elif attacker.entity_type == entity_type: # If statement to avoid friendly fire
-		return 
-
-	if entity_type == "PLAYER":
-		Shake.shake(4.0, .5)
+		return
 	health_manager.take_damage(attacker)
 
 #Kept in because of ease of use

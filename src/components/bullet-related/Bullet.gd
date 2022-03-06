@@ -37,9 +37,6 @@ func _physics_process(delta: float) -> void:
 func _on_Bullet_area_entered(area):
 	var areaParent = area.owner
 	#print(area)
-	
-	if areaParent.entity_type == "WORLD": queue_free()
-	
 	if is_player_bullet:
 		if areaParent.entity_type == "PLAYER": return
 		elif areaParent.entity_type == "ITEM":
@@ -56,5 +53,14 @@ func _on_Bullet_body_entered(body):
 	#var bodyParent = body.owner
 	#print(areaParent)
 	#print(body)
-	if body.get_name() == "Walls" or body.get_name() == "Plants": queue_free()
+	if body.get_name() == "Walls" or body.get_name() == "Plants": 
+		var tile_coords = body.world_to_map(global_position)
+		print(tile_coords, tile_coords.x, tile_coords.y)
+		print(body.get_cell(tile_coords.x, tile_coords.y))
+		print("bullet Y level: ", global_position.y, " ", "wall Y level: ", body.global_position.y)
+		if global_position.y < body.global_position.y:
+			print("the bullet is below the wall's y position")
+		if global_position.y > body.global_position.y:
+			print("the bullet is above the wall's y position")
+		queue_free()
 

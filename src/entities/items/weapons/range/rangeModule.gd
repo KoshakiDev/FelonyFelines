@@ -20,7 +20,7 @@ func deplete_ammo():
 	var shots_fired = b/a
 	#ceil isnt working correctly for 0.1 / 0.1; it returns 2
 	
-	print(ceil(b/a), " ", bullet_emitter_amount)
+	#print(ceil(b/a), " ", bullet_emitter_amount)
 	ammo -= bullet_emitter_amount * ceil(shots_fired)
 	#print("ammo fired: ", bullet_emitter_amount * ceil(shots_fired))
 	#print(shot_delay)
@@ -33,8 +33,8 @@ func action(_subject):
 		print("no ammo")
 		return
 	#deplete_ammo()
-	print(recoil)
-	print(_subject.movement_direction)
+	#print(recoil)
+	#print(_subject.movement_direction)
 	_subject.knockback += -1 * _subject.movement_direction * recoil
 	#print(_subject.knockback)
 	self.animation_player.play("Shoot")

@@ -26,7 +26,7 @@ func action(_subject):
 		knockback_value = 25
 		attack_restart.start()
 	var direction = Vector2.RIGHT.rotated(global_rotation).normalized()
-	print(_subject, " ", direction, " ", _subject.movement_direction)
+	#print(_subject, " ", direction, " ", _subject.movement_direction)
 	_subject.knockback += _subject.movement_direction * recoil
 
 func _on_AnimationPlayer_animation_finished(anim_name):

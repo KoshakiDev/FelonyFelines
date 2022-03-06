@@ -8,7 +8,7 @@ func enter(msg := {}) -> void:
 	if !owner.is_extra_resistance_on:
 		owner.play_animation("Run_2", "Movement")
 	else:
-		owner.play_animation("Run_1", "Movement")	
+		owner.play_animation("Run_1", "Movement")
 
 
 func exit() -> void:

@@ -31,7 +31,7 @@ func instance_scene(instance):
 	
 
 func delete_enemy():
-	enemy_drop()
+	#enemy_drop()
 	print("1")
 	if Global.main == null:
 		owner.queue_free()

@@ -510,9 +510,6 @@ script = ExtResource( 7 )
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
-cooldown_duration = 3.0
-dash_duration = 0.8
-dash_speed = 1250
 
 [node name="DashDurationTimer" type="Timer" parent="StateMachine/Attack"]
 wait_time = 0.215
@@ -549,7 +546,6 @@ position = Vector2( 0, -48 )
 shape = SubResource( 8 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 position = Vector2( -1, -39 )
 scale = Vector2( 3.72, 3.72 )
 collision_layer = 16

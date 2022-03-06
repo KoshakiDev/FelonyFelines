@@ -392,7 +392,7 @@ position = Vector2( 0, -64 )
 texture = ExtResource( 5 )
 hframes = 15
 vframes = 3
-frame = 30
+frame = 39
 
 [node name="GunHand" type="Node2D" parent="Visuals/Sprite" index="0"]
 position = Vector2( -35, -22 )
@@ -429,9 +429,6 @@ texture = ExtResource( 6 )
 offset = Vector2( 0, 17 )
 
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
-
-[node name="Areas" parent="." index="3"]
-visible = false
 
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false

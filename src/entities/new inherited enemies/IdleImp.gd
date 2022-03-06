@@ -8,7 +8,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Death")
 		return
 	
-	var target = Global.get_closest_player(owner.global_position)
+	var target = Global.get_farthest_player(owner.global_position)
 	if target != null:
 		state_machine.transition_to("Chase")
 		return
