@@ -6,7 +6,9 @@ onready var spawn_area = $Area2D/CollisionShape2D.shape.extents
 #			 preload("res://src/entities/enemies/EnemyBall/EnemyBall.tscn"),
 #			 preload("res://src/entities/enemies/EnemyImp/EnemyImp.tscn")]
 
-var enemyLoad = [preload("res://src/entities/new inherited enemies/EnemyGunner.tscn")]
+var enemyLoad = [preload("res://src/entities/new inherited enemies/EnemyGunner.tscn"),
+			preload("res://src/entities/new inherited enemies/EnemyBaller.tscn"),
+			preload("res://src/entities/new inherited enemies/EnemyImp.tscn")]
 
 
 #onready var enemies = $"../YSort"

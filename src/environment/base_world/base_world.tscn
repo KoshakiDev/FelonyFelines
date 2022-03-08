@@ -69,6 +69,8 @@ __meta__ = {
 
 [node name="Misc" type="YSort" parent="World/EntityWorld"]
 
+[node name="Misc2" type="Node2D" parent="World"]
+
 [node name="InfoPos" type="Position2D" parent="."]
 position = Vector2( 0, -400 )
 

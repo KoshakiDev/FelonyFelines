@@ -1,10 +1,15 @@
 extends State
 
 func enter(msg := {}) -> void:
+	owner.play_animation("ShootPrepare", "Animations")
+	yield(owner.animation_machine.find("Animations"), "animation_finished")
 	owner.play_animation("Idle", "Animations")
 
 func exit() -> void:
 	owner.bullet_spawner.set_shooting(false)
+	owner.play_animation("ShootCancel", "Animations")
+	yield(owner.animation_machine.find("Animations"), "animation_finished")
+	
 
 func physics_update(_delta: float) -> void:
 	if owner.health_manager.is_dead():

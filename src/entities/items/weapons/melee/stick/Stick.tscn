@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/entities/items/base_templates/base_melee_weapon/BaseMeleeWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test folder/stick.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.0
+height = 38.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Visuals/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -21, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Visuals/Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04, 0.13, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -120.0, 120.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Visuals/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Visuals/Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="Stick" instance=ExtResource( 1 )]
+entity_name = "STICK"
+
+[node name="Position2D" parent="." index="0"]
+position = Vector2( -11, 0 )
+
+[node name="Sprite" parent="Position2D/Visuals" index="0"]
+texture = ExtResource( 2 )
+offset = Vector2( 21, -1 )
+
+[node name="Hitbox" parent="Position2D/Visuals/Sprite" index="0"]
+position = Vector2( 22, 0 )
+
+[node name="HitboxShape" parent="Position2D/Visuals/Sprite/Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="PickUpRange" parent="Position2D" index="1"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Position2D/AnimationMachine" index="0"]
+anims/Attack = SubResource( 2 )
+anims/RESET = SubResource( 3 )

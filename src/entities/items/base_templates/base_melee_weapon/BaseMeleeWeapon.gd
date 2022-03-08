@@ -8,3 +8,5 @@ export var recoil: float = 15
 
 func action(_subject):
 	animation_machine.play_animation("Attack", "AnimationPlayer")
+	_subject.knockback += -1 * _subject.movement_direction * recoil
+	

@@ -22,17 +22,24 @@ func _ready() -> void:
 	$ShootSound.play()
 
 func setup(dir, speed, damage_value, knockback_value) -> void:
+	print(dir)
 	self.dir = dir
 	self.speed = speed
 	self.damage_value = damage_value
 	self.knockback_value = knockback_value
-
+	rotation = (dir - Vector2.ZERO).angle()
+	
+	
 func _physics_process(delta: float) -> void:
 	if shooting:
 		position += dir * speed * delta
 		if start_pos.distance_to(global_position) > MAX_DISTANCE:
 			queue_free()
-
+		if current_body != null:
+			var tile_pos = current_body.world_to_map(position)
+			var tile_in_front = current_body.get_cellv(tile_pos + Vector2(0, 1))
+			if tile_in_front == 0:
+				queue_free()
 
 func _on_Bullet_area_entered(area):
 	var areaParent = area.owner
@@ -40,27 +47,18 @@ func _on_Bullet_area_entered(area):
 	if is_player_bullet:
 		if areaParent.entity_type == "PLAYER": return
 		elif areaParent.entity_type == "ITEM":
-			if areaParent.entity_name == "SHIELD":
-				return
+			return
 	else:
 		if areaParent.entity_type == "ENEMY": return
 	
 	queue_free()
 	pass
 
+var current_body
 
 func _on_Bullet_body_entered(body):
-	#var bodyParent = body.owner
-	#print(areaParent)
-	#print(body)
 	if body.get_name() == "Walls" or body.get_name() == "Plants": 
-		var tile_coords = body.world_to_map(global_position)
-		print(tile_coords, tile_coords.x, tile_coords.y)
-		print(body.get_cell(tile_coords.x, tile_coords.y))
-		print("bullet Y level: ", global_position.y, " ", "wall Y level: ", body.global_position.y)
-		if global_position.y < body.global_position.y:
-			print("the bullet is below the wall's y position")
-		if global_position.y > body.global_position.y:
-			print("the bullet is above the wall's y position")
-		queue_free()
+		current_body = body
 
+func _on_Bullet_body_exited(body):
+	current_body = null

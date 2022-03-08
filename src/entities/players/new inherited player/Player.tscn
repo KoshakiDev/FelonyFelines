@@ -674,7 +674,7 @@ entity_type = "PLAYER"
 max_speed = 675.0
 
 [node name="HealthManager" parent="Functions" index="0"]
-max_health = 20.0
+max_health = 100.0
 
 [node name="PhysicsCollider" parent="." index="1"]
 shape = SubResource( 24 )

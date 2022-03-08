@@ -36,8 +36,10 @@ func _input(event):
 	if health_manager.is_dead():
 		return
 	if event.is_action_pressed("next_weapon" + player_id):
+		weapon_manager.update_children()
 		weapon_manager.switch_to_next_weapon()
 	if event.is_action_pressed("prev_weapon" + player_id):
+		weapon_manager.update_children()
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
 		weapon_manager.cur_weapon.action(self)

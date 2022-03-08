@@ -1,9 +1,5 @@
 extends State
 
-func move(direction):
-	owner.velocity = owner.velocity.linear_interpolate(direction * owner.max_speed, Global.ACCEL)
-	owner.movement_direction = direction
-
 func ent_dist(entity1, entity2):
 	return (entity1.global_position - entity2.global_position).length()
 
@@ -72,21 +68,26 @@ func enter(msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
-	if owner.is_dead():
+	if owner.health_manager.is_dead():
 		state_machine.transition_to("Death")
 		return
 
 	var similar_enemies = Global.get_all_enemies()[owner.entity_name]
-
-	var target_pos = Global.get_closest_player(owner.global_position)
+	
+	var target = Global.get_closest_player(owner.global_position)
+	
+	if target == null:
+		state_machine.transition_to("Idle")
+		return
+	var target_pos = target.global_position
 	var total_vector
 
 	if owner.global_position.distance_to(target_pos) > 300:
-		owner.get_target_path(target_pos)
+		owner.nav_manager.get_target_path(target_pos)
 		# direction of motion
-		if owner.path.size() > 0:
-			var vector_to_target = owner.get_next_direction_to_target()
-			move(vector_to_target)
+		if owner.nav_manager.path.size() > 0:
+			var vector_to_target = owner.nav_manager.get_next_direction_to_target()
+			owner.move(vector_to_target)
 	else:
 		# direction of motion
 		var vector_to_target = target_pos - owner.global_position
@@ -99,7 +100,7 @@ func physics_update(delta: float) -> void:
 			total_vector = vector_to_target * .3 + c * .2 + a * .2 + s * .3
 		else:
 			total_vector = vector_to_target
-		move(total_vector)
-	if owner.bodies_in_engage_area > 0:
+		owner.move(total_vector)
+	if owner.is_target_in_aim(target) and owner.current_bodies_in_attack_range.size() > 0:
 		state_machine.transition_to("Attack")
 		return

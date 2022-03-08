@@ -1,11 +1,8 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/bullet-related/bullet type/EnemyBullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/entities/enemies/gunner/gunner_hand_shoulder_22x44.png" type="Texture" id=4]
-[ext_resource path="res://assets/entities/enemies/gunner/gunner_sheet_128x128.png" type="Texture" id=5]
-[ext_resource path="res://assets/entities/enemies/gunner/gunner_hand_cannon_22x44.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/new inherited enemies/EnemyGunner.gd" type="Script" id=7]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=8]
 [ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=9]
@@ -13,6 +10,8 @@
 [ext_resource path="res://src/entities/enemies/EnemyGunner/states/ChaseGunner.gd" type="Script" id=11]
 [ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=12]
 [ext_resource path="res://src/entities/new inherited enemies/IdleGunner.gd" type="Script" id=13]
+[ext_resource path="res://test folder/test enemy sprites/sergeant_sir_giant_test.png" type="Texture" id=14]
+[ext_resource path="res://test folder/test enemy sprites/sergeant_sir_giant_hand_gun.png" type="Texture" id=15]
 
 [sub_resource type="CapsuleShape2D" id=19]
 radius = 5.0
@@ -216,7 +215,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -228,7 +227,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:material:shader_param/active")
+tracks/1/path = NodePath("Death:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -240,7 +239,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Death:playing")
+tracks/2/path = NodePath("Shoot:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -252,7 +251,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Shoot:playing")
+tracks/3/path = NodePath("Sprite/Shoulder1:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -261,10 +260,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( -35, -22 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite/Shoulder1:position")
+tracks/4/path = NodePath("Sprite/Shoulder2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -273,10 +272,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -35, -22 ) ]
+"values": [ Vector2( 35, -22 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite/Shoulder2:position")
+tracks/5/path = NodePath("Sprite/Shoulder2/Cannon2:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -285,15 +284,27 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 35, -22 ) ]
+"values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sprite/Shoulder2/Cannon2:rotation_degrees")
+tracks/6/path = NodePath("Visuals/Sprite/HandGun:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, 45 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Visuals/Sprite/HandGun:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -315,6 +326,62 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "ShootCancel"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite/HandGun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 45 ), Vector2( 15, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Sprite/HandGun:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -55.0 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "ShootPrepare"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite/HandGun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 15, 20 ), Vector2( 5, 45 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Sprite/HandGun:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -55.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -381,54 +448,34 @@ entity_type = "ENEMY"
 max_health = 100.0
 
 [node name="NavigationManager" parent="Functions" index="2"]
-threshold = 32
+threshold = 4
 
 [node name="PhysicsCollider" parent="." index="1"]
 shape = SubResource( 19 )
 
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 7 )
-position = Vector2( 0, -64 )
-texture = ExtResource( 5 )
-hframes = 15
-vframes = 3
-frame = 39
+position = Vector2( 0, -56 )
+texture = ExtResource( 14 )
+hframes = 1
+vframes = 1
+frame = 0
 
-[node name="GunHand" type="Node2D" parent="Visuals/Sprite" index="0"]
-position = Vector2( -35, -22 )
+[node name="HandGun" type="Sprite" parent="Visuals/Sprite" index="0"]
+position = Vector2( 5, 45 )
+texture = ExtResource( 15 )
+offset = Vector2( 22, -9 )
 
-[node name="Shoulder1" type="Sprite" parent="Visuals/Sprite/GunHand" index="0"]
-texture = ExtResource( 4 )
-offset = Vector2( 0, 17 )
-
-[node name="Cannon" type="Node2D" parent="Visuals/Sprite/GunHand/Shoulder1" index="0"]
-position = Vector2( 0, 34 )
-
-[node name="Sprite" type="Sprite" parent="Visuals/Sprite/GunHand/Shoulder1/Cannon" index="0"]
-rotation = -1.5708
-texture = ExtResource( 6 )
-offset = Vector2( 0, 17 )
-
-[node name="BulletSpawner" parent="Visuals/Sprite/GunHand/Shoulder1/Cannon" index="1" instance=ExtResource( 3 )]
-position = Vector2( 35, 0 )
+[node name="BulletSpawner" parent="Visuals/Sprite/HandGun" index="0" instance=ExtResource( 3 )]
+position = Vector2( 52, -10 )
 bullet_scene = ExtResource( 2 )
 shot_delay = 1.0
 bullet_emitter = SubResource( 10 )
 
-[node name="Shoulder2" type="Sprite" parent="Visuals/Sprite" index="1"]
-modulate = Color( 0.498039, 0.498039, 0.498039, 1 )
-show_behind_parent = true
-position = Vector2( 35, -22 )
-texture = ExtResource( 4 )
-offset = Vector2( 0, 17 )
-
-[node name="Cannon2" type="Sprite" parent="Visuals/Sprite/Shoulder2" index="0"]
-show_behind_parent = true
-position = Vector2( 0, 34 )
-texture = ExtResource( 6 )
-offset = Vector2( 0, 17 )
-
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
+
+[node name="Areas" parent="." index="3"]
+visible = false
 
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false
@@ -451,6 +498,8 @@ anims/Death = SubResource( 13 )
 anims/Idle = SubResource( 14 )
 anims/RESET = SubResource( 15 )
 anims/Run = SubResource( 16 )
+anims/ShootCancel = SubResource( 21 )
+anims/ShootPrepare = SubResource( 20 )
 
 [node name="Hit" type="AnimationPlayer" parent="AnimationMachine" index="1"]
 anims/Hit = SubResource( 17 )
@@ -473,3 +522,6 @@ script = ExtResource( 12 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -133 )
+
+[node name="Line2D" parent="Debug" index="0"]
+default_color = Color( 1, 0.960784, 0.4, 1 )

@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/environment/texture/TX Tileset Grass.png" type="Texture" id=1]
+[ext_resource path="res://test folder/tileset_repaint.png" type="Texture" id=1]
 
 [sub_resource type="TileSet" id=1]
-0/name = "TX Tileset Grass.png 0"
+0/name = "tileset_repaint.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 128, 256, 128 )
+0/region = Rect2( 0, 256, 512, 256 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/tile_size = Vector2( 64, 64 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
@@ -26,7 +26,6 @@
 0/z_index = 0
 
 [node name="Path" type="TileMap"]
-scale = Vector2( 2, 2 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1

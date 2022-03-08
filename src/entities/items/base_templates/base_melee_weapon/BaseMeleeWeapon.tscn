@@ -5,3 +5,9 @@
 
 [node name="BaseMeleeWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="Position2D/Visuals/Sprite" index="0"]
+collision_layer = 8
+collision_mask = 160
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Position2D/Visuals/Sprite/Hitbox" index="0"]

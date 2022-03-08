@@ -15,7 +15,7 @@ onready var players = $World/EntityWorld/Players
 onready var items = $World/EntityWorld/Items
 onready var spawners = $World/EntityWorld/Spawners.get_children()
 onready var misc = $World/EntityWorld/Misc
-
+onready var misc_2 = $World/Misc2
 onready var navigation = $World/Navigation2D
 
 var wave_num = 0
@@ -41,6 +41,7 @@ func _ready():
 	Global.set("enemies", enemies)
 	Global.set("misc", misc)
 	Global.set("navigation", navigation)
+	Global.set("misc_2", misc_2)
 	update_wave()
 	
 func update_board():

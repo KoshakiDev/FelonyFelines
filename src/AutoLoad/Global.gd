@@ -15,6 +15,7 @@ var enemies
 var players
 var projectiles
 var misc
+var misc_2
 var root
 
 var final_score
@@ -59,6 +60,7 @@ func get_all_enemies():
 #			continue
 		if entity.entity_type in enemy_types:
 			enemies_result[entity.entity_type].append(entity)
+	#print(enemies_result)
 	return enemies_result
 
 func get_all_enemies_list():

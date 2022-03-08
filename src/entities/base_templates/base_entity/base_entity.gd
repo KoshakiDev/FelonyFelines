@@ -62,7 +62,6 @@ func _physics_process(delta):
 # This is the "hit" function, it can be called in children 
 # and add additional code by calling "._on_Hurtbox_area_entered(area)" first
 func _on_Hurtbox_area_entered(area):
-	print("hurting ", self)
 	if health_manager.is_dead(): return
 	if !can_get_hit: return
 	var attacker = area.owner
