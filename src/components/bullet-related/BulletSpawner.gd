@@ -67,12 +67,8 @@ func _shoot() -> void:
 		return
 	#print("shooting")
 	var shoot_dir = Vector2.RIGHT.rotated(global_rotation + rotation_offset).normalized()
-<<<<<<< HEAD
 
-	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, bullet_knockback_value)
-=======
 	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, knockback_value)
->>>>>>> c79381f21b5fa2c48fad5615dd64ac7c5f6f0ff8
 
 # Workaround for resource list
 func _get_property_list() -> Array:

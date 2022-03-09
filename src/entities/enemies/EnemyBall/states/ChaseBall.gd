@@ -7,6 +7,7 @@ func physics_update(delta: float) -> void:
 	if owner.health_manager.is_dead():
 		state_machine.transition_to("Death")
 		return
+
 	var target = Global.get_farthest_player(owner.global_position)
 	var total_vector
 	if target == null:
@@ -16,6 +17,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Attack")
 		return
 	var target_pos = target.global_position
+	
 	owner.nav_manager.get_target_path(target_pos)
 	# direction of motion
 	if owner.nav_manager.path.size() > 0:
