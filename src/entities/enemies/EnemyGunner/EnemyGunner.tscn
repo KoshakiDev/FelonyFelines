@@ -368,25 +368,24 @@ script = ExtResource( 4 )
 amount = 9
 spread_angle = 5.0
 
-[sub_resource type="CapsuleShape2D" id=16]
-radius = 21.0
-height = 18.0
-
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 44, 61 )
 
-[sub_resource type="CapsuleShape2D" id=18]
-radius = 300.0
-height = 0.0
+[sub_resource type="CircleShape2D" id=20]
+radius = 200.0
+
+[sub_resource type="CapsuleShape2D" id=21]
+radius = 5.0
+height = 58.0
 
 [node name="EnemyGunner" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
 material = SubResource( 1 )
 collision_layer = 4
-collision_mask = 5
+collision_mask = 7
 script = ExtResource( 1 )
 entity_name = "GUNNER"
 entity_type = "ENEMY"
-max_speed = 600.0
+max_speed = 300.0
 ITEM_DROP_PERCENT = 90
 max_health = 250.0
 
@@ -437,6 +436,7 @@ offset = Vector2( 0, 17 )
 
 [node name="Cannon" type="Node2D" parent="Sprite/Shoulder1"]
 position = Vector2( 0, 34 )
+rotation = 6.3271
 
 [node name="Sprite" type="Sprite" parent="Sprite/Shoulder1/Cannon"]
 rotation = -1.5708
@@ -462,10 +462,6 @@ position = Vector2( 0, 34 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, 17 )
 
-[node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -30 )
-shape = SubResource( 16 )
-
 [node name="Hurtbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 128
@@ -476,16 +472,14 @@ position = Vector2( 2, -61 )
 shape = SubResource( 17 )
 
 [node name="EngageRange" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -48 )
 rotation = -1.5708
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EngageRange"]
-position = Vector2( -29, -1.00011 )
-rotation = -3.14159
-shape = SubResource( 18 )
+position = Vector2( 3, 0 )
+shape = SubResource( 20 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 14 )]
 margin_top = -152.0
@@ -501,3 +495,11 @@ stream = ExtResource( 8 )
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color( 1, 0.4, 0.4, 1 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -5 )
+rotation = -1.5708
+shape = SubResource( 21 )

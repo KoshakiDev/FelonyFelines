@@ -16,7 +16,11 @@ func _ready() -> void:
 	# The state machine assigns itself to the State objects' state_machine property.
 	for child in get_children():
 		child.state_machine = self
+	if state == null:
+		printerr("STATE MACHINE ERROR: No Initial State!")
+		return
 	state.enter()
+	
 
 
 # The state machine subscribes to node callbacks and delegates them to the state objects.

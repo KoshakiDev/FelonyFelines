@@ -1,17 +1,5 @@
 extends State
 
-func seek_steering(desired_direction_vector: Vector2) -> Vector2:
-	var desired_velocity: Vector2 = desired_direction_vector.normalized() * owner.max_speed
-	return desired_velocity - owner.velocity
-
-func move_according_to(vector):
-	var steering: Vector2 = seek_steering(vector)
-	steering = steering.clamped(owner.max_steering)
-	
-	owner.velocity = owner.velocity + steering
-
-	owner.velocity = owner.velocity.clamped(owner.max_speed)
-
 func ent_dist(entity1, entity2):
 	return (entity1.global_position - entity2.global_position).length()
 
@@ -80,31 +68,39 @@ func enter(msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
-	if owner.is_dead():
+	if owner.health_manager.is_dead():
 		state_machine.transition_to("Death")
 		return
 
 	var similar_enemies = Global.get_all_enemies()[owner.entity_name]
 	
-	var target_pos = Global.get_closest_player(owner.global_position)
+	var target = Global.get_closest_player(owner.global_position)
+	
+	if target == null:
+		state_machine.transition_to("Idle")
+		return
+	var target_pos = target.global_position
 	var total_vector
-	
-	# direction of motion
-	var vector_to_target = target_pos - owner.global_position
-	
-	if len(similar_enemies) > 1:
-		var c = boid_cohesion(similar_enemies)
-		var a = boid_alignment(similar_enemies)
-		var s = boid_separate(similar_enemies)
-		
-		total_vector = vector_to_target * .3 + c * .2 + a * .2 + s * .3
+
+	if owner.global_position.distance_to(target_pos) > 300:
+		owner.nav_manager.get_target_path(target_pos)
+		# direction of motion
+		if owner.nav_manager.path.size() > 0:
+			var vector_to_target = owner.nav_manager.get_next_direction_to_target()
+			owner.move(vector_to_target)
 	else:
-		total_vector = vector_to_target
-	
-	# moving into the direction
-	move_according_to(total_vector)
-	owner.movement_direction = vector_to_target
-	
-	if owner.bodies_in_engage_area > 0:
+		# direction of motion
+		var vector_to_target = target_pos - owner.global_position
+
+		if len(similar_enemies) > 1:
+			var c = boid_cohesion(similar_enemies)
+			var a = boid_alignment(similar_enemies)
+			var s = boid_separate(similar_enemies)
+
+			total_vector = vector_to_target * .3 + c * .2 + a * .2 + s * .3
+		else:
+			total_vector = vector_to_target
+		owner.move(total_vector)
+	if owner.is_target_in_aim(target) and owner.current_bodies_in_attack_range.size() > 0:
 		state_machine.transition_to("Attack")
 		return

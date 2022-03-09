@@ -1,64 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/windows_command_font.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/environment/tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://assets/environment/parallax background/finalDay_1.png" type="Texture" id=4]
-[ext_resource path="res://assets/environment/parallax background/finalDay_6.png" type="Texture" id=5]
-[ext_resource path="res://assets/environment/parallax background/finalDay_3.png" type="Texture" id=6]
-[ext_resource path="res://assets/environment/parallax background/finalDay_4.png" type="Texture" id=7]
-[ext_resource path="res://assets/environment/parallax background/finalDay_5.png" type="Texture" id=8]
-[ext_resource path="res://src/entities/players/sooltan/sooltan.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/environment/tileset_simple.png" type="Texture" id=10]
+[ext_resource path="res://src/menu/menu_world/MenuWorld.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/menu/FELONY FELINES.png" type="Texture" id=4]
 [ext_resource path="res://src/menu/DeathScreen.tscn" type="PackedScene" id=11]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 96, 96, 0, 96, 0, 0, 96, 0 )
-
-[sub_resource type="TileSet" id=2]
-0/name = "tileset_simple.png 0"
-0/texture = ExtResource( 10 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 32, 96, 96 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-
-[sub_resource type="Animation" id=3]
-resource_name = "Idle"
-length = 5.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("InfoPos:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 440 ), Vector2( 0, 376 ) ]
-}
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("InfoPos:position")
+tracks/0/path = NodePath("Title:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -67,7 +17,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 2275, 876 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Camera2D:position")
@@ -79,42 +29,43 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -72 ) ]
+"values": [ Vector2( 2275, 950 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-length = 10.0
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 12.0
 loop = true
+step = 1.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Camera2D:position")
+tracks/0/path = NodePath("Title:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2, 4, 6, 8, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -100, 336 ), Vector2( 100, 336 ) ]
+"values": [ Vector2( 2275, 875 ), Vector2( 2275, 900 ), Vector2( 2275, 875 ), Vector2( 2275, 900 ), Vector2( 2275, 875 ), Vector2( 2275, 900 ), Vector2( 2275, 875 ) ]
 }
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -104, -72 ) ]
+"values": [ Vector2( 2275, 950 ), Vector2( 2300, 950 ), Vector2( 2275, 950 ), Vector2( 2250, 950 ), Vector2( 2275, 950 ), Vector2( 2300, 950 ), Vector2( 2275, 950 ) ]
 }
 
 [node name="Menu" type="Node2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 1 )
+<<<<<<< HEAD
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -220,54 +171,27 @@ custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]FELONYFELINES[/center]"
 text = "FELONYFELINES"
+=======
+>>>>>>> c79381f21b5fa2c48fad5615dd64ac7c5f6f0ff8
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_vertical_guides_": [ 2275.0 ]
 }
 
-[node name="Info2" type="RichTextLabel" parent="InfoPos"]
-margin_left = -152.0
-margin_top = 24.0
-margin_right = 456.0
-margin_bottom = 112.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center]DEAD          ALIVE[/center]"
-text = "DEAD          ALIVE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MenuWorld" parent="." instance=ExtResource( 3 )]
 
-[node name="Info3" type="RichTextLabel" parent="InfoPos"]
-margin_left = -62.0
-margin_top = 24.0
-margin_right = 162.0
-margin_bottom = 120.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_colors/default_color = Color( 1, 0, 0, 1 )
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center]AND[/center]"
-text = "AND"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 2275, 876 )
+texture = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
-position = Vector2( -104, -72 )
+position = Vector2( 2275, 950 )
 current = true
-zoom = Vector2( 1.333, 1.333 )
+zoom = Vector2( 1.2, 1.2 )
 smoothing_enabled = true
 
-[node name="InfoAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 3 )
-anims/RESET = SubResource( 4 )
-
-[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 5 )
-anims/RESET = SubResource( 6 )
-
-[node name="Position2D" type="Position2D" parent="."]
-
 [node name="DeathScreen" parent="." instance=ExtResource( 11 )]
-position = Vector2( 0, 587 )
+position = Vector2( 2275, 1167 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )

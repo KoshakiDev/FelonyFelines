@@ -18,7 +18,7 @@ func _ready():
 	pass
 
 func setup():
-	print(player1, player2)
+	#print(player1, player2)
 	if player1 == null or player2 == null:
 		printerr("SPLIT SCREEN ERROR: Player(s) are null!")
 		set_physics_process(false)
@@ -67,8 +67,8 @@ func _update_splitscreen():
 		thickness = split_line_thickness
 
 	view.material.set_shader_param("split_active", _get_split_state())
-	view.material.set_shader_param("is_player1_dead", player1.is_dead())
-	view.material.set_shader_param("is_player2_dead", player2.is_dead())
+	view.material.set_shader_param("is_player1_dead", player1.health_manager.is_dead())
+	view.material.set_shader_param("is_player2_dead", player2.health_manager.is_dead())
 	view.material.set_shader_param("player1_position", player1_position)
 	view.material.set_shader_param("player2_position", player2_position)
 	view.material.set_shader_param("split_line_thickness", thickness)
@@ -91,7 +91,7 @@ func _on_size_changed():
 	view.material.set_shader_param("viewport_size", screen_size)
 
 func _compute_position_difference_in_world():
-	if not player2.is_dead() and player1.is_dead(): return Vector2.ZERO
-	if player2.is_dead() and not player1.is_dead(): return Vector2.ZERO
+	if not player2.health_manager.is_dead() and player1.health_manager.is_dead(): return Vector2.ZERO
+	if player2.health_manager.is_dead() and not player1.health_manager.is_dead(): return Vector2.ZERO
 	
 	return player2.global_transform.origin - player1.global_transform.origin

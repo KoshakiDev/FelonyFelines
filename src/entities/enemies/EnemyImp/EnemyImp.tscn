@@ -369,13 +369,14 @@ resource_local_to_scene = true
 shader = SubResource( 13 )
 shader_param/active = false
 
-[sub_resource type="CapsuleShape2D" id=15]
-height = 4.0
+[sub_resource type="CapsuleShape2D" id=19]
+radius = 5.0
+height = 10.0
 
-[sub_resource type="CircleShape2D" id=21]
+[sub_resource type="CircleShape2D" id=16]
 radius = 24.0
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 10.5, 12 )
 
 [sub_resource type="CircleShape2D" id=18]
@@ -387,8 +388,6 @@ collision_mask = 73
 script = ExtResource( 6 )
 entity_name = "IMP"
 entity_type = "ENEMY"
-max_speed = 1600.0
-max_steering = 7.5
 ITEM_DROP_PERCENT = 70
 max_health = 40.0
 damage_value = 10.0
@@ -439,9 +438,10 @@ texture = ExtResource( 12 )
 hframes = 9
 vframes = 3
 
-[node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -12 )
-shape = SubResource( 15 )
+[node name="Collider2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -5 )
+rotation = -1.5708
+shape = SubResource( 19 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
@@ -449,7 +449,7 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -8 )
-shape = SubResource( 21 )
+shape = SubResource( 16 )
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -458,7 +458,7 @@ collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( 0.5, -12 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="EngageRange" type="Area2D" parent="."]
 visible = false
@@ -484,5 +484,8 @@ stream = ExtResource( 8 )
 [node name="Smash" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 13 )
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color( 1, 0.4, 0.94902, 1 )
 
 [connection signal="body_entered" from="EngageRange" to="." method="_on_EngageRange_body_entered"]

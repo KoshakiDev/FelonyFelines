@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/components/respawn_radius/Respawn.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 64.0
+
+[node name="Respawn" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Looks for Player Kinematic Body. Turned off by default until the player dies."
+}
+
+[node name="RespawnShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10 )
+shape = SubResource( 1 )
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_Respawn_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Respawn_body_exited"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

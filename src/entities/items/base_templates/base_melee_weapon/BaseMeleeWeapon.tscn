@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/items/base_templates/base_item/base_item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/items/base_templates/base_melee_weapon/BaseMeleeWeapon.gd" type="Script" id=2]
+
+[node name="BaseMeleeWeapon" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="Position2D/Visuals/Sprite" index="0"]
+collision_layer = 8
+collision_mask = 160
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Position2D/Visuals/Sprite/Hitbox" index="0"]

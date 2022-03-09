@@ -7,9 +7,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.00641
 
-[node name="Bullet" type="Area2D" groups=["hitbox"]]
+[node name="Bullet" type="Area2D" groups=["PROJECTILE"]]
 collision_layer = 32
-collision_mask = 64
+collision_mask = 73
 script = ExtResource( 1 )
 is_player_bullet = false
 
@@ -25,3 +25,4 @@ shape = SubResource( 1 )
 stream = ExtResource( 2 )
 
 [connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

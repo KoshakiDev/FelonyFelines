@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/components/item_pickup/ItemPickup.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=22]
+radius = 20.0
+
+[node name="ItemPickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Only LOOKS for items"
+}
+
+[node name="ItemPickupShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10 )
+shape = SubResource( 22 )
+
+[connection signal="area_entered" from="." to="." method="_on_ItemPickup_area_entered"]

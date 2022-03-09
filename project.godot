@@ -67,7 +67,7 @@ config/description="Command & Collab is an action puzzle platformer about a warm
 The Caretaker's farm has suffered a cyber attack when he was secretly away with his adopted cub Charlie. 
 He and Charlie must take the farm back before the virus destroys the farm.
 "
-run/main_scene="res://src/menu/Menu.tscn"
+run/main_scene="res://src/environment/debug_levels/DebugRoom.tscn"
 boot_splash/image="res://splashscreen.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -207,13 +207,14 @@ reparent={
 2d_render/layer_2="player"
 2d_render/layer_3="enemy"
 2d_physics/layer_1="world"
-2d_physics/layer_2="player"
-2d_physics/layer_3="enemy"
-2d_physics/layer_4="playerHitbox"
-2d_physics/layer_5="enemyHitbox"
-2d_physics/layer_6="projectile"
-2d_physics/layer_7="playerHurtbox"
-2d_physics/layer_8="enemyHurtbox"
+2d_physics/layer_2="player_kinematic_body"
+2d_physics/layer_3="enemy_kinematic_body"
+2d_physics/layer_4="player_hitbox"
+2d_physics/layer_5="enemy_hitbox"
+2d_physics/layer_6="projectile_area"
+2d_physics/layer_7="player_hurtbox"
+2d_physics/layer_8="enemy_hurtbox"
+2d_physics/layer_9="item_pick_up_area"
 
 [physics]
 
