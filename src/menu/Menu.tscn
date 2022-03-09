@@ -158,7 +158,7 @@ region_rect = Rect2( 0, 0, 2150, 1344 )
 motion_scale = Vector2( 0.9, 0 )
 
 [node name="SpriteLayer5" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
-position = Vector2( 11, -248 )
+position = Vector2( 88, -288 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 2150, 1344 )

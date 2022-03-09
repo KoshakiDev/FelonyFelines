@@ -72,6 +72,7 @@ func _shoot() -> void:
 		emit_signal("shot_ready")
 		return
 	var shoot_dir = Vector2.RIGHT.rotated(global_rotation + rotation_offset).normalized()
+
 	bullet_emitter.shoot(global_position, shoot_dir, bullet_speed, bullet_damage_value, bullet_knockback_value)
 
 # Workaround for resource list
