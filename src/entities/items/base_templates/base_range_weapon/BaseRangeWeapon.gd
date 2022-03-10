@@ -34,7 +34,6 @@ func setup_max_ammo(shot_delay, animation_length, bullet_emitter_type):
 	
 	return bullet_emitter_amount * shots_fired * max_ammo
 
-
 func deplete_ammo():
 	var shot_delay = self.bullet_spawner.shot_delay
 	var animation_length = self.animation_player.get_animation("Shoot").length
@@ -54,3 +53,4 @@ func deplete_ammo():
 	#print(animation_length)
 	#print(bullet_emitter_amount)
 	#print(ceil(shots_fired), " ", shots_fired)
+	
