@@ -40,7 +40,7 @@ func boid_alignment(entities: Array):
 		return steer
 	else:
 		return Vector2.ZERO
-
+		
 func boid_separate(entities: Array):
 	var desired_separation = 200
 	var steer: Vector2 = Vector2.ZERO

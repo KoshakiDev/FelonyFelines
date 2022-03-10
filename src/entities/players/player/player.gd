@@ -42,8 +42,13 @@ func _input(event):
 		weapon_manager.update_children()
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
-		weapon_manager.cur_weapon.action(self)
-		enable_resistance()
+		if weapon_manager.cur_weapon.entity_name == "MEDKIT" or weapon_manager.cur_weapon.entity_name == "AMMO":
+			weapon_manager.cur_weapon.action(self)
+			weapon_manager.update_children()
+			weapon_manager.switch_to_next_weapon()
+		else:
+			weapon_manager.cur_weapon.action(self)
+			enable_resistance()
 
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return

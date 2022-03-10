@@ -15,7 +15,7 @@ func _ready():
 
 func add_weapon(new_weapon):
 	new_weapon.cancel_despawn()
-	if is_duplicant(new_weapon):
+	if is_duplicant(new_weapon) and new_weapon.entity_name != "MEDKIT" and new_weapon.entity_name != "AMMO":
 		print("is duplicant")
 		new_weapon.queue_free()
 		return
