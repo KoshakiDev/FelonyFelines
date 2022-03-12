@@ -40,8 +40,16 @@ func _input(event):
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
+<<<<<<< HEAD
 		weapon_manager.update_children()
 		if weapon_manager.cur_weapon != null:
+=======
+		if weapon_manager.cur_weapon.entity_name == "MEDKIT" or weapon_manager.cur_weapon.entity_name == "AMMO":
+			weapon_manager.cur_weapon.action(self)
+			weapon_manager.update_children()
+			weapon_manager.switch_to_next_weapon()
+		else:
+>>>>>>> 73518f96213d62f4e75709370bd60f3c1cd2c2e8
 			weapon_manager.cur_weapon.action(self)
 			enable_resistance()
 

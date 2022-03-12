@@ -48,7 +48,7 @@ func boid_cohesion(entities: Array):
 		return boid_seek(sum)
 	else:
 		return Vector2.ZERO
-
+		
 func boid_separate(entities: Array):
 	var steer: Vector2 = Vector2.ZERO
 	var count = 0
