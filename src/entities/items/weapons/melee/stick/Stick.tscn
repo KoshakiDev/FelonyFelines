@@ -64,6 +64,7 @@ tracks/1/keys = {
 }
 
 [node name="Stick" instance=ExtResource( 1 )]
+item_type = "MELEE"
 entity_name = "STICK"
 
 [node name="Position2D" parent="." index="0"]

@@ -10,6 +10,7 @@ func physics_update(delta: float) -> void:
 
 	var target = Global.get_farthest_player(owner.global_position)
 	var total_vector
+	
 	if target == null:
 		state_machine.transition_to("Idle")
 		return

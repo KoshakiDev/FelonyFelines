@@ -23,8 +23,8 @@ var wave_survived
 
 var ITEM_DROP_WEIGHTS = {
 	"weapons/melee/axe/Axe": 3,
-	"weapons/melee/spear/Spear": 3,
-	"weapons/range/assault rifle/AssaultRifle": 2,
+#	"weapons/melee/spear/Spear": 3,
+#	"weapons/range/assault rifle/AssaultRifle": 2,
 	"weapons/range/shotgun/Shotgun": 2,
 	"medkit/Medkit": 5,
 	"weapons/range/minigun/Minigun": 1,
@@ -51,30 +51,17 @@ func get_all_enemies():
 	var enemies_result = {
 		"BALL":[],
 		"GUNNER":[],
-		"IMP":[]
+		"IMP": []
 	}
 
-	var enemy_types = enemies_result.keys()
+	var enemy_names = enemies_result.keys()
 	for entity in enemies.get_children():
-#		if not entity.is_in_group("ENTITY"):
-#			continue
-		if entity.entity_type in enemy_types:
-			enemies_result[entity.entity_type].append(entity)
+		if not entity.is_in_group("ENTITY"):
+			continue
+		if entity.entity_name in enemy_names:
+			enemies_result[entity.entity_name].append(entity)
 	#print(enemies_result)
 	return enemies_result
-
-func get_all_enemies_list():
-#	var enemies = []
-#	var enemy_names = ["BALL", "GUNNER", "IMP"]
-#
-#	for entity in entity_world.get_children():
-#		if not entity.is_in_group("ENTITY"):
-#			continue
-#
-#		if entity.entity_name in enemy_names:
-#			enemies.append(entity)
-#
-	return enemies
 
 
 func normalize_item_drop_weights():
@@ -110,35 +97,6 @@ func get_closest_enemy(position: Vector2):
 	
 	return closest_enemy
 
-func get_farthest_enemy(position: Vector2):
-	var farthest_enemy: Vector2
-	var farthest_distance = 0
-	
-	if enemies.get_child_count() == 0:
-		farthest_enemy = Vector2.ZERO
-	else:
-		farthest_enemy = enemies.get_children()[0].position
-	
-	for enemy in enemies.get_children():
-		var distance = (position - enemy.global_position).length()
-		if distance > farthest_distance:
-			farthest_enemy = enemy.global_position
-			farthest_distance = distance
-	
-	return farthest_enemy
-
-func get_heighest_hp_enemy():
-	var heighest_hp_enemy: Vector2 = Vector2.ZERO
-	var heighest_hp = 0
-	
-	for enemy in enemies.get_children():
-		var hp = enemy.health
-		if hp > heighest_hp:
-			heighest_hp_enemy = enemy.global_position
-			heighest_hp = hp
-	
-	return heighest_hp_enemy
-
 func get_brother():
 	for player in players.get_children():
 		if player.entity_type == "PLAYER":
@@ -173,18 +131,3 @@ func get_farthest_player(position: Vector2):
 			farthest_distance = distance
 	
 	return farthest_player
-
-func get_lowest_hp_player():
-	var lowest_hp_player: Vector2 = random_vector2(10)
-	var lowest_hp = 999999999
-	
-	for player in players.get_children():
-		#if not player.is_in_group("PLAYER"): continue
-		if player.is_dead(): continue
-		
-		var hp = player.health
-		if hp < lowest_hp:
-			lowest_hp_player = player.global_position
-			lowest_hp = hp
-	
-	return lowest_hp_player

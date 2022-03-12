@@ -16,30 +16,45 @@ func _ready():
 func add_weapon(new_weapon):
 	new_weapon.cancel_despawn()
 	if is_duplicant(new_weapon):
+		# TODO: increase amount of click allowed
+		var dupe_weapon = get_duplicant(new_weapon)
+		if dupe_weapon.item_type == "RANGE":
+			dupe_weapon.add_ammo_pack()
+		
 		print("is duplicant")
 		new_weapon.queue_free()
 		return
+
 	new_weapon.in_inventory = true
 	new_weapon.despawnable = false
 	new_weapon.position = Vector2.ZERO
 	Global.reparent(new_weapon, weapons_container)
 	update_children()
 
-func is_duplicant(new_weapon):
-	if weapons.size() == 0:
-		return false
-	#print(weapons.size())
-	#print(new_weapon, new_weapon.entity_name)
+func get_duplicant(new_weapon):
 	for weapon in weapons:
 		if new_weapon.entity_name == weapon.entity_name:
-			return true
-	return false
+			return weapon
+	return null
+func is_duplicant(new_weapon):
+	var dupe_weapon = get_duplicant(new_weapon)
+	return dupe_weapon != null
+
 
 func switch_to_next_weapon():
+	update_children()
+	if weapon_slots_size == 0:
+		return
+	
 	cur_slot = (cur_slot + 1) % weapon_slots_size
 	switch_to_weapon_slot(cur_slot)
 
 func switch_to_prev_weapon():
+	update_children()
+	
+	if weapon_slots_size == 0:
+		return
+	
 	cur_slot = posmod((cur_slot - 1), weapon_slots_size)
 	switch_to_weapon_slot(cur_slot)
 
@@ -63,5 +78,6 @@ func disable_all_weapons():
 func update_children():
 	weapons = weapons_container.get_children()
 	weapon_slots_size = weapons.size()
+	cur_weapon = null
 
 	switch_to_weapon_slot(cur_slot)
