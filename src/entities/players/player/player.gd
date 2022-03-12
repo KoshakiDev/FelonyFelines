@@ -14,7 +14,7 @@ onready var shadow = $Shadow
 
 onready var tween = $Tween
 
-onready var run_timer = $RunTimer
+onready var ammo_bar = $AmmoBar
 
 var is_resistance = false
 
@@ -23,13 +23,13 @@ func _ready():
 
 func setup_player():
 	if player_id == "_1":
-		$HealthBar.position.y = -64
+		$HealthBar.position.y = -85 + 10
 		weapon_manager.position.y = 30
 		sprite.set_texture(red_sprite)
 	elif player_id == "_2":
-		$HealthBar.position.y = -64 - 11
-		weapon_manager.position.y = 20
-		#sprite.set_texture(blue_sprite)
+		$HealthBar.position.y = -85
+		weapon_manager.position.y = 16
+		sprite.set_texture(blue_sprite)
 	Global.set("brother" + player_id, self)
 
 func _input(event):
@@ -40,18 +40,15 @@ func _input(event):
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
-<<<<<<< HEAD
 		weapon_manager.update_children()
 		if weapon_manager.cur_weapon != null:
-=======
-		if weapon_manager.cur_weapon.entity_name == "MEDKIT" or weapon_manager.cur_weapon.entity_name == "AMMO":
-			weapon_manager.cur_weapon.action(self)
-			weapon_manager.update_children()
-			weapon_manager.switch_to_next_weapon()
-		else:
->>>>>>> 73518f96213d62f4e75709370bd60f3c1cd2c2e8
-			weapon_manager.cur_weapon.action(self)
-			enable_resistance()
+			if weapon_manager.cur_weapon.entity_name == "MEDKIT" or weapon_manager.cur_weapon.entity_name == "AMMO":
+				weapon_manager.cur_weapon.action(self)
+				weapon_manager.update_children()
+				weapon_manager.switch_to_next_weapon()
+			else:
+				weapon_manager.cur_weapon.action(self)
+				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return
@@ -96,19 +93,3 @@ func _turn_on_all():
 	weapon_manager.visible = true
 	healthbar.visible = true
 	set_collision_layer_bit(1, true)
-
-func enable_resistance():
-	if is_extra_resistance_on:
-		return
-	is_extra_resistance_on = true
-	if state_machine.state.name == "Move":
-		state_machine.transition_to("Move")
-	run_timer.start()
-
-func disable_resistance():
-	is_extra_resistance_on = false
-	if state_machine.state.name == "Move":
-		state_machine.transition_to("Move")
-
-func _on_RunTimer_timeout():
-	disable_resistance()

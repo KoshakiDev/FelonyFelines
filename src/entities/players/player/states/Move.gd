@@ -2,17 +2,14 @@ extends State
 
 
 func enter(msg := {}) -> void:
-	if msg.has("Accel"):
-		owner.play_animation("Accel", "Movement")
-		yield(owner.get_animation_player("Movement"), "animation_finished")
-	if !owner.is_extra_resistance_on:
-		owner.play_animation("Run_1", "Movement")
-	else:
-		owner.play_animation("Run_1", "Movement")
+	owner.play_animation("Accel", "Movement")
+	yield(owner.get_animation_player("Movement"), "animation_finished")
+	owner.play_animation("Run", "Movement")
 
 
 func exit() -> void:
-	owner.play_animation("Decel_1", "Movement")
+	owner.play_animation("Decel", "Movement")
+	yield(owner.get_animation_player("Movement"), "animation_finished")
 
 	
 func physics_update(delta: float) -> void:

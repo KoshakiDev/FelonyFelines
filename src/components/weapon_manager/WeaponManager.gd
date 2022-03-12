@@ -13,18 +13,20 @@ func _ready():
 	if weapons.size() != 0:
 		switch_to_weapon_slot(cur_slot)
 
+func return_ammo_count():
+	if cur_weapon.get("ammo") != null:
+		return cur_weapon.ammo
+	else:
+		return -1
+
 func add_weapon(new_weapon):
 	new_weapon.cancel_despawn()
-<<<<<<< HEAD
 	if is_duplicant(new_weapon):
 		# TODO: increase amount of click allowed
 		var dupe_weapon = get_duplicant(new_weapon)
 		if dupe_weapon.item_type == "RANGE":
 			dupe_weapon.add_ammo_pack()
-		
-=======
 	if is_duplicant(new_weapon) and new_weapon.entity_name != "MEDKIT" and new_weapon.entity_name != "AMMO":
->>>>>>> 73518f96213d62f4e75709370bd60f3c1cd2c2e8
 		print("is duplicant")
 		new_weapon.queue_free()
 		return
