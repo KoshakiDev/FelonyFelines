@@ -113,9 +113,6 @@ shape = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Visuals"]
 material = SubResource( 7 )
-hframes = 8
-vframes = 8
-frame = 32
 
 [node name="Areas" type="Node2D" parent="."]
 

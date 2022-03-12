@@ -6,7 +6,7 @@ func enter(msg := {}) -> void:
 		owner.play_animation("Accel", "Movement")
 		yield(owner.get_animation_player("Movement"), "animation_finished")
 	if !owner.is_extra_resistance_on:
-		owner.play_animation("Run_2", "Movement")
+		owner.play_animation("Run_1", "Movement")
 	else:
 		owner.play_animation("Run_1", "Movement")
 

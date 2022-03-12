@@ -29,7 +29,7 @@ func setup_player():
 	elif player_id == "_2":
 		$HealthBar.position.y = -64 - 11
 		weapon_manager.position.y = 20
-		sprite.set_texture(blue_sprite)
+		#sprite.set_texture(blue_sprite)
 	Global.set("brother" + player_id, self)
 
 func _input(event):
@@ -54,8 +54,17 @@ func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return
 	._on_Hurtbox_area_entered(area)
 	Shake.shake(4.0, .5)
-	enable_resistance()
-
+	var attacker = area.owner
+	var attack_direction
+	if area.is_in_group("PROJECTILE"):
+		attacker = area
+		attack_direction = attacker.dir
+	
+	if (attack_direction.x > 0 and sprite.scale.x == 1) or (attack_direction.x < 0 and sprite.scale.x == -1):
+		state_machine.transition_to("Pain", {Back = true})
+	elif (attack_direction.x > 0 and sprite.scale.x == -1) or (attack_direction.x < 0 and sprite.scale.x == 1):
+		state_machine.transition_to("Pain", {Front = true})
+	
 # func frame_freeze(time_scale, duration):
 # 	Engine.time_scale = time_scale
 # 	yield(get_tree().create_timer(duration * time_scale), "timeout")

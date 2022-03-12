@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 [gd_scene load_steps=14 format=2]
-=======
 [gd_scene load_steps=8 format=2]
->>>>>>> 034c582c4848ae43e692dd071c19c17f03552a8c
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/entities/players/new inherited player/Player.tscn" type="PackedScene" id=2]
@@ -10,14 +7,11 @@
 [ext_resource path="res://src/entities/new inherited enemies/EnemyImp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/environment/tilesets/Ground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/environment/tilesets/Walls.tscn" type="PackedScene" id=7]
-<<<<<<< HEAD
 [ext_resource path="res://src/entities/items/weapons/melee/stick/Stick.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/entities/items/medkit/Medkit.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/entities/items/weapons/range/minigun/Minigun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/entities/new inherited enemies/EnemyGunner.tscn" type="PackedScene" id=12]
-=======
->>>>>>> 034c582c4848ae43e692dd071c19c17f03552a8c
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
