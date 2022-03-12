@@ -111,6 +111,7 @@ tracks/3/keys = {
 }
 
 [node name="Axe" instance=ExtResource( 1 )]
+item_type = "MELEE"
 entity_name = "AXE"
 recoil = -15.0
 

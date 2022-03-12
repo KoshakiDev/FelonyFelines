@@ -107,6 +107,7 @@ tracks/3/keys = {
 }
 
 [node name="Minigun" instance=ExtResource( 1 )]
+item_type = "RANGE"
 entity_name = "MINIGUN"
 recoil = 300
 

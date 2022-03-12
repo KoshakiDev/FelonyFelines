@@ -108,6 +108,7 @@ tracks/3/keys = {
 }
 
 [node name="Revolver" instance=ExtResource( 2 )]
+item_type = "RANGE"
 entity_name = "REVOLVER"
 
 [node name="Position2D" parent="." index="0"]

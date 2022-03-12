@@ -44,8 +44,9 @@ func _ready():
 	health_manager.set_health(health_manager.health)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
 
-func move(direction):
-	intended_velocity = intended_velocity.linear_interpolate(direction * max_speed, Global.ACCEL)
+func move(force: Vector2):
+	var force_direction = force.normalized()
+	intended_velocity = intended_velocity.linear_interpolate(force_direction * max_speed, Global.ACCEL)
 	
 func _physics_process(delta):
 	if line2d != null:
