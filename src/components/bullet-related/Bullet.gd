@@ -22,7 +22,7 @@ func _ready() -> void:
 	$ShootSound.play()
 
 func setup(dir, speed, damage_value, knockback_value) -> void:
-	print(dir)
+	#print(dir)
 	self.dir = dir
 	self.speed = speed
 	self.damage_value = damage_value

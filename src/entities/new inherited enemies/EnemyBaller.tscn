@@ -446,9 +446,6 @@ shape = SubResource( 8 )
 material = SubResource( 7 )
 position = Vector2( 0, -55 )
 texture = ExtResource( 2 )
-hframes = 1
-vframes = 1
-frame = 0
 
 [node name="Areas" parent="." index="3"]
 visible = false
@@ -515,7 +512,7 @@ script = ExtResource( 5 )
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -118 )
 
-[node name="Label" type="Label" parent="Debug" index="1"]
+[node name="Label" type="Label" parent="Debug" index="0"]
 margin_left = -21.0
 margin_top = -145.0
 margin_right = 19.0

@@ -67,7 +67,7 @@ config/description="Command & Collab is an action puzzle platformer about a warm
 The Caretaker's farm has suffered a cyber attack when he was secretly away with his adopted cub Charlie. 
 He and Charlie must take the farm back before the virus destroys the farm.
 "
-run/main_scene="res://src/environment/debug_levels/debug 2.tscn"
+run/main_scene="res://src/environment/LaunchScene.tscn"
 boot_splash/image="res://splashscreen.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false

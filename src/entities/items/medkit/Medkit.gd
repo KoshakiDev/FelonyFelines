@@ -6,7 +6,7 @@ func _ready():
 	animation_machine.play_animation("Idle", "AnimationPlayer")
 
 func action(_subject):
-	print("action?")
+	#print("action?")
 	_subject.health_manager.heal(heal_value)
 	animation_machine.play_animation("Pickup", "AnimationPlayer")
 	yield(animation_machine.find("AnimationPlayer"), "animation_finished")

@@ -63,7 +63,6 @@ func get_all_enemies():
 	#print(enemies_result)
 	return enemies_result
 
-
 func normalize_item_drop_weights():
 	var sum = 0
 	# force multiplier to be a float

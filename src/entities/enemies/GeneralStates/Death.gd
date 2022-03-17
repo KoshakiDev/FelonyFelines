@@ -21,7 +21,7 @@ func enemy_drop():
 		# load the scene at index
 		var scene = str("res://src/entities/items/", drop_list[index], ".tscn")
 		
-		print(scene)
+		#print(scene)
 		
 		instance_scene(load(scene).instance())
 
@@ -32,7 +32,7 @@ func instance_scene(instance):
 
 func delete_enemy():
 	enemy_drop()
-	print("1")
+	#print("1")
 	if Global.main == null:
 		owner.queue_free()
 		return

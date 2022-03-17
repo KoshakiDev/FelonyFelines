@@ -14,6 +14,8 @@ func _ready():
 		switch_to_weapon_slot(cur_slot)
 
 func return_ammo_count():
+	if cur_weapon == null:
+		return -1
 	if cur_weapon.get("ammo") != null:
 		return cur_weapon.ammo
 	else:
@@ -26,8 +28,9 @@ func add_weapon(new_weapon):
 		var dupe_weapon = get_duplicant(new_weapon)
 		if dupe_weapon.item_type == "RANGE":
 			dupe_weapon.add_ammo_pack()
+			owner.ammo_bar.update_ammo_bar(return_ammo_count())
 	if is_duplicant(new_weapon) and new_weapon.entity_name != "MEDKIT" and new_weapon.entity_name != "AMMO":
-		print("is duplicant")
+		#print("is duplicant")
 		new_weapon.queue_free()
 		return
 

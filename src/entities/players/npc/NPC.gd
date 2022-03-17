@@ -4,10 +4,6 @@ onready var engage_range := $EngageRange
 
 var cooldown_passed = true
 
-func _physics_process(delta):
-	#print(movement_direction)
-	print(state_machine.state)
-
 func _ready():
 	_initialize_health_bar(health_bar)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
@@ -34,7 +30,7 @@ func there_is_an_enemy_in_distance(distance):
 	var closest_enemy_position = Global.get_closest_enemy(owner.global_position)
 	var path = Global.navigation.get_simple_path(owner.global_position, closest_enemy_position, false)
 	var path_length = 0
-	print("closest enemy ", closest_enemy_position)
+	#print("closest enemy ", closest_enemy_position)
 	if path.size() > 0:
 		for i in range(path.size() - 1):
 			#print(path[i], " ", path[i-1], " ", (path[i] - path[i-1]).length())

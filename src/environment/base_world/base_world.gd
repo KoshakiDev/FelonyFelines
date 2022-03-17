@@ -63,11 +63,12 @@ func update_wave():
 	#timer.start()
 	#yield(timer, "timeout")
 	is_wave_updating = false
-
-func _process(delta):
-	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():
-		emit_signal("all_dead")
-		set_process(false)
+	
+# TODO: FINd a better way to do this
+#func _process(delta):
+#	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():
+#		emit_signal("all_dead")
+#		set_process(false)
 
 func all_players_dead():
 	$Dead.play()

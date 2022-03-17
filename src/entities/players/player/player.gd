@@ -37,8 +37,10 @@ func _input(event):
 		return
 	if event.is_action_pressed("next_weapon" + player_id):
 		weapon_manager.switch_to_next_weapon()
+		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.switch_to_prev_weapon()
+		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("action" + player_id):
 		weapon_manager.update_children()
 		if weapon_manager.cur_weapon != null:
@@ -59,6 +61,8 @@ func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("PROJECTILE"):
 		attacker = area
 		attack_direction = attacker.dir
+	else:
+		attack_direction = attacker.intended_velocity
 	
 	if (attack_direction.x > 0 and sprite.scale.x == 1) or (attack_direction.x < 0 and sprite.scale.x == -1):
 		state_machine.transition_to("Pain", {Back = true})

@@ -19,4 +19,4 @@ func get_next_target():
 
 func get_target_path(target_position):
 	path = Global.navigation.get_simple_path(owner.global_position, target_position, false)
-	owner.line2d.points = path
+	#owner.line2d.points = path

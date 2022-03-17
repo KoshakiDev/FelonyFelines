@@ -14,9 +14,6 @@ export var damage_value: float = 10
 export var knockback_value: float = 20
 
 
-func _process(delta):
-	label.set_text(state_machine.state.name)
-
 func _turn_on_hitbox():
 	hitbox_shape.disabled = false
 
