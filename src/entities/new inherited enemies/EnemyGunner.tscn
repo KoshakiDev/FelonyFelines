@@ -457,9 +457,6 @@ shape = SubResource( 19 )
 material = SubResource( 7 )
 position = Vector2( 0, -56 )
 texture = ExtResource( 14 )
-hframes = 1
-vframes = 1
-frame = 0
 
 [node name="HandGun" type="Sprite" parent="Visuals/Sprite" index="0"]
 position = Vector2( 5, 45 )
@@ -522,6 +519,3 @@ script = ExtResource( 12 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -133 )
-
-[node name="Line2D" parent="Debug" index="0"]
-default_color = Color( 1, 0.960784, 0.4, 1 )

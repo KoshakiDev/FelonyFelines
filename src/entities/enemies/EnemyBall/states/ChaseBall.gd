@@ -19,7 +19,9 @@ func physics_update(delta: float) -> void:
 		return
 	var target_pos = target.global_position
 	
-	owner.nav_manager.get_target_path(target_pos)
+	if owner.nav_manager.can_update_path:
+		owner.nav_manager.get_target_path(target_pos)
+		owner.nav_manager.update_path_timer.start()
 	# direction of motion
 	if owner.nav_manager.path.size() > 0:
 		var vector_to_target = owner.nav_manager.get_next_direction_to_target()

@@ -382,9 +382,6 @@ entity_type = "ENEMY"
 material = SubResource( 7 )
 position = Vector2( 0, -37 )
 texture = ExtResource( 3 )
-hframes = 1
-vframes = 1
-frame = 0
 
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false

@@ -89,6 +89,10 @@ script = ExtResource( 3 )
 [node name="NavigationManager" type="Node" parent="Functions" index="2"]
 script = ExtResource( 2 )
 
+[node name="UpdatePathTimer" type="Timer" parent="Functions/NavigationManager" index="0"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 7 )
 
@@ -102,3 +106,5 @@ ONLY USED BY NON-PLAYABLE CHARACTERS, NOT BY PLAYERS"
 }
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="Areas/AttackRange" index="0"]
+
+[connection signal="timeout" from="Functions/NavigationManager/UpdatePathTimer" to="Functions/NavigationManager" method="_on_UpdatePathTimer_timeout"]

@@ -4,6 +4,9 @@ extends Node
 var path = []
 export var threshold = 16
 
+var can_update_path = true
+onready var update_path_timer = $UpdatePathTimer
+
 
 func get_next_direction_to_target():
 	if owner.global_position.distance_to(path[0]) < threshold:
@@ -19,4 +22,8 @@ func get_next_target():
 
 func get_target_path(target_position):
 	path = Global.navigation.get_simple_path(owner.global_position, target_position, false)
-	#owner.line2d.points = path
+	can_update_path = false
+
+func _on_UpdatePathTimer_timeout():
+	can_update_path = true
+	#print("can update path")
