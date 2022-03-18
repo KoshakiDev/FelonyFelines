@@ -100,24 +100,27 @@ func physics_update(delta: float) -> void:
 	if owner.nav_manager.can_update_path:
 		owner.nav_manager.get_target_path(target_pos)
 		owner.nav_manager.update_path_timer.start()
-	var local_target_pos = owner.nav_manager.get_next_target()
-
-	var cohesion = boid_cohesion(similar_enemies)
-	var alignment = boid_alignment(similar_enemies)
-	var separate = boid_separate(similar_enemies)
-	var seek = boid_seek(local_target_pos)
-
-	var steering: Vector2 = Vector2.ZERO
 	
-	# TODO: Find best weights
-	steering += cohesion  * 0.1
-	steering += alignment * 0.25
-	steering += separate  * 0.45
-	steering += seek      * 0.25
+	
+	if owner.nav_manager.path.size() > 0:
+		var local_target_pos = owner.nav_manager.get_next_target()
 
-	steering = limit(steering, owner.max_speed)
+		var cohesion = boid_cohesion(similar_enemies)
+		var alignment = boid_alignment(similar_enemies)
+		var separate = boid_separate(similar_enemies)
+		var seek = boid_seek(local_target_pos)
 
-	owner.move(steering)
+		var steering: Vector2 = Vector2.ZERO
+
+		# TODO: Find best weights
+		steering += cohesion  * 0.1
+		steering += alignment * 0.25
+		steering += separate  * 0.45
+		steering += seek      * 0.25
+
+		steering = limit(steering, owner.max_speed)
+
+		owner.move(steering)
 	
 	if owner.is_target_in_aim(target) and owner.current_bodies_in_attack_range.size() > 0:
 		state_machine.transition_to("Attack")

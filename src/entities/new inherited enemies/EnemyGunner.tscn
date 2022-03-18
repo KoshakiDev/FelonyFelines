@@ -519,3 +519,5 @@ script = ExtResource( 12 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -133 )
+
+[node name="Line2D" type="Line2D" parent="Debug" index="0"]

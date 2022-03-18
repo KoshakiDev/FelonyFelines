@@ -378,6 +378,9 @@ script = ExtResource( 2 )
 entity_name = "IMP"
 entity_type = "ENEMY"
 
+[node name="NavigationManager" parent="Functions" index="2"]
+threshold = 4
+
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 7 )
 position = Vector2( 0, -37 )

@@ -4,7 +4,7 @@
 [ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/entities/players/new inherited player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/entities/new inherited enemies/EnemyGunner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/entities/new inherited enemies/EnemyImp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/entities/items/weapons/range/revolver/Revolver.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/entities/items/weapons/range/minigun/Minigun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/entities/items/weapons/melee/axe/Axe.tscn" type="PackedScene" id=8]
@@ -50,8 +50,8 @@ player_id = "_2"
 [node name="Player3" parent="World/EntityWorld/Players" index="1" instance=ExtResource( 3 )]
 position = Vector2( 675, 409 )
 
-[node name="EnemyGunner" parent="World/EntityWorld/Enemies" index="0" groups=["ENTITY"] instance=ExtResource( 5 )]
-position = Vector2( 79, 150 )
+[node name="EnemyImp" parent="World/EntityWorld/Enemies" index="0" groups=["ENTITY"] instance=ExtResource( 5 )]
+position = Vector2( 274, 247 )
 
 [node name="Info" parent="InfoPos" index="0"]
 custom_fonts/normal_font = SubResource( 1 )
