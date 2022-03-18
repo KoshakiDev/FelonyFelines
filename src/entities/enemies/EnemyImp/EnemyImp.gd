@@ -1,22 +1,20 @@
-extends "res://src/entities/entityModules.gd"
+extends "res://src/entities/base_templates/base_npc/base_npc.gd"
 
-onready var state_machine := $StateMachine
+export var cooldown_duration: float = 5
 
-onready var health_bar := $HealthBar
+export var dash_duration: float = 3
+export var dash_speed: int = 30
 
-onready var animation_machine := $AnimationMachine
+onready var hitbox = $Areas/Hitbox
+onready var hitbox_shape = $Areas/Hitbox/HitboxShape
 
-onready var sprite := $Sprite
+export var damage_value: float = 10
+export var knockback_value: float = 20
 
-onready var engage_range := $EngageRange
-onready var hitbox = $Hitbox
-onready var hurtbox = $Hurtbox
 
-export var damage_value: float = 3
-export var knockback_value: float = 125
-
-func _ready():
-	_initialize_health_bar(health_bar)
-	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
-	engage_range.connect("body_entered", self, "_on_EngageRange_body_entered")
-	engage_range.connect("body_exited", self, "_on_EngageRange_body_exited")
+func attack(target):
+	pass
+	
+func _on_Hurtbox_area_entered(area):
+	if health_manager.is_dead(): return
+	._on_Hurtbox_area_entered(area)

@@ -1,20 +1,21 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/components/weapon_manager/WeaponManager.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=4]
-[ext_resource path="res://assets/entities/players/red_brother_sheet_96x96.png" type="Texture" id=5]
-[ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=7]
-[ext_resource path="res://src/entities/players/player/states/Idle.gd" type="Script" id=8]
-[ext_resource path="res://src/entities/players/player/states/Move.gd" type="Script" id=9]
+[ext_resource path="res://src/entities/base_templates/base_entity/base_entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/components/item_pickup/ItemPickup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/components/weapon_manager/WeaponManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/components/respawn_radius/Respawn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/player_healthbar/Ammo_Bar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/entities/players/player/states/Death.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/players/player/states/Move.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/players/player/states/Idle.gd" type="Script" id=9]
+[ext_resource path="res://assets/entities/players/blue_brother_sheet_96x96.png" type="Texture" id=10]
 [ext_resource path="res://src/entities/players/player/player.gd" type="Script" id=11]
-[ext_resource path="res://assets/sfx/sounds/player_hit.wav" type="AudioStream" id=12]
-[ext_resource path="res://src/entities/players/player/states/Death.gd" type="Script" id=13]
-[ext_resource path="res://assets/sfx/cat_death.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/entities/shadow.png" type="Texture" id=16]
-[ext_resource path="res://assets/sfx/Pickup_01.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://src/entities/players/player/Pain.gd" type="Script" id=12]
+
+[sub_resource type="CapsuleShape2D" id=24]
+radius = 5.0
+height = 8.0
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -90,17 +91,19 @@ nodes/fragment/11/node = SubResource( 1 )
 nodes/fragment/11/position = Vector2( 400, 120 )
 nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=21]
 resource_local_to_scene = true
 shader = SubResource( 6 )
 shader_param/active = false
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 12, 27 )
+
 [sub_resource type="Animation" id=8]
 resource_name = "Accel"
 length = 0.3
-step = 0.02
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -109,7 +112,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 16, 17, 18 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("AnimationMachine/Movement")
@@ -123,13 +126,13 @@ tracks/1/keys = {
 "values": [  ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Visuals/DustSpawner")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 0.12 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -139,51 +142,27 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=9]
 resource_name = "Death"
-length = 0.5
+length = 0.9
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 48, 49, 50, 51, 52 ]
+"values": [ 48, 49, 50, 51, 52, 53, 54, 55, 55 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Shadow:scale")
+tracks/1/type = "method"
+tracks/1/path = NodePath("AnimationMachine/Movement")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 1 ), Vector2( 2.2, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Shadow:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -4.40001, 0 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("AnimationMachine/Movement")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Death_loop", -1, 1.0, false ],
@@ -196,7 +175,7 @@ resource_name = "Death_loop"
 length = 0.001
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -205,15 +184,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 52 ]
+"values": [ 55 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Decel_1"
+[sub_resource type="Animation" id=12]
+resource_name = "Decel"
 length = 0.3
-step = 0.02
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -222,7 +200,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 40, 41, 42 ]
+"values": [ 24, 25, 26 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("AnimationMachine/Movement")
@@ -232,66 +210,6 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Idle", -1, 1.0, false ],
-"method": "play"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-} ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "Decel_2"
-length = 0.6
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 24, 25, 26, 27, 28, 29 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("AnimationMachine/Movement")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Idle", -1, 1.0, false ],
@@ -343,58 +261,59 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "Idle"
-length = 0.4
-loop = true
+[sub_resource type="Animation" id=26]
+resource_name = "Hit_Back"
+length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "Knockback"
-length = 0.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 56, 57, 58 ]
+"values": [ 40, 41, 42 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("AnimationMachine/Movement")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Idle", -1, 1.0, false ],
-"method": "play"
-} ]
+
+[sub_resource type="Animation" id=25]
+resource_name = "Hit_Front"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -434,7 +353,7 @@ tracks/2/keys = {
 resource_name = "Respawn"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -459,85 +378,13 @@ tracks/1/keys = {
 "method": "respawn_player"
 } ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Shadow:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Shadow:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=17]
-resource_name = "Run_1"
-length = 0.8
-loop = true
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.11, 0.12, 0.5, 0.51, 0.52 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-} ]
-}
 
 [sub_resource type="Animation" id=18]
-resource_name = "Run_2"
+resource_name = "Run"
 length = 0.6
 loop = true
-step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -546,7 +393,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 16, 17, 18, 19, 20, 21 ]
+"values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -587,54 +434,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=19]
 resource_name = "Hit"
 length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:material:shader_param/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../Hit")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Hit:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "disable_fast_run"
-} ]
-}
 
 [sub_resource type="Animation" id=20]
 resource_name = "RESET"
@@ -664,157 +463,78 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="CapsuleShape2D" id=21]
-radius = 12.0
-height = 0.0
-
-[sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 10.5, 27 )
-
-[sub_resource type="CapsuleShape2D" id=23]
-radius = 5.0
-height = 8.0
-
-[sub_resource type="CircleShape2D" id=24]
-radius = 134.239
-
-[sub_resource type="DynamicFont" id=25]
-resource_local_to_scene = true
-size = 32
-font_data = ExtResource( 20 )
-
-[node name="Sooltan" type="KinematicBody2D" groups=["ENTITY", "PLAYER"]]
+[node name="Player" groups=["PLAYER"] instance=ExtResource( 1 )]
 collision_layer = 2
-collision_mask = 77
+collision_mask = 5
 script = ExtResource( 11 )
-entity_name = "CAT"
 entity_type = "PLAYER"
 max_speed = 675.0
 
-[node name="Shadow" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.498039 )
-scale = Vector2( 0.8, 1 )
-texture = ExtResource( 16 )
+[node name="HealthManager" parent="Functions" index="0"]
+max_health = 100.0
 
-[node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 7 )
+[node name="PhysicsCollider" parent="." index="1"]
+shape = SubResource( 24 )
+
+[node name="Sprite" parent="Visuals" index="0"]
+material = SubResource( 21 )
 position = Vector2( 0, -48 )
-texture = ExtResource( 5 )
+texture = ExtResource( 10 )
 hframes = 8
-vframes = 8
+vframes = 7
 
-[node name="WeaponManager" parent="Sprite" instance=ExtResource( 2 )]
+[node name="WeaponManager" parent="Visuals/Sprite" index="0" instance=ExtResource( 4 )]
+position = Vector2( 10, 16 )
 
-[node name="AnimationMachine" type="Node" parent="."]
-script = ExtResource( 4 )
+[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 2 )]
 
-[node name="Movement" type="AnimationPlayer" parent="AnimationMachine"]
+[node name="Hurtbox" parent="Areas" index="0"]
+collision_layer = 64
+
+[node name="HurtboxShape" parent="Areas/Hurtbox" index="0"]
+position = Vector2( 0, -27 )
+shape = SubResource( 23 )
+
+[node name="ItemPickup" parent="Areas" index="1" instance=ExtResource( 3 )]
+
+[node name="Respawn" parent="Areas" index="2" instance=ExtResource( 5 )]
+visible = false
+
+[node name="Movement" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")
 anims/Accel = SubResource( 8 )
 anims/Death = SubResource( 9 )
 anims/Death_loop = SubResource( 10 )
-anims/Decel_1 = SubResource( 11 )
-anims/Decel_2 = SubResource( 12 )
+anims/Decel = SubResource( 12 )
+anims/Hit_Back = SubResource( 26 )
+anims/Hit_Front = SubResource( 25 )
 anims/Idle = SubResource( 13 )
-anims/Knockback = SubResource( 14 )
 anims/RESET = SubResource( 15 )
 anims/Respawn = SubResource( 16 )
-anims/Run_1 = SubResource( 17 )
-anims/Run_2 = SubResource( 18 )
+anims/Run = SubResource( 18 )
 
-[node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
+[node name="Hit" type="AnimationPlayer" parent="AnimationMachine" index="1"]
 anims/Hit = SubResource( 19 )
 anims/RESET = SubResource( 20 )
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 7 )
+[node name="StateMachine" parent="." index="5"]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( 8 )
-
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" index="0"]
 script = ExtResource( 9 )
 
-[node name="Death" type="Node" parent="StateMachine"]
-script = ExtResource( 13 )
+[node name="Move" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 8 )
 
-[node name="PickupArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 256
-collision_mask = 256
+[node name="Death" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 7 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
-position = Vector2( 0, -11 )
-shape = SubResource( 21 )
+[node name="Pain" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 12 )
 
-[node name="Hurtbox" type="Area2D" parent="."]
-visible = false
-collision_layer = 64
-collision_mask = 48
+[node name="HealthBar" parent="." index="7"]
+position = Vector2( 0, -85 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( -0.5, -27 )
-shape = SubResource( 22 )
-
-[node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -5 )
-rotation = -1.5708
-shape = SubResource( 23 )
-
-[node name="HealthBarPos" type="Node2D" parent="."]
-z_index = 3
-
-[node name="HealthBar" parent="HealthBarPos" instance=ExtResource( 1 )]
-margin_top = -87.0
-margin_bottom = -55.0
-
-[node name="Death" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 0, -24 )
-stream = ExtResource( 14 )
-
-[node name="Hit" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 0, -25 )
-stream = ExtResource( 12 )
-
-[node name="Revive" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 17 )
-
-[node name="DustPosition" parent="." instance=ExtResource( 3 )]
-
-[node name="RespawnRadius" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-collision_mask = 10
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnRadius"]
-shape = SubResource( 24 )
-
-[node name="Timer" type="Timer" parent="RespawnRadius"]
-process_mode = 0
-wait_time = 5.0
-one_shot = true
-
-[node name="TimerLabel" type="RichTextLabel" parent="RespawnRadius"]
-margin_left = -116.0
-margin_top = -139.0
-margin_right = 117.0
-margin_bottom = -78.0
-custom_fonts/normal_font = SubResource( 25 )
-bbcode_enabled = true
-bbcode_text = "[center]COME RESPAWN  ME PLEASE[/center]"
-text = "COME RESPAWN  ME PLEASE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="."]
-
-[node name="RunTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="area_entered" from="PickupArea" to="." method="_on_PickupArea_area_entered"]
-[connection signal="body_entered" from="RespawnRadius" to="." method="_on_RespawnRadius_body_entered"]
-[connection signal="body_exited" from="RespawnRadius" to="." method="_on_RespawnRadius_body_exited"]
-[connection signal="timeout" from="RespawnRadius/Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
+[node name="AmmoBar" parent="." index="9" instance=ExtResource( 6 )]
+position = Vector2( -32, -93 )
+scale = Vector2( 0.5, 0.5 )

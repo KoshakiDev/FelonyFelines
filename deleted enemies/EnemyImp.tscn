@@ -1,105 +1,23 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/entities/new inherited enemies/EnemyImp.gd" type="Script" id=2]
-[ext_resource path="res://test folder/test enemy sprites/deputy_dent_test.png" type="Texture" id=3]
-[ext_resource path="res://src/entities/enemies/EnemyImp/states/AttackImp.gd" type="Script" id=4]
+[ext_resource path="res://src/UI/healthBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/enemies/EnemyImp/states/AttackImp.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=4]
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/ChaseImp.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=6]
-[ext_resource path="res://src/entities/new inherited enemies/IdleImp.gd" type="Script" id=7]
+[ext_resource path="res://deleted enemies/EnemyImp.gd" type="Script" id=6]
+[ext_resource path="res://assets/entities/shadow.png" type="Texture" id=7]
+[ext_resource path="res://assets/sfx/Hit_02.wav" type="AudioStream" id=8]
+[ext_resource path="res://src/scripts/StatesMachine.gd" type="Script" id=10]
+[ext_resource path="res://assets/sfx/Explosion_01.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/entities/enemies/imp/imp_sheet_32x32.png" type="Texture" id=12]
+[ext_resource path="res://assets/sfx/explosion-4.wav" type="AudioStream" id=13]
 
-[sub_resource type="VisualShaderNodeColorConstant" id=1]
-
-[sub_resource type="VisualShaderNodeTexture" id=2]
-source = 2
-
-[sub_resource type="VisualShaderNodeVectorOp" id=3]
-operator = 6
-
-[sub_resource type="VisualShaderNodeVectorOp" id=4]
-operator = 2
-
-[sub_resource type="VisualShaderNodeBooleanUniform" id=5]
-uniform_name = "active"
-
-[sub_resource type="VisualShader" id=6]
-code = "shader_type canvas_item;
-uniform bool active;
-
-
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Texture:3
-	vec3 n_out3p0;
-	float n_out3p1;
-	{
-		vec4 _tex_read = texture(TEXTURE , UV.xy);
-		n_out3p0 = _tex_read.rgb;
-		n_out3p1 = _tex_read.a;
-	}
-
-// BooleanUniform:9
-	bool n_out9p0 = active;
-
-// Color:11
-	vec3 n_out11p0 = vec3(1.000000, 1.000000, 1.000000);
-	float n_out11p1 = 1.000000;
-
-// VectorOp:6
-	vec3 n_out6p0 = vec3(n_out9p0 ? 1.0 : 0.0) * n_out11p0;
-
-// VectorOp:5
-	vec3 n_out5p0 = max(n_out3p0, n_out6p0);
-
-// Output:0
-	COLOR.rgb = n_out5p0;
-	COLOR.a = n_out3p1;
-
-}
-
-void light() {
-// Output:0
-
-}
-"
-mode = 1
-flags/light_only = false
-nodes/fragment/0/position = Vector2( 1040, 60 )
-nodes/fragment/3/node = SubResource( 2 )
-nodes/fragment/3/position = Vector2( 600, -40 )
-nodes/fragment/5/node = SubResource( 3 )
-nodes/fragment/5/position = Vector2( 860, -60 )
-nodes/fragment/6/node = SubResource( 4 )
-nodes/fragment/6/position = Vector2( 600, 100 )
-nodes/fragment/9/node = SubResource( 5 )
-nodes/fragment/9/position = Vector2( 400, 0 )
-nodes/fragment/11/node = SubResource( 1 )
-nodes/fragment/11/position = Vector2( 400, 120 )
-nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
-
-[sub_resource type="ShaderMaterial" id=7]
-resource_local_to_scene = true
-shader = SubResource( 6 )
-shader_param/active = false
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 15.5, 23 )
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 32.1403
-
-[sub_resource type="CircleShape2D" id=8]
-
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=1]
 resource_name = "Attack"
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -145,10 +63,10 @@ tracks/3/keys = {
 "values": [ true, true, false, false, true ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=2]
 resource_name = "Death"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -182,7 +100,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("StateMachine/Death")
+tracks/3/path = NodePath("../StateMachine/Death")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -196,12 +114,12 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=3]
 resource_name = "Idle"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -213,10 +131,10 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -264,12 +182,12 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=5]
 resource_name = "Run"
 length = 0.7
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -281,7 +199,7 @@ tracks/0/keys = {
 "values": [ 9, 10, 11, 12, 13, 14, 15 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=6]
 resource_name = "Hit"
 length = 0.4
 tracks/0/type = "value"
@@ -343,7 +261,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, -16 ), Vector2( 0, -16 ), Vector2( 0, -16 ), Vector2( 0, -16 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=7]
 resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
@@ -371,79 +289,203 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -16 ) ]
 }
 
-[node name="EnemyImp" groups=["ENEMY"] instance=ExtResource( 1 )]
-collision_layer = 4
-collision_mask = 7
-script = ExtResource( 2 )
+[sub_resource type="VisualShaderNodeColorConstant" id=8]
+
+[sub_resource type="VisualShaderNodeTexture" id=9]
+source = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=10]
+operator = 6
+
+[sub_resource type="VisualShaderNodeVectorOp" id=11]
+operator = 2
+
+[sub_resource type="VisualShaderNodeBooleanUniform" id=12]
+uniform_name = "active"
+
+[sub_resource type="VisualShader" id=13]
+code = "shader_type canvas_item;
+uniform bool active;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:3
+	vec3 n_out3p0;
+	float n_out3p1;
+	{
+		vec4 _tex_read = texture(TEXTURE , UV.xy);
+		n_out3p0 = _tex_read.rgb;
+		n_out3p1 = _tex_read.a;
+	}
+
+// BooleanUniform:9
+	bool n_out9p0 = active;
+
+// Color:11
+	vec3 n_out11p0 = vec3(1.000000, 1.000000, 1.000000);
+	float n_out11p1 = 1.000000;
+
+// VectorOp:6
+	vec3 n_out6p0 = vec3(n_out9p0 ? 1.0 : 0.0) * n_out11p0;
+
+// VectorOp:5
+	vec3 n_out5p0 = max(n_out3p0, n_out6p0);
+
+// Output:0
+	COLOR.rgb = n_out5p0;
+	COLOR.a = n_out3p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 380.259, -42.7217 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 920, 60 )
+nodes/fragment/3/node = SubResource( 9 )
+nodes/fragment/3/position = Vector2( 599, -43 )
+nodes/fragment/5/node = SubResource( 10 )
+nodes/fragment/5/position = Vector2( 800, -40 )
+nodes/fragment/6/node = SubResource( 11 )
+nodes/fragment/6/position = Vector2( 600, 60 )
+nodes/fragment/9/node = SubResource( 12 )
+nodes/fragment/9/position = Vector2( 420, -40 )
+nodes/fragment/11/node = SubResource( 8 )
+nodes/fragment/11/position = Vector2( 420, 60 )
+nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = SubResource( 13 )
+shader_param/active = false
+
+[sub_resource type="CapsuleShape2D" id=19]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 24.0
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 10.5, 12 )
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 39.0128
+
+[node name="EnemyImp" type="KinematicBody2D" groups=["ENTITY", "enemy"]]
+collision_layer = 5
+collision_mask = 73
+script = ExtResource( 6 )
 entity_name = "IMP"
 entity_type = "ENEMY"
+ITEM_DROP_PERCENT = 70
+max_health = 40.0
+damage_value = 10.0
+knockback_value = 10.0
 
-[node name="NavigationManager" parent="Functions" index="2"]
-threshold = 4
+[node name="AnimationMachine" type="Node" parent="."]
+script = ExtResource( 2 )
 
-[node name="Sprite" parent="Visuals" index="0"]
-material = SubResource( 7 )
-position = Vector2( 0, -37 )
-texture = ExtResource( 3 )
+[node name="Animations" type="AnimationPlayer" parent="AnimationMachine"]
+root_node = NodePath("../../Sprite")
+anims/Attack = SubResource( 1 )
+anims/Death = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/Run = SubResource( 5 )
 
-[node name="Hurtbox" parent="Areas" index="0"]
-visible = false
-collision_layer = 128
+[node name="Hit" type="AnimationPlayer" parent="AnimationMachine"]
+anims/Hit = SubResource( 6 )
+anims/RESET = SubResource( 7 )
 
-[node name="HurtboxShape" parent="Areas/Hurtbox" index="0"]
-position = Vector2( 2.5, -23 )
-shape = SubResource( 9 )
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 10 )
+initial_state = NodePath("Chase")
 
-[node name="AttackRange" parent="Areas" index="1"]
-collision_mask = 2
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
 
-[node name="AttackRangeShape" parent="Areas/AttackRange" index="0"]
-position = Vector2( 0, -11 )
-shape = SubResource( 10 )
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+cooldown_duration = 1
 
-[node name="Hitbox" type="Area2D" parent="Areas" index="2"]
-visible = false
-position = Vector2( 0, -39 )
-scale = Vector2( 3.72, 3.72 )
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 1.48, 0.444445 )
+scale = Vector2( 0.96, 0.888889 )
+texture = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 14 )
+position = Vector2( 0, -16 )
+texture = ExtResource( 12 )
+hframes = 9
+vframes = 3
+
+[node name="Collider2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -5 )
+rotation = -1.5708
+shape = SubResource( 19 )
+
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 64
 
-[node name="HitboxShape" type="CollisionShape2D" parent="Areas/Hitbox" index="0"]
-position = Vector2( 0, 7.52688 )
-shape = SubResource( 8 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -8 )
+shape = SubResource( 16 )
 disabled = true
 
-[node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
-root_node = NodePath("../..")
-anims/Attack = SubResource( 11 )
-anims/Death = SubResource( 12 )
-anims/Idle = SubResource( 13 )
-anims/RESET = SubResource( 14 )
-anims/Run = SubResource( 15 )
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 40
 
-[node name="Hit" type="AnimationPlayer" parent="AnimationMachine" index="1"]
-root_node = NodePath("../..")
-anims/Hit = SubResource( 16 )
-anims/RESET = SubResource( 17 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0.5, -12 )
+shape = SubResource( 17 )
 
-[node name="StateMachine" parent="." index="5"]
-initial_state = NodePath("Idle")
+[node name="EngageRange" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
 
-[node name="Idle" type="Node" parent="StateMachine" index="0"]
-script = ExtResource( 7 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EngageRange"]
+position = Vector2( 0, -8 )
+shape = SubResource( 18 )
 
-[node name="Chase" type="Node" parent="StateMachine" index="1"]
-script = ExtResource( 5 )
+[node name="HealthBar" parent="." instance=ExtResource( 1 )]
+margin_top = -54.0
+margin_bottom = -22.0
 
-[node name="Attack" type="Node" parent="StateMachine" index="2"]
-script = ExtResource( 4 )
-cooldown_duration = 1
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 11 )
 
-[node name="Cooldown" type="Timer" parent="StateMachine/Attack" index="0"]
-one_shot = true
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 8 )
 
-[node name="Death" type="Node" parent="StateMachine" index="3"]
-script = ExtResource( 6 )
+[node name="Smash" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 13 )
 
-[node name="HealthBar" parent="." index="7"]
-position = Vector2( 0, -56 )
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color( 1, 0.4, 0.94902, 1 )
+
+[connection signal="body_entered" from="EngageRange" to="." method="_on_EngageRange_body_entered"]

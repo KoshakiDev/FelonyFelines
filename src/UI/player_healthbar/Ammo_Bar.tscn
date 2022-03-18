@@ -18,9 +18,9 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 65.0001
+margin_left = 65.0
 margin_top = -46.0
-margin_right = 177.0
+margin_right = 233.0
 margin_bottom = 4.0
 rect_pivot_offset = Vector2( 57, 21 )
 rect_clip_content = false

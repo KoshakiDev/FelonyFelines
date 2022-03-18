@@ -1,31 +1,19 @@
-extends "res://src/entities/entityModules.gd"
+extends "res://src/entities/base_templates/base_npc/base_npc.gd"
 
-export var bullet_speed = 400
+onready var handgun = $Visuals/Sprite/HandGun
 
-onready var state_machine := $StateMachine
+onready var label = $Debug/Label
+onready var bullet_spawner = $Visuals/Sprite/HandGun/BulletSpawner
 
-
-onready var sprite := $Sprite
-
-onready var health_bar := $HealthBar
-
-onready var animation_machine := $AnimationMachine
-
-
-onready var hurtbox = $Hurtbox
-onready var engage_range := $EngageRange
-
-onready var bullet_spawner = $Sprite/Shoulder1/Cannon/BulletSpawner
-
-onready var cannon = $Sprite/Shoulder1/Cannon
-
-
-var pseudo_rotation: float = 0
-var rotation_speed = 8
-
-
-func _ready():
-	_initialize_health_bar(health_bar)
-	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")
-	engage_range.connect("body_entered", self, "_on_EngageRange_body_entered")
-	engage_range.connect("body_exited", self, "_on_EngageRange_body_exited")
+func attack(target):
+	var look_dir = (target.global_position - global_position).normalized()
+	if look_dir.x < 0:
+		sprite.scale.x = -1
+	else:
+		sprite.scale.x = 1
+	
+	if sprite.scale.x == -1:
+		handgun.rotation = PI - (target.global_position - global_position).angle()
+	elif sprite.scale.x == 1:
+		handgun.rotation = (target.global_position - global_position).angle()
+	bullet_spawner.set_shooting(true)
