@@ -36,10 +36,12 @@ var can_get_hit = true
 onready var healthbar = $HealthBar/HealthBarVisual
 
 #Debug Variables
-onready var line2d = $Debug/Line2D
+var line2d: Line2D
 
 
 func _ready():
+	if $Debug.has_node("Line2D"):
+		line2d = $Debug/Line2D
 	health_manager._initialize_health_bar(healthbar)
 	health_manager.set_health(health_manager.health)
 	hurtbox.connect("area_entered", self, "_on_Hurtbox_area_entered")

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/components/dynamic_splitscreen/camera_controller.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://src/components/dynamic_splitscreen/SplitScreenManager.gd" type="Script" id=3]
+[ext_resource path="res://src/components/dynamic_splitscreen/SplitScreenCamera.gd" type="Script" id=3]
 [ext_resource path="res://src/components/dynamic_splitscreen/split_screen_2d.gdshader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -28,18 +28,12 @@ anchor_bottom = 1.0
 margin_right = 1024.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Cameras"]
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Viewport1" type="Viewport" parent="Cameras/ViewportContainer"]
 size = Vector2( 1024, 600 )
@@ -80,6 +74,3 @@ size_flags_vertical = 3
 texture = ExtResource( 2 )
 expand = true
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}

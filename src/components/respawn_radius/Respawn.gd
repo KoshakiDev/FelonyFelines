@@ -8,7 +8,6 @@ export var respawn_time = 2.5
 func _ready():
 	deactivate_respawn_radius()
 	setup_timer()
-	respawn_timer.connect("timeout", self, "_on_RespawnTimer_timeout")
 
 func activate_respawn_radius():
 	monitoring = true

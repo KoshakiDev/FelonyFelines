@@ -9,9 +9,16 @@ var weapon_slots_size = 1
 var cur_slot = 0
 var cur_weapon = null
 
+var weapon_owner: Node2D
+
 func _ready():
 	if weapons.size() != 0:
 		switch_to_weapon_slot(cur_slot)
+
+func init(weapon_owner: Node2D) -> void:
+	self.weapon_owner = weapon_owner
+	for weapon in weapons:
+		weapon.init(weapon_owner)
 
 func return_ammo_count():
 	if cur_weapon == null:
@@ -33,10 +40,12 @@ func add_weapon(new_weapon):
 		#print("is duplicant")
 		new_weapon.queue_free()
 		return
-
+	
 	new_weapon.in_inventory = true
 	new_weapon.despawnable = false
 	new_weapon.position = Vector2.ZERO
+	if new_weapon.has_method("init"):
+		new_weapon.init(weapon_owner)
 	Global.reparent(new_weapon, weapons_container)
 	yield(new_weapon, "tree_entered")
 	update_children()

@@ -18,7 +18,6 @@ export var in_inventory: bool = false
 
 func _ready():
 	if !in_inventory:
-		despawn_timer.connect("timeout", self, "_on_DespawnTimer_timeout")
 		setup_despawn()
 	else:
 		item_pickup_area.queue_free()

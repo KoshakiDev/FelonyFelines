@@ -58,7 +58,7 @@ tracks/0/path = NodePath("../..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -120,6 +120,7 @@ texture = ExtResource( 2 )
 
 [node name="BulletSpawner" parent="Position2D/Visuals/Sprite" index="0"]
 position = Vector2( 24, -3 )
+shoot_anim_player_p = NodePath("../../../AnimationMachine/AnimationPlayer")
 bullet_emitter = SubResource( 1 )
 
 [node name="Flash" type="Sprite" parent="Position2D/Visuals/Sprite" index="1"]

@@ -103,7 +103,7 @@ tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -152,7 +152,7 @@ tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -205,7 +205,7 @@ tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -273,7 +273,7 @@ tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
@@ -377,6 +377,12 @@ collision_mask = 7
 script = ExtResource( 2 )
 entity_name = "IMP"
 entity_type = "ENEMY"
+ITEM_DROP_PERCENT = 50
+cooldown_duration = 5.0
+dash_duration = 3.0
+dash_speed = 30
+damage_value = 10.0
+knockback_value = 20.0
 
 [node name="NavigationManager" parent="Functions" index="2"]
 threshold = 4

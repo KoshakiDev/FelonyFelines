@@ -104,6 +104,8 @@ func physics_update(delta: float) -> void:
 	
 	if owner.nav_manager.path.size() > 0:
 		var local_target_pos = owner.nav_manager.get_next_target()
+		if not local_target_pos:
+			return
 
 		var cohesion = boid_cohesion(similar_enemies)
 		var alignment = boid_alignment(similar_enemies)

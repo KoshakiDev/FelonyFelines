@@ -23,5 +23,6 @@ func physics_update(delta: float) -> void:
 	# direction of motion
 	if owner.nav_manager.path.size() > 0:
 		var vector_to_target = owner.nav_manager.get_next_direction_to_target()
-		total_vector = vector_to_target
-		owner.move(vector_to_target)
+		if vector_to_target:
+			total_vector = vector_to_target
+			owner.move(vector_to_target)

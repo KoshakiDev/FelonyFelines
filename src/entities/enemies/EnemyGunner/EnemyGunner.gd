@@ -2,8 +2,12 @@ extends "res://src/entities/base_templates/base_npc/base_npc.gd"
 
 onready var handgun = $Visuals/Sprite/HandGun
 
-onready var label = $Debug/Label
+var label: Label
 onready var bullet_spawner = $Visuals/Sprite/HandGun/BulletSpawner
+
+func _ready():
+	if $Debug.has_node("Label"):
+		label = $Debug/Label
 
 func attack(target):
 	var look_dir = (target.global_position - global_position).normalized()

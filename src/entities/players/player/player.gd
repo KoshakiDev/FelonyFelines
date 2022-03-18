@@ -1,8 +1,8 @@
 extends "res://src/entities/base_templates/base_entity/base_entity.gd"
 
 export var player_id = "_1"
-var red_sprite = preload("res://assets/entities/players/red_brother_sheet_96x96.png")
-var blue_sprite = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
+const red_sprite = preload("res://assets/entities/players/red_brother_sheet_96x96.png")
+const blue_sprite = preload("res://assets/entities/players/blue_brother_sheet_96x96.png")
 
 onready var weapon_manager := $Visuals/Sprite/WeaponManager
 onready var dust_spawner = $Visuals/DustSpawner
@@ -10,9 +10,11 @@ onready var dust_spawner = $Visuals/DustSpawner
 onready var item_pickup = $Areas/ItemPickup
 onready var respawn_radius = $Areas/Respawn
 
-onready var shadow = $Shadow
+# There are no shadows.
+#onready var shadow = $Shadow
 
-onready var tween = $Tween
+# There is no tween
+#onready var tween = $Tween
 
 onready var ammo_bar = $AmmoBar
 
@@ -20,6 +22,7 @@ var is_resistance = false
 
 func _ready():
 	setup_player()
+	weapon_manager.init(self)
 
 func setup_player():
 	if player_id == "_1":
@@ -36,9 +39,13 @@ func _input(event):
 	if health_manager.is_dead():
 		return
 	if event.is_action_pressed("next_weapon" + player_id):
+		if weapon_manager.cur_weapon.item_type == "RANGE":
+			weapon_manager.cur_weapon.stop_shooting()
 		weapon_manager.switch_to_next_weapon()
 		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("prev_weapon" + player_id):
+		if weapon_manager.cur_weapon.item_type == "RANGE":
+			weapon_manager.cur_weapon.stop_shooting()
 		weapon_manager.switch_to_prev_weapon()
 		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("action" + player_id):
@@ -49,8 +56,14 @@ func _input(event):
 				weapon_manager.update_children()
 				weapon_manager.switch_to_next_weapon()
 			else:
-				weapon_manager.cur_weapon.action(self)
-				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+				weapon_manager.cur_weapon.start_shooting()
+				weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
+#				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+	elif event.is_action_released("action" + player_id):
+		if weapon_manager.cur_weapon != null:
+			if weapon_manager.cur_weapon.item_type == "RANGE":
+				weapon_manager.cur_weapon.stop_shooting()
+				weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return
@@ -80,7 +93,10 @@ func respawn_player():
 	health_manager.heal(health_manager.max_health)
 	_turn_on_all()
 	state_machine.transition_to("Idle")
-	
+
+# TODO: Implement. I (Mastermori) don't really know what it's supposed to do.
+func spawn_dust() -> void:
+	pass
 
 func _turn_off_all():
 	can_get_hit = false

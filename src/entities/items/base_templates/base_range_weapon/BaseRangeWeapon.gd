@@ -1,45 +1,69 @@
 extends "res://src/entities/items/base_templates/base_item/base_item.gd"
 
+signal ammo_changed(new_ammo)
+
 export var ammo = 10
 export var recoil = 50
+
+
+var weapon_owner: Node2D
+
+
 onready var ammo_pack_amount = 5
 onready var bullet_spawner = $Position2D/Visuals/Sprite/BulletSpawner
 
-func _ready():
-	pass
+func _ready() -> void:
+	bullet_spawner.connect("shot_fired", self, "shot_fired")
+	print(bullet_spawner)
 
-func action(_subject):
-	print(ammo)
-	
-	_subject.knockback += -1 * _subject.movement_direction * recoil
-	reduce_ammo()
-	
-	animation_machine.play_animation("Shoot", "AnimationPlayer")
-	yield(animation_machine.get_node("AnimationPlayer"), "animation_finished")
+func init(weapon_owner: Node2D) -> void:
+	self.weapon_owner = weapon_owner
+
+#func action(_subject) -> void:
+#	print(ammo)
+#
+#	reduce_ammo()
+#
+#	bullet_spawner.set_shooting(true)
+#	animation_machine.play_animation("Shoot", "AnimationPlayer")
+#	yield(animation_machine.get_node("AnimationPlayer"), "animation_finished")
 	
 
-func bullet_spawner_set_shooting_true():
-	#print(bullet_spawner)
+#func bullet_spawner_set_shooting_true():
+#	#print(bullet_spawner)
+#	bullet_spawner.set_shooting(true)
+#
+#func bullet_spawner_set_shooting_false():
+#	bullet_spawner.set_shooting(false)
+
+func start_shooting() -> void:
+	if is_out_of_ammo():
+		return
+	print(self.name)
+	print(bullet_spawner)
+	print(bullet_spawner.is_inside_tree())
 	bullet_spawner.set_shooting(true)
 
-func bullet_spawner_set_shooting_false():
+func stop_shooting() -> void:
 	bullet_spawner.set_shooting(false)
 
-
-#nothing below here works
-
-func add_ammo_pack():
+func add_ammo_pack() -> void:
 	ammo = ammo + ammo_pack_amount
+	emit_signal("ammo_changed", ammo)
 	return
 
-func is_out_of_ammo():
+func is_out_of_ammo() -> bool:
 	return ammo <= 0
 
-func reduce_ammo():
-	ammo = ammo - 1
+func reduce_ammo() -> void:
+	ammo = max(ammo - 1, 0)
+	emit_signal("ammo_changed", ammo)
+
+func shot_fired() -> void:
+	weapon_owner.knockback += -1 * weapon_owner.movement_direction * recoil
+	reduce_ammo()
 	if is_out_of_ammo():
-		queue_free()
-		return
+		stop_shooting()
 
 #func setup_max_ammo(shot_delay, animation_length, bullet_emitter_type):
 #	var bullet_emitter_amount = 1

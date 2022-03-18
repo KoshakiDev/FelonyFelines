@@ -5,8 +5,14 @@ export var damage_value: float =  20
 export var knockback_value: float = 50
 export var recoil: float = 15
 
+var weapon_owner: Node2D
 
-func action(_subject):
+func init(weapon_owner: Node2D) -> void:
+	self.weapon_owner = weapon_owner
+
+func action(subject):
 	animation_machine.play_animation("Attack", "AnimationPlayer")
-	_subject.knockback += -1 * _subject.movement_direction * recoil
+	weapon_owner.knockback += -1 * weapon_owner.movement_direction * recoil
 	
+func start_shooting() -> void:
+	action(weapon_owner)
