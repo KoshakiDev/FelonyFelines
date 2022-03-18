@@ -38,6 +38,7 @@ func add_weapon(new_weapon):
 	new_weapon.despawnable = false
 	new_weapon.position = Vector2.ZERO
 	Global.reparent(new_weapon, weapons_container)
+	yield(new_weapon, "tree_entered")
 	update_children()
 
 func get_duplicant(new_weapon):

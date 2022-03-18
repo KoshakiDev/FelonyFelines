@@ -38,8 +38,9 @@ func _ready():
 func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)
-	new_parent.add_child(child)
-	
+	new_parent.call_deferred("add_child", child)
+#	new_parent.add_child(child)
+	child.set_deferred("owner", new_parent.owner)
 
 func random_vector2(n):
 	var rng = RandomNumberGenerator.new()
