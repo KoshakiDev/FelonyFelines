@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://test folder/bullet.png" type="Texture" id=2]
+[ext_resource path="res://assets/items/weapons/range/bullets/bullet.png" type="Texture" id=2]
 [ext_resource path="res://src/UI/player_healthbar/Ammo_Bar.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]

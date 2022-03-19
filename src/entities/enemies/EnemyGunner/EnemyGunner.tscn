@@ -10,9 +10,9 @@
 [ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/enemies/EnemyGunner/EnemyGunner.gd" type="Script" id=9]
 [ext_resource path="res://src/entities/enemies/EnemyGunner/states/IdleGunner.gd" type="Script" id=10]
-[ext_resource path="res://test folder/test enemy sprites/sergeant_sir_giant_hand_gun.png" type="Texture" id=11]
-[ext_resource path="res://assets/entities/enemies/gunner/sergeant_sir_giant_coloring-Sheet.png" type="Texture" id=12]
-[ext_resource path="res://src/entities/enemies/EnemyGunner/Pain.gd" type="Script" id=13]
+[ext_resource path="res://assets/entities/enemies/gunner/sergeant_sir_giant_hand_gun_64x64.png" type="Texture" id=11]
+[ext_resource path="res://assets/entities/enemies/gunner/sergeant_sir_giant_128x128_5x9.png" type="Texture" id=12]
+[ext_resource path="res://src/entities/enemies/EnemyGunner/states/Pain.gd" type="Script" id=13]
 
 [sub_resource type="CapsuleShape2D" id=19]
 radius = 5.0

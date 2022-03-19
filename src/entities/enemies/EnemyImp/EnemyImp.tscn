@@ -5,9 +5,9 @@
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/AttackImp.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=4]
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/ChaseImp.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/enemies/EnemyImp/IdleImp.gd" type="Script" id=6]
-[ext_resource path="res://assets/entities/enemies/imp/deputy_dent_imp_sheet_32x32.png" type="Texture" id=7]
-[ext_resource path="res://src/entities/enemies/EnemyImp/Pain.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/enemies/EnemyImp/states/IdleImp.gd" type="Script" id=6]
+[ext_resource path="res://assets/entities/enemies/imp/deputy_dent_imp_sheet_80x80_4x10.png" type="Texture" id=7]
+[ext_resource path="res://src/entities/enemies/EnemyImp/states/Pain.gd" type="Script" id=8]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
