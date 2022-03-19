@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Spear.png-a22d519eaaba9947638368e9358ecc9f.stex"
+path="res://.import/Respawn_Radius.png-624a6412d9c9a7cddcbf19ee36ce7260.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/melee/spear/Spear.png"
-dest_files=[ "res://.import/Spear.png-a22d519eaaba9947638368e9358ecc9f.stex" ]
+source_file="res://test folder/Respawn_Radius.png"
+dest_files=[ "res://.import/Respawn_Radius.png-624a6412d9c9a7cddcbf19ee36ce7260.stex" ]
 
 [params]
 

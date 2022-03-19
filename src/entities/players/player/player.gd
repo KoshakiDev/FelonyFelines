@@ -108,6 +108,7 @@ func _turn_off_all():
 	hurtbox.monitorable = false
 	weapon_manager.visible = false
 	healthbar.visible = false
+	respawn_radius.activate_respawn_radius()
 	set_collision_layer_bit(1, false)
 
 func _turn_on_all():
@@ -116,4 +117,5 @@ func _turn_on_all():
 	hurtbox.monitorable = true
 	weapon_manager.visible = true
 	healthbar.visible = true
+	respawn_radius.deactivate_respawn_radius()
 	set_collision_layer_bit(1, true)
