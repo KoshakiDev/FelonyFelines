@@ -121,7 +121,7 @@ tracks/1/path = NodePath("StateMachine/Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0.2, 1.3 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -196,7 +196,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../Death:playing")
+tracks/1/path = NodePath("../StateMachine/Death:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -212,7 +212,7 @@ tracks/2/path = NodePath("../Dash:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
