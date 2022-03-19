@@ -18,3 +18,5 @@ func attack(target):
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return
 	._on_Hurtbox_area_entered(area)
+	state_machine.transition_to("Pain")
+	

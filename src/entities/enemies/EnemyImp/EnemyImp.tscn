@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyImp/EnemyImp.gd" type="Script" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=4]
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/ChaseImp.gd" type="Script" id=5]
 [ext_resource path="res://src/entities/enemies/EnemyImp/IdleImp.gd" type="Script" id=6]
-[ext_resource path="res://test folder/test enemy sprites/deputy_dent_test.png" type="Texture" id=7]
+[ext_resource path="res://assets/entities/enemies/imp/deputy_dent_imp_sheet_32x32.png" type="Texture" id=7]
+[ext_resource path="res://src/entities/enemies/EnemyImp/Pain.gd" type="Script" id=8]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -93,124 +94,98 @@ extents = Vector2( 15.5, 23 )
 [sub_resource type="CircleShape2D" id=10]
 radius = 32.1403
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 10.2151, 6.72043 )
 
 [sub_resource type="Animation" id=11]
 resource_name = "Attack"
-length = 0.8
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 9, 10, 11, 12, 13, 14, 15, 0 ]
+"values": [ 10, 11, 12, 13, 14, 15 ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../Smash")
+tracks/1/type = "value"
+tracks/1/path = NodePath("Areas/Hitbox/HitboxShape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Smash:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.4 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../Hitbox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.5, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, true, false, false, true ]
+"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=12]
 resource_name = "Death"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
+length = 0.7
+tracks/0/type = "method"
+tracks/0/path = NodePath("StateMachine/Death")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 18, 19, 20, 21, 22, 23, 24, 25, 26, 26 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../Death")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Death:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("StateMachine/Death")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "delete_enemy"
 } ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 30, 31, 32, 33, 34, 35, 36 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 34, 33, 32 ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "Idle"
-length = 0.4
+length = 0.6
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -263,22 +238,57 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Areas/Hitbox/HitboxShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HealthBar:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -56 ) ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "Run"
-length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HealthBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 9, 10, 11, 12, 13, 14, 15 ]
+"values": [ Vector2( 0, -56 ), Vector2( 0, -70 ), Vector2( 0, -85 ), Vector2( 0, -90 ), Vector2( 0, -70 ), Vector2( 0, -56 ), Vector2( 0, -56 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -377,12 +387,6 @@ collision_mask = 7
 script = ExtResource( 2 )
 entity_name = "IMP"
 entity_type = "ENEMY"
-ITEM_DROP_PERCENT = 50
-cooldown_duration = 5.0
-dash_duration = 3.0
-dash_speed = 30
-damage_value = 10.0
-knockback_value = 20.0
 
 [node name="NavigationManager" parent="Functions" index="2"]
 threshold = 4
@@ -391,6 +395,8 @@ threshold = 4
 material = SubResource( 7 )
 position = Vector2( 0, -37 )
 texture = ExtResource( 7 )
+hframes = 10
+vframes = 4
 
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false
@@ -401,6 +407,7 @@ position = Vector2( 2.5, -23 )
 shape = SubResource( 9 )
 
 [node name="AttackRange" parent="Areas" index="1"]
+visible = false
 collision_mask = 2
 
 [node name="AttackRangeShape" parent="Areas/AttackRange" index="0"]
@@ -408,21 +415,21 @@ position = Vector2( 0, -11 )
 shape = SubResource( 10 )
 
 [node name="Hitbox" type="Area2D" parent="Areas" index="2"]
-visible = false
 position = Vector2( 0, -39 )
 scale = Vector2( 3.72, 3.72 )
 collision_layer = 16
 collision_mask = 64
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Areas/Hitbox" index="0"]
-position = Vector2( 0, 7.52688 )
-shape = SubResource( 8 )
+position = Vector2( -2.38419e-07, 3.76344 )
+shape = SubResource( 18 )
 disabled = true
 
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")
 anims/Attack = SubResource( 11 )
 anims/Death = SubResource( 12 )
+anims/Hit = SubResource( 19 )
 anims/Idle = SubResource( 13 )
 anims/RESET = SubResource( 14 )
 anims/Run = SubResource( 15 )
@@ -450,6 +457,9 @@ one_shot = true
 
 [node name="Death" type="Node" parent="StateMachine" index="3"]
 script = ExtResource( 4 )
+
+[node name="Pain" type="Node" parent="StateMachine" index="4"]
+script = ExtResource( 8 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -56 )

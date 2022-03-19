@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/revolver.png-7aaa88757fb0c341f5d242eee89df4d5.stex"
+path="res://.import/deputy_dent_imp_sheet_32x32.png-e8a7425cf57897e765c2760c07558897.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/range/revolver/revolver.png"
-dest_files=[ "res://.import/revolver.png-7aaa88757fb0c341f5d242eee89df4d5.stex" ]
+source_file="res://assets/entities/enemies/imp/deputy_dent_imp_sheet_32x32.png"
+dest_files=[ "res://.import/deputy_dent_imp_sheet_32x32.png-e8a7425cf57897e765c2760c07558897.stex" ]
 
 [params]
 

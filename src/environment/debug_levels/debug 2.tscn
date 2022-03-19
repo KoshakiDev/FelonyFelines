@@ -4,7 +4,7 @@
 [ext_resource path="res://src/entities/items/weapons/range/shotgun/Shotgun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/entities/players/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/entities/new inherited enemies/EnemyImp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/entities/enemies/EnemyImp/EnemyImp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/entities/items/weapons/range/revolver/Revolver.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/entities/items/weapons/range/minigun/Minigun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/entities/items/weapons/melee/axe/Axe.tscn" type="PackedScene" id=8]
