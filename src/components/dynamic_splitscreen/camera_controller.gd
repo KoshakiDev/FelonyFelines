@@ -44,9 +44,12 @@ func _move_cameras():
 	var distance = clamp(position_difference.length(), 0, max_separation)
 
 	position_difference = position_difference.normalized() * distance
+	#player_visual_middle
+	camera1.global_position = player1.global_position + position_difference / 2.0 + player1.player_visual_middle
+	camera2.global_position = player2.global_position - position_difference / 2.0 + player1.player_visual_middle
 
-	camera1.global_position = player1.global_position + position_difference / 2.0
-	camera2.global_position = player2.global_position - position_difference / 2.0
+#	camera1.global_position = player1.global_position + position_difference / 2.0
+#	camera2.global_position = player2.global_position - position_difference / 2.0
 
 func _update_splitscreen():
 	var screen_size = get_viewport().get_visible_rect().size

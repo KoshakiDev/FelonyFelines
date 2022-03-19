@@ -18,6 +18,8 @@ onready var respawn_radius = $Areas/Respawn
 
 onready var ammo_bar = $AmmoBar
 
+var player_visual_middle = Vector2(0, -50)
+
 var is_resistance = false
 
 func _ready():
@@ -29,10 +31,12 @@ func setup_player():
 		$HealthBar.position.y = -85 + 10
 		weapon_manager.position.y = 30
 		sprite.set_texture(red_sprite)
+		player_visual_middle = Vector2(0, -50 + 10)
 	elif player_id == "_2":
 		$HealthBar.position.y = -85
 		weapon_manager.position.y = 16
 		sprite.set_texture(blue_sprite)
+		player_visual_middle = Vector2(0, -50)
 	Global.set("brother" + player_id, self)
 
 func _input(event):

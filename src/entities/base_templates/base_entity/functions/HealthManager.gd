@@ -14,8 +14,6 @@ func set_max_health(new_max_health):
 	emit_signal("max_health_changed", max_health)
 
 func set_health(new_value):
-	if health > new_value:
-		owner.play_animation("Hit", "Hit")
 	health = new_value
 	health = clamp(health, 0, max_health)
 	emit_signal("health_changed", health)
