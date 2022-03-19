@@ -359,10 +359,3 @@ script = ExtResource( 4 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -118 )
-
-[node name="Label" type="Label" parent="Debug" index="0"]
-margin_left = -21.0
-margin_top = -145.0
-margin_right = 19.0
-margin_bottom = -131.0
-text = "STATE"

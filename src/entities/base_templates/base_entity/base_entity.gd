@@ -26,6 +26,8 @@ onready var physics_collider = $PhysicsCollider
 
 #Visual Variables
 onready var sprite = $Visuals/Sprite
+const hit_effect = preload("res://src/components/hit/HitEffect.tscn")
+
 
 #Area Variables
 onready var hurtbox = $Areas/Hurtbox
@@ -77,6 +79,9 @@ func _on_Hurtbox_area_entered(area):
 			return
 	elif attacker.entity_type == entity_type: # If statement to avoid friendly fire
 		return
+	var effect = hit_effect.instance()
+	Global.misc.add_child(effect)
+	effect.global_position = attacker.global_position
 	health_manager.take_damage(attacker)
 
 #Kept in because of ease of use

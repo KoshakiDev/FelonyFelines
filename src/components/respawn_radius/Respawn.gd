@@ -13,7 +13,7 @@ func _ready():
 func activate_respawn_radius():
 	monitoring = true
 	visible = true
-	anim_player.play("Rotate")
+	anim_player.play("Not Healing")
 	setup_timer()
 
 func deactivate_respawn_radius():
@@ -30,7 +30,6 @@ func _on_RespawnTimer_timeout():
 	owner.respawn_player()
 
 func _on_Respawn_body_entered(body):
-	print("entered")
 	if owner == body:
 		return
 	if not body.is_in_group("PLAYER"):
@@ -38,7 +37,7 @@ func _on_Respawn_body_entered(body):
 	if body.health_manager.is_dead():
 		return
 	respawn_timer.start()
-	print("timer started")
+	anim_player.play("Healing")
 	
 func _on_Respawn_body_exited(body):
 	if owner == body:
@@ -48,3 +47,4 @@ func _on_Respawn_body_exited(body):
 	if body.health_manager.is_dead():
 		return
 	respawn_timer.stop()
+	anim_player.play("Not Healing")
