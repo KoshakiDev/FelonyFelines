@@ -8,17 +8,21 @@ export var dash_speed: int = 30
 onready var hitbox = $Areas/Hitbox
 onready var hitbox_shape = $Areas/Hitbox/HitboxShape
 
-onready var label = $Debug/Label
+var label: Node2D
 
 export var damage_value: float = 10
 export var knockback_value: float = 20
 
 
+func _ready() -> void:
+	if has_node("Debug/Label"):
+		label = $Debug/Label
+
 func _turn_on_hitbox():
-	hitbox_shape.disabled = false
+	hitbox_shape.set_deferred("disabled", false)
 
 func _turn_off_hitbox():
-	hitbox_shape.disabled = true
+	hitbox_shape.set_deferred("disabled", true)
 
 var dash_direction = Vector2.ZERO
 
