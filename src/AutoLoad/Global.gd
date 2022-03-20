@@ -17,9 +17,15 @@ var projectiles
 var misc
 var misc_2
 var root
+var UI_layer
 
 var final_score
 var wave_survived
+
+
+var points = 0
+var wave_num = 0
+var enemy_count = 0
 
 var ITEM_DROP_WEIGHTS = {
 	"weapons/melee/axe/Axe": 4,

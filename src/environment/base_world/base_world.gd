@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var info_text = $UILayer/InfoPos/Info
+#onready var info_text = $UILayer/InfoPos/Info
 onready var timer = $WaveTimer
 
 
@@ -15,11 +15,11 @@ onready var misc = $World/EntityWorld/Misc
 onready var misc_2 = $World/Misc2
 onready var navigation = $World/Navigation2D
 
-var wave_num = 0
-var points = 0
+#var wave_num = 0
+#var points = 0
 var is_wave_updating = false
 
-var enemy_count = 0
+#var enemy_count = 0
 
 signal all_dead
 
@@ -28,7 +28,6 @@ func _ready():
 	#Ngio.request("App.logView", {"host": "https://newgrounds.com/"})
 	AudioServer.set_bus_volume_db(0, 0)
 	$InfoAnimationPlayer.play("Idle")
-	update_board()
 	Global.set("main", self)
 	Global.set("entity_world", entity_world)
 	Global.set("items", items)
@@ -38,27 +37,32 @@ func _ready():
 	Global.set("misc", misc)
 	Global.set("navigation", navigation)
 	Global.set("misc_2", misc_2)
-	update_wave()
+	
+	#yield(get_tree().root, "ready")
+	
+	#Global.UI_layer.update_board(points, wave_num, enemy_count)
+	
+	#update_wave()
 	Global.connect("all_dead", self, "all_players_dead")
 	
-func update_board():
-	print(points)
-#	info_text.bbcode_text = "[center]WAVE: " + str(wave_num) + "[/center]\n[center]POINTS: " + str(points) + "[/center]\n[center]LEFT: " + str(enemy_count) + "[/center]"
-	info_text.bbcode_text = "[wave amp=10 freq=2][color=black]WAVE: %s \nPOINTS: %s \nLEFT: %s " % [str(wave_num), str(points), str(enemy_count)]
+#func update_board():
+#	print(points)
+##	info_text.bbcode_text = "[center]WAVE: " + str(wave_num) + "[/center]\n[center]POINTS: " + str(points) + "[/center]\n[center]LEFT: " + str(enemy_count) + "[/center]"
+#	info_text.bbcode_text = "[wave amp=10 freq=2][color=black]WAVE: %s \nPOINTS: %s \nLEFT: %s " % [str(wave_num), str(points), str(enemy_count)]
 
 func update_points(point_amount):
-	points += point_amount
-	update_board()
+	Global.points += point_amount
+	Global.UI_layer.update_board()
 
 func update_wave():
 	is_wave_updating = true
-	wave_num += 1
+	Global.wave_num += 1
 	
 	for spawner in spawners:
-		enemy_count += wave_num
-		spawner.add_enemies(wave_num)
+		Global.enemy_count += Global.wave_num
+		spawner.add_enemies(Global.wave_num)
 
-	update_board()
+	Global.UI_layer.update_board()
 	#timer.start()
 	#yield(timer, "timeout")
 	is_wave_updating = false
@@ -67,10 +71,10 @@ func all_players_dead():
 	$Dead.play()
 	yield($Dead, "finished")
 	#show_death_screen()
-	Global.final_score = points
-	Global.wave_survived = wave_num
-	Ngio.request("ScoreBoard.postScore", {"id": 11467, "value": points})
-	Ngio.request("ScoreBoard.postScore", {"id": 11468, "value": wave_num})
+	Global.final_score = Global.points
+	Global.wave_survived = Global.wave_num
+	Ngio.request("ScoreBoard.postScore", {"id": 11467, "value": Global.points})
+	Ngio.request("ScoreBoard.postScore", {"id": 11468, "value": Global.wave_num})
 	back_to_menu()
 
 func show_death_screen():

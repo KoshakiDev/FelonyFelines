@@ -46,10 +46,10 @@ func delete_enemy():
 	if Global.main == null:
 		owner.queue_free()
 		return
-	Global.main.enemy_count = Global.main.enemy_count - 1
-	if Global.main.enemy_count == 0:
+	Global.enemy_count = Global.enemy_count - 1
+	if Global.enemy_count == 0:
 		Global.main.update_wave()
 	
-	Global.main.update_board()
-	
+	#Global.main.update_board()
+	Global.UI_layer.update_board()
 	owner.queue_free()

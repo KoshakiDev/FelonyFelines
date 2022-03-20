@@ -1,45 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/fonts/windows_command_prompt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/environment/base_world/base_world.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/environment/NavigationTileMap.tscn" type="PackedScene" id=4]
 
-[sub_resource type="DynamicFont" id=3]
-resource_local_to_scene = true
-size = 64
-font_data = ExtResource( 1 )
-
 [sub_resource type="Animation" id=4]
 length = 10.0
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("UILayer/InfoPos:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("UILayer/InfoPos:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -70,22 +40,6 @@ __meta__ = {
 [node name="Misc" type="YSort" parent="World/EntityWorld"]
 
 [node name="Misc2" type="Node2D" parent="World"]
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="InfoPos" type="Position2D" parent="UILayer"]
-
-[node name="Info" type="RichTextLabel" parent="UILayer/InfoPos"]
-margin_right = 400.0
-margin_bottom = 200.0
-custom_fonts/normal_font = SubResource( 3 )
-bbcode_enabled = true
-bbcode_text = "[wave amp=10 freq=2] WAVE: 999
-POINTS: 9999
-LEFT: 999[/wave]"
-text = " WAVE: 999
-POINTS: 9999
-LEFT: 999"
 
 [node name="InfoAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 4 )

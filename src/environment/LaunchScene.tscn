@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/environment/levels/Level_2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/dynamic_splitscreen/SplitScreenCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/environment/UILayer.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/fonts/Cowboys 2.0.otf"
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 48
+font_data = SubResource( 2 )
 
 [node name="Splitscreen" instance=ExtResource( 2 )]
 
@@ -15,3 +24,20 @@ zoom = Vector2( 1.2, 1.2 )
 
 [node name="Camera2" parent="Cameras/ViewportContainer2/Viewport2" index="0"]
 zoom = Vector2( 1.2, 1.2 )
+
+[node name="UILayer" type="CanvasLayer" parent="." index="1"]
+script = ExtResource( 4 )
+
+[node name="InfoPos" type="Position2D" parent="UILayer" index="0"]
+
+[node name="Info" type="RichTextLabel" parent="UILayer/InfoPos" index="0"]
+margin_right = 493.0
+margin_bottom = 289.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=10 freq=2] WAVE: 999
+POINTS: 9999
+LEFT: 999[/wave]"
+text = " WAVE: 999
+POINTS: 9999
+LEFT: 999"
