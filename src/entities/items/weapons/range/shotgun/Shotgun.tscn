@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/entities/items/base_templates/base_range_weapon/BaseRangeWeapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/items/weapons/range/shotgun/shotgun.png" type="Texture" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=3]
 [ext_resource path="res://assets/items/weapons/range/muzzle_flashes/shotgun_flash.png" type="Texture" id=4]
+[ext_resource path="res://sounds/guns/shotgun.wav" type="AudioStream" id=5]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -52,7 +53,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "Shoot"
 length = 0.1
-step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("../..")
 tracks/0/interp = 1
@@ -110,6 +110,7 @@ tracks/3/keys = {
 [node name="Shotgun" instance=ExtResource( 1 )]
 item_type = "RANGE"
 entity_name = "SHOTGUN"
+ammo = 20
 recoil = 150
 
 [node name="Position2D" parent="." index="0"]
@@ -120,6 +121,9 @@ texture = ExtResource( 2 )
 
 [node name="BulletSpawner" parent="Position2D/Visuals/Sprite" index="0"]
 position = Vector2( 24, -3 )
+bullet_speed = 1200.0
+bullet_damage_value = 25
+knockback_value = 1000
 shoot_anim_player_p = NodePath("../../../AnimationMachine/AnimationPlayer")
 bullet_emitter = SubResource( 1 )
 
@@ -131,3 +135,6 @@ texture = ExtResource( 4 )
 [node name="AnimationPlayer" parent="Position2D/AnimationMachine" index="0"]
 anims/RESET = SubResource( 3 )
 anims/Shoot = SubResource( 2 )
+
+[node name="Shot" type="AudioStreamPlayer" parent="Position2D/SoundMachine" index="0"]
+stream = ExtResource( 5 )

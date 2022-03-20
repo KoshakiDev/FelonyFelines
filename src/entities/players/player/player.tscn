@@ -17,6 +17,9 @@
 radius = 5.0
 height = 8.0
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 12, 27 )
+
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
 [sub_resource type="VisualShaderNodeTexture" id=2]
@@ -96,9 +99,6 @@ resource_local_to_scene = true
 shader = SubResource( 6 )
 shader_param/active = false
 
-[sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 12, 27 )
-
 [sub_resource type="Animation" id=8]
 resource_name = "Accel"
 length = 0.3
@@ -132,9 +132,12 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.12 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
 "args": [  ],
 "method": "spawn_dust"
 } ]
@@ -169,6 +172,26 @@ tracks/1/keys = {
 "method": "play"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Visuals/DustSpawner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Death_loop"
@@ -190,6 +213,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "Decel"
 length = 0.3
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -217,15 +241,18 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Visuals/DustSpawner")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.11, 0.13, 0.15, 0.17, 0.19, 0.21 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
 "args": [  ],
 "method": "spawn_dust"
 }, {
@@ -324,30 +351,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Shadow:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Shadow:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
 
 [sub_resource type="Animation" id=16]
 resource_name = "Respawn"
@@ -382,27 +385,15 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("Visuals/DustSpawner")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.12, 0.16, 0.22, 0.4, 0.42, 0.46, 0.52 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
 "args": [  ],
 "method": "spawn_dust"
 }, {
@@ -430,18 +421,6 @@ max_health = 100.0
 [node name="PhysicsCollider" parent="." index="1"]
 shape = SubResource( 24 )
 
-[node name="Sprite" parent="Visuals" index="0"]
-material = SubResource( 21 )
-position = Vector2( 0, -48 )
-texture = ExtResource( 10 )
-hframes = 8
-vframes = 7
-
-[node name="WeaponManager" parent="Visuals/Sprite" index="0" instance=ExtResource( 4 )]
-position = Vector2( 10, 16 )
-
-[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 2 )]
-
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false
 collision_layer = 64
@@ -454,8 +433,21 @@ shape = SubResource( 23 )
 visible = false
 
 [node name="Respawn" parent="Areas" index="2" instance=ExtResource( 5 )]
+visible = true
 show_behind_parent = true
 position = Vector2( 0, -20 )
+
+[node name="Sprite" parent="Visuals" index="0"]
+material = SubResource( 21 )
+position = Vector2( 0, -48 )
+texture = ExtResource( 10 )
+hframes = 8
+vframes = 7
+
+[node name="WeaponManager" parent="Visuals/Sprite" index="0" instance=ExtResource( 4 )]
+position = Vector2( 10, 16 )
+
+[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 2 )]
 
 [node name="Movement" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")

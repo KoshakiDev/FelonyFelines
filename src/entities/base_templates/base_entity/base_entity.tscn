@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/UI/player_healthbar/PlayerHealthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/entities/base_templates/base_entity/functions/HealthManager.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/base_templates/base_entity/PhysicsColliderDefault.tres" type="Shape2D" id=8]
 [ext_resource path="res://src/entities/base_templates/base_entity/base_entity.gd" type="Script" id=9]
+[ext_resource path="res://sounds/hits/hit_1.wav" type="AudioStream" id=12]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -109,11 +110,6 @@ position = Vector2( 0, -5 )
 rotation = -1.5708
 shape = ExtResource( 8 )
 
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="Visuals"]
-material = SubResource( 7 )
-
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="Areas"]
@@ -127,14 +123,23 @@ The hurtbox doesn't LOOK for anything, it is the one BEING LOOKED AT."
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="Areas/Hurtbox"]
 
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Visuals"]
+material = SubResource( 7 )
+
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
 
-[node name="SoundMachine" type="Node" parent="."]
+[node name="SoundMachine" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="Hit" type="AudioStreamPlayer" parent="SoundMachine"]
+stream = ExtResource( 12 )
+volume_db = 12.0
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 

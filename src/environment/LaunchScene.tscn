@@ -6,7 +6,7 @@
 [node name="Splitscreen" instance=ExtResource( 2 )]
 
 [node name="Cameras" parent="." index="0"]
-max_separation = 600.0
+max_separation = 450.0
 
 [node name="Camera1" parent="Cameras/ViewportContainer/Viewport1" index="0"]
 zoom = Vector2( 1.2, 1.2 )

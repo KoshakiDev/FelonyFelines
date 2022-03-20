@@ -22,19 +22,30 @@ var final_score
 var wave_survived
 
 var ITEM_DROP_WEIGHTS = {
-	"weapons/melee/axe/Axe": 3,
-#	"weapons/melee/spear/Spear": 3,
+	"weapons/melee/axe/Axe": 4,
 #	"weapons/range/assault rifle/AssaultRifle": 2,
-	"weapons/range/shotgun/Shotgun": 2,
+	"weapons/range/shotgun/Shotgun": 3,
 	"medkit/Medkit": 5,
 	"weapons/range/minigun/Minigun": 1,
-	"weapons/range/revolver/Revolver": 3
+	"weapons/range/revolver/Revolver": 5
 }
+
+signal all_dead
 
 func _ready():
 	root = get_parent()
 	normalize_item_drop_weights()
 	
+	
+
+func player_died():
+	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():
+		brother_1.respawn_radius.deactivate_respawn_radius()
+		brother_2.respawn_radius.deactivate_respawn_radius()
+		emit_signal("all_dead")
+		print("All dead")
+	print("Player died")
+
 func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)

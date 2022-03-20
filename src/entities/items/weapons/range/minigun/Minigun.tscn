@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/entities/items/base_templates/base_range_weapon/BaseRangeWeapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/items/weapons/range/minigun/minigun.png" type="Texture" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSingle.gd" type="Script" id=3]
 [ext_resource path="res://assets/items/weapons/range/muzzle_flashes/minigun_flash.png" type="Texture" id=4]
+[ext_resource path="res://sounds/guns/cg1.wav" type="AudioStream" id=5]
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 3 )
@@ -110,7 +111,7 @@ tracks/3/keys = {
 item_type = "RANGE"
 entity_name = "MINIGUN"
 ammo = 500
-recoil = 200
+recoil = 400
 
 [node name="Position2D" parent="." index="0"]
 position = Vector2( 14, -3 )
@@ -122,6 +123,8 @@ texture = ExtResource( 2 )
 position = Vector2( 34, -1 )
 shot_delay = 0.01
 bullet_speed = 800.0
+bullet_damage_value = 25
+knockback_value = 1500
 shoot_anim_player_p = NodePath("../../../AnimationMachine/AnimationPlayer")
 bullet_emitter = SubResource( 4 )
 
@@ -133,3 +136,6 @@ texture = ExtResource( 4 )
 [node name="AnimationPlayer" parent="Position2D/AnimationMachine" index="0"]
 anims/RESET = SubResource( 3 )
 anims/Shoot = SubResource( 2 )
+
+[node name="Shot" type="AudioStreamPlayer" parent="Position2D/SoundMachine" index="0"]
+stream = ExtResource( 5 )

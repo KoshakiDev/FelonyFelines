@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyImp/EnemyImp.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/IdleImp.gd" type="Script" id=6]
 [ext_resource path="res://assets/entities/enemies/imp/deputy_dent_imp_sheet_80x80_4x10.png" type="Texture" id=7]
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/Pain.gd" type="Script" id=8]
+[ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=9]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -123,6 +124,23 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Visuals/DustSpawner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -290,6 +308,26 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Vector2( 0, -56 ), Vector2( 0, -70 ), Vector2( 0, -85 ), Vector2( 0, -90 ), Vector2( 0, -70 ), Vector2( 0, -56 ), Vector2( 0, -56 ) ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Visuals/DustSpawner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
+}
 
 [node name="EnemyImp" groups=["ENEMY"] instance=ExtResource( 1 )]
 collision_layer = 4
@@ -307,6 +345,8 @@ position = Vector2( 0, -37 )
 texture = ExtResource( 7 )
 hframes = 10
 vframes = 4
+
+[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
 
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false

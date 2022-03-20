@@ -19,7 +19,6 @@ var knockback_value = 20
 
 func _ready() -> void:
 	shooting = true
-	$ShootSound.play()
 
 func setup(dir, speed, damage_value, knockback_value) -> void:
 	#print(dir)

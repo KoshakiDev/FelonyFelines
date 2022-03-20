@@ -22,6 +22,8 @@ var player_visual_middle = Vector2(0, -50)
 
 var is_resistance = false
 
+signal player_died
+
 func _ready():
 	setup_player()
 	weapon_manager.init(self)
@@ -38,24 +40,29 @@ func setup_player():
 		sprite.set_texture(blue_sprite)
 		player_visual_middle = Vector2(0, -50)
 	Global.set("brother" + player_id, self)
+	connect("player_died", Global, "player_died")
 
 func _input(event):
 	if health_manager.is_dead():
 		return
 	if event.is_action_pressed("next_weapon" + player_id):
-		if weapon_manager.cur_weapon.item_type == "RANGE":
-			weapon_manager.cur_weapon.stop_shooting()
-		weapon_manager.switch_to_next_weapon()
-		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		weapon_manager.update_children()
+		if weapon_manager.cur_weapon != null:
+			if weapon_manager.cur_weapon.item_type == "RANGE":
+				weapon_manager.cur_weapon.stop_shooting()
+			weapon_manager.switch_to_next_weapon()
+			ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("prev_weapon" + player_id):
-		if weapon_manager.cur_weapon.item_type == "RANGE":
-			weapon_manager.cur_weapon.stop_shooting()
-		weapon_manager.switch_to_prev_weapon()
-		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		weapon_manager.update_children()
+		if weapon_manager.cur_weapon != null:
+			if weapon_manager.cur_weapon.item_type == "RANGE":
+				weapon_manager.cur_weapon.stop_shooting()
+			weapon_manager.switch_to_prev_weapon()
+			ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("action" + player_id):
 		weapon_manager.update_children()
 		if weapon_manager.cur_weapon != null:
-			if weapon_manager.cur_weapon.entity_name == "MEDKIT" or weapon_manager.cur_weapon.entity_name == "AMMO":
+			if weapon_manager.cur_weapon.entity_name == "MEDKIT":
 				weapon_manager.cur_weapon.action(self)
 				weapon_manager.update_children()
 				weapon_manager.switch_to_next_weapon()
@@ -63,7 +70,9 @@ func _input(event):
 				weapon_manager.cur_weapon.start_shooting()
 				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
 					weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
-#				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		else:
+			weapon_manager.switch_to_next_weapon()
 	elif event.is_action_released("action" + player_id):
 		if weapon_manager.cur_weapon != null:
 			if weapon_manager.cur_weapon.item_type == "RANGE":
@@ -100,11 +109,11 @@ func respawn_player():
 	_turn_on_all()
 	state_machine.transition_to("Idle")
 
-# TODO: Implement. I (Mastermori) don't really know what it's supposed to do.
-func spawn_dust() -> void:
-	pass
-
 func _turn_off_all():
+	ammo_bar.visible = false
+	if weapon_manager.cur_weapon != null:
+		if weapon_manager.cur_weapon.item_type == "RANGE":
+			weapon_manager.cur_weapon.stop_shooting()
 	can_get_hit = false
 	hurtbox.monitoring = false
 	hurtbox.monitorable = false
@@ -112,8 +121,10 @@ func _turn_off_all():
 	healthbar.visible = false
 	respawn_radius.activate_respawn_radius()
 	set_collision_layer_bit(1, false)
+	emit_signal("player_died")
 
 func _turn_on_all():
+	ammo_bar.visible = true
 	can_get_hit = true
 	hurtbox.monitoring = true
 	hurtbox.monitorable = true
@@ -121,3 +132,4 @@ func _turn_on_all():
 	healthbar.visible = true
 	respawn_radius.deactivate_respawn_radius()
 	set_collision_layer_bit(1, true)
+	ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
