@@ -8,7 +8,6 @@ export var dash_speed: int = 30
 onready var hitbox = $Areas/Hitbox
 onready var hitbox_shape = $Areas/Hitbox/HitboxShape
 
-onready var label = $Debug/Label
 
 export var damage_value: float = 10
 export var knockback_value: float = 20

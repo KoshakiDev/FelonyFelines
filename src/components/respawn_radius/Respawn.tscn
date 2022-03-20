@@ -164,6 +164,7 @@ tracks/3/keys = {
 }
 
 [node name="Respawn" type="Area2D"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitoring = false
