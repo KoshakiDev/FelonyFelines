@@ -31,5 +31,16 @@ func apply_dash(direction):
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return
 	._on_Hurtbox_area_entered(area)
-	#if health_manager.is_dead(): return
-	state_machine.transition_to("Chase")
+	var attacker = area.owner
+	var attack_direction
+	if area.is_in_group("PROJECTILE"):
+		attacker = area
+		attack_direction = attacker.dir
+	else:
+		var attacker_2 = attacker.owner
+		attack_direction = attacker_2.intended_velocity
+	
+	if (attack_direction.x > 0 and sprite.scale.x == 1) or (attack_direction.x < 0 and sprite.scale.x == -1):
+		state_machine.transition_to("Pain", {Back = true})
+	elif (attack_direction.x > 0 and sprite.scale.x == -1) or (attack_direction.x < 0 and sprite.scale.x == 1):
+		state_machine.transition_to("Pain", {Front = true})

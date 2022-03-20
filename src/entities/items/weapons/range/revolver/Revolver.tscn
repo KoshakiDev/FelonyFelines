@@ -110,6 +110,7 @@ tracks/3/keys = {
 [node name="Revolver" instance=ExtResource( 2 )]
 item_type = "RANGE"
 entity_name = "REVOLVER"
+ammo = 16
 
 [node name="Position2D" parent="." index="0"]
 position = Vector2( 3, -1 )
@@ -120,7 +121,8 @@ texture = ExtResource( 1 )
 
 [node name="BulletSpawner" parent="Position2D/Visuals/Sprite" index="0"]
 position = Vector2( 13, -1 )
-shot_delay = 1.0
+shot_delay = 0.5
+bullet_speed = 600.0
 bullet_damage_value = 25
 knockback_value = 40
 shoot_anim_player_p = NodePath("../../../AnimationMachine/AnimationPlayer")

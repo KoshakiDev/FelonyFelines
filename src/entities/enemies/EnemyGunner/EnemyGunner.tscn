@@ -137,6 +137,29 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 36, 37, 38, 39, 40, 41, 42, 43, 44, 44 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Visuals/DustSpawner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "Hit_Back"
@@ -241,6 +264,35 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Visuals/DustSpawner")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
 }
 
 [node name="EnemyGunner" groups=["ENEMY"] instance=ExtResource( 2 )]

@@ -110,6 +110,7 @@ tracks/3/keys = {
 [node name="Shotgun" instance=ExtResource( 1 )]
 item_type = "RANGE"
 entity_name = "SHOTGUN"
+ammo = 20
 recoil = 150
 
 [node name="Position2D" parent="." index="0"]
@@ -120,6 +121,7 @@ texture = ExtResource( 2 )
 
 [node name="BulletSpawner" parent="Position2D/Visuals/Sprite" index="0"]
 position = Vector2( 24, -3 )
+bullet_speed = 1200.0
 shoot_anim_player_p = NodePath("../../../AnimationMachine/AnimationPlayer")
 bullet_emitter = SubResource( 1 )
 

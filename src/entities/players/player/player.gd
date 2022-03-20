@@ -43,11 +43,13 @@ func _input(event):
 	if health_manager.is_dead():
 		return
 	if event.is_action_pressed("next_weapon" + player_id):
+		weapon_manager.update_children()	
 		if weapon_manager.cur_weapon.item_type == "RANGE":
 			weapon_manager.cur_weapon.stop_shooting()
 		weapon_manager.switch_to_next_weapon()
 		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("prev_weapon" + player_id):
+		weapon_manager.update_children()
 		if weapon_manager.cur_weapon.item_type == "RANGE":
 			weapon_manager.cur_weapon.stop_shooting()
 		weapon_manager.switch_to_prev_weapon()
@@ -63,7 +65,7 @@ func _input(event):
 				weapon_manager.cur_weapon.start_shooting()
 				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
 					weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
-#				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	elif event.is_action_released("action" + player_id):
 		if weapon_manager.cur_weapon != null:
 			if weapon_manager.cur_weapon.item_type == "RANGE":
@@ -100,11 +102,9 @@ func respawn_player():
 	_turn_on_all()
 	state_machine.transition_to("Idle")
 
-# TODO: Implement. I (Mastermori) don't really know what it's supposed to do.
-func spawn_dust() -> void:
-	pass
-
 func _turn_off_all():
+	if weapon_manager.cur_weapon.item_type == "RANGE":
+		weapon_manager.cur_weapon.stop_shooting()
 	can_get_hit = false
 	hurtbox.monitoring = false
 	hurtbox.monitorable = false

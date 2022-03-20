@@ -132,9 +132,12 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.12 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
 "args": [  ],
 "method": "spawn_dust"
 } ]
@@ -169,6 +172,26 @@ tracks/1/keys = {
 "method": "play"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Visuals/DustSpawner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+}, {
+"args": [  ],
+"method": "spawn_dust"
+} ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Death_loop"
@@ -190,6 +213,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "Decel"
 length = 0.3
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -217,15 +241,18 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Visuals/DustSpawner")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.11, 0.13, 0.15, 0.17, 0.19, 0.21 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_dust"
+}, {
 "args": [  ],
 "method": "spawn_dust"
 }, {
@@ -324,30 +351,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Shadow:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Shadow:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
 
 [sub_resource type="Animation" id=16]
 resource_name = "Respawn"
@@ -382,27 +385,15 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("Visuals/DustSpawner")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.12, 0.16, 0.22, 0.4, 0.42, 0.46, 0.52 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
-"args": [  ],
-"method": "spawn_dust"
-}, {
 "args": [  ],
 "method": "spawn_dust"
 }, {
