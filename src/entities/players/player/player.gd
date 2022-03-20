@@ -61,13 +61,15 @@ func _input(event):
 				weapon_manager.switch_to_next_weapon()
 			else:
 				weapon_manager.cur_weapon.start_shooting()
-				weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
+				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+					weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 #				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	elif event.is_action_released("action" + player_id):
 		if weapon_manager.cur_weapon != null:
 			if weapon_manager.cur_weapon.item_type == "RANGE":
 				weapon_manager.cur_weapon.stop_shooting()
-				weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
+				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+					weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return

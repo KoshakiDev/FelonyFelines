@@ -60,6 +60,7 @@ func reduce_ammo() -> void:
 	emit_signal("ammo_changed", ammo)
 
 func shot_fired() -> void:
+	animation_machine.play_animation("Shoot", "AnimationPlayer")
 	weapon_owner.knockback += -1 * weapon_owner.movement_direction * recoil
 	reduce_ammo()
 	if is_out_of_ammo():
