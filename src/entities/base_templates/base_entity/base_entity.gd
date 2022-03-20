@@ -83,6 +83,8 @@ func _on_Hurtbox_area_entered(area):
 	Global.misc.add_child(effect)
 	effect.global_position = attacker.global_position
 	health_manager.take_damage(attacker)
+	
+	sound_machine.play_sound("Hit")
 
 #Kept in because of ease of use
 func play_animation(animation, node_name):

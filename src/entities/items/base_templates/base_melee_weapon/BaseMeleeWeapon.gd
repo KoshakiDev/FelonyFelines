@@ -13,6 +13,7 @@ func init(weapon_owner: Node2D) -> void:
 func action(subject):
 	animation_machine.play_animation("Attack", "AnimationPlayer")
 	weapon_owner.knockback += -1 * weapon_owner.movement_direction * recoil
+	sound_machine.play_sound("Swoosh")
 	
 func start_shooting() -> void:
 	action(weapon_owner)

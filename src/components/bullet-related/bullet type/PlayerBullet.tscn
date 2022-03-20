@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/components/bullet-related/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://assets/items/weapons/range/bullets/bullet.png" type="Texture" id=2]
-[ext_resource path="res://assets/sfx/sounds/playerbullet.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -21,10 +20,6 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-
-[node name="ShootSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-volume_db = -10.0
 
 [connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

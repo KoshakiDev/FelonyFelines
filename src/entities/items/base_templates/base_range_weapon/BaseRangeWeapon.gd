@@ -48,3 +48,6 @@ func shot_fired() -> void:
 	reduce_ammo()
 	if is_out_of_ammo():
 		stop_shooting()
+	sound_machine.play_sound("Shot")
+	Shake.shake(2.5, .5)
+	
