@@ -137,7 +137,8 @@ tracks/4/keys = {
 [node name="Axe" instance=ExtResource( 1 )]
 item_type = "MELEE"
 entity_name = "AXE"
-recoil = -15.0
+knockback_value = 2000.0
+recoil = -50.0
 
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 texture = ExtResource( 2 )

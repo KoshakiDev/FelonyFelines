@@ -327,6 +327,8 @@ offset = Vector2( 22, -9 )
 position = Vector2( 52, -10 )
 bullet_scene = ExtResource( 4 )
 shot_delay = 1.0
+bullet_speed = 350.0
+knockback_value = 1000
 bullet_emitter = SubResource( 10 )
 
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 1 )]

@@ -46,21 +46,23 @@ func _input(event):
 	if health_manager.is_dead():
 		return
 	if event.is_action_pressed("next_weapon" + player_id):
-		weapon_manager.update_children()	
-		if weapon_manager.cur_weapon.item_type == "RANGE":
-			weapon_manager.cur_weapon.stop_shooting()
-		weapon_manager.switch_to_next_weapon()
-		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		weapon_manager.update_children()
+		if weapon_manager.cur_weapon != null:
+			if weapon_manager.cur_weapon.item_type == "RANGE":
+				weapon_manager.cur_weapon.stop_shooting()
+			weapon_manager.switch_to_next_weapon()
+			ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.update_children()
-		if weapon_manager.cur_weapon.item_type == "RANGE":
-			weapon_manager.cur_weapon.stop_shooting()
-		weapon_manager.switch_to_prev_weapon()
-		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		if weapon_manager.cur_weapon != null:
+			if weapon_manager.cur_weapon.item_type == "RANGE":
+				weapon_manager.cur_weapon.stop_shooting()
+			weapon_manager.switch_to_prev_weapon()
+			ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("action" + player_id):
 		weapon_manager.update_children()
 		if weapon_manager.cur_weapon != null:
-			if weapon_manager.cur_weapon.entity_name == "MEDKIT" or weapon_manager.cur_weapon.entity_name == "AMMO":
+			if weapon_manager.cur_weapon.entity_name == "MEDKIT":
 				weapon_manager.cur_weapon.action(self)
 				weapon_manager.update_children()
 				weapon_manager.switch_to_next_weapon()
@@ -107,8 +109,9 @@ func respawn_player():
 
 func _turn_off_all():
 	ammo_bar.visible = false
-	if weapon_manager.cur_weapon.item_type == "RANGE":
-		weapon_manager.cur_weapon.stop_shooting()
+	if weapon_manager.cur_weapon != null:
+		if weapon_manager.cur_weapon.item_type == "RANGE":
+			weapon_manager.cur_weapon.stop_shooting()
 	can_get_hit = false
 	hurtbox.monitoring = false
 	hurtbox.monitorable = false
@@ -127,3 +130,4 @@ func _turn_on_all():
 	healthbar.visible = true
 	respawn_radius.deactivate_respawn_radius()
 	set_collision_layer_bit(1, true)
+	ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())

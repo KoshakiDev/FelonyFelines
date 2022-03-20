@@ -433,9 +433,12 @@ tracks/1/keys = {
 collision_layer = 4
 collision_mask = 7
 script = ExtResource( 5 )
+entity_name = "BALL"
 entity_type = "ENEMY"
 cooldown_duration = 2.0
-dash_duration = 0.2
+dash_duration = 0.5
+dash_speed = 25
+knockback_value = 2500.0
 
 [node name="HealthManager" parent="Functions" index="0"]
 max_health = 50.0

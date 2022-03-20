@@ -122,6 +122,8 @@ texture = ExtResource( 2 )
 [node name="BulletSpawner" parent="Position2D/Visuals/Sprite" index="0"]
 position = Vector2( 24, -3 )
 bullet_speed = 1200.0
+bullet_damage_value = 25
+knockback_value = 1000
 shoot_anim_player_p = NodePath("../../../AnimationMachine/AnimationPlayer")
 bullet_emitter = SubResource( 1 )
 
