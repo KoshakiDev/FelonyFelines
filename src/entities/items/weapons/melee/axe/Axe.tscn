@@ -140,6 +140,9 @@ entity_name = "AXE"
 knockback_value = 2000.0
 recoil = -50.0
 
+[node name="PickUpRange" parent="Position2D" index="0"]
+position = Vector2( 16, 0 )
+
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 texture = ExtResource( 2 )
 offset = Vector2( 16, 0 )

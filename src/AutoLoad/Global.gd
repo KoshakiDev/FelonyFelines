@@ -40,6 +40,8 @@ func _ready():
 
 func player_died():
 	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():
+		brother_1.respawn_radius.deactivate_respawn_radius()
+		brother_2.respawn_radius.deactivate_respawn_radius()
 		emit_signal("all_dead")
 		print("All dead")
 	print("Player died")

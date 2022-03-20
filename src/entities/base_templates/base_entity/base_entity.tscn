@@ -109,11 +109,6 @@ position = Vector2( 0, -5 )
 rotation = -1.5708
 shape = ExtResource( 8 )
 
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="Visuals"]
-material = SubResource( 7 )
-
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="Areas"]
@@ -126,6 +121,11 @@ The hurtbox doesn't LOOK for anything, it is the one BEING LOOKED AT."
 }
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="Areas/Hurtbox"]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Visuals"]
+material = SubResource( 7 )
 
 [node name="AnimationMachine" type="Node" parent="."]
 script = ExtResource( 2 )
