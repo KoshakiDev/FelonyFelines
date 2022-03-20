@@ -1,9 +1,6 @@
 extends Node2D
 
 onready var info_text = $InfoPos/Info
-
-
-
 onready var timer = $WaveTimer
 
 
@@ -28,7 +25,6 @@ signal all_dead
 
 func _ready():
 	Ngio.request("Event.logEvent", {"event_name": "NewRoundLoaded","host": "https://newgrounds.com/"})
-	
 	#Ngio.request("App.logView", {"host": "https://newgrounds.com/"})
 	AudioServer.set_bus_volume_db(0, 0)
 	$InfoAnimationPlayer.play("Idle")
@@ -43,6 +39,7 @@ func _ready():
 	Global.set("navigation", navigation)
 	Global.set("misc_2", misc_2)
 	update_wave()
+	Global.connect("all_dead", self, "all_players_dead")
 	
 func update_board():
 	info_text.bbcode_text = "[center]WAVE: " + str(wave_num) + "[/center]\n[center]POINTS: " + str(points) + "[/center]\n[center]LEFT: " + str(enemy_count) + "[/center]"
@@ -63,12 +60,6 @@ func update_wave():
 	#timer.start()
 	#yield(timer, "timeout")
 	is_wave_updating = false
-	
-# TODO: FINd a better way to do this
-#func _process(delta):
-#	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():
-#		emit_signal("all_dead")
-#		set_process(false)
 
 func all_players_dead():
 	$Dead.play()
@@ -85,7 +76,3 @@ func show_death_screen():
 
 func back_to_menu():
 	SceneChanger.change_scene("res://src/menu/Menu.tscn", "fade")
-
-
-func _on_Main_all_dead():
-	all_players_dead()

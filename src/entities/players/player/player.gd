@@ -22,6 +22,8 @@ var player_visual_middle = Vector2(0, -50)
 
 var is_resistance = false
 
+signal player_died
+
 func _ready():
 	setup_player()
 	weapon_manager.init(self)
@@ -38,6 +40,7 @@ func setup_player():
 		sprite.set_texture(blue_sprite)
 		player_visual_middle = Vector2(0, -50)
 	Global.set("brother" + player_id, self)
+	connect("player_died", Global, "player_died")
 
 func _input(event):
 	if health_manager.is_dead():
@@ -103,6 +106,7 @@ func respawn_player():
 	state_machine.transition_to("Idle")
 
 func _turn_off_all():
+	ammo_bar.visible = false
 	if weapon_manager.cur_weapon.item_type == "RANGE":
 		weapon_manager.cur_weapon.stop_shooting()
 	can_get_hit = false
@@ -112,8 +116,10 @@ func _turn_off_all():
 	healthbar.visible = false
 	respawn_radius.activate_respawn_radius()
 	set_collision_layer_bit(1, false)
+	emit_signal("player_died")
 
 func _turn_on_all():
+	ammo_bar.visible = true
 	can_get_hit = true
 	hurtbox.monitoring = true
 	hurtbox.monitorable = true

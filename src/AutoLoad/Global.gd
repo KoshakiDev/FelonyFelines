@@ -30,10 +30,20 @@ var ITEM_DROP_WEIGHTS = {
 	"weapons/range/revolver/Revolver": 5
 }
 
+signal all_dead
+
 func _ready():
 	root = get_parent()
 	normalize_item_drop_weights()
 	
+	
+
+func player_died():
+	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():
+		emit_signal("all_dead")
+		print("All dead")
+	print("Player died")
+
 func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)
