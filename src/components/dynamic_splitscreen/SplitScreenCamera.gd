@@ -14,4 +14,3 @@ func _ready():
 		#print(current_world, viewport1)
 		#Global.reparent(current_world, viewport1)
 		cameras.setup()
-	

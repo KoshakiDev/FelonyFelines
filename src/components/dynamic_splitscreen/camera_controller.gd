@@ -14,6 +14,7 @@ onready var camera1 = $ViewportContainer/Viewport1/Camera1
 onready var camera2 = $ViewportContainer2/Viewport2/Camera2
 
 func _ready():
+	visible = true
 	setup()
 	pass
 
