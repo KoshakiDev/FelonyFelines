@@ -71,6 +71,8 @@ func _input(event):
 				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
 					weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		else:
+			weapon_manager.switch_to_next_weapon()
 	elif event.is_action_released("action" + player_id):
 		if weapon_manager.cur_weapon != null:
 			if weapon_manager.cur_weapon.item_type == "RANGE":
