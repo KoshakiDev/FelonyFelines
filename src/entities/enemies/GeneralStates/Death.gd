@@ -1,7 +1,10 @@
 extends State
 
+const points_effect_packed := preload("res://src/ScreenEffects/PointEffect.tscn")
+
 func enter(msg := {}) -> void:
 	owner.play_animation("Death", "Animations")
+	update_points()
 	pass
 	
 
@@ -28,7 +31,14 @@ func enemy_drop():
 func instance_scene(instance):
 	instance.global_position = owner.global_position
 	Global.items.add_child(instance)
-	
+
+func update_points() -> void:
+	var points = 100
+	var points_effect := points_effect_packed.instance()
+	points_effect.init(points)
+	Global.misc.add_child(points_effect)
+	points_effect.global_position = owner.global_position
+	Global.main.update_points(points)
 
 func delete_enemy():
 	enemy_drop()
@@ -36,7 +46,6 @@ func delete_enemy():
 	if Global.main == null:
 		owner.queue_free()
 		return
-	Global.main.update_points(100)
 	Global.main.enemy_count = Global.main.enemy_count - 1
 	if Global.main.enemy_count == 0:
 		Global.main.update_wave()

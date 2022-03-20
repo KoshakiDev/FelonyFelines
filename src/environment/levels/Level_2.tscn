@@ -76,12 +76,14 @@ player_id = "_2"
 [node name="Player3" parent="World/EntityWorld/Players" index="1" instance=ExtResource( 3 )]
 position = Vector2( 2192, 1070 )
 
-[node name="Info" parent="InfoPos" index="0"]
-margin_left = -52.0
-margin_top = -160.0
-margin_right = 451.0
-margin_bottom = 115.0
+[node name="Info" parent="UILayer/InfoPos" index="0"]
 custom_fonts/normal_font = SubResource( 1 )
+bbcode_text = "[wave amp=10 freq=2]WAVE: 999
+POINTS: 9999
+LEFT: 999[/wave]"
+text = "WAVE: 999
+POINTS: 9999
+LEFT: 999"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
 

@@ -11,25 +11,25 @@ size = 64
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=4]
-length = 5.0
+length = 10.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("InfoPos:position")
+tracks/0/path = NodePath("UILayer/InfoPos:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.5 ),
+"times": PoolRealArray( 0, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -400 ), Vector2( 0, -350 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ) ]
 }
 
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("InfoPos:position")
+tracks/0/path = NodePath("UILayer/InfoPos:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -38,7 +38,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -400 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [node name="Main" type="Node2D"]
@@ -71,25 +71,21 @@ __meta__ = {
 
 [node name="Misc2" type="Node2D" parent="World"]
 
-[node name="InfoPos" type="Position2D" parent="."]
-position = Vector2( 0, -400 )
+[node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="Info" type="RichTextLabel" parent="InfoPos"]
-margin_left = -258.0
-margin_top = -83.0
-margin_right = 245.0
-margin_bottom = 192.0
+[node name="InfoPos" type="Position2D" parent="UILayer"]
+
+[node name="Info" type="RichTextLabel" parent="UILayer/InfoPos"]
+margin_right = 400.0
+margin_bottom = 200.0
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]WAVE: 999[/center]
-[center]POINTS: 9999[/center]
-[center]LEFT: 999[/center]"
-text = "WAVE: 999
+bbcode_text = "[wave amp=10 freq=2] WAVE: 999
+POINTS: 9999
+LEFT: 999[/wave]"
+text = " WAVE: 999
 POINTS: 9999
 LEFT: 999"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="InfoAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 4 )
