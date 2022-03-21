@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://ng reminder.png" type="Texture" id=2]
 [ext_resource path="res://src/menu/menu_world/MenuWorld.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/menu/FELONY FELINES.png" type="Texture" id=4]
 [ext_resource path="res://src/menu/DeathScreen.tscn" type="PackedScene" id=11]
@@ -87,3 +88,12 @@ position = Vector2( 2275, 1167 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 1024, 600 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -600, -119 )

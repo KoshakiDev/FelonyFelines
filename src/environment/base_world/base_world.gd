@@ -24,6 +24,9 @@ var is_wave_updating = false
 signal all_dead
 
 func _ready():
+	Global.enemy_count = 0
+	Global.wave_num = 0
+	Global.points = 0
 	Ngio.request("Event.logEvent", {"event_name": "NewRoundLoaded","host": "https://newgrounds.com/"})
 	#Ngio.request("App.logView", {"host": "https://newgrounds.com/"})
 	AudioServer.set_bus_volume_db(0, 0)

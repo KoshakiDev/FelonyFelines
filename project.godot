@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/components/bullet-related/BulletSpawner.gd"
 }, {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -55,7 +50,6 @@ _global_script_class_icons={
 "BulletEmitterSingle": "",
 "BulletEmitterSpread": "",
 "BulletSpawner": "",
-"GitAPI": "",
 "State": "",
 "StateMachine": ""
 }
@@ -90,11 +84,11 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/mixing-desk/plugin.cfg" )
 
 [gdnative]
 
-singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+singletons=[  ]
 
 [global]
 

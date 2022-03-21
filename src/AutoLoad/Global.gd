@@ -39,6 +39,9 @@ var ITEM_DROP_WEIGHTS = {
 signal all_dead
 
 func _ready():
+	enemy_count = 0
+	wave_num = 0
+	points = 0
 	root = get_parent()
 	normalize_item_drop_weights()
 	
