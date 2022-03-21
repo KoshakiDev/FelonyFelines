@@ -3,8 +3,8 @@
 [ext_resource path="res://src/UI/healthBar.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.174455, 0.443548, 0.633065, 0.802419, 1 )
-colors = PoolColorArray( 0.94902, 0.407843, 0.356863, 1, 1, 0.709804, 0.360784, 1, 1, 0.709804, 0.360784, 1, 0.741176, 0.752941, 0.223529, 1, 0.752941, 0.67451, 0.247059, 1 )
+offsets = PoolRealArray( 0.42515, 0.45509, 0.640719, 0.688623, 1 )
+colors = PoolColorArray( 1, 0.363281, 0.363281, 1, 0.968627, 1, 0, 1, 0.968627, 1, 0, 1, 0.54902, 1, 0.364706, 1, 0.54902, 1, 0.364706, 1 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001

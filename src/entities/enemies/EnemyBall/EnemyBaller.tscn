@@ -15,6 +15,15 @@ resource_local_to_scene = true
 radius = 5.0
 height = 28.0
 
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 35.5, 46 )
+
+[sub_resource type="CircleShape2D" id=17]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 35.0
+
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
 [sub_resource type="VisualShaderNodeTexture" id=2]
@@ -93,15 +102,6 @@ nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5
 resource_local_to_scene = true
 shader = SubResource( 6 )
 shader_param/active = false
-
-[sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 35.5, 46 )
-
-[sub_resource type="CircleShape2D" id=17]
-radius = 300.0
-
-[sub_resource type="CircleShape2D" id=18]
-radius = 35.0
 
 [sub_resource type="Animation" id=9]
 resource_name = "Attack"
@@ -446,16 +446,7 @@ max_health = 50.0
 [node name="PhysicsCollider" parent="." index="1"]
 shape = SubResource( 8 )
 
-[node name="Sprite" parent="Visuals" index="0"]
-material = SubResource( 7 )
-position = Vector2( 0, -55 )
-texture = ExtResource( 7 )
-hframes = 11
-vframes = 8
-
-[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
-
-[node name="Areas" parent="." index="3"]
+[node name="Areas" parent="." index="2"]
 visible = false
 
 [node name="Hurtbox" parent="Areas" index="0"]
@@ -481,6 +472,15 @@ collision_mask = 64
 [node name="HitboxShape" type="CollisionShape2D" parent="Areas/Hitbox" index="0"]
 shape = SubResource( 18 )
 disabled = true
+
+[node name="Sprite" parent="Visuals" index="0"]
+material = SubResource( 7 )
+position = Vector2( 0, -55 )
+texture = ExtResource( 7 )
+hframes = 11
+vframes = 8
+
+[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
 
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")

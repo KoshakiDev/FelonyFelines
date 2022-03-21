@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/154934__klawykogut__empty-gun-shot.wav-1eab0bd844d5c998106d3e8ab0db5ecb.sample"
+
+[deps]
+
+source_file="res://sounds/guns/154934__klawykogut__empty-gun-shot.wav"
+dest_files=[ "res://.import/154934__klawykogut__empty-gun-shot.wav-1eab0bd844d5c998106d3e8ab0db5ecb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

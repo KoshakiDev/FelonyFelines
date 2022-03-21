@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/entities/items/base_templates/base_item/base_item.gd" type="Script" id=1]
 [ext_resource path="res://src/scripts/AnimationMachine.gd" type="Script" id=2]
 [ext_resource path="res://src/scripts/SoundMachine.gd" type="Script" id=3]
 [ext_resource path="res://src/components/pickup_range/PickUpRange.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=5]
+[ext_resource path="res://sounds/guns/154934__klawykogut__empty-gun-shot.wav" type="AudioStream" id=6]
 
 [node name="BaseItem" type="Node2D" groups=["ITEM"]]
 script = ExtResource( 1 )
@@ -21,3 +23,9 @@ script = ExtResource( 2 )
 
 [node name="SoundMachine" type="Node2D" parent="Position2D"]
 script = ExtResource( 3 )
+
+[node name="Denied" type="Node" parent="Position2D/SoundMachine"]
+script = ExtResource( 5 )
+
+[node name="Denied" type="AudioStreamPlayer" parent="Position2D/SoundMachine/Denied"]
+stream = ExtResource( 6 )

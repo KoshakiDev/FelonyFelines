@@ -112,9 +112,13 @@ item_type = "RANGE"
 entity_name = "SHOTGUN"
 ammo = 20
 recoil = 150
+ammo_pack_amount = 10
 
 [node name="Position2D" parent="." index="0"]
 position = Vector2( 7, -1 )
+
+[node name="PickUpRange" parent="Position2D" index="0"]
+modulate = Color( 1, 0, 0.913725, 1 )
 
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 texture = ExtResource( 2 )

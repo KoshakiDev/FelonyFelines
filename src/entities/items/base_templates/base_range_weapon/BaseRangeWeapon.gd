@@ -5,22 +5,23 @@ signal ammo_changed(new_ammo)
 export var ammo = 10
 export var recoil = 50
 
-
-var weapon_owner: Node2D
-
-
-onready var ammo_pack_amount = 5
+export var ammo_pack_amount = 5
 onready var bullet_spawner = $Position2D/Visuals/Sprite/BulletSpawner
 
 func _ready() -> void:
 	bullet_spawner.connect("shot_fired", self, "shot_fired")
 	print(bullet_spawner)
 
-func init(weapon_owner: Node2D) -> void:
-	self.weapon_owner = weapon_owner
+func set_inactive():
+	.set_inactive()
+	stop_shooting()
+
+func action():
+	start_shooting()
 
 func start_shooting() -> void:
 	if is_out_of_ammo():
+		$Position2D/SoundMachine/Denied.play()
 		return
 	print(self.name)
 	print(bullet_spawner)

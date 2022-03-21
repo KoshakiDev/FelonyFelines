@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/sfx/sounds/sheriffbullet.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/items/weapons/range/bullets/enemy_bullet.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 3.00641
+[sub_resource type="CapsuleShape2D" id=1]
+height = 10.0
 
 [node name="Bullet" type="Area2D" groups=["PROJECTILE"]]
 collision_layer = 32
@@ -17,6 +17,7 @@ is_player_bullet = false
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

@@ -111,10 +111,14 @@ tracks/3/keys = {
 [node name="Revolver" instance=ExtResource( 2 )]
 item_type = "RANGE"
 entity_name = "REVOLVER"
-ammo = 16
+ammo = 18
+ammo_pack_amount = 6
 
 [node name="Position2D" parent="." index="0"]
 position = Vector2( 3, -1 )
+
+[node name="PickUpRange" parent="Position2D" index="0"]
+modulate = Color( 0.393701, 1, 0, 1 )
 
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 rotation = -0.0523599

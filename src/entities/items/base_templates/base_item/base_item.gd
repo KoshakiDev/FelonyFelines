@@ -21,10 +21,18 @@ func _ready():
 		setup_despawn()
 	else:
 		item_pickup_area.queue_free()
+
+var weapon_owner: Node2D
+
+func init(weapon_owner: Node2D) -> void:
+	self.weapon_owner = weapon_owner
 	
 
-func action(_subject):
+func action():
 	pass
+
+func set_inactive():
+	visible = false
 
 func cancel_despawn():
 	despawn_timer.stop()

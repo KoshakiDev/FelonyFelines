@@ -24,6 +24,11 @@ var is_resistance = false
 
 signal player_died
 
+
+## TEST SOUND
+onready var pain_sound = $RanSoundContainer
+
+
 func _ready():
 	setup_player()
 	weapon_manager.init(self)
@@ -45,40 +50,33 @@ func setup_player():
 func _input(event):
 	if health_manager.is_dead():
 		return
+	
+	if weapon_manager.cur_weapon == null:
+		return
+	
+	if event:
+		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("next_weapon" + player_id):
 		weapon_manager.update_children()
-		if weapon_manager.cur_weapon != null:
-			if weapon_manager.cur_weapon.item_type == "RANGE":
-				weapon_manager.cur_weapon.stop_shooting()
-			weapon_manager.switch_to_next_weapon()
-			ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
+		weapon_manager.switch_to_next_weapon()
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.update_children()
-		if weapon_manager.cur_weapon != null:
-			if weapon_manager.cur_weapon.item_type == "RANGE":
-				weapon_manager.cur_weapon.stop_shooting()
-			weapon_manager.switch_to_prev_weapon()
-			ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
+		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
+		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
+		pain_sound.play()
 		weapon_manager.update_children()
-		if weapon_manager.cur_weapon != null:
-			if weapon_manager.cur_weapon.entity_name == "MEDKIT":
-				weapon_manager.cur_weapon.action(self)
-				weapon_manager.update_children()
-				weapon_manager.switch_to_next_weapon()
-			else:
-				weapon_manager.cur_weapon.start_shooting()
-				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-					weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
-				ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
-		else:
+		weapon_manager.cur_weapon.action()
+		if weapon_manager.return_ammo_count() <= 0 and weapon_manager.cur_weapon.item_type != "MELEE":
 			weapon_manager.switch_to_next_weapon()
+		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+			weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 	elif event.is_action_released("action" + player_id):
-		if weapon_manager.cur_weapon != null:
-			if weapon_manager.cur_weapon.item_type == "RANGE":
-				weapon_manager.cur_weapon.stop_shooting()
-				if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-					weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
+		if weapon_manager.cur_weapon.item_type == "RANGE":
+			weapon_manager.cur_weapon.stop_shooting()
 
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return

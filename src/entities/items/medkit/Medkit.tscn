@@ -20,6 +20,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Visuals/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -47,11 +59,27 @@ tracks/1/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Visuals/Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Medkit" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+item_type = "MEDKIT"
 entity_name = "MEDKIT"
 despawn_time = 10
+
+[node name="PickUpRange" parent="Position2D" index="0"]
+modulate = Color( 1, 0.286275, 0.172549, 1 )
 
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 texture = ExtResource( 3 )

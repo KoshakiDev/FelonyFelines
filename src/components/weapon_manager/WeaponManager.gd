@@ -33,10 +33,10 @@ func add_weapon(new_weapon):
 	if is_duplicant(new_weapon):
 		# TODO: increase amount of click allowed
 		var dupe_weapon = get_duplicant(new_weapon)
-		if dupe_weapon.item_type == "RANGE":
+		if dupe_weapon.item_type == "RANGE" or dupe_weapon.item_type == "MEDKIT":
 			dupe_weapon.add_ammo_pack()
 			owner.ammo_bar.update_ammo_bar(return_ammo_count())
-	if is_duplicant(new_weapon) and new_weapon.entity_name != "MEDKIT" and new_weapon.entity_name != "AMMO":
+	if is_duplicant(new_weapon):
 		#print("is duplicant")
 		new_weapon.queue_free()
 		return
@@ -67,6 +67,8 @@ func switch_to_next_weapon():
 	
 	cur_slot = (cur_slot + 1) % weapon_slots_size
 	switch_to_weapon_slot(cur_slot)
+	if return_ammo_count() <= 0 and cur_weapon.item_type != "MELEE":
+		switch_to_next_weapon()
 
 func switch_to_prev_weapon():
 	update_children()
@@ -76,6 +78,8 @@ func switch_to_prev_weapon():
 	
 	cur_slot = posmod((cur_slot - 1), weapon_slots_size)
 	switch_to_weapon_slot(cur_slot)
+	if return_ammo_count() <= 0 and cur_weapon.item_type != "MELEE":
+		switch_to_prev_weapon()
 
 func switch_to_weapon_slot(slot_ind: int):
 	if slot_ind < 0 or slot_ind >= weapon_slots_size:
@@ -86,6 +90,7 @@ func switch_to_weapon_slot(slot_ind: int):
 		cur_weapon.set_active()
 	else:
 		cur_weapon.visible = true
+	
 
 func disable_all_weapons():
 	for weapon in weapons:

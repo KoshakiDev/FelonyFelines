@@ -10,6 +10,15 @@
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/Pain.gd" type="Script" id=8]
 [ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=9]
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 15.5, 23 )
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 32.1403
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 10.2151, 6.72043 )
+
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
 [sub_resource type="VisualShaderNodeTexture" id=2]
@@ -88,15 +97,6 @@ nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5
 resource_local_to_scene = true
 shader = SubResource( 6 )
 shader_param/active = false
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 15.5, 23 )
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 32.1403
-
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 10.2151, 6.72043 )
 
 [sub_resource type="Animation" id=11]
 resource_name = "Attack"
@@ -339,15 +339,6 @@ entity_type = "ENEMY"
 [node name="NavigationManager" parent="Functions" index="2"]
 threshold = 4
 
-[node name="Sprite" parent="Visuals" index="0"]
-material = SubResource( 7 )
-position = Vector2( 0, -37 )
-texture = ExtResource( 7 )
-hframes = 10
-vframes = 4
-
-[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
-
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false
 collision_layer = 128
@@ -374,6 +365,15 @@ collision_mask = 64
 position = Vector2( -2.38419e-07, 3.76344 )
 shape = SubResource( 18 )
 disabled = true
+
+[node name="Sprite" parent="Visuals" index="0"]
+material = SubResource( 7 )
+position = Vector2( 0, -37 )
+texture = ExtResource( 7 )
+hframes = 10
+vframes = 4
+
+[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
 
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")

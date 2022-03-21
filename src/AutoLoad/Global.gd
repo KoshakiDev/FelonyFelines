@@ -45,7 +45,10 @@ func _ready():
 	root = get_parent()
 	normalize_item_drop_weights()
 	
-	
+func frame_freeze(time_scale, duration):
+	Engine.time_scale = time_scale
+	yield(get_tree().create_timer(duration * time_scale), "timeout")
+	Engine.time_scale = 1.0
 
 func player_died():
 	if Global.brother_1.health_manager.is_dead() and Global.brother_2.health_manager.is_dead():

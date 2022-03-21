@@ -18,6 +18,12 @@
 radius = 5.0
 height = 64.0
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 45, 61 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 300.0
+
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
 [sub_resource type="VisualShaderNodeTexture" id=2]
@@ -102,12 +108,6 @@ resource_local_to_scene = true
 script = ExtResource( 7 )
 amount = 3
 spread_angle = 5.0
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 45, 61 )
-
-[sub_resource type="CircleShape2D" id=9]
-radius = 300.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "Death"
@@ -311,29 +311,7 @@ threshold = 4
 [node name="PhysicsCollider" parent="." index="1"]
 shape = SubResource( 19 )
 
-[node name="Sprite" parent="Visuals" index="0"]
-material = SubResource( 7 )
-position = Vector2( 0, -56 )
-texture = ExtResource( 12 )
-hframes = 9
-vframes = 5
-
-[node name="HandGun" type="Sprite" parent="Visuals/Sprite" index="0"]
-position = Vector2( 5, 45 )
-texture = ExtResource( 11 )
-offset = Vector2( 22, -9 )
-
-[node name="BulletSpawner" parent="Visuals/Sprite/HandGun" index="0" instance=ExtResource( 3 )]
-position = Vector2( 52, -10 )
-bullet_scene = ExtResource( 4 )
-shot_delay = 1.0
-bullet_speed = 350.0
-knockback_value = 1000
-bullet_emitter = SubResource( 10 )
-
-[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 1 )]
-
-[node name="Areas" parent="." index="3"]
+[node name="Areas" parent="." index="2"]
 visible = false
 
 [node name="Hurtbox" parent="Areas" index="0"]
@@ -350,6 +328,28 @@ collision_mask = 2
 [node name="AttackRangeShape" parent="Areas/AttackRange" index="0"]
 position = Vector2( 0, -32 )
 shape = SubResource( 9 )
+
+[node name="Sprite" parent="Visuals" index="0"]
+material = SubResource( 7 )
+position = Vector2( 0, -56 )
+texture = ExtResource( 12 )
+hframes = 9
+vframes = 5
+
+[node name="HandGun" type="Sprite" parent="Visuals/Sprite" index="0"]
+position = Vector2( 5, 45 )
+texture = ExtResource( 11 )
+offset = Vector2( 22, -9 )
+
+[node name="BulletSpawner" parent="Visuals/Sprite/HandGun" index="0" instance=ExtResource( 3 )]
+position = Vector2( 52, -10 )
+bullet_scene = ExtResource( 4 )
+shot_delay = 1.0
+bullet_speed = 225.0
+knockback_value = 1000
+bullet_emitter = SubResource( 10 )
+
+[node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 1 )]
 
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")

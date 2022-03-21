@@ -112,9 +112,13 @@ item_type = "RANGE"
 entity_name = "MINIGUN"
 ammo = 500
 recoil = 400
+ammo_pack_amount = 100
 
 [node name="Position2D" parent="." index="0"]
 position = Vector2( 14, -3 )
+
+[node name="PickUpRange" parent="Position2D" index="0"]
+modulate = Color( 0.627451, 0, 0, 1 )
 
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 texture = ExtResource( 2 )

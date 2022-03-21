@@ -72,7 +72,6 @@ shape = SubResource( 1 )
 [node name="DespawnTimer" type="Timer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.498039, 0.976471, 1, 1 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 

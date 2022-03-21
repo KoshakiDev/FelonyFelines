@@ -3,6 +3,7 @@ extends State
 const points_effect_packed := preload("res://src/ScreenEffects/PointEffect.tscn")
 
 func enter(msg := {}) -> void:
+	owner.hurtbox_shape.disabled = true
 	owner.play_animation("Death", "Animations")
 	update_points()
 	pass

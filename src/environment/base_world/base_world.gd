@@ -68,7 +68,9 @@ func update_wave():
 	Global.UI_layer.update_board()
 	#timer.start()
 	#yield(timer, "timeout")
+	Shake.shake(8.0, 1)
 	is_wave_updating = false
+	
 
 func all_players_dead():
 	$Dead.play()

@@ -2,6 +2,8 @@ extends Node2D
 
 onready var label = $RichTextLabel
 
+
+
 func _ready():
 	update_ammo_bar(-1)
 	

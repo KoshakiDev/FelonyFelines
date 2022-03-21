@@ -38,3 +38,7 @@ func _on_Hurtbox_area_entered(area):
 		state_machine.transition_to("Pain", {Back = true})
 	elif (attack_direction.x > 0 and sprite.scale.x == -1) or (attack_direction.x < 0 and sprite.scale.x == 1):
 		state_machine.transition_to("Pain", {Front = true})
+	Global.frame_freeze(0.5, 2)
+	
+
+
