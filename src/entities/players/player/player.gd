@@ -61,19 +61,21 @@ func _input(event):
 		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
 			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 		weapon_manager.switch_to_next_weapon()
+		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+			weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 	if event.is_action_pressed("prev_weapon" + player_id):
 		weapon_manager.update_children()
 		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
 			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 		weapon_manager.switch_to_prev_weapon()
+		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
+			weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 	if event.is_action_pressed("action" + player_id):
 		pain_sound.play()
 		weapon_manager.update_children()
 		weapon_manager.cur_weapon.action()
 		if weapon_manager.return_ammo_count() <= 0 and weapon_manager.cur_weapon.item_type != "MELEE":
 			weapon_manager.switch_to_next_weapon()
-		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-			weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 	elif event.is_action_released("action" + player_id):
 		if weapon_manager.cur_weapon.item_type == "RANGE":
 			weapon_manager.cur_weapon.stop_shooting()
