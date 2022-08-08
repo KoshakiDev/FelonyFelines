@@ -8,6 +8,9 @@ onready var nav_manager = $Functions/NavigationManager
 export var ITEM_DROP_PERCENT = 50
 var current_bodies_in_attack_range = []
 
+##SOUNDS:
+onready var attack_sound = $SoundMachine/Attack
+
 
 func _ready():
 	attack_range.connect("body_entered", self, "_on_AttackRange_body_entered")

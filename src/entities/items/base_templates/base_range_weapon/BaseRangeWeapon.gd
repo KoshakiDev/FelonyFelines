@@ -9,8 +9,9 @@ export var ammo_pack_amount = 5
 onready var bullet_spawner = $Position2D/Visuals/Sprite/BulletSpawner
 
 func _ready() -> void:
+	item_drop_sound.play()
 	bullet_spawner.connect("shot_fired", self, "shot_fired")
-	print(bullet_spawner)
+	#print(bullet_spawner)
 
 func set_inactive():
 	.set_inactive()
@@ -21,11 +22,10 @@ func action():
 
 func start_shooting() -> void:
 	if is_out_of_ammo():
-		$Position2D/SoundMachine/Denied.play()
 		return
-	print(self.name)
-	print(bullet_spawner)
-	print(bullet_spawner.is_inside_tree())
+	#print(self.name)
+	#print(bullet_spawner)
+	#print(bullet_spawner.is_inside_tree())
 	bullet_spawner.set_shooting(true)
 
 func stop_shooting() -> void:

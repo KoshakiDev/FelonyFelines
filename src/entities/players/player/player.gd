@@ -24,9 +24,8 @@ var is_resistance = false
 
 signal player_died
 
-
-## TEST SOUND
-onready var pain_sound = $RanSoundContainer
+##sounds
+onready var pickup_sound = $SoundMachine/Pickup
 
 
 func _ready():
@@ -67,7 +66,6 @@ func _input(event):
 			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 		weapon_manager.switch_to_prev_weapon()
 	if event.is_action_pressed("action" + player_id):
-		pain_sound.play()
 		weapon_manager.update_children()
 		weapon_manager.cur_weapon.action()
 		if weapon_manager.return_ammo_count() <= 0 and weapon_manager.cur_weapon.item_type != "MELEE":

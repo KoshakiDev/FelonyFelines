@@ -29,7 +29,7 @@ func _ready():
 	Global.points = 0
 	Ngio.request("Event.logEvent", {"event_name": "NewRoundLoaded","host": "https://newgrounds.com/"})
 	#Ngio.request("App.logView", {"host": "https://newgrounds.com/"})
-	AudioServer.set_bus_volume_db(0, 0)
+	#AudioServer.set_bus_volume_db(0, 0)
 	$InfoAnimationPlayer.play("Idle")
 	Global.set("main", self)
 	Global.set("entity_world", entity_world)
@@ -55,26 +55,31 @@ func _ready():
 
 func update_points(point_amount):
 	Global.points += point_amount
-	Global.UI_layer.update_board()
+	if Global.UI_layer != null:
+		Global.UI_layer.update_board()
 
 func update_wave():
 	is_wave_updating = true
+	Global.UI_layer.update_board()
+	timer.start()
+	yield(timer, "timeout")
+	
 	Global.wave_num += 1
 	
 	for spawner in spawners:
 		Global.enemy_count += Global.wave_num
 		spawner.add_enemies(Global.wave_num)
 
-	Global.UI_layer.update_board()
-	#timer.start()
-	#yield(timer, "timeout")
 	Shake.shake(8.0, 1)
+	Global.UI_layer.update_board()
 	is_wave_updating = false
 	
 
 func all_players_dead():
 	$Dead.play()
-	yield($Dead, "finished")
+	timer.start()
+	yield(timer, "timeout")
+	
 	#show_death_screen()
 	Global.final_score = Global.points
 	Global.wave_survived = Global.wave_num

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EFX INT Dog Wimper 26 A.M.wav-fbb604a5ea96cfd9c5e6de14a795656b.sample"
+
+[deps]
+
+source_file="res://sounds/imp/EFX INT Dog Wimper 26 A.M.wav"
+dest_files=[ "res://.import/EFX INT Dog Wimper 26 A.M.wav-fbb604a5ea96cfd9c5e6de14a795656b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

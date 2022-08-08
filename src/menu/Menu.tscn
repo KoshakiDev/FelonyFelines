@@ -3,7 +3,7 @@
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ng reminder.png" type="Texture" id=2]
 [ext_resource path="res://src/menu/menu_world/MenuWorld.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/menu/FELONY FELINES.png" type="Texture" id=4]
+[ext_resource path="res://FEARLESS FELINES.png" type="Texture" id=4]
 [ext_resource path="res://src/menu/DeathScreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
@@ -74,6 +74,7 @@ __meta__ = {
 
 [node name="Title" type="Sprite" parent="."]
 position = Vector2( 2275, 876 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]

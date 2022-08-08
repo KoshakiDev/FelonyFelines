@@ -24,7 +24,7 @@ func init(points: int, autoplay := true, color: Color = Color.red) -> void:
 	self.autoplay = autoplay
 
 func show_effect(points: int, color: Color) -> void:
-	print(points, get_point_string(points))
+	#print(points, get_point_string(points))
 	var point_string = get_point_string(points)
 	label.text = point_string
 	back_label.bbcode_text = "[tornado radius=2 freq=10]%s[/tornado]" % point_string

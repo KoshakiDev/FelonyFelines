@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_entity/base_entity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/base_templates/base_entity/functions/NavigationManager.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.gd" type="Script" id=3]
+[ext_resource path="res://addons/mixing-desk/sound/2d/ran_cont.gd" type="Script" id=4]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -106,5 +107,8 @@ ONLY USED BY NON-PLAYABLE CHARACTERS, NOT BY PLAYERS"
 
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 7 )
+
+[node name="Attack" type="Node2D" parent="SoundMachine" index="4"]
+script = ExtResource( 4 )
 
 [connection signal="timeout" from="Functions/NavigationManager/UpdatePathTimer" to="Functions/NavigationManager" method="_on_UpdatePathTimer_timeout"]

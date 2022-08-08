@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyBall/states/AttackBall.gd" type="Script" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://assets/entities/enemies/ball/chief_chub_ball_sheet_128x128_8x11.png" type="Texture" id=7]
 [ext_resource path="res://src/entities/enemies/EnemyGunner/states/Pain.gd" type="Script" id=8]
 [ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://sounds/baller/EFX INT Siren Whistle 02.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/hit/Ilmarinen,blacksmith,forge,hammer,anvil,strike,loose,ringing,splash,iron,thin.M.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/hit/EFX SD Heads Hit Together 02.wav" type="AudioStream" id=13]
 
 [sub_resource type="CapsuleShape2D" id=8]
 resource_local_to_scene = true
@@ -516,6 +519,18 @@ script = ExtResource( 4 )
 
 [node name="Pain" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="SoundMachine/Damage" index="0"]
+stream = ExtResource( 13 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundMachine/Pain" index="0"]
+stream = ExtResource( 12 )
+
+[node name="Attack" parent="SoundMachine" index="4"]
+pitch_range = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundMachine/Attack" index="0"]
+stream = ExtResource( 11 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -118 )

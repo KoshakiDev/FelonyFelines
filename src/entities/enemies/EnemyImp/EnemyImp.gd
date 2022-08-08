@@ -11,6 +11,8 @@ onready var hitbox_shape = $Areas/Hitbox/HitboxShape
 export var damage_value: float = 10
 export var knockback_value: float = 20
 
+#SOUNDS
+
 
 func attack(target):
 	pass

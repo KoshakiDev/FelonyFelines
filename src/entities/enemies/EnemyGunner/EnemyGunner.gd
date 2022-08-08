@@ -8,6 +8,8 @@ onready var bullet_spawner = $Visuals/Sprite/HandGun/BulletSpawner
 func _ready():
 	if $Debug.has_node("Label"):
 		label = $Debug/Label
+	
+	bullet_spawner.connect("shot_fired", self, "shot_fired")
 
 func attack(target):
 	var look_dir = (target.global_position - global_position).normalized()
@@ -21,6 +23,9 @@ func attack(target):
 	elif sprite.scale.x == 1:
 		handgun.rotation = (target.global_position - global_position).angle()
 	bullet_spawner.set_shooting(true)
+
+func shot_fired():
+	attack_sound.play()
 
 func _on_Hurtbox_area_entered(area):
 	if health_manager.is_dead(): return

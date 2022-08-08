@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EFX EXT GROUP Battle Celebration 02 A.wav-8f58a59c6cd9bd542dcedc3c1f5d7e69.sample"
+
+[deps]
+
+source_file="res://sounds/lose/EFX EXT GROUP Battle Celebration 02 A.wav"
+dest_files=[ "res://.import/EFX EXT GROUP Battle Celebration 02 A.wav-8f58a59c6cd9bd542dcedc3c1f5d7e69.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

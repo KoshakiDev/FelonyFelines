@@ -12,7 +12,7 @@ func enter(msg := {}) -> void:
 	
 	cooldown_timer.wait_time = cooldown_duration
 	cooldown_timer.start()
-
+	owner.attack_sound.play()
 	owner.play_animation("Attack", "Animations")
 	
 	yield(owner.animation_machine.find("Animations"), "animation_finished")

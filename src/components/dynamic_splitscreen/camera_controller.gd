@@ -39,6 +39,12 @@ func _physics_process(delta):
 	_move_cameras()
 	_update_splitscreen()
 
+func get_player1_position():
+	return player1.global_position + player1.player_visual_middle
+
+func get_player2_position():
+	return player2.global_position + player1.player_visual_middle
+
 func _move_cameras():
 	var position_difference = _compute_position_difference_in_world()
 	
@@ -46,8 +52,8 @@ func _move_cameras():
 
 	position_difference = position_difference.normalized() * distance
 	#player_visual_middle
-	camera1.global_position = player1.global_position + position_difference / 2.0 + player1.player_visual_middle
-	camera2.global_position = player2.global_position - position_difference / 2.0 + player1.player_visual_middle
+	camera1.global_position = get_player1_position() + position_difference / 2.0
+	camera2.global_position = get_player2_position() - position_difference / 2.0
 
 #	camera1.global_position = player1.global_position + position_difference / 2.0
 #	camera2.global_position = player2.global_position - position_difference / 2.0
@@ -58,8 +64,8 @@ func _update_splitscreen():
 	var topLeft1 = camera1.get_camera_screen_center() - screen_size / 2.0
 	var topLeft2 = camera2.get_camera_screen_center() - screen_size / 2.0
 	
-	var player1_position = (player1.global_position - topLeft1) / screen_size
-	var player2_position = (player2.global_position - topLeft2) / screen_size
+	var player1_position = (get_player1_position() - topLeft1) / screen_size
+	var player2_position = (get_player2_position() - topLeft2) / screen_size
 		
 	var thickness
 	if adaptive_split_line_thickness:

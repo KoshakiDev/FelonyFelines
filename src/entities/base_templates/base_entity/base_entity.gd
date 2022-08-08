@@ -41,6 +41,13 @@ onready var healthbar = $HealthBar/HealthBarVisual
 var line2d: Line2D
 
 
+#SOUNDS
+onready var damage_sound = $SoundMachine/Damage
+onready var pain_sound = $SoundMachine/Pain
+onready var death_sound = $SoundMachine/Death
+onready var footstep_sound = $SoundMachine/Footstep
+
+
 func _ready():
 	if $Debug.has_node("Line2D"):
 		line2d = $Debug/Line2D
@@ -83,8 +90,10 @@ func _on_Hurtbox_area_entered(area):
 	Global.misc.add_child(effect)
 	effect.global_position = attacker.global_position
 	health_manager.take_damage(attacker)
+	damage_sound.play()
+	#pain_sound.play()
+	print("took damage and played sound")
 	
-	sound_machine.play_sound("Hit")
 
 #Kept in because of ease of use
 func play_animation(animation, node_name):

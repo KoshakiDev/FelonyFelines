@@ -10,6 +10,7 @@ func enter(msg := {}) -> void:
 	start_cooldown_timer()
 	calculate_dash_direction()
 	owner.play_animation("Attack", "Animations")
+	owner.attack_sound.play()
 	owner._turn_on_hitbox()
 
 func exit() -> void:

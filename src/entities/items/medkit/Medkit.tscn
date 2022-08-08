@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/items/base_templates/base_item/base_item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/items/medkit/Medkit.gd" type="Script" id=2]
 [ext_resource path="res://assets/items/pickups/medkit/medkit_sheet_32x32.png" type="Texture" id=3]
+[ext_resource path="res://addons/mixing-desk/sound/2d/ran_cont.gd" type="Script" id=4]
+[ext_resource path="res://sounds/medkit/Celery,Bite,Crunch,Slow,Bone,Break,Stick,Creak,Various07.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -78,9 +80,6 @@ item_type = "MEDKIT"
 entity_name = "MEDKIT"
 despawn_time = 10
 
-[node name="PickUpRange" parent="Position2D" index="0"]
-modulate = Color( 1, 0.286275, 0.172549, 1 )
-
 [node name="Sprite" parent="Position2D/Visuals" index="0"]
 texture = ExtResource( 3 )
 hframes = 4
@@ -88,3 +87,10 @@ hframes = 4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Position2D/AnimationMachine" index="0"]
 anims/Idle = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+
+[node name="Eat" type="Node2D" parent="Position2D/SoundMachine" index="1"]
+script = ExtResource( 4 )
+pitch_range = 0.3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Position2D/SoundMachine/Eat" index="0"]
+stream = ExtResource( 5 )

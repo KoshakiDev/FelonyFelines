@@ -80,5 +80,8 @@ player_id = "_2"
 [node name="Player3" parent="World/EntityWorld/Players" index="1" instance=ExtResource( 3 )]
 position = Vector2( 2333, 1104 )
 
+[node name="WaveTimer" parent="." index="2"]
+wait_time = 3.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="4"]
 environment = ExtResource( 12 )

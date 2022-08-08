@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pop 41.wav-224f5925b6afb1e26850f36a9e38a37e.sample"
+
+[deps]
+
+source_file="res://sounds/pickup/Pop 41.wav"
+dest_files=[ "res://.import/Pop 41.wav-224f5925b6afb1e26850f36a9e38a37e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

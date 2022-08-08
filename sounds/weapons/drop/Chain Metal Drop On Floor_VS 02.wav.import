@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Chain Metal Drop On Floor_VS 02.wav-c62864c36c61c661a6dd2d587a474517.sample"
+
+[deps]
+
+source_file="res://sounds/weapons/drop/Chain Metal Drop On Floor_VS 02.wav"
+dest_files=[ "res://.import/Chain Metal Drop On Floor_VS 02.wav-c62864c36c61c661a6dd2d587a474517.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

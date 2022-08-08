@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://sounds/lose/EFX EXT GROUP Battle Celebration 02 A.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/environment/base_world/base_world.gd" type="Script" id=2]
-[ext_resource path="res://assets/sfx/powerdown02.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/environment/NavigationTileMap.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=4]
@@ -48,7 +48,7 @@ anims/RESET = SubResource( 5 )
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Dead" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+[node name="Dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
 
 [connection signal="all_dead" from="." to="." method="_on_Main_all_dead"]

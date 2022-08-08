@@ -4,6 +4,7 @@ const points_effect_packed := preload("res://src/ScreenEffects/PointEffect.tscn"
 
 func enter(msg := {}) -> void:
 	owner.hurtbox_shape.disabled = true
+	owner.death_sound.play()
 	owner.play_animation("Death", "Animations")
 	update_points()
 	pass
@@ -44,7 +45,7 @@ func update_points() -> void:
 func delete_enemy():
 	enemy_drop()
 	#print("1")
-	if Global.main == null:
+	if Global.main == null or Global.UI_layer == null:
 		owner.queue_free()
 		return
 	Global.enemy_count = Global.enemy_count - 1

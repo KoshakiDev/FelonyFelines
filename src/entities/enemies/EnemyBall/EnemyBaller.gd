@@ -20,6 +20,7 @@ func _turn_off_hitbox():
 
 var dash_direction = Vector2.ZERO
 
+
 func attack(target):
 	dash_direction = (target.global_position - global_position).normalized() * dash_speed
 	apply_dash(dash_direction)

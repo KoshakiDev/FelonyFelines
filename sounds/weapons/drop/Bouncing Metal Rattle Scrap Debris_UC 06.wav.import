@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bouncing Metal Rattle Scrap Debris_UC 06.wav-71e719a896a9e3aaa11e6a2debda986d.sample"
+
+[deps]
+
+source_file="res://sounds/weapons/drop/Bouncing Metal Rattle Scrap Debris_UC 06.wav"
+dest_files=[ "res://.import/Bouncing Metal Rattle Scrap Debris_UC 06.wav-71e719a896a9e3aaa11e6a2debda986d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

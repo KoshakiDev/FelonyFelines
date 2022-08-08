@@ -7,4 +7,5 @@ func _on_ItemPickup_area_entered(area):
 		return
 	if item.in_inventory: return
 	owner.weapon_manager.add_weapon(item)
+	owner.pickup_sound.play()
 	

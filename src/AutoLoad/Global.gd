@@ -55,8 +55,6 @@ func player_died():
 		brother_1.respawn_radius.deactivate_respawn_radius()
 		brother_2.respawn_radius.deactivate_respawn_radius()
 		emit_signal("all_dead")
-		print("All dead")
-	print("Player died")
 
 func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()

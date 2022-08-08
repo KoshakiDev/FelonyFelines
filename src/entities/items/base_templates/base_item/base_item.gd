@@ -16,6 +16,8 @@ export var despawn_time: int = 5
 export var in_inventory: bool = false
 
 
+onready var item_drop_sound = $Position2D/SoundMachine/ItemDrop
+
 func _ready():
 	if !in_inventory:
 		setup_despawn()
