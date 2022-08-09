@@ -436,8 +436,10 @@ shape = SubResource( 23 )
 visible = false
 
 [node name="Respawn" parent="Areas" index="2" instance=ExtResource( 5 )]
+visible = true
 show_behind_parent = true
 position = Vector2( 0, -20 )
+respawn_time = 4.0
 
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 21 )

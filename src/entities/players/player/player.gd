@@ -103,9 +103,10 @@ func _on_Hurtbox_area_entered(area):
 func respawn_player():
 	play_animation("Respawn", "Movement")
 	yield(get_animation_player("Movement"), "animation_finished")
-	health_manager.heal(health_manager.max_health)
+	health_manager.heal(health_manager.max_health / 10)
 	_turn_on_all()
 	state_machine.transition_to("Idle")
+
 
 func _turn_off_all():
 	ammo_bar.visible = false

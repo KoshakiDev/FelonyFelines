@@ -8,6 +8,9 @@ signal no_health
 export(float) var max_health = 1 setget set_max_health
 onready var health = max_health setget set_health
 
+onready var regeneration_timer = $Regeneration
+
+
 func set_max_health(new_max_health):
 	max_health = new_max_health
 	max_health = max(1, new_max_health)
@@ -20,6 +23,7 @@ func set_health(new_value):
 	if is_dead():
 		#self.state_machine.transition_to("Death")
 		emit_signal("no_health")
+	natural_regen()
 
 #this function is called from the entity itself
 func _initialize_health_bar(health_bar):
@@ -31,6 +35,18 @@ func _initialize_health_bar(health_bar):
 func heal(heal_value):
 	health += heal_value
 	set_health(health)
+
+
+func natural_regen():
+	if health >= max_health / 2 or !is_dead():
+		regeneration_timer.stop()
+	else:
+		regeneration_timer.start()
+
+
+func _on_Regeneration_timeout():
+	heal(1)
+	
 
 func take_damage(attacker):
 	var damage_value = attacker.damage_value

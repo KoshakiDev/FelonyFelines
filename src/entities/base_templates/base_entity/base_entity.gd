@@ -107,3 +107,4 @@ func get_animation(animation, node_name):
 
 func get_animation_player(animation_player_name):
 	return animation_machine.get_node(animation_player_name)
+

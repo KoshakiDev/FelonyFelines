@@ -104,6 +104,9 @@ Kinematic Bodies ONLY INTERACT with other Kinematic Bodies or Physics Objects (N
 script = ExtResource( 7 )
 max_health = 10.0
 
+[node name="Regeneration" type="Timer" parent="Functions/HealthManager"]
+wait_time = 0.5
+
 [node name="SpriteDirectionManager" type="Node" parent="Functions"]
 script = ExtResource( 4 )
 
@@ -160,3 +163,5 @@ script = ExtResource( 5 )
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 
 [node name="Debug" type="Node2D" parent="."]
+
+[connection signal="timeout" from="Functions/HealthManager/Regeneration" to="Functions/HealthManager" method="_on_Regeneration_timeout"]
