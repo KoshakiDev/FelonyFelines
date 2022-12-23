@@ -7,7 +7,12 @@ export var recoil: float = 15
 
 onready var swoosh_sound = $Position2D/SoundMachine/Swoosh
 
+func _ready():
+	$Position2D/Visuals/Sprite/Hitbox.turn_off_hitbox()
+
 func action()-> void:
 	animation_machine.play_animation("Attack", "AnimationPlayer")
-	weapon_owner.knockback += -1 * weapon_owner.movement_direction * recoil
+	if weapon_owner.has_node("Movement"):
+		weapon_owner.movement.apply_knockback(-1 * weapon_owner.movement.intended_velocity, recoil) 
+	
 	swoosh_sound.play()

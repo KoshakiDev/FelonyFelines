@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sfx/sounds/sheriffbullet.wav" type="AudioStream" id=1]
+[ext_resource path="res://src/components/bullet-related/bullet type/BaseProjectile.gd" type="Script" id=2]
+[ext_resource path="res://src/components/hitbox-hurtbox/hitbox/Hitbox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.0
+height = 10.0
+
+[node name="BaseProjectile" instance=ExtResource( 3 )]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+is_player_bullet = true
+
+[node name="CollisionShape2D" parent="." index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource( 1 )

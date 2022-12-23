@@ -14,9 +14,9 @@ func find(node_name):
 			return node
 	
 func play_sound(node_name):
-	randomize()
-	var pitch_scale = rand_range(0.8, 1.5)
-	find(node_name).pitch_scale = pitch_scale
+	#randomize()
+	#var pitch_scale = rand_range(0.8, 1.5)
+	#find(node_name).pitch_scale = pitch_scale
 	find(node_name).play()
 
 func get_sound(node_name):

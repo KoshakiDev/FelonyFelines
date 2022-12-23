@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/items/base_templates/base_range_weapon/BaseRangeWeapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/items/weapons/range/shotgun/shotgun.png" type="Texture" id=2]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=3]
 [ext_resource path="res://assets/items/weapons/range/muzzle_flashes/shotgun_flash.png" type="Texture" id=4]
 [ext_resource path="res://sounds/guns/shotgun.wav" type="AudioStream" id=5]
+[ext_resource path="res://addons/mixing-desk/sound/2d/ran_cont.gd" type="Script" id=6]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -53,54 +54,38 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "Shoot"
 length = 0.1
-tracks/0/type = "method"
-tracks/0/path = NodePath("../..")
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Visuals/Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "bullet_spawner_set_shooting_true"
-}, {
-"args": [  ],
-"method": "bullet_spawner_set_shooting_false"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Visuals/Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -12, 0 ), Vector2( 0, 0 ) ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Visuals/Sprite/Flash:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Visuals/Sprite/Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("../Visuals/Sprite:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Visuals/Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
@@ -108,7 +93,6 @@ tracks/3/keys = {
 }
 
 [node name="Shotgun" instance=ExtResource( 1 )]
-item_type = "RANGE"
 entity_name = "SHOTGUN"
 ammo = 20
 recoil = 150
@@ -125,7 +109,7 @@ texture = ExtResource( 2 )
 
 [node name="BulletSpawner" parent="Position2D/Visuals/Sprite" index="0"]
 position = Vector2( 24, -3 )
-shot_delay = 1.0
+shot_delay = 0.5
 bullet_speed = 1200.0
 bullet_damage_value = 25
 knockback_value = 1000
@@ -141,5 +125,8 @@ texture = ExtResource( 4 )
 anims/RESET = SubResource( 3 )
 anims/Shoot = SubResource( 2 )
 
-[node name="Shot" type="AudioStreamPlayer" parent="Position2D/SoundMachine" index="0"]
+[node name="Shot" type="Node2D" parent="Position2D/SoundMachine" index="1"]
+script = ExtResource( 6 )
+
+[node name="Shot" type="AudioStreamPlayer2D" parent="Position2D/SoundMachine/Shot" index="0"]
 stream = ExtResource( 5 )

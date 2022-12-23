@@ -11,6 +11,13 @@ export var initial_state := NodePath()
 onready var state: State = get_node(initial_state)
 
 
+#Self-addition of body
+var body: KinematicBody = null
+
+func init(_body_to_move: KinematicBody):
+	body = _body_to_move
+##
+
 func _ready() -> void:
 	yield(owner, "ready")
 	# The state machine assigns itself to the State objects' state_machine property.

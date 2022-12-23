@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/components/hitbox-hurtbox/hurtbox/Hurtbox.gd" type="Script" id=1]
+
+[node name="Hurtbox" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Only has collision LAYER, no MASK. Respectively to the entity type
+
+The hurtbox doesn't LOOK for anything, it is the one BEING LOOKED AT."
+}
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="."]

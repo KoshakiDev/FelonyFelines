@@ -1,22 +1,18 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyBall/states/AttackBall.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/enemies/EnemyBall/states/ChaseBall.gd" type="Script" id=3]
-[ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=4]
+[ext_resource path="res://src/entities/enemies/SharedStates/Chase.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/enemies/SharedStates/Death.gd" type="Script" id=4]
 [ext_resource path="res://src/entities/enemies/EnemyBall/EnemyBaller.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/enemies/EnemyBall/IdleBaller.gd" type="Script" id=6]
+[ext_resource path="res://src/entities/enemies/SharedStates/Idle.gd" type="Script" id=6]
 [ext_resource path="res://assets/entities/enemies/ball/chief_chub_ball_sheet_128x128_8x11.png" type="Texture" id=7]
-[ext_resource path="res://src/entities/enemies/EnemyGunner/states/Pain.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/enemies/SharedStates/Pain.gd" type="Script" id=8]
 [ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/components/hitbox-hurtbox/hitbox/Hitbox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://sounds/baller/EFX INT Siren Whistle 02.wav" type="AudioStream" id=11]
 [ext_resource path="res://sounds/hit/Ilmarinen,blacksmith,forge,hammer,anvil,strike,loose,ringing,splash,iron,thin.M.wav" type="AudioStream" id=12]
 [ext_resource path="res://sounds/hit/EFX SD Heads Hit Together 02.wav" type="AudioStream" id=13]
-
-[sub_resource type="CapsuleShape2D" id=8]
-resource_local_to_scene = true
-radius = 5.0
-height = 28.0
 
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 35.5, 46 )
@@ -24,8 +20,8 @@ extents = Vector2( 35.5, 46 )
 [sub_resource type="CircleShape2D" id=17]
 radius = 300.0
 
-[sub_resource type="CircleShape2D" id=18]
-radius = 35.0
+[sub_resource type="CircleShape2D" id=21]
+radius = 34.0147
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -432,6 +428,11 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="CapsuleShape2D" id=8]
+resource_local_to_scene = true
+radius = 5.0
+height = 28.0
+
 [node name="EnemyBaller" groups=["ENEMY"] instance=ExtResource( 1 )]
 collision_layer = 4
 collision_mask = 7
@@ -439,20 +440,11 @@ script = ExtResource( 5 )
 entity_name = "BALL"
 entity_type = "ENEMY"
 cooldown_duration = 2.0
-dash_duration = 0.5
-dash_speed = 25
-knockback_value = 2500.0
-
-[node name="HealthManager" parent="Functions" index="0"]
-max_health = 50.0
-
-[node name="PhysicsCollider" parent="." index="1"]
-shape = SubResource( 8 )
-
-[node name="Areas" parent="." index="2"]
-visible = false
+dash_duration = 1.5
+dash_speed = 35
 
 [node name="Hurtbox" parent="Areas" index="0"]
+visible = false
 collision_layer = 128
 
 [node name="HurtboxShape" parent="Areas/Hurtbox" index="0"]
@@ -467,14 +459,15 @@ collision_mask = 2
 position = Vector2( 0, -32 )
 shape = SubResource( 17 )
 
-[node name="Hitbox" type="Area2D" parent="Areas" index="2"]
+[node name="Hitbox" parent="Areas" index="2" instance=ExtResource( 10 )]
 position = Vector2( 0, -44 )
-collision_layer = 16
+collision_layer = 0
 collision_mask = 64
+damage_value = 10.0
 
-[node name="HitboxShape" type="CollisionShape2D" parent="Areas/Hitbox" index="0"]
-shape = SubResource( 18 )
-disabled = true
+[node name="CollisionShape2D" parent="Areas/Hitbox" index="0"]
+position = Vector2( 0, 11 )
+shape = SubResource( 21 )
 
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 7 )
@@ -484,6 +477,12 @@ hframes = 11
 vframes = 8
 
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
+
+[node name="HealthManager" parent="." index="2"]
+max_health = 75.0
+
+[node name="Movement" parent="." index="3"]
+speed_percentage = 0.25
 
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")
@@ -534,3 +533,9 @@ stream = ExtResource( 11 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -118 )
+
+[node name="PhysicsCollider" parent="." index="10"]
+shape = SubResource( 8 )
+
+[editable path="Areas/Hurtbox"]
+[editable path="Areas/Hitbox"]

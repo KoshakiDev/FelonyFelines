@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_entity/base_entity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=2]
@@ -11,96 +11,14 @@
 [ext_resource path="res://src/entities/players/player/states/Idle.gd" type="Script" id=9]
 [ext_resource path="res://assets/entities/players/blue_brother_sheet_96x96.png" type="Texture" id=10]
 [ext_resource path="res://src/entities/players/player/Player.gd" type="Script" id=11]
-[ext_resource path="res://src/entities/players/player/Pain.gd" type="Script" id=12]
+[ext_resource path="res://src/entities/players/player/states/Pain.gd" type="Script" id=12]
 [ext_resource path="res://addons/mixing-desk/sound/2d/ran_cont.gd" type="Script" id=13]
 [ext_resource path="res://sounds/pickup/Pop 31.wav" type="AudioStream" id=14]
 [ext_resource path="res://sounds/pickup/Pop 41.wav" type="AudioStream" id=15]
-
-[sub_resource type="CapsuleShape2D" id=24]
-radius = 5.0
-height = 8.0
+[ext_resource path="res://src/entities/players/player/states/Interacting.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 12, 27 )
-
-[sub_resource type="VisualShaderNodeColorConstant" id=1]
-
-[sub_resource type="VisualShaderNodeTexture" id=2]
-source = 2
-
-[sub_resource type="VisualShaderNodeVectorOp" id=3]
-operator = 6
-
-[sub_resource type="VisualShaderNodeVectorOp" id=4]
-operator = 2
-
-[sub_resource type="VisualShaderNodeBooleanUniform" id=5]
-uniform_name = "active"
-
-[sub_resource type="VisualShader" id=6]
-code = "shader_type canvas_item;
-uniform bool active;
-
-
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Texture:3
-	vec3 n_out3p0;
-	float n_out3p1;
-	{
-		vec4 _tex_read = texture(TEXTURE , UV.xy);
-		n_out3p0 = _tex_read.rgb;
-		n_out3p1 = _tex_read.a;
-	}
-
-// BooleanUniform:9
-	bool n_out9p0 = active;
-
-// Color:11
-	vec3 n_out11p0 = vec3(1.000000, 1.000000, 1.000000);
-	float n_out11p1 = 1.000000;
-
-// VectorOp:6
-	vec3 n_out6p0 = vec3(n_out9p0 ? 1.0 : 0.0) * n_out11p0;
-
-// VectorOp:5
-	vec3 n_out5p0 = max(n_out3p0, n_out6p0);
-
-// Output:0
-	COLOR.rgb = n_out5p0;
-	COLOR.a = n_out3p1;
-
-}
-
-void light() {
-// Output:0
-
-}
-"
-mode = 1
-flags/light_only = false
-nodes/fragment/0/position = Vector2( 1040, 60 )
-nodes/fragment/3/node = SubResource( 2 )
-nodes/fragment/3/position = Vector2( 600, -40 )
-nodes/fragment/5/node = SubResource( 3 )
-nodes/fragment/5/position = Vector2( 860, -60 )
-nodes/fragment/6/node = SubResource( 4 )
-nodes/fragment/6/position = Vector2( 600, 100 )
-nodes/fragment/9/node = SubResource( 5 )
-nodes/fragment/9/position = Vector2( 400, 0 )
-nodes/fragment/11/node = SubResource( 1 )
-nodes/fragment/11/position = Vector2( 400, 120 )
-nodes/fragment/connections = PoolIntArray( 3, 1, 0, 1, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0, 9, 0, 6, 0, 11, 0, 6, 1 )
-
-[sub_resource type="ShaderMaterial" id=21]
-resource_local_to_scene = true
-shader = SubResource( 6 )
-shader_param/active = false
 
 [sub_resource type="Animation" id=8]
 resource_name = "Accel"
@@ -291,9 +209,10 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=26]
-resource_name = "Hit_Back"
-length = 0.3
+[sub_resource type="Animation" id=27]
+resource_name = "Hide"
+length = 6.0
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -301,7 +220,35 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 1.5, 3.1, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 34, 33, 42, 41 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.498039, 0.498039, 0.498039, 1 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "Hit_Back"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 40, 41, 42 ]
@@ -309,7 +256,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=25]
 resource_name = "Hit_Front"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -317,7 +264,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 32, 33, 34 ]
@@ -339,6 +286,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=15]
 length = 0.001
@@ -353,6 +312,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -410,22 +381,97 @@ tracks/1/keys = {
 "method": "spawn_dust"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("SoundMachine")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Footstep" ],
+"method": "play_sound"
+}, {
+"args": [ "Footstep" ],
+"method": "play_sound"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visuals/Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Hidden"
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Visuals/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.498039, 0.498039, 0.498039, 1 ) ]
+}
+
+[sub_resource type="Animation" id=29]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Visuals/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "Unhidden"
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Visuals/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=24]
+radius = 5.0
+height = 8.0
 
 [node name="Player" groups=["PLAYER"] instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 11 )
 entity_type = "PLAYER"
-max_speed = 675.0
-
-[node name="HealthManager" parent="Functions" index="0"]
-max_health = 100.0
-
-[node name="PhysicsCollider" parent="." index="1"]
-shape = SubResource( 24 )
+player_id = "_1"
 
 [node name="Hurtbox" parent="Areas" index="0"]
-visible = false
 collision_layer = 64
 
 [node name="HurtboxShape" parent="Areas/Hurtbox" index="0"]
@@ -436,13 +482,12 @@ shape = SubResource( 23 )
 visible = false
 
 [node name="Respawn" parent="Areas" index="2" instance=ExtResource( 5 )]
-visible = true
+visible = false
 show_behind_parent = true
 position = Vector2( 0, -20 )
 respawn_time = 4.0
 
 [node name="Sprite" parent="Visuals" index="0"]
-material = SubResource( 21 )
 position = Vector2( 0, -48 )
 texture = ExtResource( 10 )
 hframes = 8
@@ -453,12 +498,16 @@ position = Vector2( 10, 16 )
 
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 2 )]
 
+[node name="HealthManager" parent="." index="2"]
+max_health = 100.0
+
 [node name="Movement" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")
 anims/Accel = SubResource( 8 )
 anims/Death = SubResource( 9 )
 anims/Death_loop = SubResource( 10 )
 anims/Decel = SubResource( 12 )
+anims/Hide = SubResource( 27 )
 anims/Hit_Back = SubResource( 26 )
 anims/Hit_Front = SubResource( 25 )
 anims/Idle = SubResource( 13 )
@@ -466,19 +515,27 @@ anims/RESET = SubResource( 15 )
 anims/Respawn = SubResource( 16 )
 anims/Run = SubResource( 18 )
 
+[node name="Hidden" type="AnimationPlayer" parent="AnimationMachine" index="1"]
+anims/Hidden = SubResource( 28 )
+anims/RESET = SubResource( 29 )
+anims/Unhidden = SubResource( 30 )
+
 [node name="StateMachine" parent="." index="5"]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0"]
+[node name="Interacting" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( 17 )
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
 script = ExtResource( 9 )
 
-[node name="Move" type="Node" parent="StateMachine" index="1"]
+[node name="Move" type="Node" parent="StateMachine" index="2"]
 script = ExtResource( 8 )
 
-[node name="Death" type="Node" parent="StateMachine" index="2"]
+[node name="Death" type="Node" parent="StateMachine" index="3"]
 script = ExtResource( 7 )
 
-[node name="Pain" type="Node" parent="StateMachine" index="3"]
+[node name="Pain" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 12 )
 
 [node name="Pickup" type="Node2D" parent="SoundMachine" index="4"]
@@ -494,6 +551,11 @@ stream = ExtResource( 15 )
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -85 )
 
-[node name="AmmoBar" parent="." index="9" instance=ExtResource( 6 )]
+[node name="AmmoBar" parent="." index="8" instance=ExtResource( 6 )]
 position = Vector2( -32, -93 )
 scale = Vector2( 0.5, 0.5 )
+
+[node name="PhysicsCollider" parent="." index="11"]
+shape = SubResource( 24 )
+
+[editable path="Areas/Hurtbox"]

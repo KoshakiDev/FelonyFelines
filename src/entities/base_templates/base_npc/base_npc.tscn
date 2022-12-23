@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_entity/base_entity.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/entities/base_templates/base_entity/functions/NavigationManager.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.gd" type="Script" id=3]
 [ext_resource path="res://addons/mixing-desk/sound/2d/ran_cont.gd" type="Script" id=4]
 
@@ -86,13 +85,7 @@ shader_param/active = false
 
 [node name="BaseNPC" groups=["NON-PLAYER CHARACTER"] instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-
-[node name="NavigationManager" type="Node" parent="Functions" index="2"]
-script = ExtResource( 2 )
-
-[node name="UpdatePathTimer" type="Timer" parent="Functions/NavigationManager" index="0"]
-wait_time = 2.0
-one_shot = true
+ITEM_DROP_PERCENT = 50
 
 [node name="AttackRange" type="Area2D" parent="Areas" index="1"]
 collision_layer = 0
@@ -111,4 +104,9 @@ material = SubResource( 7 )
 [node name="Attack" type="Node2D" parent="SoundMachine" index="4"]
 script = ExtResource( 4 )
 
-[connection signal="timeout" from="Functions/NavigationManager/UpdatePathTimer" to="Functions/NavigationManager" method="_on_UpdatePathTimer_timeout"]
+[node name="NavigationAgent2D" parent="." index="12"]
+path_desired_distance = 20.0
+target_desired_distance = 20.0
+path_max_distance = 60.0
+
+[editable path="Areas/Hurtbox"]

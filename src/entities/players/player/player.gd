@@ -10,12 +10,6 @@ onready var dust_spawner = $Visuals/DustSpawner
 onready var item_pickup = $Areas/ItemPickup
 onready var respawn_radius = $Areas/Respawn
 
-# There are no shadows.
-#onready var shadow = $Shadow
-
-# There is no tween
-#onready var tween = $Tween
-
 onready var ammo_bar = $AmmoBar
 
 var player_visual_middle = Vector2(0, -50)
@@ -23,14 +17,37 @@ var player_visual_middle = Vector2(0, -50)
 var is_resistance = false
 
 signal player_died
-
+signal hidden
+signal unhidden
 ##sounds
 onready var pickup_sound = $SoundMachine/Pickup
+
+var is_in_shadow = false
+var is_hidden = false setget set_hidden
+
+
+func set_hidden(new_value):
+	is_hidden = new_value
+	if is_hidden:
+		emit_signal("hidden")
+	else:
+		emit_signal("unhidden")
+
+var interacting = false
+
+func hide():
+	animation_machine.play_animation("Hidden", "Hidden")
+
+
+func unhide():
+	animation_machine.play_animation("Unhidden", "Hidden")
 
 
 func _ready():
 	setup_player()
-	weapon_manager.init(self)
+	self.connect("hidden", self, "hide")
+	self.connect("unhidden", self, "unhide")
+	weapon_manager.init(self, ammo_bar)
 
 func setup_player():
 	if player_id == "_1":
@@ -38,62 +55,51 @@ func setup_player():
 		weapon_manager.position.y = 30
 		sprite.set_texture(red_sprite)
 		player_visual_middle = Vector2(0, -50 + 10)
+		listener.current = true;
+	
 	elif player_id == "_2":
 		$HealthBar.position.y = -85
 		weapon_manager.position.y = 16
 		sprite.set_texture(blue_sprite)
 		player_visual_middle = Vector2(0, -50)
-	Global.set("brother" + player_id, self)
-	connect("player_died", Global, "player_died")
+	#Global.set("brother" + player_id, self)
+	#connect("player_died", Global, "player_died")
+
+
+func adjust_weapon_rotation(direction):
+	weapon_manager.look_at(weapon_manager.global_position + direction)
+
+func _physics_process(delta):
+	adjust_weapon_rotation(movement.vector_to_movement_direction(movement.get_intended_velocity()))
+
+
 
 func _input(event):
+
 	if health_manager.is_dead():
 		return
-	
+	if interacting:
+		return
 	if weapon_manager.cur_weapon == null:
 		return
-	
-	if event:
-		ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())
 	if event.is_action_pressed("next_weapon" + player_id):
-		weapon_manager.update_children()
-		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 		weapon_manager.switch_to_next_weapon()
-		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-			weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
 	if event.is_action_pressed("prev_weapon" + player_id):
-		weapon_manager.update_children()
-		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-			weapon_manager.cur_weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
 		weapon_manager.switch_to_prev_weapon()
-		if weapon_manager.cur_weapon.has_signal("ammo_changed"):
-			weapon_manager.cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
+		
 	if event.is_action_pressed("action" + player_id):
-		weapon_manager.update_children()
 		weapon_manager.cur_weapon.action()
 		if weapon_manager.return_ammo_count() <= 0 and weapon_manager.cur_weapon.item_type != "MELEE":
 			weapon_manager.switch_to_next_weapon()
+	
 	elif event.is_action_released("action" + player_id):
 		if weapon_manager.cur_weapon.item_type == "RANGE":
 			weapon_manager.cur_weapon.stop_shooting()
 
-func _on_Hurtbox_area_entered(area):
-	if health_manager.is_dead(): return
-	._on_Hurtbox_area_entered(area)
+func hurt(attacker_area):
+	.hurt(attacker_area)
 	Shake.shake(4.0, .5)
-	var attacker = area.owner
-	var attack_direction
-	if area.is_in_group("PROJECTILE"):
-		attacker = area
-		attack_direction = attacker.dir
-	else:
-		attack_direction = attacker.intended_velocity
 	
-	if (attack_direction.x > 0 and sprite.scale.x == 1) or (attack_direction.x < 0 and sprite.scale.x == -1):
-		state_machine.transition_to("Pain", {Back = true})
-	elif (attack_direction.x > 0 and sprite.scale.x == -1) or (attack_direction.x < 0 and sprite.scale.x == 1):
-		state_machine.transition_to("Pain", {Front = true})
 	
 # func frame_freeze(time_scale, duration):
 # 	Engine.time_scale = time_scale
@@ -117,7 +123,7 @@ func _turn_off_all():
 	hurtbox.monitoring = false
 	hurtbox.monitorable = false
 	weapon_manager.visible = false
-	healthbar.visible = false
+	health_bar.visible = false
 	respawn_radius.activate_respawn_radius()
 	set_collision_layer_bit(1, false)
 	emit_signal("player_died")
@@ -128,7 +134,7 @@ func _turn_on_all():
 	hurtbox.monitoring = true
 	hurtbox.monitorable = true
 	weapon_manager.visible = true
-	healthbar.visible = true
+	health_bar.visible = true
 	respawn_radius.deactivate_respawn_radius()
 	set_collision_layer_bit(1, true)
 	ammo_bar.update_ammo_bar(weapon_manager.return_ammo_count())

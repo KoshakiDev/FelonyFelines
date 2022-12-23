@@ -10,7 +10,6 @@ onready var health = max_health setget set_health
 
 onready var regeneration_timer = $Regeneration
 
-
 func set_max_health(new_max_health):
 	max_health = new_max_health
 	max_health = max(1, new_max_health)
@@ -21,20 +20,8 @@ func set_health(new_value):
 	health = clamp(health, 0, max_health)
 	emit_signal("health_changed", health)
 	if is_dead():
-		#self.state_machine.transition_to("Death")
 		emit_signal("no_health")
-	natural_regen()
-
-#this function is called from the entity itself
-func _initialize_health_bar(health_bar):
-	connect("health_changed", health_bar, "set_value")
-	connect("max_health_changed", health_bar, "set_max")
-	emit_signal("max_health_changed", max_health)
-	emit_signal("health_changed", health)
-
-func heal(heal_value):
-	health += heal_value
-	set_health(health)
+	#natural_regen()
 
 
 func natural_regen():
@@ -47,14 +34,11 @@ func natural_regen():
 func _on_Regeneration_timeout():
 	heal(1)
 	
+func heal(heal_value):
+	set_health(health + heal_value)
 
-func take_damage(attacker):
-	var damage_value = attacker.damage_value
-	var knockback_value = attacker.knockback_value
-	var attacker_pos = attacker.global_position
-	owner.knockback = (owner.global_position - attacker_pos).normalized() * knockback_value
+func take_damage(damage_value):
 	set_health(health - damage_value)
-	return
 
 func is_dead():
 	return is_equal_approx(health, 0)

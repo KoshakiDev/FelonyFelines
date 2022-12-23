@@ -3,6 +3,9 @@ extends Node
 onready var FRICTION = 0.1
 onready var ACCEL = 0.1
 
+var ROTATION_SPEED = PI / 45
+
+
 var brother_1
 var brother_2
 
@@ -13,6 +16,7 @@ var main
 var items
 var enemies
 var players
+var player
 var projectiles
 var misc
 var misc_2
@@ -22,6 +26,7 @@ var UI_layer
 var final_score
 var wave_survived
 
+var alarm_counter = 0
 
 var points = 0
 var wave_num = 0
@@ -33,10 +38,12 @@ var ITEM_DROP_WEIGHTS = {
 	"weapons/range/shotgun/Shotgun": 3,
 	"medkit/Medkit": 5,
 	"weapons/range/minigun/Minigun": 1,
-	"weapons/range/revolver/Revolver": 5
+	"weapons/range/revolver/Revolver": 5,
+	"weapons/range/rocket_launcher/RocketLauncher": 1
 }
 
 signal all_dead
+signal update_alarm_count
 
 func _ready():
 	enemy_count = 0
@@ -128,6 +135,9 @@ func get_brother():
 func get_closest_player(position: Vector2):
 	var closest_player: KinematicBody2D
 	var closest_distance = 999999999
+	
+	if players == null:
+		players = player
 	
 	for player in players.get_children():
 		if player.health_manager.is_dead(): continue

@@ -24,8 +24,8 @@ points = PoolVector2Array( 53.436, 118.859, 42.6151, 118.859, 42.6151, 110.461, 
 1/occluder_offset = Vector2( 0, 0 )
 1/occluder = SubResource( 2 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( -64, -130 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, -64, -130 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 1/shape = SubResource( 3 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -34,19 +34,19 @@ points = PoolVector2Array( 53.436, 118.859, 42.6151, 118.859, 42.6151, 110.461, 
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -64, -130 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
 2/name = "Tree Medium"
 2/texture = ExtResource( 2 )
-2/tex_offset = Vector2( -32, -130 )
+2/tex_offset = Vector2( -30, -128 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 160, 0, 96, 160 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( -32, -130 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, -32, -130 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 2/shape = SubResource( 4 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -55,7 +55,7 @@ points = PoolVector2Array( 53.436, 118.859, 42.6151, 118.859, 42.6151, 110.461, 
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -32, -130 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
 3/name = "Tree Small"
@@ -66,8 +66,8 @@ points = PoolVector2Array( 53.436, 118.859, 42.6151, 118.859, 42.6151, 110.461, 
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( -32, -95 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, -32, -95 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 3/shape = SubResource( 5 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
@@ -76,7 +76,7 @@ points = PoolVector2Array( 53.436, 118.859, 42.6151, 118.859, 42.6151, 110.461, 
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -32, -95 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
 4/name = "Bush 1"
@@ -195,6 +195,7 @@ show_collision = true
 collision_use_kinematic = true
 collision_mask = 33
 format = 1
+tile_data = PoolIntArray( 196610, 2, 0 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 192.0, 257.0 ],
 "_edit_vertical_guides_": [ 129.0, 193.0 ]

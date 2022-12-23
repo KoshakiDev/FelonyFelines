@@ -19,9 +19,8 @@ __meta__ = {
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Navigation2D" type="Navigation2D" parent="World"]
-
-[node name="TileMap" parent="World/Navigation2D" instance=ExtResource( 4 )]
+[node name="TileMap" parent="World" instance=ExtResource( 4 )]
+bake_navigation = true
 
 [node name="EntityWorld" type="YSort" parent="World"]
 

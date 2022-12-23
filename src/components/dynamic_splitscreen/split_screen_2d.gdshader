@@ -22,7 +22,8 @@ float distanceToLine(vec2 p1, vec2 p2, vec2 point) {
 	return abs(a * point.x + b * point.y + p1.x * p2.y - p2.x * p1.y) / sqrt(a * a + b * b);
 }
 
-void fragment() {
+void fragment() 
+{
 	vec3 view1 = texture(viewport1, UV).rgb;
 	vec3 view2 = texture(viewport2, UV).rgb;
 	
@@ -30,17 +31,25 @@ void fragment() {
 	float width = viewport_size.x;
 	float height = viewport_size.y;
 
-	if (is_player1_dead && !is_player2_dead) {
+	if (is_player1_dead && !is_player2_dead) 
+	{
 		COLOR = vec4(view2, 1.0);
-	} else if (is_player2_dead && !is_player1_dead) {
+	} 
+	else if (is_player2_dead && !is_player1_dead) 
+	{
 		COLOR = vec4(view1, 1.0);
-	} else if (split_active) {
+	} 
+	else if (split_active) 
+	{
 		vec2 dx = player2_position - player1_position;
 		float split_slope;
 //		
-		if (dx.y != 0.0) {
+		if (dx.y != 0.0) 
+		{
 			split_slope = - dx.x / dx.y; // Gradient perpinicular to position_difference
-		} else {
+		} 
+		else 
+		{
 			split_slope = 100000.0; // High value (vertical split) if dx.y = 0
 		}
 		
@@ -53,26 +62,38 @@ void fragment() {
 		float distance_to_split_line = distanceToLine(split_line_start, split_line_end, vec2(UV.x * width, UV.y * height));
 
 		// Draw split border if close enough
-		if (distance_to_split_line < split_line_thickness) {
+		if (distance_to_split_line < split_line_thickness) 
+		{
 			COLOR = split_line_color;
-		} else {
+		} 
+		else 
+		{
 			float split_current_y = (split_origin.x - UV.x) * split_slope + split_origin.y;
 			// Check on which side of the split UV is and select the proper view
-			if (UV.y > split_current_y) {
-				if (player1_position.y < player2_position.y) {
+			if (UV.y > split_current_y) 
+			{
+				if (player1_position.y < player2_position.y) 
+				{
 					COLOR = vec4(view1, 1.0);
-				} else {
+				} 
+				else 
+				{
 					COLOR = vec4(view2, 1.0);
 				}
 			} else {
-				if (player1_position.y > player2_position.y) {
+				if (player1_position.y > player2_position.y) 
+				{
 					COLOR = vec4(view1, 1.0);
-				} else {
+				} 
+				else 
+				{
 					COLOR = vec4(view2, 1.0);
 				}
 			}
 		}
-	} else {
+	} 
+	else 
+	{
 		COLOR = vec4(view1, 1.0);
 	}
 }

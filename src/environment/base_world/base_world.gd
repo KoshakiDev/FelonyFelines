@@ -13,7 +13,6 @@ onready var items = $World/EntityWorld/Items
 onready var spawners = $World/EntityWorld/Spawners.get_children()
 onready var misc = $World/EntityWorld/Misc
 onready var misc_2 = $World/Misc2
-onready var navigation = $World/Navigation2D
 
 #var wave_num = 0
 #var points = 0
@@ -25,7 +24,7 @@ signal all_dead
 
 func _ready():
 	Global.enemy_count = 0
-	Global.wave_num = 0
+	Global.wave_num = 15
 	Global.points = 0
 	Ngio.request("Event.logEvent", {"event_name": "NewRoundLoaded","host": "https://newgrounds.com/"})
 	#Ngio.request("App.logView", {"host": "https://newgrounds.com/"})
@@ -38,7 +37,6 @@ func _ready():
 	Global.set("projectiles", projectiles)
 	Global.set("enemies", enemies)
 	Global.set("misc", misc)
-	Global.set("navigation", navigation)
 	Global.set("misc_2", misc_2)
 	
 	#yield(get_tree().root, "ready")
@@ -77,8 +75,8 @@ func update_wave():
 
 func all_players_dead():
 	$Dead.play()
-	timer.start()
-	yield(timer, "timeout")
+	#timer.start()
+	#yield(timer, "timeout")
 	
 	#show_death_screen()
 	Global.final_score = Global.points

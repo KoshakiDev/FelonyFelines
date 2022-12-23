@@ -5,19 +5,15 @@
 [ext_resource path="res://src/components/bullet-related/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/components/bullet-related/bullet type/EnemyBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/entities/enemies/EnemyGunner/states/AttackGunner.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/enemies/EnemyGunner/states/ChaseGunner.gd" type="Script" id=6]
+[ext_resource path="res://src/entities/enemies/SharedStates/Chase.gd" type="Script" id=6]
 [ext_resource path="res://src/components/bullet-related/bullet_emitters/BulletEmitterSpread.gd" type="Script" id=7]
-[ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/enemies/SharedStates/Death.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/enemies/EnemyGunner/EnemyGunner.gd" type="Script" id=9]
-[ext_resource path="res://src/entities/enemies/EnemyGunner/states/IdleGunner.gd" type="Script" id=10]
+[ext_resource path="res://src/entities/enemies/SharedStates/Idle.gd" type="Script" id=10]
 [ext_resource path="res://assets/entities/enemies/gunner/sergeant_sir_giant_hand_gun_64x64.png" type="Texture" id=11]
 [ext_resource path="res://assets/entities/enemies/gunner/sergeant_sir_giant_128x128_5x9.png" type="Texture" id=12]
-[ext_resource path="res://src/entities/enemies/EnemyGunner/states/Pain.gd" type="Script" id=13]
+[ext_resource path="res://src/entities/enemies/SharedStates/Pain.gd" type="Script" id=13]
 [ext_resource path="res://sounds/weapons/gunner/EFX EXT .50 Cal Pistol Shots 02 A.wav" type="AudioStream" id=14]
-
-[sub_resource type="CapsuleShape2D" id=19]
-radius = 5.0
-height = 64.0
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 45, 61 )
@@ -164,7 +160,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=22]
 resource_name = "Hit_Back"
-length = 0.3
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -172,7 +168,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 27, 28, 29 ]
@@ -180,7 +176,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=23]
 resource_name = "Hit_Front"
-length = 0.3
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -188,7 +184,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 18, 19, 20 ]
@@ -295,6 +291,27 @@ tracks/1/keys = {
 "method": "spawn_dust"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("SoundMachine")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Footstep" ],
+"method": "play_sound"
+}, {
+"args": [ "Footstep" ],
+"method": "play_sound"
+} ]
+}
+
+[sub_resource type="CapsuleShape2D" id=19]
+radius = 5.0
+height = 64.0
 
 [node name="EnemyGunner" groups=["ENEMY"] instance=ExtResource( 2 )]
 collision_layer = 4
@@ -303,16 +320,7 @@ script = ExtResource( 9 )
 entity_name = "GUNNER"
 entity_type = "ENEMY"
 
-[node name="HealthManager" parent="Functions" index="0"]
-max_health = 100.0
-
-[node name="NavigationManager" parent="Functions" index="2"]
-threshold = 4
-
-[node name="PhysicsCollider" parent="." index="1"]
-shape = SubResource( 19 )
-
-[node name="Areas" parent="." index="2"]
+[node name="Areas" parent="." index="0"]
 visible = false
 
 [node name="Hurtbox" parent="Areas" index="0"]
@@ -352,6 +360,12 @@ bullet_emitter = SubResource( 10 )
 
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 1 )]
 
+[node name="HealthManager" parent="." index="2"]
+max_health = 100.0
+
+[node name="Movement" parent="." index="3"]
+speed_percentage = 0.5
+
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")
 anims/Death = SubResource( 13 )
@@ -387,3 +401,11 @@ volume_db = -12.0
 position = Vector2( 0, -133 )
 
 [node name="Line2D" type="Line2D" parent="Debug" index="0"]
+
+[node name="PhysicsCollider" parent="." index="10"]
+shape = SubResource( 19 )
+
+[node name="NavigationAgent2D" parent="." index="12"]
+radius = 200.0
+
+[editable path="Areas/Hurtbox"]

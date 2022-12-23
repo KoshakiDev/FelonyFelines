@@ -8,19 +8,23 @@ export var dash_speed: int = 30
 onready var hitbox = $Areas/Hitbox
 onready var hitbox_shape = $Areas/Hitbox/HitboxShape
 
-export var damage_value: float = 10
-export var knockback_value: float = 20
-
 #SOUNDS
+func _ready():
+	turn_off_hitbox()
 
+func turn_on_hitbox():
+	hitbox.monitorable = true
+	hitbox.monitoring = true
+	#hitbox_shape.set_deferred("disabled", false)
+
+func turn_off_hitbox():
+	hitbox.monitorable = false
+	hitbox.monitoring = false
 
 func attack(target):
 	pass
 	
-func _on_Hurtbox_area_entered(area):
-	if health_manager.is_dead(): return
-	._on_Hurtbox_area_entered(area)
-	state_machine.transition_to("Pain")
-	Global.frame_freeze(0.5, 2)
+func search_for_target():
+	return Global.get_farthest_player(global_position)
 
 	

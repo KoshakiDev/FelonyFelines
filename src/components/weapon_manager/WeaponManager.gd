@@ -10,13 +10,15 @@ var cur_slot = 0
 var cur_weapon = null
 
 var weapon_owner: Node2D
+var ammo_bar: Node2D
 
 func _ready():
 	if weapons.size() != 0:
 		switch_to_weapon_slot(cur_slot)
 
-func init(weapon_owner: Node2D) -> void:
+func init(weapon_owner: Node2D, ammo_bar: Node2D) -> void:
 	self.weapon_owner = weapon_owner
+	self.ammo_bar = ammo_bar
 	for weapon in weapons:
 		weapon.init(weapon_owner)
 
@@ -55,6 +57,7 @@ func get_duplicant(new_weapon):
 		if new_weapon.entity_name == weapon.entity_name:
 			return weapon
 	return null
+	
 func is_duplicant(new_weapon):
 	var dupe_weapon = get_duplicant(new_weapon)
 	return dupe_weapon != null
@@ -82,6 +85,7 @@ func switch_to_prev_weapon():
 		switch_to_prev_weapon()
 
 func switch_to_weapon_slot(slot_ind: int):
+	
 	if slot_ind < 0 or slot_ind >= weapon_slots_size:
 		return
 	disable_all_weapons()
@@ -91,6 +95,10 @@ func switch_to_weapon_slot(slot_ind: int):
 	else:
 		cur_weapon.visible = true
 	
+	if cur_weapon.has_signal("ammo_changed"):
+		cur_weapon.connect("ammo_changed", ammo_bar, "update_ammo_bar")
+		cur_weapon.emit_signal("ammo_changed", return_ammo_count())
+	
 
 func disable_all_weapons():
 	for weapon in weapons:
@@ -98,10 +106,12 @@ func disable_all_weapons():
 			weapon.set_inactive()
 		else:
 			weapon.visible = false
+		if weapon.is_connected("ammo_changed", ammo_bar, "update_ammo_bar"):
+			weapon.disconnect("ammo_changed", ammo_bar, "update_ammo_bar")
+	
 
 func update_children():
 	weapons = weapons_container.get_children()
 	weapon_slots_size = weapons.size()
 	cur_weapon = null
-
 	switch_to_weapon_slot(cur_slot)

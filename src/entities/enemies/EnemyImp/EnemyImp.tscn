@@ -1,16 +1,17 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/entities/base_templates/base_npc/base_npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/EnemyImp/EnemyImp.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/enemies/EnemyImp/states/AttackImp.gd" type="Script" id=3]
-[ext_resource path="res://src/entities/enemies/GeneralStates/Death.gd" type="Script" id=4]
-[ext_resource path="res://src/entities/enemies/EnemyImp/states/ChaseImp.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/enemies/EnemyImp/states/IdleImp.gd" type="Script" id=6]
+[ext_resource path="res://src/entities/enemies/SharedStates/Death.gd" type="Script" id=4]
+[ext_resource path="res://src/entities/enemies/SharedStates/Chase.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/enemies/SharedStates/Idle.gd" type="Script" id=6]
 [ext_resource path="res://assets/entities/enemies/imp/deputy_dent_imp_sheet_80x80_4x10.png" type="Texture" id=7]
-[ext_resource path="res://src/entities/enemies/EnemyImp/states/Pain.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/enemies/SharedStates/Pain.gd" type="Script" id=8]
 [ext_resource path="res://src/components/dust_spawner/DustSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://sounds/imp/Juicy Crack and Break_VM 01.wav" type="AudioStream" id=10]
 [ext_resource path="res://sounds/imp/EFX INT Dog Wimper 26 A.M.wav" type="AudioStream" id=11]
+[ext_resource path="res://src/components/hitbox-hurtbox/hitbox/Hitbox.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 15.5, 23 )
@@ -18,8 +19,8 @@ extents = Vector2( 15.5, 23 )
 [sub_resource type="CircleShape2D" id=10]
 radius = 32.1403
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 10.2151, 6.72043 )
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 38, 25 )
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -102,7 +103,7 @@ shader_param/active = false
 
 [sub_resource type="Animation" id=11]
 resource_name = "Attack"
-length = 0.6
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
 tracks/0/interp = 1
@@ -110,30 +111,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 10, 11, 12, 13, 14, 15 ]
+"values": [ 11, 12, 13, 14, 15 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Areas/Hitbox/HitboxShape:disabled")
+tracks/1/type = "method"
+tracks/1/path = NodePath("Visuals/DustSpawner")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("Visuals/DustSpawner")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -175,8 +164,24 @@ tracks/1/keys = {
 "values": [ 30, 31, 32, 33, 34, 35, 36 ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "Hit_Back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 34, 33, 32 ]
+}
+
 [sub_resource type="Animation" id=19]
-resource_name = "Hit"
+resource_name = "Hit_Front"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
@@ -259,7 +264,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Areas/Hitbox/HitboxShape:disabled")
+tracks/4/path = NodePath("HealthBar:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -268,23 +273,12 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("HealthBar:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
 "values": [ Vector2( 0, -56 ) ]
 }
 
 [sub_resource type="Animation" id=15]
 resource_name = "Run"
+length = 0.6
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Sprite:frame")
@@ -293,10 +287,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+"values": [ 20, 23, 24, 26, 27, 28 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HealthBar:position")
@@ -305,10 +299,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -56 ), Vector2( 0, -70 ), Vector2( 0, -85 ), Vector2( 0, -90 ), Vector2( 0, -70 ), Vector2( 0, -56 ), Vector2( 0, -56 ) ]
+"values": [ Vector2( 0, -56 ), Vector2( 0, -70 ), Vector2( 0, -85 ), Vector2( 0, -70 ), Vector2( 0, -56 ) ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath("Visuals/DustSpawner")
@@ -317,7 +311,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.7, 0.8, 0.9 ),
+"times": PoolRealArray( 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -330,6 +324,20 @@ tracks/2/keys = {
 "method": "spawn_dust"
 } ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("SoundMachine")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Footstep" ],
+"method": "play_sound"
+} ]
+}
 
 [node name="EnemyImp" groups=["ENEMY"] instance=ExtResource( 1 )]
 collision_layer = 4
@@ -337,9 +345,9 @@ collision_mask = 7
 script = ExtResource( 2 )
 entity_name = "IMP"
 entity_type = "ENEMY"
-
-[node name="NavigationManager" parent="Functions" index="2"]
-threshold = 4
+cooldown_duration = 5.0
+dash_duration = 3.0
+dash_speed = 30
 
 [node name="Hurtbox" parent="Areas" index="0"]
 visible = false
@@ -357,16 +365,15 @@ collision_mask = 2
 position = Vector2( 0, -11 )
 shape = SubResource( 10 )
 
-[node name="Hitbox" type="Area2D" parent="Areas" index="2"]
-position = Vector2( 0, -39 )
-scale = Vector2( 3.72, 3.72 )
-collision_layer = 16
+[node name="Hitbox" parent="Areas" index="2" instance=ExtResource( 12 )]
+collision_layer = 0
 collision_mask = 64
+damage_value = 10.0
+knockback_value = 500.0
 
-[node name="HitboxShape" type="CollisionShape2D" parent="Areas/Hitbox" index="0"]
-position = Vector2( -2.38419e-07, 3.76344 )
-shape = SubResource( 18 )
-disabled = true
+[node name="CollisionShape2D" parent="Areas/Hitbox" index="0"]
+position = Vector2( 0, -25 )
+shape = SubResource( 20 )
 
 [node name="Sprite" parent="Visuals" index="0"]
 material = SubResource( 7 )
@@ -377,11 +384,15 @@ vframes = 4
 
 [node name="DustSpawner" parent="Visuals" index="1" instance=ExtResource( 9 )]
 
+[node name="Movement" parent="." index="3"]
+speed_percentage = 1.25
+
 [node name="Animations" type="AnimationPlayer" parent="AnimationMachine" index="0"]
 root_node = NodePath("../..")
 anims/Attack = SubResource( 11 )
 anims/Death = SubResource( 12 )
-anims/Hit = SubResource( 19 )
+anims/Hit_Back = SubResource( 21 )
+anims/Hit_Front = SubResource( 19 )
 anims/Idle = SubResource( 13 )
 anims/RESET = SubResource( 14 )
 anims/Run = SubResource( 15 )
@@ -419,3 +430,6 @@ stream = ExtResource( 10 )
 
 [node name="HealthBar" parent="." index="7"]
 position = Vector2( 0, -56 )
+
+[editable path="Areas/Hurtbox"]
+[editable path="Areas/Hitbox"]

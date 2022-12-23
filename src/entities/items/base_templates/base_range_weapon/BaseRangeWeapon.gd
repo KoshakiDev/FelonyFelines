@@ -23,9 +23,6 @@ func action():
 func start_shooting() -> void:
 	if is_out_of_ammo():
 		return
-	#print(self.name)
-	#print(bullet_spawner)
-	#print(bullet_spawner.is_inside_tree())
 	bullet_spawner.set_shooting(true)
 
 func stop_shooting() -> void:
@@ -45,7 +42,8 @@ func reduce_ammo() -> void:
 
 func shot_fired() -> void:
 	animation_machine.play_animation("Shoot", "AnimationPlayer")
-	weapon_owner.knockback += -1 * weapon_owner.movement_direction * recoil
+	if weapon_owner.has_node("Movement"):
+		weapon_owner.movement.apply_knockback(-1 * weapon_owner.movement.intended_velocity, recoil) 
 	reduce_ammo()
 	if is_out_of_ammo():
 		stop_shooting()

@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/components/bullet-related/bullet type/BaseProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/items/weapons/range/bullets/rocket.png" type="Texture" id=2]
+[ext_resource path="res://src/components/bullet-related/bullet type/Rocket.gd" type="Script" id=3]
+[ext_resource path="res://src/components/bullet-related/bullet type/Explosion.tscn" type="PackedScene" id=4]
+
+[node name="Rocket" instance=ExtResource( 1 )]
+collision_layer = 32
+collision_mask = 193
+script = ExtResource( 3 )
+EXPLOSION_SCENE = ExtResource( 4 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
